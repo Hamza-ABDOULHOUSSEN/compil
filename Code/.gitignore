@@ -1,0 +1,12 @@
+
+.DS_Store
+.idea
+.vscode
+.antlr
+bin
+
+./.idea
+./.vscode
+./bin 
+./.antlr
+
