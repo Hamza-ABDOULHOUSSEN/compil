@@ -1,5 +1,5 @@
 #!/bin/bash
-echo which example \( bad good or machin \) \?
+echo which example \( test \) \?
 read -r varname
 echo thanks wait
 java -jar ./lib/antlr-4.9.2-complete.jar expr.g4 -no-listener -no-visitor -o ./src/parser
