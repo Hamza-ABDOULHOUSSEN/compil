@@ -8,7 +8,7 @@ fichier : (decl)* EOF ;
 
 decl : decl_typ | decl_fct ;
 
-decl_vars : 'int' IDF+ ',' | 'struct' IDF  ('*' IDF)+  ',' ';' ;
+decl_vars : 'int' IDF+ ',' ';' | 'struct' IDF  ('*' IDF)+  ',' ';' ;
 
 decl_typ : 'struct' IDF '{' decl_vars* '}' ';' ;
 
