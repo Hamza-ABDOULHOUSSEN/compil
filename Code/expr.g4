@@ -8,39 +8,42 @@ fichier : (decl)* EOF ;
 
 decl : decl_typ | decl_fct ;
 
-decl_vars : 'int' IDF+ ',' ';' | 'struct' IDF  ('*' IDF)+  ',' ';' ;
+decl_vars : 'int' IDENT (','IDENT)* ';' 
+        | 'struct' IDENT  (',''*' IDENT)* ';' ;
 
-decl_typ : 'struct' IDF '{' decl_vars* '}' ';' ;
+decl_typ : 'struct' IDENT '{' decl_vars* '}' ';' ;
 
-decl_fct : 'int' IDF '(' param* ',' ')' bloc;
+decl_fct : 'int' IDENT '(' param? (',' param)* ')' bloc 
+        | 'struct' IDENT '*' IDENT '(' param? (','param)* ')' bloc ;
 
-param : 'int' IDF | 'struct' IDF '*' IDF ;
+param : 'int' IDENT 
+        | 'struct' IDENT '*' IDENT ;
 
 expr :  INT
-        | IDF
-        | expr '->' IDF
-        | IDF '(' expr* ',' ')'
+        | IDENT
+        | expr '->' IDENT
+        | IDENT '(' expr (',' expr)* ')'
         | '!' expr | '-' expr
         | expr OPERATEUR expr
-        | 'sizeof' '(' 'struct' IDF ')'
+        | 'sizeof' '(' 'struct' IDENT ')'
         | '(' expr ')' ;
 
 instruction : ';'
                 | expr ';'
                 | 'if' '(' expr ')' instruction
-                |'if' '(' expr ')' instruction 'else' instruction
+                | 'if' '(' expr ')' instruction 'else' instruction
                 | 'while' '(' expr ')' instruction
-                | bloc
+                |  bloc
                 | 'return' expr ';' ;
 
-bloc : '{' decl_vars* instruction* '}' ;
+bloc : '{' (decl_vars | instruction)* '}' ;
 
 
 OPERATEUR : '=' | '==' | '!=' | '<' | '<=' | '>' | '>=' | '+' | '-' | '*' | '/' | '&&' | '||' ;
 
 INT : ('0'..'9')+;
 
-IDF : ('A'..'Z' | 'a'..'z' | '_')+ ('A'..'Z' | 'a'..'z' | '_' | INT)*;
+IDENT : ('A'..'Z' | 'a'..'z' | '_')+ ('A'..'Z' | 'a'..'z' | '_' | INT)*;
 
 WS : ('\n' |'\t' | ' ')+ -> skip ;
 
