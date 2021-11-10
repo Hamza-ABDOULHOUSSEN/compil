@@ -1,7 +1,8 @@
-struct arbre { int taille , ;} ;
-int fct (int n , ) { ;
+struct arbre { int taille ;} ;
+int fct (int n ) { ;
 2 ;
 cle ;
 2 -> cle ;
-train ( 2 3 4 ,) ;
-! taille ;}
+train ( 2, 3,   4) ;
+
+}
