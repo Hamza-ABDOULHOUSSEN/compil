@@ -1,0 +1,11 @@
+int main(int argc) {
+    a ;    
+    b, c, d ;
+
+    ;
+    struct maison *f, *g, *h ;
+
+    { ; }
+    int b, c, d ;
+
+}
