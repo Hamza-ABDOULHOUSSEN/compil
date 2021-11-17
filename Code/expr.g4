@@ -29,7 +29,7 @@ expr :  INT
         | '(' expr ')' ;
 
 instruction : ';'
-                | expr ';'
+                | expr 
                 | 'if' '(' expr ')' instruction ';'
                 | 'if' '(' expr ')' instruction ';' 'else' instruction
                 | 'while' '(' expr ')' instruction
