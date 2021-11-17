@@ -9,7 +9,7 @@ fichier : (decl)* EOF ;
 decl : decl_typ | decl_fct ;
 
 decl_vars : 'int' IDENT (','IDENT)* ';' 
-        | 'struct' IDENT  (',''*' IDENT)* ';' ;
+        | 'struct' IDENT '*' IDENT (',' '*' IDENT)* ';' ;
 
 decl_typ : 'struct' IDENT '{' decl_vars* '}' ';' ;
 
@@ -45,6 +45,5 @@ INT : ('0'..'9')+;
 
 IDENT : ('A'..'Z' | 'a'..'z' | '_')+ ('A'..'Z' | 'a'..'z' | '_' | INT)*;
 
-expr : INT | IDENT | expr OPERATEUR expr | '('expr')'
 WS : ('\n' |'\t' | ' ')+ -> skip ;
 
