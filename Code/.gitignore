@@ -1,9 +1,9 @@
-
 .DS_Store
 .idea
 .vscode
 .antlr
 bin
+src/parser
 
 ./.idea
 ./.vscode
