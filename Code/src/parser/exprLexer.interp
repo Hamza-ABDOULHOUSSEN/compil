@@ -43,7 +43,7 @@ null
 null
 OPERATEUR
 INT
-IDF
+IDENT
 WS
 
 rule names:
@@ -66,7 +66,7 @@ T__15
 T__16
 OPERATEUR
 INT
-IDF
+IDENT
 WS
 
 channel names:

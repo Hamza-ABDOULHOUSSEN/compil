@@ -30,8 +30,8 @@ expr :  INT
 
 instruction : ';'
                 | expr ';'
-                | 'if' '(' expr ')' instruction
-                | 'if' '(' expr ')' instruction 'else' instruction
+                | 'if' '(' expr ')' instruction ';'
+                | 'if' '(' expr ')' instruction ';' 'else' instruction
                 | 'while' '(' expr ')' instruction
                 |  bloc
                 | 'return' expr ';' ;
@@ -45,5 +45,6 @@ INT : ('0'..'9')+;
 
 IDENT : ('A'..'Z' | 'a'..'z' | '_')+ ('A'..'Z' | 'a'..'z' | '_' | INT)*;
 
+expr : INT | IDENT | expr OPERATEUR expr | '('expr')'
 WS : ('\n' |'\t' | ' ')+ -> skip ;
 
