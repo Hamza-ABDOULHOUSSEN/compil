@@ -13,8 +13,8 @@ decl_vars : 'int' IDENT (','IDENT)* ';'
 
 decl_typ : 'struct' IDENT '{' decl_vars* '}' ';' ;
 
-decl_fct : 'int' IDENT '(' param? (',' param)* ')' bloc 
-        | 'struct' IDENT '*' IDENT '(' param? (','param)* ')' bloc ;
+decl_fct : 'int' IDENT '(' ( param (',' param)*)? ')' bloc 
+        | 'struct' IDENT '*' IDENT '(' (param (','param)*)? ')' bloc ;
 
 param : 'int' IDENT 
         | 'struct' IDENT '*' IDENT ;
@@ -36,7 +36,7 @@ instruction : ';'
                 |  bloc
                 | 'return' expr ';' ;
 
-bloc : '{' (decl_vars | instruction)* '}' ;
+bloc : '{' decl_vars* instruction* '}' ;
 
 
 OPERATEUR : '=' | '==' | '!=' | '<' | '<=' | '>' | '>=' | '+' | '-' | '*' | '/' | '&&' | '||' ;
