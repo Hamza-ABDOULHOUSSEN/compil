@@ -1,0 +1,4 @@
+struct node {
+    int x, y ;
+    struct node *left, *right ;
+};
