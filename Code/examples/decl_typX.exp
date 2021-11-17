@@ -1,0 +1,13 @@
+struct , vide {
+    ;
+}
+
+struct maison {
+    a, b, c ;
+    struct maison * a, maison *b ;
+    maison* c ;
+} ;
+
+maisonbis {
+    int n ;
+} ; 
