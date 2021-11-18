@@ -8,17 +8,11 @@ import java.util.ArrayList;
 
 public class AstCreator extends exprBaseVisitor<Ast>{
 
-
 	@Override public Ast visitFichier(exprParser.FichierContext ctx) {
 		Ast declarations = ctx.getChild(0).accept(this);
 		return new Fichier(declarations);
 	}
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+	
 	@Override public Ast visitDecl(exprParser.DeclContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -26,7 +20,16 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public Ast visitDecl_vars(exprParser.Decl_varsContext ctx) { return visitChildren(ctx); }
+	@Override public Ast visitDeclVarInt(exprParser.DeclVarIntContext ctx) {
+		String idfString = ctx.getChild(1).toString();
+
+		//Création des sous AST
+		Ident ident = new Ident(idfString);
+		
+		return new DeclVarInt(ident);
+	}
+	
+	@Override public Ast visitDeclVarStruct(exprParser.DeclVarStructContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
