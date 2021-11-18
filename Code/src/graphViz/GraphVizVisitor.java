@@ -6,6 +6,8 @@ import java.io.IOException;
 import ast.Ast;
 import ast.AstVisitor;
 import ast.Fichier;
+import ast.Ident;
+import ast.DeclVarInt;
 
 public class GraphVizVisitor implements AstVisitor<String> {
 
@@ -58,6 +60,31 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
         this.addNode(nodeIdentifier, "Fichier");
         this.addTransition(nodeIdentifier, instructionsState);
+
+        return nodeIdentifier;
+
+    }
+
+    @Override
+    public String visit(Ident ident) {
+
+        String nodeIdentifier = this.nextState();
+
+        this.addNode(nodeIdentifier, ident.name);
+
+        return nodeIdentifier;
+
+    }
+
+    @Override
+    public String visit(DeclVarInt declvarint) {
+
+        String nodeIdentifier = this.nextState();
+
+        String idfState = declvarint.ident.accept(this);
+
+        this.addNode(nodeIdentifier, "Decl_Var_Int");
+        this.addTransition(nodeIdentifier, idfState);
 
         return nodeIdentifier;
 
