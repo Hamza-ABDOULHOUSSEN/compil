@@ -8,8 +8,9 @@ fichier : (decl)* EOF ;
 
 decl : decl_typ | decl_fct ;
 
-decl_vars : 'int' IDENT (','IDENT)* ';' 
-        | 'struct' IDENT '*' IDENT (',' '*' IDENT)* ';' ;
+decl_vars : 'int' IDENT (',' IDENT)* ';'   #DeclVarInt
+        | 'struct' IDENT '*' IDENT (',' '*' IDENT)* ';'   #DeclVarStruct
+        ;
 
 decl_typ : 'struct' IDENT '{' decl_vars* '}' ';' ;
 
@@ -37,7 +38,6 @@ instruction : ';'
                 | 'return' expr ';' ;
 
 bloc : '{' decl_vars* instruction* '}' ;
-
 
 OPERATEUR : '=' | '==' | '!=' | '<' | '<=' | '>' | '>=' | '+' | '-' | '*' | '/' | '&&' | '||' ;
 
