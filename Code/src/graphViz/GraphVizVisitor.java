@@ -3,11 +3,7 @@ package graphViz;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import ast.Ast;
-import ast.AstVisitor;
-import ast.Fichier;
-import ast.Ident;
-import ast.DeclVarInt;
+import ast.*;
 
 public class GraphVizVisitor implements AstVisitor<String> {
 
@@ -89,7 +85,27 @@ public class GraphVizVisitor implements AstVisitor<String> {
         this.addTransition(nodeIdentifier, idfState);
 
         return nodeIdentifier;
+    }
 
+    @Override
+    public String visit(Decl_typ decltype) {
+
+        String nodeIdentifier = this.nextState();
+
+        String idfState = decltype.ident.accept(this);
+
+        for (Ast ast:decltype.decl_vars){
+
+            String astState = ast.accept(this);
+            this.addTransition(nodeIdentifier, astState);
+
+        }
+
+
+        this.addNode(nodeIdentifier, "Decl_typ");
+        this.addTransition(nodeIdentifier, idfState);
+
+        return nodeIdentifier;
     }
 
 }
