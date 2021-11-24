@@ -1,0 +1,19 @@
+int addition ( int x , int y ) {
+    return x + y ;
+}
+
+int soustraction ( int x , int x ) {
+    s = x - y ;
+    return q ;
+}
+
+struct voiture* nom (int x) {
+    int ID_voiture ;
+    struct proprio* p;
+}
+
+struct voiture* w (int x, int y, int x) {
+
+}
+
+
