@@ -69,7 +69,7 @@ IDENT : (LETTER)(LETTER|CHIFFRE)* ;
 
 CHIFFRE : ('0'..'9');
 
-INT : '0' | '1'..'9' ('0'..'9')*  ;
+INT : '0' | ('1'..'9')CHIFFRE* | LETTER ;
 
 LETTER : 'A'..'Z' | 'a'..'z' | '_';
 
