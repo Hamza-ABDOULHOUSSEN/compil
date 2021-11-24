@@ -20,14 +20,33 @@ decl_fct : 'int' IDENT '(' ( param (',' param)*)? ')' bloc #Decl_fct_int
 param : 'int' IDENT
         | 'struct' IDENT '*' IDENT ;
 
-expr :  INT
-        | IDENT
-        | expr '->' IDENT
-        | IDENT '(' expr (',' expr)* ')'
-        | '!' expr | '-' expr
-        | expr OPERATEUR expr
-        | 'sizeof' '(' 'struct' IDENT ')'
-        | '(' expr ')' ;
+//expr était sous cette forme avant priorité et associativité
+//expr :  INT
+//        | IDENT
+//        | expr '->' IDENT
+//        | IDENT '(' expr (',' expr)* ')'
+//        | '!' expr | '-' expr
+//        | expr OPERATEUR expr
+//        | 'sizeof' '(' 'struct' IDENT ')'
+//        | '(' expr ')' ;
+
+expr : egal ; 
+
+egal : (ou '=')* ou;
+ou : et ('||' et)* ;
+et : diff ('&&' diff)*;
+diff : comp (('==' | '!=')comp)* ;
+comp : plus (('<' | '<=' | '>' | '>=')plus)* ; 
+plus : mult (('+' | '-')mult)* ;
+mult : unaire (('*' | '/')unaire)* ;
+unaire : ('!' | '-')* fleche ;
+fleche : value '->' IDENT | value ;
+
+value : INT 
+        |IDENT
+        |IDENT '(' (expr ',')* expr? ')'
+        |'sizeof' '(' 'struct' IDENT ')'
+        |'('expr')' ;
 
 instruction : ';'
                 | expr ';'
@@ -41,20 +60,18 @@ bloc : '{' decl_vars* instruction* '}' ;
 
 OPERATEUR : '=' | '==' | '!=' | '<' | '<=' | '>' | '>=' | '+' | '-' | '*' | '/' | '&&' | '||' ;
 
-INT : ('0'..'9')+;
 
-IDENT : ('A'..'Z' | 'a'..'z' | '_')+ ('A'..'Z' | 'a'..'z' | '_' | INT)*;
+//INT : ('0'..'9')+;
 
-COMMENT :
-    //   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
-    '/*' .*? '*/'
-    ;
-LINE_COMMENT :
-    //: '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
-    '//' ~('\n'|'\r')* '\r'? '\n'
-    ;
+//IDENT : ('A'..'Z' | 'a'..'z' | '_')+ ('A'..'Z' | 'a'..'z' | '_' | INT)*;
 
+IDENT : (LETTER)(LETTER|CHIFFRE)* ;
 
+CHIFFRE : ('0'..'9');
+
+INT : '0' | ('1'..'9')CHIFFRE* ;
+
+LETTER : 'A'..'Z' | 'a'..'z' | '_';
 
 WS : ('\n' |'\t' | ' ')+ -> skip ;
 
