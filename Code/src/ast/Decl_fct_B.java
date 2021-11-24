@@ -1,4 +1,4 @@
-package Code.src.ast;
+package ast;
 import java.util.ArrayList;
 
 public class Decl_fct_B implements Ast  {
