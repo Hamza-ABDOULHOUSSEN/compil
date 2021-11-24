@@ -1,0 +1,19 @@
+int main() {
+    ;
+
+
+    3 ;
+
+    if (a>b) {
+        printf(" a est superieur `a b \n");
+    }
+    else if(a==b) {
+        printf(" a est  ́egal a b \n");
+    }
+    else {
+        printf("a est inferieur `a b \n");
+    }
+
+
+
+}
