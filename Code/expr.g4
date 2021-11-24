@@ -45,5 +45,16 @@ INT : ('0'..'9')+;
 
 IDENT : ('A'..'Z' | 'a'..'z' | '_')+ ('A'..'Z' | 'a'..'z' | '_' | INT)*;
 
+COMMENT :
+    //   '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;}
+    '/*' .*? '*/'
+    ;
+LINE_COMMENT :
+    //: '//' ~('\n'|'\r')* '\r'? '\n' {$channel=HIDDEN;}
+    '//' ~('\n'|'\r')* '\r'? '\n'
+    ;
+
+
+
 WS : ('\n' |'\t' | ' ')+ -> skip ;
 
