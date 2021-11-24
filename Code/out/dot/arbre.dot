@@ -1,0 +1,16 @@
+digraph "ast"{
+
+	nodesep=1;
+	ranksep=1;
+
+	N2 [label="voiture", shape="box"];
+	N4 [label="a", shape="box"];
+	N3 [label="Decl_Var_Int", shape="box"];
+	N1 [label="Decl_typ", shape="box"];
+	N0 [label="Fichier", shape="box"];
+
+	N3 -> N4; 
+	N1 -> N3; 
+	N1 -> N2; 
+	N0 -> N1; 
+}
