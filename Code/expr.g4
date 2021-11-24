@@ -19,15 +19,15 @@ decl_fct : 'int' IDENT '(' ( param (',' param)*)? ')' bloc
 
 param : 'int' IDENT 
         | 'struct' IDENT '*' IDENT ;
-
-expr :  INT
-        | IDENT
-        | expr '->' IDENT
-        | IDENT '(' expr (',' expr)* ')'
-        | '!' expr | '-' expr
-        | expr OPERATEUR expr
-        | 'sizeof' '(' 'struct' IDENT ')'
-        | '(' expr ')' ;
+//expr était sous cette forme avant priorité et associativité
+//expr :  INT
+//        | IDENT
+//        | expr '->' IDENT
+//        | IDENT '(' expr (',' expr)* ')'
+//        | '!' expr | '-' expr
+//        | expr OPERATEUR expr
+//        | 'sizeof' '(' 'struct' IDENT ')'
+//        | '(' expr ')' ;
 
 instruction : ';'
                 | expr ';'
