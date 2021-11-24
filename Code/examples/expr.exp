@@ -1,7 +1,9 @@
 int main() {
     a = (b - c) * (d + e( -f + g/h)) ;
 
-    12 ;
+    5 ;
+
+    32 ;
 
     abcd ;
 
