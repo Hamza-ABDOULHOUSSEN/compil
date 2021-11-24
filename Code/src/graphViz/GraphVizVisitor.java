@@ -14,18 +14,20 @@ public class GraphVizVisitor implements AstVisitor<String> {
     private int state;
     private String nodeBuffer;
     private String linkBuffer;
+    private String endBuffer;
 
     public GraphVizVisitor(){
         this.state = 0;
         this.nodeBuffer = "digraph \"ast\"{\n\n\tnodesep=1;\n\tranksep=1;\n\n";
         this.linkBuffer = "\n";
+        this.endBuffer = "}\n";
     }
 
     public void dumpGraph(String filepath) throws IOException{
-            
+
         FileOutputStream output = new FileOutputStream(filepath);
 
-        String buffer = this.nodeBuffer + this.linkBuffer;
+        String buffer = this.nodeBuffer + this.linkBuffer + this.endBuffer;
         byte[] strToBytes = buffer.getBytes();
 
         output.write(strToBytes);
@@ -89,5 +91,5 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
 
     }
-    
+
 }
