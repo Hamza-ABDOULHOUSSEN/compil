@@ -24,6 +24,7 @@ public class Main2 {
         }
 
         String testFile = args[0];
+        String name = args[1];
 
         try {
 
@@ -44,8 +45,10 @@ public class Main2 {
             // Visiteur de représentation graphique + appel
             GraphVizVisitor graphViz = new GraphVizVisitor();
             ast.accept(graphViz);
+
+            String filepath = "./out/dot/" + name + ".dot";
         
-            graphViz.dumpGraph("./out/tree.dot");
+            graphViz.dumpGraph(filepath);
 
 
         } catch (IOException e) {

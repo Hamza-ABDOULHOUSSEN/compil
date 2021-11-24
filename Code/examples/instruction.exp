@@ -1,8 +1,9 @@
 int main() {
     ;
 
-
     3 ;
+
+    35 ;
 
     if (a>b) {
         printf(" a est superieur `a b \n");
@@ -17,3 +18,4 @@ int main() {
 
 
 }
+>>>>>>> 5c0e0e60ebdb90c916a3e46e820afbb49bba2592

@@ -1,3 +1,8 @@
-int multiplication(, int a) {
+int multiplication(, int a int b) {
     ;
-}
+} ;
+
+struct multiplication m () {
+
+} ;
+

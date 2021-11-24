@@ -3,29 +3,27 @@ package graphViz;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import ast.Ast;
-import ast.AstVisitor;
-import ast.Fichier;
-import ast.Ident;
-import ast.DeclVarInt;
+import ast.*;
 
 public class GraphVizVisitor implements AstVisitor<String> {
 
     private int state;
     private String nodeBuffer;
     private String linkBuffer;
+    private String endBuffer;
 
     public GraphVizVisitor(){
         this.state = 0;
         this.nodeBuffer = "digraph \"ast\"{\n\n\tnodesep=1;\n\tranksep=1;\n\n";
         this.linkBuffer = "\n";
+        this.endBuffer = "}\n";
     }
 
     public void dumpGraph(String filepath) throws IOException{
-            
+
         FileOutputStream output = new FileOutputStream(filepath);
 
-        String buffer = this.nodeBuffer + this.linkBuffer;
+        String buffer = this.nodeBuffer + this.linkBuffer + this.endBuffer;
         byte[] strToBytes = buffer.getBytes();
 
         output.write(strToBytes);
@@ -87,7 +85,27 @@ public class GraphVizVisitor implements AstVisitor<String> {
         this.addTransition(nodeIdentifier, idfState);
 
         return nodeIdentifier;
-
     }
-    
+
+    @Override
+    public String visit(Decl_typ decltype) {
+
+        String nodeIdentifier = this.nextState();
+
+        String idfState = decltype.ident.accept(this);
+
+        for (Ast ast:decltype.decl_vars){
+
+            String astState = ast.accept(this);
+            this.addTransition(nodeIdentifier, astState);
+
+        }
+
+
+        this.addNode(nodeIdentifier, "Decl_typ");
+        this.addTransition(nodeIdentifier, idfState);
+
+        return nodeIdentifier;
+    }
+
 }

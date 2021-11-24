@@ -1,19 +1,23 @@
 int main() {
-    12 ;
-    
+    a = (b - c) * (d + e( -f + g/h)) ;
+
+    5 ;
+
+    32 ;
+
     abcd ;
 
     12 -> a ;
-    a ( 12->a , a, 24) ; 
+    a ( 12->a , a, 24) ;
 
-    ! c ; 
+    ! c ;
     - c ;
-    
+
     a == b ;
-    a = b = a = a ; 
+    a = b = a = a ;
 
     sizeof(struct a) ;
 
-    ( (a) ) ; 
+    ( (a) ) ;
 }
 
