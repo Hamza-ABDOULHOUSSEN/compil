@@ -1,3 +1,4 @@
 struct voiture {
-    int a ;
+    int a, b, c ;
+    int x, y ;
 };
