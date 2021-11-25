@@ -18,12 +18,15 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	}
 
 	@Override public Ast visitDeclVarInt(exprParser.DeclVarIntContext ctx) {
-		String idfString = ctx.getChild(1).toString();
+		int nb_child = ctx.getChildCount();
+		ArrayList<Ast> decl_vars= new ArrayList<Ast>();
 
-		//Création des sous AST
-		Ident ident = new Ident(idfString);
+		for (int i=1; i<nb_child-1; i+=2) {
+			Ident ident = new Ident(ctx.getChild(i).toString());
+			decl_vars.add(ident);
+		}
 		
-		return new DeclVarInt(ident);
+		return new DeclVarInt(decl_vars);
 	}
 	
 	@Override public Ast visitDeclVarStruct(exprParser.DeclVarStructContext ctx) { return visitChildren(ctx); }

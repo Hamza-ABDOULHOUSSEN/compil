@@ -78,11 +78,12 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(DeclVarInt declvarint) {
 
         String nodeIdentifier = this.nextState();
-
-        String idfState = declvarint.ident.accept(this);
-
         this.addNode(nodeIdentifier, "Decl_Var_Int");
-        this.addTransition(nodeIdentifier, idfState);
+
+        for (Ast ast:declvarint.ident){
+            String astState = ast.accept(this);
+            this.addTransition(nodeIdentifier, astState);
+        }
 
         return nodeIdentifier;
     }
@@ -91,8 +92,10 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Decl_typ decltype) {
 
         String nodeIdentifier = this.nextState();
+        this.addNode(nodeIdentifier, "Decl_typ");
 
         String idfState = decltype.ident.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
 
         for (Ast ast:decltype.decl_vars){
 
@@ -100,10 +103,6 @@ public class GraphVizVisitor implements AstVisitor<String> {
             this.addTransition(nodeIdentifier, astState);
 
         }
-
-
-        this.addNode(nodeIdentifier, "Decl_typ");
-        this.addTransition(nodeIdentifier, idfState);
 
         return nodeIdentifier;
     }

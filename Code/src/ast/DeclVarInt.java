@@ -1,5 +1,7 @@
 package ast;
 
+import java.util.ArrayList;
+
 public class DeclVarInt implements Ast {
 
     // Utile pour la dernière partie
@@ -7,9 +9,9 @@ public class DeclVarInt implements Ast {
         return visitor.visit(this);
     }
 
-    public Ast ident;
+    public ArrayList<Ast> ident ;
 
-    public DeclVarInt(Ast ident){
+    public DeclVarInt(ArrayList<Ast> ident){
         this.ident = ident;
     }
     
