@@ -9,7 +9,14 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 
 	@Override
 	public Ast visitFichier(exprParser.FichierContext ctx) {
-		Ast declarations = ctx.getChild(0).accept(this);
+		int nb_child = ctx.getChildCount();
+		ArrayList<Ast> declarations = new ArrayList<Ast>();
+
+		for (int i=0; i<nb_child-1; i++) {
+			Ast decl = ctx.getChild(i).accept(this);
+			declarations.add(decl);
+		}
+
 		return new Fichier(declarations);
 	}
 	

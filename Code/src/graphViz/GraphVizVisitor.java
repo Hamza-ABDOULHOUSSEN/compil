@@ -53,11 +53,12 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Fichier fichier) {
 
         String nodeIdentifier = this.nextState();
-
-        String instructionsState = fichier.declarations.accept(this);
-
         this.addNode(nodeIdentifier, "Fichier");
-        this.addTransition(nodeIdentifier, instructionsState);
+
+        for (Ast ast:fichier.declarations) {
+            String astState = ast.accept(this);
+            this.addTransition(nodeIdentifier, astState);
+        }
 
         return nodeIdentifier;
 
