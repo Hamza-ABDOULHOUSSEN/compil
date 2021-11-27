@@ -181,13 +181,13 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 		return new IfElse(expr, instruction1, instruction2);
 	}
 
-	@Override public Ast visitWhile(exprParser.WhileContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+	@Override public Ast visitWhile(exprParser.WhileContext ctx) {
+		Ast expr = ctx.getChild(2).accept(this);
+		Ast instruction = ctx.getChild(4).accept(this);
+
+		return new While(expr, instruction);
+	}
+
 	@Override public Ast visitInstrBloc(exprParser.InstrBlocContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

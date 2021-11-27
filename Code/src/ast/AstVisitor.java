@@ -12,6 +12,7 @@ public interface AstVisitor<T> {
     public T visit(ParamStruct paramstruct);
     public T visit(If ifinstr);
     public T visit(IfElse ifelseinstr);
+    public T visit(While whileinstr);
 
 
 
