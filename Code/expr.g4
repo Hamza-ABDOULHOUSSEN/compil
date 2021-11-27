@@ -50,15 +50,17 @@ value : INT
         |IDENT
         |IDENT '(' (expr ',')* expr? ')'
         |'sizeof' '(' 'struct' IDENT ')'
-        |'('expr')' ;
+        |'('expr')'
+        ;
 
-instruction : ';'
-                | expr ';'
-                | 'if' '(' expr ')' instruction ';'
-                | 'if' '(' expr ')' instruction ';' 'else' instruction
-                | 'while' '(' expr ')' instruction
-                |  bloc
-                | 'return' expr ';' ;
+instruction : ';'                                                           #NoInstr
+                | expr ';'                                                  #InstrExpr
+                | 'if' '(' expr ')' instruction ';'                         #If
+                | 'if' '(' expr ')' instruction ';' 'else' instruction      #IfElse
+                | 'while' '(' expr ')' instruction                          #While
+                |  bloc                                                     #InstrBloc
+                | 'return' expr ';'                                         #Return
+                ;
 
 bloc : '{' decl_vars* instruction* '}' ;
 

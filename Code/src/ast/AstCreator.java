@@ -152,7 +152,49 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public Ast visitInstruction(exprParser.InstructionContext ctx) { return visitChildren(ctx); }
+	@Override public Ast visitNoInstr(exprParser.NoInstrContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public Ast visitInstrExpr(exprParser.InstrExprContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public Ast visitIf(exprParser.IfContext ctx) {
+		Ast expr = ctx.getChild(2).accept(this);
+		Ast instruction = ctx.getChild(4).accept(this);
+
+		return new If(expr, instruction);
+	}
+
+	@Override public Ast visitIfElse(exprParser.IfElseContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public Ast visitWhile(exprParser.WhileContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public Ast visitInstrBloc(exprParser.InstrBlocContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public Ast visitReturn(exprParser.ReturnContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
