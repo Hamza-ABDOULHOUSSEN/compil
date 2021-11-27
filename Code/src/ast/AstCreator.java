@@ -68,13 +68,13 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 		return new ParamInt(ident);
 	}
 
-	@Override public Ast visitParamStruct(exprParser.ParamStructContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+	@Override public Ast visitParamStruct(exprParser.ParamStructContext ctx) {
+		Ident struct_type = new Ident(ctx.getChild(1).toString());
+		Ident struct_name = new Ident(ctx.getChild(3).toString());
+
+		return new ParamStruct(struct_type, struct_name);
+	}
+
 	@Override public Ast visitExpr(exprParser.ExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
