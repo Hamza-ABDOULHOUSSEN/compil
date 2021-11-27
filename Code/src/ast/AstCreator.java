@@ -31,13 +31,19 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 		return new DeclVarInt(decl_vars);
 	}
 	
-	@Override public Ast visitDeclVarStruct(exprParser.DeclVarStructContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+	@Override
+	public Ast visitDeclVarStruct(exprParser.DeclVarStructContext ctx) {
+		int nb_child = ctx.getChildCount();
+		Ident struct_type = new Ident(ctx.getChild(1).toString());
+		ArrayList<Ast> struct_names = new ArrayList<Ast>();
+
+		for (int i=3; i<nb_child-1; i+=3) {
+			Ident ident = new Ident(ctx.getChild(i).toString());
+			struct_names.add(ident);
+		}
+
+		return new DeclVarStruct(struct_type, struct_names);
+	}
 
 	@Override
 	public Ast visitDecl_typ(exprParser.Decl_typContext ctx) {
