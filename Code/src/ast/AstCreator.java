@@ -188,7 +188,9 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 		return new While(expr, instruction);
 	}
 
-	@Override public Ast visitInstrBloc(exprParser.InstrBlocContext ctx) { return visitChildren(ctx); }
+	@Override public Ast visitInstrBloc(exprParser.InstrBlocContext ctx) {
+		return ctx.getChild(0).accept(this);
+	}
 	/**
 	 * {@inheritDoc}
 	 *
