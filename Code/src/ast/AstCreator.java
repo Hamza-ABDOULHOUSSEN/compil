@@ -1,6 +1,5 @@
 package ast;
 
-import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import parser.*;
 import parser.exprParser;
 
@@ -8,16 +7,19 @@ import java.util.ArrayList;
 
 public class AstCreator extends exprBaseVisitor<Ast>{
 
-	@Override public Ast visitFichier(exprParser.FichierContext ctx) {
+	@Override
+	public Ast visitFichier(exprParser.FichierContext ctx) {
 		Ast declarations = ctx.getChild(0).accept(this);
 		return new Fichier(declarations);
 	}
 	
-	@Override public Ast visitDecl(exprParser.DeclContext ctx) {
+	@Override
+	public Ast visitDecl(exprParser.DeclContext ctx) {
 		return ctx.getChild(0).accept(this);
 	}
 
-	@Override public Ast visitDeclVarInt(exprParser.DeclVarIntContext ctx) {
+	@Override
+	public Ast visitDeclVarInt(exprParser.DeclVarIntContext ctx) {
 		int nb_child = ctx.getChildCount();
 		ArrayList<Ast> decl_vars= new ArrayList<Ast>();
 
@@ -37,7 +39,8 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 
-	@Override public Ast visitDecl_typ(exprParser.Decl_typContext ctx) {
+	@Override
+	public Ast visitDecl_typ(exprParser.Decl_typContext ctx) {
 		int nb_child = ctx.getChildCount();
 
 		Ident ident = new Ident(ctx.getChild(1).toString());
