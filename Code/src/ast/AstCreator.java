@@ -159,13 +159,10 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public Ast visitInstrExpr(exprParser.InstrExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+	@Override public Ast visitInstrExpr(exprParser.InstrExprContext ctx) {
+		return ctx.getChild(0).accept(this);
+	}
+
 	@Override public Ast visitIf(exprParser.IfContext ctx) {
 		Ast expr = ctx.getChild(2).accept(this);
 		Ast instruction = ctx.getChild(4).accept(this);
@@ -191,12 +188,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	@Override public Ast visitInstrBloc(exprParser.InstrBlocContext ctx) {
 		return ctx.getChild(0).accept(this);
 	}
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+
 	@Override public Ast visitReturn(exprParser.ReturnContext ctx) {
 		Ast expr = ctx.getChild(1).accept(this);
 
