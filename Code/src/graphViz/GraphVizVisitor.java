@@ -173,7 +173,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     @Override
     public String visit(IfElse ifelseinstr) {
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "If");
+        this.addNode(nodeIdentifier, "IfElse");
 
         String idfState = ifelseinstr.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -188,11 +188,22 @@ public class GraphVizVisitor implements AstVisitor<String> {
     @Override
     public String visit(While whileinstr) {
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "If");
+        this.addNode(nodeIdentifier, "While");
 
         String idfState = whileinstr.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
         idfState = whileinstr.instruction.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        return nodeIdentifier;
+    }
+
+    @Override
+    public String visit(Return ret) {
+        String nodeIdentifier = this.nextState();
+        this.addNode(nodeIdentifier, "Return");
+
+        String idfState = ret.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
         return nodeIdentifier;

@@ -13,6 +13,7 @@ public interface AstVisitor<T> {
     public T visit(If ifinstr);
     public T visit(IfElse ifelseinstr);
     public T visit(While whileinstr);
+    public T visit(Return ret);
 
 
 
