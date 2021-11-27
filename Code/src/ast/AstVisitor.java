@@ -8,6 +8,7 @@ public interface AstVisitor<T> {
     public T visit(DeclVarStruct declvarstruct);
     public T visit(Ident ident);
     public T visit(Int entier);
+    public T visit(ParamInt paramint);
 
 
 

@@ -20,8 +20,9 @@ decl_fct : 'int' IDENT '(' ')' bloc   #Decl_fct_int
         | 'struct' IDENT '*' IDENT '(' (param (','param)*)? ')' bloc   #Decl_fct_struct_param
         ;
 
-param : 'int' IDENT
-        | 'struct' IDENT '*' IDENT ;
+param : 'int' IDENT        #ParamInt
+        | 'struct' IDENT '*' IDENT     #ParamStruct
+        ;
 
 //expr était sous cette forme avant priorité et associativité
 //expr :  INT
@@ -67,7 +68,7 @@ OPERATEUR : '=' | '==' | '!=' | '<' | '<=' | '>' | '>=' | '+' | '-' | '*' | '/' 
 
 //IDENT : ('A'..'Z' | 'a'..'z' | '_')+ ('A'..'Z' | 'a'..'z' | '_' | INT)*;
 
-IDENT : (LETTER)(LETTER|CHIFFRE)* ;
+IDENT : (LETTER) (LETTER|CHIFFRE)* ;
 
 CHIFFRE : ('0'..'9');
 

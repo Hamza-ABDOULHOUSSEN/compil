@@ -59,14 +59,16 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 
 		return new Decl_typ(ident, decl_vars);
 	}
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 
-	@Override public Ast visitParam(exprParser.ParamContext ctx) { return visitChildren(ctx); }
+	@Override
+	public Ast visitParamInt(exprParser.ParamIntContext ctx) {
+
+		Ident ident = new Ident(ctx.getChild(1).toString());
+
+		return new ParamInt(ident);
+	}
+
+	@Override public Ast visitParamStruct(exprParser.ParamStructContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
