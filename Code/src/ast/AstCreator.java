@@ -152,13 +152,10 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public Ast visitNoInstr(exprParser.NoInstrContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+	@Override public Ast visitNoInstr(exprParser.NoInstrContext ctx) {
+		return null;
+	}
+
 	@Override public Ast visitInstrExpr(exprParser.InstrExprContext ctx) {
 		return ctx.getChild(0).accept(this);
 	}

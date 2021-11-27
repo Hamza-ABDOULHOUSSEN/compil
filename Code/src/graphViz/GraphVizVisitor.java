@@ -164,8 +164,11 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
         String idfState = ifinstr.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
-        idfState = ifinstr.instruction.accept(this);
-        this.addTransition(nodeIdentifier, idfState);
+        Ast instr = ifinstr.instruction;
+        if (instr != null) {
+            idfState = instr.accept(this);
+            this.addTransition(nodeIdentifier, idfState);
+        }
 
         return nodeIdentifier;
     }
@@ -177,10 +180,17 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
         String idfState = ifelseinstr.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
-        idfState = ifelseinstr.instruction1.accept(this);
-        this.addTransition(nodeIdentifier, idfState);
-        idfState = ifelseinstr.instruction2.accept(this);
-        this.addTransition(nodeIdentifier, idfState);
+
+        Ast instr = ifelseinstr.instruction1;
+        if (instr != null) {
+            idfState = instr.accept(this);
+            this.addTransition(nodeIdentifier, idfState);
+        }
+        instr = ifelseinstr.instruction2;
+        if (instr != null) {
+            idfState = instr.accept(this);
+            this.addTransition(nodeIdentifier, idfState);
+        }
 
         return nodeIdentifier;
     }
@@ -192,8 +202,11 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
         String idfState = whileinstr.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
-        idfState = whileinstr.instruction.accept(this);
-        this.addTransition(nodeIdentifier, idfState);
+        Ast instr = whileinstr.instruction;
+        if (instr != null) {
+            idfState = instr.accept(this);
+            this.addTransition(nodeIdentifier, idfState);
+        }
 
         return nodeIdentifier;
     }
