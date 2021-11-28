@@ -165,13 +165,19 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public Ast visitFleche(exprParser.FlecheContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+	@Override public Ast visitFleche(exprParser.FlecheContext ctx) {
+		int nb_child = ctx.getChildCount();
+
+		if (nb_child == 1) {
+			return ctx.getChild(0).accept(this);
+		}
+		else {
+			Ast value = ctx.getChild(0).accept(this);
+			Ident ident = new Ident(ctx.getChild(2).toString());
+			return new Fleche(value, ident);
+		}
+	}
+
 	@Override public Ast visitValue(exprParser.ValueContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

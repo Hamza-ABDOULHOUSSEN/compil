@@ -17,5 +17,5 @@ public interface AstVisitor<T> {
      T visit(Et et);
      T visit(Plus plus);
      T visit(Moins moins);
-
+     T visit(Fleche fleche);
 }
