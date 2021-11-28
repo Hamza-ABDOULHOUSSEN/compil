@@ -130,13 +130,27 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public Ast visitPlus(exprParser.PlusContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+	@Override public Ast visitPlus(exprParser.PlusContext ctx) {
+		int nb_child = ctx.getChildCount();
+
+		Ast noeudTemporaire = ctx.getChild(0).accept(this);
+
+		for (int i=1; i<nb_child-1; i+=2) {
+			String operation = ctx.getChild(i).toString();
+			Ast right = ctx.getChild(i+1).accept(this);
+
+
+			switch (operation) {
+				case "+" -> noeudTemporaire = new Plus(noeudTemporaire, right);
+				case "-" -> noeudTemporaire = new Moins(noeudTemporaire, right);
+				default -> {
+				}
+			}
+		}
+
+		return noeudTemporaire;
+	}
+
 	@Override public Ast visitMult(exprParser.MultContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
