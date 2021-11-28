@@ -260,4 +260,59 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 		return val ;
 	}
 
+	@Override public Ast visitComp_inf(exprParser.Comp_inf(Context ctx) {
+		int nb_child = ctx.getChildCount() ;
+		ArrayList<Ast> plusList = new ArrayList<Ast>() ;
+		for (int i = 0; i < nb_child; i+=2) {
+			Plus plus = new Plus(ctx.getChild(i).toString()) ;
+			plusList.add(plus) ;
+		}
+		Comp_inf comp = new Comp_inf(plusList) ;
+		return comp ;
+	}
+
+	@Override public Ast visitComp_inf_egal(exprParser.Comp_inf_egal(Context ctx) {
+		int nb_child = ctx.getChildCount() ;
+		ArrayList<Ast> plusList = new ArrayList<Ast>() ;
+		for (int i = 0; i < nb_child; i+=2) {
+			Plus plus = new Plus(ctx.getChild(i).toString()) ;
+			plusList.add(plus) ;
+		}
+		Comp_inf_egal comp = new Comp_inf_egal(plusList) ;
+		return comp ;
+	}
+
+	@Override public Ast visitComp_sup(exprParser.Comp_sup(Context ctx) {
+		int nb_child = ctx.getChildCount() ;
+		ArrayList<Ast> plusList = new ArrayList<Ast>() ;
+		for (int i = 0; i < nb_child; i+=2) {
+			Plus plus = new Plus(ctx.getChild(i).toString()) ;
+			plusList.add(plus) ;
+		}
+		Comp_sup comp = new Comp_sup(plusList) ;
+		return comp ;
+	}
+
+	@Override public Ast visitComp_sup_egal(exprParser.Comp_sup_egal(Context ctx) {
+		int nb_child = ctx.getChildCount() ;
+		ArrayList<Ast> plusList = new ArrayList<Ast>() ;
+		for (int i = 0; i < nb_child; i+=2) {
+			Plus plus = new Plus(ctx.getChild(i).toString()) ;
+			plusList.add(plus) ;
+		}
+		Comp_sup_egal comp = new Comp_sup_egal(plusList) ;
+		return comp ;
+	}
+
+	@Override public Ast visitEgal(exprParser.Egal(Context ctx) {
+		int nb_child = ctx.getChildCount() ;
+		ArrayList<Ast> ouList = new ArrayList<Ast>() ;
+		for (int i = 0; i < nb_child; i+=2) {
+			Ou ou = new Ou(ctx.getChild(i).toString()) ;
+			ouList.add(ou) ;
+		}
+		Egal egal = new Egal(ouList) ;
+		return egal ;
+	}
+
 
