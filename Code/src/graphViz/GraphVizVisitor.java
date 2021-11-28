@@ -236,4 +236,30 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
+    @Override
+    public String visit(Plus plus) {
+        String nodeIdentifier = this.nextState();
+        this.addNode(nodeIdentifier, "+");
+
+        String idfState = plus.left.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+        idfState = plus.right.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        return nodeIdentifier;
+    }
+
+    @Override
+    public String visit(Moins moins) {
+        String nodeIdentifier = this.nextState();
+        this.addNode(nodeIdentifier, "-");
+
+        String idfState = moins.left.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+        idfState = moins.right.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        return nodeIdentifier;
+    }
+
 }

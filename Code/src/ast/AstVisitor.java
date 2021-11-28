@@ -15,5 +15,7 @@ public interface AstVisitor<T> {
      T visit(While whileinstr);
      T visit(Return ret);
      T visit(Et et);
+     T visit(Plus plus);
+     T visit(Moins moins);
 
 }
