@@ -10,7 +10,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	@Override
 	public Ast visitFichier(exprParser.FichierContext ctx) {
 		int nb_child = ctx.getChildCount();
-		ArrayList<Ast> declarations = new ArrayList<Ast>();
+		ArrayList<Ast> declarations = new ArrayList<>();
 
 		for (int i=0; i<nb_child-1; i++) {
 			Ast decl = ctx.getChild(i).accept(this);
@@ -28,7 +28,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	@Override
 	public Ast visitDeclVarInt(exprParser.DeclVarIntContext ctx) {
 		int nb_child = ctx.getChildCount();
-		ArrayList<Ast> decl_vars= new ArrayList<Ast>();
+		ArrayList<Ast> decl_vars= new ArrayList<>();
 
 		for (int i=1; i<nb_child-1; i+=2) {
 			Ident ident = new Ident(ctx.getChild(i).toString());
@@ -42,7 +42,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	public Ast visitDeclVarStruct(exprParser.DeclVarStructContext ctx) {
 		int nb_child = ctx.getChildCount();
 		Ident struct_type = new Ident(ctx.getChild(1).toString());
-		ArrayList<Ast> struct_names = new ArrayList<Ast>();
+		ArrayList<Ast> struct_names = new ArrayList<>();
 
 		for (int i=3; i<nb_child-1; i+=3) {
 			Ident ident = new Ident(ctx.getChild(i).toString());
@@ -57,7 +57,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 		int nb_child = ctx.getChildCount();
 
 		Ident ident = new Ident(ctx.getChild(1).toString());
-		ArrayList<Ast> decl_vars= new ArrayList<Ast>();
+		ArrayList<Ast> decl_vars= new ArrayList<>();
 
 		for (int i=3; i<nb_child-2; i++) {
 			Ast expr = ctx.getChild(i).accept(this);

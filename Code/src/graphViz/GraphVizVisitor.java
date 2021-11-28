@@ -10,7 +10,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     private int state;
     private String nodeBuffer;
     private String linkBuffer;
-    private String endBuffer;
+    private final String endBuffer;
 
     public GraphVizVisitor(){
         this.state = 0;
