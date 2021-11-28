@@ -40,7 +40,12 @@ egal : (ou '=')* ou;
 ou : et ('||' et)* ;
 et : diff ('&&' diff)*;
 diff : comp (('==' | '!=')comp)* ;
-comp : plus (('<' | '<=' | '>' | '>=')plus)* ; 
+//comp : plus (('<' | '<=' | '>' | '>=')plus)* ;
+comp : plus ('<' plus)*                     #Comp_inf
+        | plus ('<=' plus)*                 #Comp_inf_egal
+        | plus ('>' plus)*                  #Comp_sup
+        | plus ('>=' plus)*                 #Comp_sup_egal
+        ;
 plus : mult (('+' | '-')mult)* ;
 mult : unaire (('*' | '/')unaire)* ;
 unaire : ('!' | '-')* fleche ;
