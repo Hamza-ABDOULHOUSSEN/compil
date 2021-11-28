@@ -17,5 +17,13 @@ public interface AstVisitor<T> {
     public T visit(Value_expr value_expr);
     public T visit(Value_list_expr value_list_expr);
     public T visit(Value_list_expr_vide value_list_expr_vide);
+    public T visit(Comp_inf comp_inf);
+    public T visit(Comp_inf_egal comp_inf_egal);
+    public T visit(Comp_sup comp_sup);
+    public T visit(Comp_sup_egal comp_sup_egal);
+    public T visit(Egal egal);
+
+
+
 
 }
