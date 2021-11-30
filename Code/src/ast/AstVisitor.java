@@ -22,6 +22,11 @@ public interface AstVisitor<T> {
     public T visit(Comp_sup comp_sup);
     public T visit(Comp_sup_egal comp_sup_egal);
     public T visit(Egal egal);
+    public T visit(Diff diff);
+    public T visit(Mult mult);
+    public T visit(Unaire unaire);
+
+
 
 
 
