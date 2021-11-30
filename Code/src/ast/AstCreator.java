@@ -315,4 +315,43 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 		return egal ;
 	}
 
+	@Override public Ast visitDiff(exprParser.DiffContext ctx) {
+		int nb_child = ctx.getChildCount();
+		Ast noeudTemporaire = ctx.getChild(0).accept(this);
+		for (int i=1; i<nb_child-1; i+=2) {
+			String operation = ctx.getChild(i).toString();
+			Ast right = ctx.getChild(i+1).accept(this);
+			switch (operation) {
+				case "==" -> noeudTemporaire = new Egal(noeudTemporaire, right);
+				case "!=" -> noeudTemporaire = new Inegal(noeudTemporaire, right);
+				default -> {
+				}
+			}
+		}
+		return noeudTemporaire;
+	}
+
+	@Override public Ast visitMult(exprParser.MultContext ctx) {
+		int nb_child = ctx.getChildCount();
+		Ast noeudTemporaire = ctx.getChild(0).accept(this);
+		for (int i=1; i<nb_child-1; i+=2) {
+			String operation = ctx.getChild(i).toString();
+			Ast right = ctx.getChild(i+1).accept(this);
+			switch (operation) {
+				case "*" -> noeudTemporaire = new Multiplication(noeudTemporaire, right);
+				case "/" -> noeudTemporaire = new Division(noeudTemporaire, right);
+				default -> {
+				}
+			}
+		}
+		return noeudTemporaire;
+	}
+
+	@Override public Ast visitUnaire(exprParser.UnaireContext ctx) {
+		int nb_child = ctx.getChildCount() ;
+		Fleche fleche = new Fleche(ctx.getChild(nb_child - 1).toString()) ;
+		Unaire unaire = new Unaire(fleche) ;
+		return unaire ;
+	}
+
 
