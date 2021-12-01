@@ -366,6 +366,21 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
+    //Div
+    @Override
+    public String visit(Div div) {
+
+        String nodeIdentifier = this.nextState();
+        this.addNode(nodeIdentifier, "/");
+
+        String idfState = div.left.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        String idfState = div.right.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        return nodeIdentifier;
+    }
 
     
 }
