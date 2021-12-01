@@ -7,7 +7,7 @@ public class Bloc implements Ast {
 
     public ArrayList<Ast> vars ;
 
-    public Decl_fct_struct_param(ArrayList<Ast> vars) {
+    public Bloc(ArrayList<Ast> vars) {
         this.vars = vars ;
     }
 }

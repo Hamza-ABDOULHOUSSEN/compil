@@ -1,8 +1,6 @@
 package ast;
 
-import java.util.ArrayList;
-
-public class Egal implements Ast {
+public class Inegal implements Ast {
     public <T> T accept(AstVisitor<T> visitor){
         return visitor.visit(this);
     }
@@ -10,7 +8,7 @@ public class Egal implements Ast {
     public Ast left ;
     public Ast right ;
 
-    public Egal(Ast left, Ast right){
+    public Inegal(Ast left, Ast right){
         this.left = left;
         this.right = right ;
     }
