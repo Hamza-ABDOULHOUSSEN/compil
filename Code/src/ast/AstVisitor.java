@@ -25,10 +25,15 @@ public interface AstVisitor<T> {
     public T visit(Diff diff);
     public T visit(Mult mult);
     public T visit(Unaire unaire);
-
-
-
-
-
-
+    public T visit(Int entier);
+    public T visit(ParamInt paramint);
+    public T visit(ParamStruct paramstruct);
+    public T visit(If ifinstr);
+    public T visit(IfElse ifelseinstr);
+    public T visit(While whileinstr);
+    public T visit(Return ret);
+    public T visit(Et et);
+    public T visit(Plus plus);
+    public T visit(Moins moins);
+    public T visit(Fleche fleche);
 }
