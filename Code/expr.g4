@@ -17,7 +17,8 @@ decl_typ : 'struct' IDENT '{' decl_vars* '}' ';' ;
 decl_fct : 'int' IDENT '(' ')' bloc   #Decl_fct_int
         | 'int' IDENT '(' ( param (',' param)*) ')' bloc   #Decl_fct_int_param
         | 'struct' IDENT '*' IDENT '(' ')' bloc   #Decl_fct_struct
-        | 'struct' IDENT '*' IDENT '(' (param (','param)*)? ')' bloc   #Decl_fct_struct_param
+        | 'struct' IDENT '*' IDENT '(' (param (','param)*) ')' bloc   #Decl_fct_struct_param
+        | 'struct' IDENT '*' IDENT '(' ')' bloc   #Decl_fct_struct_param_vide
         ;
 
 param : 'int' IDENT
@@ -39,17 +40,24 @@ egal : (ou '=')* ou;
 ou : et ('||' et)* ;
 et : diff ('&&' diff)*;
 diff : comp (('==' | '!=')comp)* ;
-comp : plus (('<' | '<=' | '>' | '>=')plus)* ; 
+//comp : plus (('<' | '<=' | '>' | '>=')plus)* ;
+comp : plus ('<' plus)*                     #Comp_inf
+        | plus ('<=' plus)*                 #Comp_inf_egal
+        | plus ('>' plus)*                  #Comp_sup
+        | plus ('>=' plus)*                 #Comp_sup_egal
+        ;
 plus : mult (('+' | '-')mult)* ;
 mult : unaire (('*' | '/')unaire)* ;
 unaire : ('!' | '-')* fleche ;
 fleche : value '->' IDENT | value ;
 
-value : INT 
-        |IDENT
-        |IDENT '(' (expr ',')* expr? ')'
-        |'sizeof' '(' 'struct' IDENT ')'
-        |'('expr')' ;
+value : INT                                 #Value_int
+        |IDENT                              #Value_ident
+        |IDENT '(' (expr ',')* expr ')'     #Value_list_expr
+        |IDENT '(' (expr ',')* ')'          #Value_list_expr_vide
+        |'sizeof' '(' 'struct' IDENT ')'    #Value_sizeof
+        |'('expr')'                         #Value_expr
+        ;
 
 instruction : ';'
                 | expr ';'
