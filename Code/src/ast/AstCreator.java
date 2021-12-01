@@ -354,4 +354,16 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 		return unaire ;
 	}
 
+@Override public Ast visitOu(exprParser.OuContext ctx) {
+		int nb_child = ctx.getChildCount();
+
+		Ast noeudTemporaire = ctx.getChild(0).accept(this);
+
+		for (int i=2; i<nb_child; i+=2) {
+			Ast right = ctx.getChild(i).accept(this);
+			noeudTemporaire = new Ou(noeudTemporaire, right);
+		}
+
+		return noeudTemporaire;
+	}
 
