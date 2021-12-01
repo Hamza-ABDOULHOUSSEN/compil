@@ -25,6 +25,8 @@ public interface AstVisitor<T> {
     public T visit(Diff diff);
     public T visit(Mult mult);
     public T visit(Unaire unaire);
+    public T visit(Ou ou);
+
 
 
 
