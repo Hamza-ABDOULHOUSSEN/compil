@@ -107,4 +107,25 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
+    //modif maha
+    @Override
+    public String visit(Decl_fct_int decl_fct_int) {
+
+        String nodeIdentifier = this.nextState();
+        this.addNode(nodeIdentifier, "Decl_fct_int");
+
+        String idfState = decl_fct_int.ident.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        for (Ast ast:decl_fct_int.bloc){
+
+            String astState = ast.accept(this);
+            this.addTransition(nodeIdentifier, astState);
+
+        }
+
+        return nodeIdentifier;
+    }
+
+    
 }
