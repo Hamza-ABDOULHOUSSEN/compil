@@ -76,6 +76,81 @@ public class GraphVizVisitor implements AstVisitor<String> {
     }
 
     @Override
+    public String visit(Decl_fct_int decl_fct_int) {
+        return null;
+    }
+
+    @Override
+    public String visit(Decl_fct_int_param decl_fct_int_param) {
+        return null;
+    }
+
+    @Override
+    public String visit(Decl_fct_struct decl_fct_struct) {
+        return null;
+    }
+
+    @Override
+    public String visit(Decl_fct_struct_param decl_fct_struct_param) {
+        return null;
+    }
+
+    @Override
+    public String visit(Decl_fct_struct_param_vide decl_fct_struct_param_vide) {
+        return null;
+    }
+
+    @Override
+    public String visit(Value_sizeof value_sizeof) {
+        return null;
+    }
+
+    @Override
+    public String visit(Value_expr value_expr) {
+        return null;
+    }
+
+    @Override
+    public String visit(Value_list_expr value_list_expr) {
+        return null;
+    }
+
+    @Override
+    public String visit(Value_list_expr_vide value_list_expr_vide) {
+        return null;
+    }
+
+    @Override
+    public String visit(Sup comp) {
+        return null;
+    }
+
+    @Override
+    public String visit(Egal egal) {
+        return null;
+    }
+
+    @Override
+    public String visit(Diff diff) {
+        return null;
+    }
+
+    @Override
+    public String visit(Mult mult) {
+        return null;
+    }
+
+    @Override
+    public String visit(Not ast) {
+        return null;
+    }
+
+    @Override
+    public String visit(Moinsunaire moinsunaire) {
+        return null;
+    }
+
+    @Override
     public String visit(DeclVarInt declvarint) {
 
         String nodeIdentifier = this.nextState();
@@ -132,6 +207,41 @@ public class GraphVizVisitor implements AstVisitor<String> {
         this.addNode(nodeIdentifier, entier.val);
 
         return nodeIdentifier;
+    }
+
+    @Override
+    public String visit(Affect affect) {
+        return null;
+    }
+
+    @Override
+    public String visit(Bloc bloc) {
+        return null;
+    }
+
+    @Override
+    public String visit(Div div) {
+        return null;
+    }
+
+    @Override
+    public String visit(Inegal inegal) {
+        return null;
+    }
+
+    @Override
+    public String visit(Inf inf) {
+        return null;
+    }
+
+    @Override
+    public String visit(InfEgal infEgal) {
+        return null;
+    }
+
+    @Override
+    public String visit(SupEgal supEgal) {
+        return null;
     }
 
     @Override

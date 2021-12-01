@@ -21,8 +21,9 @@ decl_fct : 'int' IDENT '(' ')' bloc   #Decl_fct_int
         | 'struct' IDENT '*' IDENT '(' ')' bloc   #Decl_fct_struct_param_vide
         ;
 
-param : 'int' IDENT
-        | 'struct' IDENT '*' IDENT ;
+param : 'int' IDENT        #ParamInt
+        | 'struct' IDENT '*' IDENT     #ParamStruct
+        ;
 
 //expr était sous cette forme avant priorité et associativité
 //expr :  INT
@@ -54,13 +55,14 @@ value : INT                                 #Value_int
         |'('expr')'                         #Value_expr
         ;
 
-instruction : ';'
-                | expr ';'
-                | 'if' '(' expr ')' instruction ';'
-                | 'if' '(' expr ')' instruction ';' 'else' instruction
-                | 'while' '(' expr ')' instruction
-                |  bloc
-                | 'return' expr ';' ;
+instruction : ';'                                                           #NoInstr
+                | expr ';'                                                  #InstrExpr
+                | 'if' '(' expr ')' instruction ';'                         #If
+                | 'if' '(' expr ')' instruction ';' 'else' instruction      #IfElse
+                | 'while' '(' expr ')' instruction                          #While
+                |  bloc                                                     #InstrBloc
+                | 'return' expr ';'                                         #Return
+                ;
 
 bloc : '{' decl_vars* instruction* '}' ;
 
@@ -70,7 +72,7 @@ OPERATEUR : '=' | '==' | '!=' | '<' | '<=' | '>' | '>=' | '+' | '-' | '*' | '/' 
 
 //IDENT : ('A'..'Z' | 'a'..'z' | '_')+ ('A'..'Z' | 'a'..'z' | '_' | INT)*;
 
-IDENT : (LETTER)(LETTER|CHIFFRE)* ;
+IDENT : (LETTER) (LETTER|CHIFFRE)* ;
 
 CHIFFRE : ('0'..'9');
 
