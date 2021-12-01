@@ -337,5 +337,21 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
+    //Moinsunaire
+    @Override
+    public String visit(Moinsunaire moinsunaire) {
+
+        String nodeIdentifier = this.nextState();
+        this.addNode(nodeIdentifier, "-");
+
+        String idfState = moinsunaire.ast.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        return nodeIdentifier;
+    }
+
+    //
+
+
     
 }
