@@ -40,12 +40,7 @@ egal : (ou '=')* ou;
 ou : et ('||' et)* ;
 et : diff ('&&' diff)*;
 diff : comp (('==' | '!=')comp)* ;
-//comp : plus (('<' | '<=' | '>' | '>=')plus)* ;
-comp : plus ('<' plus)*                     #Comp_inf
-        | plus ('<=' plus)*                 #Comp_inf_egal
-        | plus ('>' plus)*                  #Comp_sup
-        | plus ('>=' plus)*                 #Comp_sup_egal
-        ;
+comp : plus (('<' | '<=' | '>' | '>=')plus)* ;
 plus : mult (('+' | '-')mult)* ;
 mult : unaire (('*' | '/')unaire)* ;
 unaire : ('!' | '-')* fleche ;
@@ -54,7 +49,7 @@ fleche : value '->' IDENT | value ;
 value : INT                                 #Value_int
         |IDENT                              #Value_ident
         |IDENT '(' (expr ',')* expr ')'     #Value_list_expr
-        |IDENT '(' (expr ',')* ')'          #Value_list_expr_vide
+        |IDENT '(' ')'                      #Value_list_expr_vide
         |'sizeof' '(' 'struct' IDENT ')'    #Value_sizeof
         |'('expr')'                         #Value_expr
         ;

@@ -11,24 +11,22 @@ public interface AstVisitor<T> {
     public T visit(Decl_fct_struct decl_fct_struct);
     public T visit(Decl_fct_struct_param decl_fct_struct_param);
     public T visit(Decl_fct_struct_param_vide decl_fct_struct_param_vide);
-    public T visit(Value_int value_int);
-    public T visit(Value_ident value_ident);
     public T visit(Value_sizeof value_sizeof);
     public T visit(Value_expr value_expr);
     public T visit(Value_list_expr value_list_expr);
     public T visit(Value_list_expr_vide value_list_expr_vide);
-    public T visit(Comp_inf comp_inf);
-    public T visit(Comp_inf_egal comp_inf_egal);
-    public T visit(Comp_sup comp_sup);
-    public T visit(Comp_sup_egal comp_sup_egal);
+    public T visit(Sup comp);
     public T visit(Egal egal);
     public T visit(Diff diff);
     public T visit(Mult mult);
-    public T visit(Unaire unaire);
-
-
-
-
-
-
+    public T visit(Not ast);
+    public T visit(Moinsunaire moinsunaire);
+    T visit(Int entier);
+    T visit(Affect affect);
+    T visit(Bloc bloc);
+    T visit(Div div);
+    T visit(Inegal inegal);
+    T visit(Inf inf);
+    T visit(InfEgal infEgal);
+    T visit(SupEgal supEgal);
 }
