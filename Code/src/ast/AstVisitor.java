@@ -16,7 +16,6 @@ public interface AstVisitor<T> {
     public T visit(Value_list_expr_vide value_list_expr_vide);
     public T visit(Sup comp);
     public T visit(Egal egal);
-    public T visit(Diff diff);
     public T visit(Mult mult);
     public T visit(Not ast);
     public T visit(Moinsunaire moinsunaire);
