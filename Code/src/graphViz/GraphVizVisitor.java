@@ -289,5 +289,20 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
+    //Egal
+    @Override
+    public String visit(Egal egal) {
+
+        String nodeIdentifier = this.nextState();
+        this.addNode(nodeIdentifier, "==");
+
+        String idfState = egal.left.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        String idfState = egal.right.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        return nodeIdentifier;
+    }
     
 }
