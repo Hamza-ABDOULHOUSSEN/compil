@@ -82,13 +82,9 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 		return new ParamStruct(struct_type, struct_name);
 	}
 
-	@Override public Ast visitExpr(exprParser.ExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+	@Override public Ast visitExpr(exprParser.ExprContext ctx) {
+		return ctx.getChild(0).accept(this);
+	}
 
 	@Override
 	public Ast visitDecl_fct_int(exprParser.Decl_fct_intContext ctx) {
@@ -295,13 +291,31 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 		return noeudTemporaire;
 	}
 
-	@Override public Ast visitOu(exprParser.OuContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
+	@Override public Ast visitOu(exprParser.OuContext ctx) {
+		int nb_child = ctx.getChildCount();
+
+		Ast noeudTemporaire = ctx.getChild(0).accept(this);
+
+		for (int i=2; i<nb_child; i+=2) {
+			Ast right = ctx.getChild(i).accept(this);
+			noeudTemporaire = new Ou(noeudTemporaire, right);
+		}
+
+		return noeudTemporaire;
+	}
+
+	@Override public Ast visitEt(exprParser.EtContext ctx) {
+		int nb_child = ctx.getChildCount();
+
+		Ast noeudTemporaire = ctx.getChild(0).accept(this);
+
+		for (int i=2; i<nb_child; i+=2) {
+			Ast right = ctx.getChild(i).accept(this);
+			noeudTemporaire = new Et(noeudTemporaire, right);
+		}
+
+		return noeudTemporaire;
+	}
 
 	@Override public Ast visitPlus(exprParser.PlusContext ctx) {
 		int nb_child = ctx.getChildCount();
