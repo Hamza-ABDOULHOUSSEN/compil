@@ -10,3 +10,6 @@ src/parser
 ./bin 
 ./.antlr
 
+Code.iml
+../truct voiture nom (int x) {
+.gitignore
