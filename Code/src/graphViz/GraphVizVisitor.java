@@ -431,4 +431,20 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
         return nodeIdentifier;
     }
+
+    //SupEgal 
+    @Override
+    public String visit(SupEgal supEgal) {
+
+        String nodeIdentifier = this.nextState();
+        this.addNode(nodeIdentifier, ">=");
+
+        String idfState = supEgal.left.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        String idfState = supEgal.right.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        return nodeIdentifier;
+    }
 }
