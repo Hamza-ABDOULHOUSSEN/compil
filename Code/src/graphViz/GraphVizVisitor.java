@@ -461,8 +461,10 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
         for (Ast ast:bloc.vars){
 
-            String astState = ast.accept(this);
-            this.addTransition(nodeIdentifier, astState);
+            if (ast != null) {
+                String astState = ast.accept(this);
+                this.addTransition(nodeIdentifier, astState);
+            }
 
         }
 

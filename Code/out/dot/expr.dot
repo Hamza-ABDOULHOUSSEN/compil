@@ -1,0 +1,24 @@
+digraph "ast"{
+
+	nodesep=1;
+	ranksep=1;
+
+	N0 [label="Fichier", shape="box"];
+	N1 [label="Decl_fct_int", shape="box"];
+	N2 [label="main", shape="box"];
+	N3 [label="Bloc", shape="box"];
+	N4 [label="+", shape="box"];
+	N5 [label="15", shape="box"];
+	N6 [label="*", shape="box"];
+	N7 [label="13", shape="box"];
+	N8 [label="12", shape="box"];
+
+	N1 -> N2; 
+	N4 -> N5; 
+	N6 -> N7; 
+	N6 -> N8; 
+	N4 -> N6; 
+	N3 -> N4; 
+	N1 -> N3; 
+	N0 -> N1; 
+}

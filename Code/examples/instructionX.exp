@@ -1,0 +1,17 @@
+int main() {
+    ;
+
+    13;
+
+    35;
+
+    if(a>b) {
+        printf(" a est superieur à b \n");
+    }
+    else if(a==b) {
+        printf(" a est egal à b \n");
+    }
+    else {
+        printf("a est inferieur à b \n");
+    }
+}

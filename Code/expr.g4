@@ -57,8 +57,8 @@ value : INT                                 #Value_int
 
 instruction : ';'                                                           #NoInstr
                 | expr ';'                                                  #InstrExpr
-                | 'if' '(' expr ')' instruction ';'                         #If
-                | 'if' '(' expr ')' instruction ';' 'else' instruction      #IfElse
+                | 'if' '(' expr ')' instruction                             #If
+                | 'if' '(' expr ')' instruction 'else' instruction          #IfElse
                 | 'while' '(' expr ')' instruction                          #While
                 |  bloc                                                     #InstrBloc
                 | 'return' expr ';'                                         #Return
