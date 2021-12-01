@@ -400,4 +400,19 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
+    //InfEgal
+    @Override
+    public String visit(InfEgal infEgal) {
+
+        String nodeIdentifier = this.nextState();
+        this.addNode(nodeIdentifier, "<=");
+
+        String idfState = infEgal.left.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        String idfState = infEgal.right.accept(this);
+        this.addTransition(nodeIdentifier, idfState);
+
+        return nodeIdentifier;
+    }
 }
