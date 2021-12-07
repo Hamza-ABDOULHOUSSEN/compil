@@ -127,7 +127,7 @@
 <g id="node11" class="node">
 <title>N10</title>
 <polygon fill="none" stroke="black" points="548,-144 494,-144 494,-108 548,-108 548,-144"/>
-<text text-anchor="middle" x="521" y="-122.3" font-family="Times,serif" font-size="14.00">12</text>
+<text text-anchor="middle" x="521" y="-122.3" font-family="Times,serif" font-size="14.00">2</text>
 </g>
 <!-- N9&#45;&gt;N10 -->
 <g id="edge8" class="edge">
@@ -139,7 +139,7 @@
 <g id="node12" class="node">
 <title>N11</title>
 <polygon fill="none" stroke="black" points="674,-144 620,-144 620,-108 674,-108 674,-144"/>
-<text text-anchor="middle" x="647" y="-122.3" font-family="Times,serif" font-size="14.00">cle</text>
+<text text-anchor="middle" x="647" y="-122.3" font-family="Times,serif" font-size="14.00">key</text>
 </g>
 <!-- N9&#45;&gt;N11 -->
 <g id="edge9" class="edge">
@@ -223,7 +223,7 @@
 <g id="node19" class="node">
 <title>N18</title>
 <polygon fill="none" stroke="black" points="1178,-36 1124,-36 1124,0 1178,0 1178,-36"/>
-<text text-anchor="middle" x="1151" y="-14.3" font-family="Times,serif" font-size="14.00">13</text>
+<text text-anchor="middle" x="1151" y="-14.3" font-family="Times,serif" font-size="14.00">3</text>
 </g>
 <!-- N15&#45;&gt;N18 -->
 <g id="edge15" class="edge">

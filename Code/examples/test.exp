@@ -1,8 +1,8 @@
 struct arbre { int taille ;} ;
 int fct (int n ) { ;
-12 ;
-cle ;
+2 ;
+key ;
 12 -> cle ;
-train ( 12, 13,   14) ;
+train ( 12, 3,   14) ;
 
 }
