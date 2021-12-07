@@ -66,19 +66,13 @@ instruction : ';'                                                           #NoI
 
 bloc : '{' decl_vars* instruction* '}' ;
 
-OPERATEUR : '=' | '==' | '!=' | '<' | '<=' | '>' | '>=' | '+' | '-' | '*' | '/' | '&&' | '||' ;
-
-//INT : ('0'..'9')+;
-
-//IDENT : ('A'..'Z' | 'a'..'z' | '_')+ ('A'..'Z' | 'a'..'z' | '_' | INT)*;
-
 IDENT : (LETTER) (LETTER|CHIFFRE)* ;
 
-CHIFFRE : ('0'..'9');
-
-INT : '0' | ('1'..'9')CHIFFRE* | LETTER ;
+INT : '0' | ('1'..'9') CHIFFRE* | LETTER ;
 
 LETTER : 'A'..'Z' | 'a'..'z' | '_';
 
-WS : ('\n' |'\t' | ' ')+ -> skip ;
+CHIFFRE : ('0'..'9');
+
+WS : ('\n' |'\t' | ' ' )+ -> skip ;
 
