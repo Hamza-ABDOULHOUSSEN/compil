@@ -278,7 +278,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 
 		Ast noeudTemporaire = ctx.getChild(nb_child - 1).accept(this);
 
-		for (int i = nb_child - 2; i > -1; i++) {
+		for (int i = nb_child - 2; i > -1; i--) {
 			String operation = ctx.getChild(i).toString();
 			switch (operation) {
 				case "!" -> noeudTemporaire = new Not(noeudTemporaire);
