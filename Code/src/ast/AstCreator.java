@@ -369,7 +369,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	@Override public Ast visitIfElse(exprParser.IfElseContext ctx) {
 		Ast expr = ctx.getChild(2).accept(this);
 		Ast instruction1 = ctx.getChild(4).accept(this);
-		Ast instruction2 = ctx.getChild(7).accept(this);
+		Ast instruction2 = ctx.getChild(6).accept(this);
 
 		return new IfElse(expr, instruction1, instruction2);
 	}
