@@ -339,15 +339,23 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	}
 
 	@Override public Ast visitFleche(exprParser.FlecheContext ctx) {
+
 		int nb_child = ctx.getChildCount();
 
-		if (nb_child == 1) {
-			return ctx.getChild(0).accept(this);
+		if (nb_child==1) {
+			return ctx.getChild(nb_child - 1).accept(this);
 		}
 		else {
-			Ast value = ctx.getChild(0).accept(this);
-			Ident ident = new Ident(ctx.getChild(2).toString());
-			return new Fleche(value, ident);
+			Ast noeudTemporaire = new Ident(ctx.getChild(nb_child - 1).toString());
+
+			for (int i = nb_child - 3; i > 1; i -= 2) {
+				Ast left = new Ident(ctx.getChild(i).toString());
+				noeudTemporaire = new Fleche(left, noeudTemporaire);
+			}
+			Ast left = ctx.getChild(0).accept(this);
+			noeudTemporaire = new Fleche(left, noeudTemporaire);
+
+			return noeudTemporaire;
 		}
 	}
 

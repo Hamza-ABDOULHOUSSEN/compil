@@ -45,7 +45,7 @@ comp : plus (('<' | '<=' | '>' | '>=')plus)* ;
 plus : mult (('+' | '-')mult)* ;
 mult : unaire (('*' | '/')unaire)* ;
 unaire : ('!' | '-')* fleche ;
-fleche : value '->' IDENT | value ;
+fleche : value ('->' IDENT)* ;
 
 value : INT                                 #Value_int
         |IDENT                              #Value_ident
