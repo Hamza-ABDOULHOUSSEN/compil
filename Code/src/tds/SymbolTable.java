@@ -26,7 +26,7 @@ public class SymbolTable {
         
 
         try{
-            File file=new File("D:\\collegeDocuments\\LabExperiments\\SystemSoftware\\Ex2\\test.txt");  //Enter your text file location here before running the program
+            File file=new File("C:/Users/Maha/khatib3u/Code/examples/tdsTest.exp");  //Enter your text file location here before running the program
             FileReader fread=new FileReader(file);
             BufferedReader bf=new BufferedReader(fread);
             System.out.println("Datatype \t ID \t Initial Value \t Return Type \t type of Parameters \t no. of parameters");
