@@ -1,0 +1,26 @@
+digraph "ast"{
+
+	nodesep=1;
+	ranksep=1;
+
+	N0 [label="Fichier", shape="box"];
+	N1 [label="DefStruct", shape="box"];
+	N2 [label="node", shape="box"];
+	N3 [label="DeclInt", shape="box"];
+	N4 [label="x", shape="box"];
+	N5 [label="y", shape="box"];
+	N6 [label="DeclStruct", shape="box"];
+	N7 [label="node", shape="box"];
+	N8 [label="left", shape="box"];
+	N9 [label="right", shape="box"];
+
+	N1 -> N2; 
+	N3 -> N4; 
+	N3 -> N5; 
+	N1 -> N3; 
+	N6 -> N7; 
+	N6 -> N8; 
+	N6 -> N9; 
+	N1 -> N6; 
+	N0 -> N1; 
+}

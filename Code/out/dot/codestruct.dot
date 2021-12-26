@@ -4,23 +4,23 @@ digraph "ast"{
 	ranksep=1;
 
 	N0 [label="Fichier", shape="box"];
-	N1 [label="Decl_typ", shape="box"];
+	N1 [label="DefStruct", shape="box"];
 	N2 [label="nombre", shape="box"];
-	N3 [label="Decl_Var_Int", shape="box"];
+	N3 [label="DeclInt", shape="box"];
 	N4 [label="val", shape="box"];
-	N5 [label="Decl_typ", shape="box"];
+	N5 [label="DefStruct", shape="box"];
 	N6 [label="somme", shape="box"];
-	N7 [label="Decl_Var_Struct", shape="box"];
+	N7 [label="DeclStruct", shape="box"];
 	N8 [label="nombre", shape="box"];
 	N9 [label="left", shape="box"];
 	N10 [label="right", shape="box"];
-	N11 [label="Decl_fct_int_param", shape="box"];
+	N11 [label="DefFctInt", shape="box"];
 	N12 [label="result", shape="box"];
-	N13 [label="Param_struct", shape="box"];
+	N13 [label="Struct", shape="box"];
 	N14 [label="somme", shape="box"];
 	N15 [label="s", shape="box"];
 	N16 [label="Bloc", shape="box"];
-	N17 [label="Decl_Var_Int", shape="box"];
+	N17 [label="DeclInt", shape="box"];
 	N18 [label="val", shape="box"];
 	N19 [label="=", shape="box"];
 	N20 [label="val", shape="box"];
@@ -35,7 +35,7 @@ digraph "ast"{
 	N29 [label="->", shape="box"];
 	N30 [label="right", shape="box"];
 	N31 [label="val", shape="box"];
-	N32 [label="Return", shape="box"];
+	N32 [label="BlocReturn", shape="box"];
 	N33 [label="val", shape="box"];
 
 	N1 -> N2; 
