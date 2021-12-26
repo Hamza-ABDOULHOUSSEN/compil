@@ -79,7 +79,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(DeclVarInt declvarint) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Decl_Var_Int");
+        this.addNode(nodeIdentifier, "DeclInt");
 
         for (Ast ast:declvarint.ident){
             String astState = ast.accept(this);
@@ -93,7 +93,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(DeclVarStruct declvarstruct) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Decl_Var_Struct");
+        this.addNode(nodeIdentifier, "DeclStruct");
 
         String astState = declvarstruct.struct_type.accept(this);
         this.addTransition(nodeIdentifier, astState);
@@ -110,7 +110,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Decl_typ decltype) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Decl_typ");
+        this.addNode(nodeIdentifier, "DefStruct");
 
         String idfState = decltype.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -137,7 +137,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     @Override
     public String visit(ParamInt paramint) {
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Param_int");
+        this.addNode(nodeIdentifier, "Int");
 
         String idfState = paramint.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -148,7 +148,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     @Override
     public String visit(ParamStruct paramstruct) {
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Param_struct");
+        this.addNode(nodeIdentifier, "Struct");
 
         String idfState = paramstruct.struct_type.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -161,7 +161,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     @Override
     public String visit(If ifinstr) {
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "If");
+        this.addNode(nodeIdentifier, "BlocIf");
 
         String idfState = ifinstr.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -177,7 +177,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     @Override
     public String visit(IfElse ifelseinstr) {
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "IfElse");
+        this.addNode(nodeIdentifier, "BlocIfElse");
 
         String idfState = ifelseinstr.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -199,7 +199,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     @Override
     public String visit(While whileinstr) {
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "While");
+        this.addNode(nodeIdentifier, "BlocWhile");
 
         String idfState = whileinstr.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -215,7 +215,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     @Override
     public String visit(Return ret) {
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Return");
+        this.addNode(nodeIdentifier, "BlocReturn");
 
         String idfState = ret.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -292,7 +292,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Decl_fct_int decl_fct_int) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Decl_fct_int");
+        this.addNode(nodeIdentifier, "DefFctInt");
 
         String idfState = decl_fct_int.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -308,7 +308,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Decl_fct_int_param decl_fct_int_param) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Decl_fct_int_param");
+        this.addNode(nodeIdentifier, "DefFctInt");
 
         String idfState = decl_fct_int_param.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -330,7 +330,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Decl_fct_struct decl_fct_struct) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Decl_fct_struct");
+        this.addNode(nodeIdentifier, "DefFctStruct");
 
         String idfState = decl_fct_struct.ident1.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -350,7 +350,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Decl_fct_struct_param decl_fct_struct_param) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Decl_fct_struct_param");
+        this.addNode(nodeIdentifier, "defFctStruct");
 
         String idfState = decl_fct_struct_param.ident1.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -377,7 +377,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Decl_fct_struct_param_vide decl_fct_struct_param_vide) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Decl_fct_struct_param_vide");
+        this.addNode(nodeIdentifier, "defFctStruct");
 
         String idfState = decl_fct_struct_param_vide.ident1.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -398,7 +398,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Value_sizeof value_sizeof) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Value_sizeof");
+        this.addNode(nodeIdentifier, "sizeof");
 
         String idfState = value_sizeof.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -411,7 +411,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Value_expr value_expr) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Value_expr");
+        this.addNode(nodeIdentifier, "()");
 
         String idfState = value_expr.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -424,7 +424,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Value_list_expr value_list_expr) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Value_list_expr");
+        this.addNode(nodeIdentifier, "Fct");
 
         String idfState = value_list_expr.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -444,7 +444,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Value_list_expr_vide value_list_expr_vide) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "Value_list_expr_vide");
+        this.addNode(nodeIdentifier, "Fct");
 
         String idfState = value_list_expr_vide.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
@@ -521,7 +521,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     public String visit(Moinsunaire moinsunaire) {
 
         String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "-");
+        this.addNode(nodeIdentifier, "MoinsUnaire");
 
         String idfState = moinsunaire.ast.accept(this);
         this.addTransition(nodeIdentifier, idfState);
