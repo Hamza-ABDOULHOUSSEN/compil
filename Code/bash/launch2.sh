@@ -3,12 +3,16 @@
 varname=$1
 
 if [ "$varname" == "" ]; then
-    echo "test files :"
-    ls ./examples
-    echo
 
-    read -p "Which test from examples (ex test) : " varname
-    echo
+  echo "test files :"
+  cd ./examples
+  find * | grep '[^X].exp$'
+  cd ..
+  echo
+
+  read -p "Which test from examples (ex Test_Complet/test) : " varname
+  echo
+
 fi
 
 if ! [[ $varname = *.exp ]]; then
@@ -69,8 +73,3 @@ else
 fi
 
 echo
-
-
-
-
-

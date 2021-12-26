@@ -1,15 +1,16 @@
 #!/bin/bash
+cd examples
 
-cd ..
-
-for file in ./examples/*; do
+for file in $(find * | grep '[^X].exp$'); do
     if [[ $file != *X.exp ]]; then
         basename="${file##*/}"
         basename="${basename%.exp}"
         echo "=========== Creation arbre : $basename ==========="
-        ./launch.sh 1 $basename $basename
+        cd ..
+        ./launch.sh 1 $file $basename
+        cd examples
     fi
 done
 
 echo
-cd bash
+cd ..
