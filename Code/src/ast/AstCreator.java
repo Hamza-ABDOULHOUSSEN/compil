@@ -87,15 +87,15 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	}
 
 	@Override
-	public Ast visitDecl_fct_int(exprParser.Decl_fct_intContext ctx) {
+	public Ast visitDeclFctInt(exprParser.DeclFctIntContext ctx) {
 		Ident ident = new Ident(ctx.getChild(1).toString());
 		Ast bloc = ctx.getChild(4).accept(this);
-		Decl_fct_int decl = new Decl_fct_int(ident, bloc);
+		DeclFctInt decl = new DeclFctInt(ident, bloc);
 		return decl;
 	}
 
 	@Override
-	public Ast visitDecl_fct_int_param(exprParser.Decl_fct_int_paramContext ctx) {
+	public Ast visitDeclFctIntParam(exprParser.DeclFctIntParamContext ctx) {
 		int nb_child = ctx.getChildCount();
 		Ident ident = new Ident(ctx.getChild(1).toString());
 		ArrayList<Ast> params = new ArrayList<Ast>();
@@ -104,21 +104,21 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 			params.add(param);
 		}
 		Ast bloc = ctx.getChild(nb_child - 1).accept(this);
-		Decl_fct_int_param decl = new Decl_fct_int_param(ident, params, bloc);
+		DeclFctIntParam decl = new DeclFctIntParam(ident, params, bloc);
 		return decl;
 	}
 
 	@Override
-	public Ast visitDecl_fct_struct(exprParser.Decl_fct_structContext ctx) {
+	public Ast visitDeclFctStruct(exprParser.DeclFctStructContext ctx) {
 		Ident ident1 = new Ident(ctx.getChild(1).toString());
 		Ident ident2 = new Ident(ctx.getChild(3).toString());
 		Ast bloc = ctx.getChild(6).accept(this);
-		Decl_fct_struct decl = new Decl_fct_struct(ident1, ident2, bloc);
+		DeclFctStruct decl = new DeclFctStruct(ident1, ident2, bloc);
 		return decl;
 	}
 
 	@Override
-	public Ast visitDecl_fct_struct_param(exprParser.Decl_fct_struct_paramContext ctx) {
+	public Ast visitDeclFctStructParam(exprParser.DeclFctStructParamContext ctx) {
 		int nb_child = ctx.getChildCount();
 		Ident ident1 = new Ident(ctx.getChild(1).toString());
 		Ident ident2 = new Ident(ctx.getChild(3).toString());
@@ -128,7 +128,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 			params.add(param);
 		}
 		Ast bloc = ctx.getChild(nb_child - 1).accept(this);
-		Decl_fct_struct_param decl = new Decl_fct_struct_param(ident1, ident2, params, bloc);
+		DeclFctStructParam decl = new DeclFctStructParam(ident1, ident2, params, bloc);
 		return decl;
 	}
 
@@ -334,7 +334,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 		int nb_child = ctx.getChildCount();
 
 		if (nb_child==1) {
-			return ctx.getChild(nb_child - 1).accept(this);
+			return ctx.getChild(0).accept(this);
 		}
 		else {
 			Ast noeudTemporaire = new Ident(ctx.getChild(nb_child - 1).toString());

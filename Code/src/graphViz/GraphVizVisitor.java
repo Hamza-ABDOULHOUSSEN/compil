@@ -289,7 +289,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     }
 
     @Override
-    public String visit(Decl_fct_int decl_fct_int) {
+    public String visit(DeclFctInt decl_fct_int) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "DefFctInt");
@@ -305,7 +305,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
     //modif maha pour Decl_fct_int_param
     @Override
-    public String visit(Decl_fct_int_param decl_fct_int_param) {
+    public String visit(DeclFctIntParam decl_fct_int_param) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "DefFctInt");
@@ -327,7 +327,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
     }
     //Decl_fct_struct
     @Override
-    public String visit(Decl_fct_struct decl_fct_struct) {
+    public String visit(DeclFctStruct decl_fct_struct) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "DefFctStruct");
@@ -347,7 +347,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
     // Decl_fct_struct_param
     @Override
-    public String visit(Decl_fct_struct_param decl_fct_struct_param) {
+    public String visit(DeclFctStructParam decl_fct_struct_param) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "defFctStruct");
