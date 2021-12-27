@@ -178,9 +178,9 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	}
 
 	@Override
-	public Ast visitValue_sizeof(exprParser.Value_sizeofContext ctx) {
+	public Ast visitSizeOf(exprParser.SizeOfContext ctx) {
 		Ident ident = new Ident(ctx.getChild(3).toString());
-		Value_sizeof val = new Value_sizeof(ident);
+		SizeOf val = new SizeOf(ident);
 		return val;
 	}
 

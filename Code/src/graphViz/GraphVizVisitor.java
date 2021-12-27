@@ -303,7 +303,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
-    //modif maha pour Decl_fct_int_param
+    //DeclFctIntParam
     @Override
     public String visit(DeclFctIntParam decl_fct_int_param) {
 
@@ -325,7 +325,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
         return nodeIdentifier;
     }
-    //Decl_fct_struct
+    //DeclFctStruct
     @Override
     public String visit(DeclFctStruct decl_fct_struct) {
 
@@ -345,7 +345,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
-    // Decl_fct_struct_param
+    // DeclFctStructParam
     @Override
     public String visit(DeclFctStructParam decl_fct_struct_param) {
 
@@ -372,20 +372,20 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
-    //Value_sizeof
+    //SizeOf
     @Override
-    public String visit(Value_sizeof value_sizeof) {
+    public String visit(SizeOf sizeof) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "sizeof");
 
-        String idfState = value_sizeof.ident.accept(this);
+        String idfState = sizeof.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
         return nodeIdentifier;
     }
 
-    //Value_expr
+    //Parenthese
     @Override
     public String visit(Parenthese parenthese) {
 
@@ -398,7 +398,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
-    //Value_list_expr
+    //FctParam
     @Override
     public String visit(FctParam fctparam) {
 
@@ -418,7 +418,7 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
-    //Value_list_expr_vide
+    //Fct
     @Override
     public String visit(Fct fct) {
 

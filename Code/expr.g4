@@ -50,7 +50,7 @@ value : INT                                 #Value_int
         |IDENT                              #Value_ident
         |IDENT '(' (expr ',')* expr ')'     #FctParam
         |IDENT '(' ')'                      #Fct
-        |'sizeof' '(' 'struct' IDENT ')'    #Value_sizeof
+        |'sizeof' '(' 'struct' IDENT ')'    #SizeOf
         |'('expr')'                         #Parenthese
         ;
 
