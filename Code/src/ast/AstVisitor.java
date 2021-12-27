@@ -2,22 +2,22 @@ package ast;
 
 public interface AstVisitor<T> {
 
-    public T visit(Fichier fichier);
-    public T visit(Decl_typ decl_typ);
-    public T visit(DeclVarInt var);
-    public T visit(Decl_fct_int decl_fct_int);
-    public T visit(Decl_fct_int_param decl_fct_int_param);
-    public T visit(Decl_fct_struct decl_fct_struct);
-    public T visit(Decl_fct_struct_param decl_fct_struct_param);
-    public T visit(Value_sizeof value_sizeof);
-    public T visit(Value_expr value_expr);
-    public T visit(Value_list_expr value_list_expr);
-    public T visit(Value_list_expr_vide value_list_expr_vide);
-    public T visit(Sup comp);
-    public T visit(Egal egal);
-    public T visit(Mult mult);
-    public T visit(Not ast);
-    public T visit(Moinsunaire moinsunaire);
+    T visit(Fichier fichier);
+    T visit(Decl_typ decl_typ);
+    T visit(DeclVarInt var);
+    T visit(Decl_fct_int decl_fct_int);
+    T visit(Decl_fct_int_param decl_fct_int_param);
+    T visit(Decl_fct_struct decl_fct_struct);
+    T visit(Decl_fct_struct_param decl_fct_struct_param);
+    T visit(Value_sizeof value_sizeof);
+    T visit(Parenthese parenthese);
+    T visit(FctParam fct_param);
+    T visit(Fct fct);
+    T visit(Sup comp);
+    T visit(Egal egal);
+    T visit(Mult mult);
+    T visit(Not ast);
+    T visit(Moinsunaire moinsunaire);
     T visit(Affect affect);
     T visit(Bloc bloc);
     T visit(Div div);

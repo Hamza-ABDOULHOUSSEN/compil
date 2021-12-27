@@ -387,12 +387,12 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
     //Value_expr
     @Override
-    public String visit(Value_expr value_expr) {
+    public String visit(Parenthese parenthese) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "()");
 
-        String idfState = value_expr.expr.accept(this);
+        String idfState = parenthese.expr.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
         return nodeIdentifier;
@@ -400,15 +400,15 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
     //Value_list_expr
     @Override
-    public String visit(Value_list_expr value_list_expr) {
+    public String visit(FctParam fctparam) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "Fct");
 
-        String idfState = value_list_expr.ident.accept(this);
+        String idfState = fctparam.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
-        for (Ast ast:value_list_expr.exprs){
+        for (Ast ast:fctparam.exprs){
 
             String astState = ast.accept(this);
             this.addTransition(nodeIdentifier, astState);
@@ -420,12 +420,12 @@ public class GraphVizVisitor implements AstVisitor<String> {
 
     //Value_list_expr_vide
     @Override
-    public String visit(Value_list_expr_vide value_list_expr_vide) {
+    public String visit(Fct fct) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "Fct");
 
-        String idfState = value_list_expr_vide.ident.accept(this);
+        String idfState = fct.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
         return nodeIdentifier;

@@ -48,10 +48,10 @@ fleche : value ('->' IDENT)* ;
 
 value : INT                                 #Value_int
         |IDENT                              #Value_ident
-        |IDENT '(' (expr ',')* expr ')'     #Value_list_expr
-        |IDENT '(' ')'                      #Value_list_expr_vide
+        |IDENT '(' (expr ',')* expr ')'     #FctParam
+        |IDENT '(' ')'                      #Fct
         |'sizeof' '(' 'struct' IDENT ')'    #Value_sizeof
-        |'('expr')'                         #Value_expr
+        |'('expr')'                         #Parenthese
         ;
 
 instruction : ';'                                                           #NoInstr
