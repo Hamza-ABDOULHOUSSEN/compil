@@ -53,7 +53,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	}
 
 	@Override
-	public Ast visitDecl_typ(exprParser.Decl_typContext ctx) {
+	public Ast visitDef_struct(exprParser.Def_structContext ctx) {
 		int nb_child = ctx.getChildCount();
 
 		Ident ident = new Ident(ctx.getChild(1).toString());
@@ -64,7 +64,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 			decl_vars.add(expr);
 		}
 
-		return new Decl_typ(ident, decl_vars);
+		return new DefStruct(ident, decl_vars);
 	}
 
 	@Override

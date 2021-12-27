@@ -6,13 +6,13 @@ package parser;
 
 fichier : (decl)* EOF ;
 
-decl : decl_typ | decl_fct ;
+decl : def_struct | decl_fct ;
 
 decl_vars : 'int' IDENT (',' IDENT)* ';'   #DeclVarInt
         | 'struct' IDENT '*' IDENT (',' '*' IDENT)* ';'   #DeclVarStruct
         ;
 
-decl_typ : 'struct' IDENT '{' decl_vars* '}' ';' ;
+def_struct : 'struct' IDENT '{' decl_vars* '}' ';' ;
 
 decl_fct : 'int' IDENT '(' ')' bloc   #DefFctInt
         | 'int' IDENT '(' ( param (',' param)*) ')' bloc   #DefFctIntParam

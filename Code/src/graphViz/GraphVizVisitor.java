@@ -107,15 +107,15 @@ public class GraphVizVisitor implements AstVisitor<String> {
     }
 
     @Override
-    public String visit(Decl_typ decltype) {
+    public String visit(DefStruct def_struct) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "DefStruct");
 
-        String idfState = decltype.ident.accept(this);
+        String idfState = def_struct.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
-        for (Ast ast:decltype.decl_vars){
+        for (Ast ast:def_struct.decl_vars){
 
             String astState = ast.accept(this);
             this.addTransition(nodeIdentifier, astState);

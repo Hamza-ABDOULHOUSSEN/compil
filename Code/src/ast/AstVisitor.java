@@ -3,7 +3,7 @@ package ast;
 public interface AstVisitor<T> {
 
     T visit(Fichier fichier);
-    T visit(Decl_typ decl_typ);
+    T visit(DefStruct def_struct);
     T visit(DeclVarInt var);
     T visit(DefFctInt def_fct_int);
     T visit(DefFctIntParam def_fct_int_param);
