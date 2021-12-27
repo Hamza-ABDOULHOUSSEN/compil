@@ -18,7 +18,6 @@ decl_fct : 'int' IDENT '(' ')' bloc   #Decl_fct_int
         | 'int' IDENT '(' ( param (',' param)*) ')' bloc   #Decl_fct_int_param
         | 'struct' IDENT '*' IDENT '(' ')' bloc   #Decl_fct_struct
         | 'struct' IDENT '*' IDENT '(' (param (','param)*) ')' bloc   #Decl_fct_struct_param
-        | 'struct' IDENT '*' IDENT '(' ')' bloc   #Decl_fct_struct_param_vide
         ;
 
 param : 'int' IDENT        #ParamInt

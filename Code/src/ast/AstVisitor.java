@@ -9,7 +9,6 @@ public interface AstVisitor<T> {
     public T visit(Decl_fct_int_param decl_fct_int_param);
     public T visit(Decl_fct_struct decl_fct_struct);
     public T visit(Decl_fct_struct_param decl_fct_struct_param);
-    public T visit(Decl_fct_struct_param_vide decl_fct_struct_param_vide);
     public T visit(Value_sizeof value_sizeof);
     public T visit(Value_expr value_expr);
     public T visit(Value_list_expr value_list_expr);

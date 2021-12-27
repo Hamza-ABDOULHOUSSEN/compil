@@ -133,15 +133,6 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	}
 
 	@Override
-	public Ast visitDecl_fct_struct_param_vide(exprParser.Decl_fct_struct_param_videContext ctx) {
-		Ident ident1 = new Ident(ctx.getChild(1).toString());
-		Ident ident2 = new Ident(ctx.getChild(3).toString());
-		Ast bloc = ctx.getChild(6).accept(this);
-		Decl_fct_struct_param_vide decl = new Decl_fct_struct_param_vide(ident1, ident2, bloc);
-		return decl;
-	}
-
-	@Override
 	public Ast visitBloc(exprParser.BlocContext ctx) {
 		int nb_child = ctx.getChildCount();
 		ArrayList<Ast> vars = new ArrayList<>();

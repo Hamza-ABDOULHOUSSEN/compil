@@ -372,27 +372,6 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
-    //Decl_fct_struct_param_vide
-    @Override
-    public String visit(Decl_fct_struct_param_vide decl_fct_struct_param_vide) {
-
-        String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "defFctStruct");
-
-        String idfState = decl_fct_struct_param_vide.ident1.accept(this);
-        this.addTransition(nodeIdentifier, idfState);
-
-
-        idfState = decl_fct_struct_param_vide.ident2.accept(this);
-        this.addTransition(nodeIdentifier, idfState);
-
-
-        idfState = decl_fct_struct_param_vide.bloc.accept(this);
-        this.addTransition(nodeIdentifier, idfState);
-
-        return nodeIdentifier;
-    }
-
     //Value_sizeof
     @Override
     public String visit(Value_sizeof value_sizeof) {
