@@ -87,15 +87,15 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 	}
 
 	@Override
-	public Ast visitDeclFctInt(exprParser.DeclFctIntContext ctx) {
+	public Ast visitDefFctInt(exprParser.DefFctIntContext ctx) {
 		Ident ident = new Ident(ctx.getChild(1).toString());
 		Ast bloc = ctx.getChild(4).accept(this);
-		DeclFctInt decl = new DeclFctInt(ident, bloc);
+		DefFctInt decl = new DefFctInt(ident, bloc);
 		return decl;
 	}
 
 	@Override
-	public Ast visitDeclFctIntParam(exprParser.DeclFctIntParamContext ctx) {
+	public Ast visitDefFctIntParam(exprParser.DefFctIntParamContext ctx) {
 		int nb_child = ctx.getChildCount();
 		Ident ident = new Ident(ctx.getChild(1).toString());
 		ArrayList<Ast> params = new ArrayList<Ast>();
@@ -104,21 +104,21 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 			params.add(param);
 		}
 		Ast bloc = ctx.getChild(nb_child - 1).accept(this);
-		DeclFctIntParam decl = new DeclFctIntParam(ident, params, bloc);
+		DefFctIntParam decl = new DefFctIntParam(ident, params, bloc);
 		return decl;
 	}
 
 	@Override
-	public Ast visitDeclFctStruct(exprParser.DeclFctStructContext ctx) {
+	public Ast visitDefFctStruct(exprParser.DefFctStructContext ctx) {
 		Ident ident1 = new Ident(ctx.getChild(1).toString());
 		Ident ident2 = new Ident(ctx.getChild(3).toString());
 		Ast bloc = ctx.getChild(6).accept(this);
-		DeclFctStruct decl = new DeclFctStruct(ident1, ident2, bloc);
+		DefFctStruct decl = new DefFctStruct(ident1, ident2, bloc);
 		return decl;
 	}
 
 	@Override
-	public Ast visitDeclFctStructParam(exprParser.DeclFctStructParamContext ctx) {
+	public Ast visitDefFctStructParam(exprParser.DefFctStructParamContext ctx) {
 		int nb_child = ctx.getChildCount();
 		Ident ident1 = new Ident(ctx.getChild(1).toString());
 		Ident ident2 = new Ident(ctx.getChild(3).toString());
@@ -128,7 +128,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 			params.add(param);
 		}
 		Ast bloc = ctx.getChild(nb_child - 1).accept(this);
-		DeclFctStructParam decl = new DeclFctStructParam(ident1, ident2, params, bloc);
+		DefFctStructParam decl = new DefFctStructParam(ident1, ident2, params, bloc);
 		return decl;
 	}
 

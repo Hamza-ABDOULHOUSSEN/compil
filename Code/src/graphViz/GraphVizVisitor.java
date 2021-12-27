@@ -289,84 +289,84 @@ public class GraphVizVisitor implements AstVisitor<String> {
     }
 
     @Override
-    public String visit(DeclFctInt decl_fct_int) {
+    public String visit(DefFctInt def_fct_int) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "DefFctInt");
 
-        String idfState = decl_fct_int.ident.accept(this);
+        String idfState = def_fct_int.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
-        idfState = decl_fct_int.bloc.accept(this);
+        idfState = def_fct_int.bloc.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
         return nodeIdentifier;
     }
 
-    //DeclFctIntParam
+    //DefFctIntParam
     @Override
-    public String visit(DeclFctIntParam decl_fct_int_param) {
+    public String visit(DefFctIntParam def_fct_int_param) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "DefFctInt");
 
-        String idfState = decl_fct_int_param.ident.accept(this);
+        String idfState = def_fct_int_param.ident.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
-        for (Ast ast:decl_fct_int_param.params){
+        for (Ast ast:def_fct_int_param.params){
 
             String astState = ast.accept(this);
             this.addTransition(nodeIdentifier, astState);
 
         }
-        idfState = decl_fct_int_param.bloc.accept(this);
+        idfState = def_fct_int_param.bloc.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
 
         return nodeIdentifier;
     }
-    //DeclFctStruct
+    //DefFctStruct
     @Override
-    public String visit(DeclFctStruct decl_fct_struct) {
+    public String visit(DefFctStruct def_fct_struct) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "DefFctStruct");
 
-        String idfState = decl_fct_struct.ident1.accept(this);
+        String idfState = def_fct_struct.ident1.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
 
-        idfState = decl_fct_struct.ident2.accept(this);
+        idfState = def_fct_struct.ident2.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
-        idfState = decl_fct_struct.bloc.accept(this);
+        idfState = def_fct_struct.bloc.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
         return nodeIdentifier;
     }
 
-    // DeclFctStructParam
+    // DefFctStructParam
     @Override
-    public String visit(DeclFctStructParam decl_fct_struct_param) {
+    public String visit(DefFctStructParam def_fct_struct_param) {
 
         String nodeIdentifier = this.nextState();
         this.addNode(nodeIdentifier, "defFctStruct");
 
-        String idfState = decl_fct_struct_param.ident1.accept(this);
+        String idfState = def_fct_struct_param.ident1.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
 
-        idfState = decl_fct_struct_param.ident2.accept(this);
+        idfState = def_fct_struct_param.ident2.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
-        for (Ast ast:decl_fct_struct_param.params){
+        for (Ast ast:def_fct_struct_param.params){
 
             String astState = ast.accept(this);
             this.addTransition(nodeIdentifier, astState);
 
         }
 
-        idfState = decl_fct_struct_param.bloc.accept(this);
+        idfState = def_fct_struct_param.bloc.accept(this);
         this.addTransition(nodeIdentifier, idfState);
 
         return nodeIdentifier;

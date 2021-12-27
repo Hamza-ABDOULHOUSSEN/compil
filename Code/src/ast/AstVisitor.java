@@ -5,10 +5,10 @@ public interface AstVisitor<T> {
     T visit(Fichier fichier);
     T visit(Decl_typ decl_typ);
     T visit(DeclVarInt var);
-    T visit(DeclFctInt decl_fct_int);
-    T visit(DeclFctIntParam decl_fct_int_param);
-    T visit(DeclFctStruct decl_fct_struct);
-    T visit(DeclFctStructParam decl_fct_struct_param);
+    T visit(DefFctInt def_fct_int);
+    T visit(DefFctIntParam def_fct_int_param);
+    T visit(DefFctStruct def_fct_struct);
+    T visit(DefFctStructParam def_fct_struct_param);
     T visit(SizeOf sizeof);
     T visit(Parenthese parenthese);
     T visit(FctParam fct_param);

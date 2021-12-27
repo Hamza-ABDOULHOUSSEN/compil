@@ -14,10 +14,10 @@ decl_vars : 'int' IDENT (',' IDENT)* ';'   #DeclVarInt
 
 decl_typ : 'struct' IDENT '{' decl_vars* '}' ';' ;
 
-decl_fct : 'int' IDENT '(' ')' bloc   #DeclFctInt
-        | 'int' IDENT '(' ( param (',' param)*) ')' bloc   #DeclFctIntParam
-        | 'struct' IDENT '*' IDENT '(' ')' bloc   #DeclFctStruct
-        | 'struct' IDENT '*' IDENT '(' (param (','param)*) ')' bloc   #DeclFctStructParam
+decl_fct : 'int' IDENT '(' ')' bloc   #DefFctInt
+        | 'int' IDENT '(' ( param (',' param)*) ')' bloc   #DefFctIntParam
+        | 'struct' IDENT '*' IDENT '(' ')' bloc   #DefFctStruct
+        | 'struct' IDENT '*' IDENT '(' (param (','param)*) ')' bloc   #DefFctStructParam
         ;
 
 param : 'int' IDENT        #ParamInt
