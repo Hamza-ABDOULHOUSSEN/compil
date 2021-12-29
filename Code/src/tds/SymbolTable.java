@@ -11,7 +11,7 @@ import java.io.FileReader;
 
 
 
-public class SymbolTable
+public class SymbolTable { 
 
     static String currentLine;
     static String[] arr;
