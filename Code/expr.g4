@@ -73,8 +73,15 @@ LETTER : 'A'..'Z' | 'a'..'z' | '_';
 
 CHIFFRE : ('0'..'9');
 
+<<<<<<< HEAD
 //COMMENT : '/*' (.)*? '*/' -> skip ;
 //LINE_COMMENT : '//' ~('\n'|'\r')* '\r'? '\n' -> skip ;
+||||||| 16e37eb
+WS : ('\n' |'\t' | ' ' )+ -> skip ;
+=======
+
+WS : ('\n' |'\t' | ' ' )+ -> skip ;
+>>>>>>> Maha
 
 //WS : ('\n' |'\t' | ' ' )+ -> skip ;
 
