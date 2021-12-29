@@ -19,6 +19,10 @@ public class TDS {
 		return this.father;
 	}
 
+    public void setFatherTDS(TDS father) {
+		this.father = father;
+	}
+
     public String toString() {
         return toString2(0);
     }
