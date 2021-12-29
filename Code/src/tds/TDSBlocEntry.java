@@ -21,5 +21,7 @@ public class TDSBlocEntry extends TDSEntry {
         return this.visitor;
     }
 
-    
+    public String toString() {
+        return this.visitor.getTable().toString();
+    }
 }
