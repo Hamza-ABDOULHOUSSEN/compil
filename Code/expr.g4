@@ -73,4 +73,7 @@ LETTER : 'A'..'Z' | 'a'..'z' | '_';
 
 CHIFFRE : ('0'..'9');
 
+COMMENT : '/*' (.)*? '*/' -> skip ;
+LINE_COMMENT : '//' ~('\n'|'\r')* '\r'? '\n' -> skip ;
+
 WS : ('\n' |'\t' | ' ' )+ -> skip ;
