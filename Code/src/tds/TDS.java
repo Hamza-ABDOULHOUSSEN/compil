@@ -15,6 +15,9 @@ public class TDS {
         return entries.size();
     }
 
+    public TDS getFatherTDS() {
+		return this.father;
+	}
 
     public String toString() {
         return toString2(0);
