@@ -42,7 +42,7 @@ public class TDS {
 
         for (TDSEntry entry: entries) {
             if (entry instanceof TDSStructEntry) {
-                ret  += strind "containing following TDS (Struct):\n"
+                ret  += strind + "containing following TDS (Struct):\n";
                 TDSStructEntry sentry = (TDSStructEntry)entry;
                 ret += strind + sentry.entries.toString2(ind + 1);
             }
