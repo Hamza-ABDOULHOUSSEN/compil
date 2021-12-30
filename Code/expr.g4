@@ -24,18 +24,7 @@ param : 'int' IDENT        #ParamInt
         | 'struct' IDENT '*' IDENT     #ParamStruct
         ;
 
-//expr était sous cette forme avant priorité et associativité
-//expr :  INT
-//        | IDENT
-//        | expr '->' IDENT
-//        | IDENT '(' expr (',' expr)* ')'
-//        | '!' expr | '-' expr
-//        | expr OPERATEUR expr
-//        | 'sizeof' '(' 'struct' IDENT ')'
-//        | '(' expr ')' ;
-
 expr : egal ; 
-
 egal : (ou '=')* ou;
 ou : et ('||' et)* ;
 et : diff ('&&' diff)*;
@@ -72,11 +61,6 @@ INT : '0' | ('1'..'9') CHIFFRE* | LETTER ;
 LETTER : 'A'..'Z' | 'a'..'z' | '_';
 
 CHIFFRE : ('0'..'9');
-
-//COMMENT : '/*' (.)*? '*/' -> skip ;
-//LINE_COMMENT : '//' ~('\n'|'\r')* '\r'? '\n' -> skip ;
-
-//WS : ('\n' |'\t' | ' ' )+ -> skip ;
 
 COMMENT : '//' ~('\r'|'\n')* ('\r'|'\n')?
         |'/*' .*? '*/'
