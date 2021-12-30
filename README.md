@@ -28,9 +28,9 @@ Dans Code
 0 : complete tree
 1 : ast
 2 : test all complete tree
-3 : check
-Generate complete tree or ast [0/1/2/3] : 
-
+3 : generate all ast
+4 : syntax error detection
+Which option [0/1/2/3/4] : 
 ```
 
 * Ensuite insérer le nom du fichier test dans `examples`
@@ -62,9 +62,23 @@ overwrite [y/n] :
 ```
 
 ## Lancement de tous les tests
-L'option 3 `check` permet de lancer tous les tests présents dans `examples`
+* L'option 2 `check` permet de lancer tous les tests présents dans `examples`
 
-* Dans un premier temps, il génère tous les AST
+```
+=========== Analyse : test1 ===========
+[+] Creation parser
+[+] Compilation
+[+] Analyse
+### ✅ ✅ ✅ : test passed ###
+
+=========== Analyse : test2 ===========
+[+] Creation parser
+[+] Compilation
+[+] Analyse
+### ❌ ❌ ❌ : test failed ###
+```
+
+* L'option 3 permet de générer tous les ast pour les tests valides présents dans `examples`
 
 ```
 ========================================================== Ast creation test ==========================================================
@@ -83,7 +97,7 @@ L'option 3 `check` permet de lancer tous les tests présents dans `examples`
 ### ❌ ❌ ❌ : ERROR ###
 ```
 
-* Dans un second temps, il lance les exemples avec erreurs pour vérifier leurs détectitons
+* L'option 4 lance les exemples avec erreurs pour vérifier leurs détectitons
 
 ```
 ========================================================== Syntax error detection ==========================================================
@@ -121,16 +135,17 @@ Génère l'AST pour le fichier test.exp dans les fichiers tree.dot et tree.svg.
 La commande écrase les fichiers déjà présents.
 
 ```
+./launch.sh 2
+```
+Verifie la lecture des tests sans erreur par la grammaire
+
+```
 ./launch.sh 3
 ```
+Génère l'AST pour tous les tests sans erreur
 
-Génère l'AST pour tous les fichiers test et vérifie la détection d'erreur syntaxique
-
-## Génération AST pour tous les fichiers test
-Il est possible de générer l'AST pour tous les fichiers test sans erreur syntaxique (sans X) dans `examples`.  
-Si les AST existent, ils sont écrasés.
-
-Pour cela, il faut éxécuter  
 ```
-./bash/launchalltree.sh
+./launch.sh 4
 ```
+Vérifie la détection d'erreur syntaxique pour les tests avec erreurs
+
