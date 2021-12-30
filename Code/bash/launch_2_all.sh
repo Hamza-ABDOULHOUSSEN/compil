@@ -1,17 +1,35 @@
 #!/bin/bash
-cd examples
+
+rm temp1 2>/dev/null
+rm temp2 2>/dev/null
+touch temp1
+touch temp2
 
 for file in $(find * | grep '[^X].exp$'); do
-    if [[ $file != *X.exp ]]; then
-        basename="${file##*/}"
-        basename="${basename%.exp}"
-        echo "=========== Creation arbre : $basename ==========="
-        cd ..
-        ./launch.sh 0 $file $basename
+    basename="${file##*/}"
+    basename="${basename%.exp}"
+    file="./$file"
+    echo
 
-        cd examples
+    echo "=========== Analyse : $basename ==========="
+
+    echo "[+] Creation parser"
+    java -jar ./lib/antlr-4.9.2-complete.jar expr.g4 -no-listener -no-visitor -o ./src/parser >/dev/null
+
+    echo "[+] Compilation"
+    javac -cp "./lib/antlr-4.9.2-complete.jar:./src" ./src/Main1.java -d ./bin >/dev/null
+
+    echo "[+] Analyse"
+    java -cp "./lib/antlr-4.9.2-complete.jar:./bin" Main1 $file no >/dev/null 2>temp2
+
+    if cmp -s temp1 temp2; then
+      echo '### ✅ ✅ ✅ : test passed ###'
+    else
+      echo '### ❌ ❌ ❌ : test failed ###'
     fi
 done
 
 echo
-cd ..
+
+rm temp1 2>/dev/null
+rm temp2 2>/dev/null

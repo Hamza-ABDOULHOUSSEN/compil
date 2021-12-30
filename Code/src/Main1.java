@@ -24,6 +24,7 @@ public class Main1 {
         }
 
         String testFile = args[0];
+        String showframe = args[1];
 
         try {
 
@@ -36,18 +37,18 @@ public class Main1 {
             FichierContext program = parser.fichier();
 
             // code d'affichage de l'arbre syntaxique
-            JFrame frame = new JFrame("Antlr AST");
-            JPanel panel = new JPanel();
-            TreeViewer viewer = new TreeViewer(Arrays.asList(
-                    parser.getRuleNames()),program);
-            viewer.setScale(1.0); // Scale a little
-            panel.add(viewer);
-            frame.add(panel);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.pack();
-            frame.setVisible(true);
-
-
+            if (!showframe.equals("no")) {
+                JFrame frame = new JFrame("Antlr AST");
+                JPanel panel = new JPanel();
+                TreeViewer viewer = new TreeViewer(Arrays.asList(
+                        parser.getRuleNames()), program);
+                viewer.setScale(1.0); // Scale a little
+                panel.add(viewer);
+                frame.add(panel);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
+                frame.setVisible(true);
+            }
         } 
         catch (IOException e) {
             e.printStackTrace();
