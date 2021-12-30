@@ -19,7 +19,7 @@ if [ "$var1" == "0" ]; then
 elif [ "$var1" == "1" ]; then
     ./bash/launch_1_ast.sh $var2 $var3
 elif [ "$var1" == "2" ]; then
-    ./bash/launch1All.sh $var2 $var3
+    ./bash/launch_2_all.sh $var2 $var3
 elif [ "$var1" == "3" ]; then
     ./bash/launch_3_all_tree.sh
 elif [ "$var1" == "4" ]; then
