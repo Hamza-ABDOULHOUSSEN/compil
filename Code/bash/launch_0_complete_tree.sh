@@ -29,7 +29,7 @@ if test -f "$FILE"; then
     javac -cp "./lib/antlr-4.9.2-complete.jar:./src" ./src/Main1.java -d ./bin >/dev/null
 
     echo "[+] Analyse"
-    java -cp "./lib/antlr-4.9.2-complete.jar:./bin" Main1 ./examples/$varname >/dev/null
+    java -cp "./lib/antlr-4.9.2-complete.jar:./bin" Main1 ./examples/$varname "" >/dev/null
 
 else
     echo "ERROR"
