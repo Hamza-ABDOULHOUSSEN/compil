@@ -20,7 +20,7 @@ function testinvalide() {
       echo "[+] Generation ast file svg"
       dot -Tsvg ./out/dot/$1.dot -o ./out/svg/$1.svg >/dev/null
       echo '### ❌ ❌ ❌ : The error was not seen ###'
-      echo '### files are in out'
+      echo '### files are in out ###'
    else
       echo '### ✅ ✅ ✅ : The error was detected ###'
    fi
@@ -53,6 +53,7 @@ function parcours() {
 }
 
 echo "========================================================== Ast creation test =========================================================="
+echo
 for file in $(find * | grep '[^X].exp$'); do
     parcours $file "V"
 done
@@ -60,6 +61,7 @@ done
 echo
 
 echo "========================================================== Syntax error detection =========================================================="
+echo
 for file in $(find * | grep 'X.exp$'); do
     parcours $file "X"
 done
