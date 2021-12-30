@@ -69,6 +69,16 @@ public class TDSFuncEntry extends TDSEntry {
     public TDSFuncEntry(DefFctStruct fct, TDS father) {
         this.ident1 = fct.ident1;
         this.ident2 = fct.ident2;
+        this.type = "STRUCT";
+        this.bloc = new TDSBlocEntry((Bloc)fct.bloc);
+
+        bloc.getTable().setFatherTDS(father);
+    }
+
+    public String toString() {
+        return "function " + ident + " : " + type;
+        return "function " + ident1 + " : " + type;
+        return "function " + ident2 + " : " + type;
     }
 
 }
