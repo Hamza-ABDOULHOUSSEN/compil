@@ -1,0 +1,29 @@
+int main() {
+    ;
+    ;;;
+
+    a ;
+
+    if (!pieds) ;
+    if (pieds) if (!chaussures) ;
+    if (pieds) if (chaussures) return marcher ;
+
+    if (pieds) ; else ;
+    if (pieds)
+        if (chaussures)
+            if (voitures) ;
+            else ;
+        else
+            if (trottinette) ;
+    else ;
+
+    if (chaussures) return marcher ; else return rester ;
+
+    while (essence) return rouler ;
+    while (!fullEssence)
+        if(isEssence)
+            return addEssence ;
+        else stop ;
+
+    { Ceci_est_un_bloc ; }
+}
