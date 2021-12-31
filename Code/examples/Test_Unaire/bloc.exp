@@ -1,0 +1,17 @@
+int main() {
+    {}
+    { {} { {} } }
+
+    { Ceci_est_un_bloc ; }
+    { Ceci_est_un_bloc_contenant ; { Un_sous_bloc ; }  }
+
+    {
+        a = 1 ;
+        if (a) {
+            b = 1 ;
+        }
+        else { b = 2 ; } ;
+    }
+    c = 3
+    ;
+}
