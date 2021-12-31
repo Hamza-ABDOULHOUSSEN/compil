@@ -1,0 +1,14 @@
+int main() {
+    0 ;
+    10 ;
+    27032000 ;
+
+    f() ;
+    g(bleu) ;
+    h(bleu, g(rouge), vert) ;
+    i(h(bleu, g(rouge), vert), jaune) ;
+
+    sizeof(struct couleur) ;
+
+    (or) ;
+}
