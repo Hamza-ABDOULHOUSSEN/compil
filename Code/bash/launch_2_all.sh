@@ -23,9 +23,9 @@ for file in $(find * | grep '[^X].exp$'); do
     java -cp "./lib/antlr-4.9.2-complete.jar:./bin" Main1 $file no >/dev/null 2>temp2
 
     if cmp -s temp1 temp2; then
-      echo '### ✅ ✅ ✅ : test passed ###'
+      echo "### $(tput setaf 2)V V V $(tput setaf 7): test passed ###"
     else
-      echo '### ❌ ❌ ❌ : test failed ###'
+      echo "### $(tput setaf 1)X X X $(tput setaf 7): test failed ###"
     fi
 done
 
