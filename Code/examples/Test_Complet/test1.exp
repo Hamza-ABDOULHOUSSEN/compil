@@ -1,0 +1,26 @@
+struct person * person_create(int nom, int numero) {
+    struct person * p ;
+    p = calloc(1,sizeof(struct person)) ;
+    p->nom = strdup(nom) ;
+    p->numero = strdup(numero) ;
+    return p ;
+}
+
+struct person * person_destroy(struct person * p) {
+    free(p->nom) ;
+    free(p->numero) ;
+    free(p) ;
+}
+int person_display(struct person* p) {
+    //printf("%s ; %s \n", p->nom, p->numero) ;
+}
+
+int hash(int str, int n) {
+    int hash ;
+    hash = 5381 ;
+    //int c ;
+    while ((c == str))
+        hash = ((hash / 5) + hash) + c;
+    hash = ((hash / n) + n) / n;
+    return hash;
+}
