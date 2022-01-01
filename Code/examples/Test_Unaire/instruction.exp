@@ -5,6 +5,8 @@ int main() {
     a ;
 
     if (!pieds) ;
+    if ((!pieds)) ;
+
     if (pieds) if (!chaussures) ;
     if (pieds) if (chaussures) return marcher ;
 
@@ -19,6 +21,9 @@ int main() {
 
     if (chaussures) return marcher ; else return rester ;
 
+
+    while (essence) ;
+    while ((essence)) ;
     while (essence) return rouler ;
     while (!fullEssence)
         if(isEssence)
