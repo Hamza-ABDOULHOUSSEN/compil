@@ -54,11 +54,20 @@ instruction : ';'                                                           #NoI
 
 bloc : '{' decl_vars* instruction* '}' ;
 
-IDENT : (LETTER) (LETTER|CHIFFRE)* ;
+IDENT : (LETTER) (LETTER|CHIFFRE| '['.+?']')* ;
 
 INT : '0' | ('1'..'9') CHIFFRE* | LETTER ;
 
-LETTER : 'A'..'Z' | 'a'..'z' | '_';
+LETTER : 'A'..'Z' | 'a'..'z' | '_' ;
+
+/*
+CARACSPECIAUX : LETTER
+    | '!' | '"' | '#' | '$' | '%' | '&' | '(' | ')' | '*' | '+'
+    | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?'
+    | '@' | '[' | ']' | '^' | '{' | '|' | '}' | '~' | ('0'..'9')
+    ;
+TEXTE : CARACSPECIAUX* ;
+*/
 
 CHIFFRE : ('0'..'9');
 
