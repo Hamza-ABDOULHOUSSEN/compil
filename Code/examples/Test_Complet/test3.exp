@@ -1,0 +1,28 @@
+struct joueur * joueur_init(int nbr_pokemons) {
+    struct joueur * new_joueur ;
+    new_joueur = calloc(1, sizeof(struct joueur)) ;
+    new_joueur->nbr_pokeballs = nbr_pokemons ;
+    new_joueur->pokeballs = calloc(nbr_pokemons, sizeof(struct pokemon)) ;
+    return new_joueur;
+}
+
+int joueur_ajoutePokemon(struct joueur * sacha, struct pokemon * pikachu) {
+    int i ;
+    i = 0 ;
+    while ((i< sacha->nbr_pokeballs) && (sacha->pokeballs_i != NULL)) {
+        i = i + 1 ;
+    }
+    if(i < sacha->nbr_pokeballs){
+        sacha->pokeballs_i = pikachu ;
+    }
+}
+
+struct joueur * joueur_free(struct joueur * sacha) {
+    int i ;
+    i = 0 ;
+    while(i<sacha->nbr_pokeballs){
+        pokemon_free(sacha->pokeballs_i) ;
+    }
+    free(sacha) ;
+    i = i + 1 ;
+}
