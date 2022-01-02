@@ -37,6 +37,13 @@ if test -f "$FILE"; then
 
     fi
 
+    if [[ $tree =~ .+/.* ]]; then
+        treename="${tree##*/}"
+        treedir="${tree%/$treename}"
+        mkdir -p "out/dot/$treedir"
+        mkdir -p "out/svg/$treedir"
+    fi
+
     if test -f "./out/dot/$tree.dot"; then
         ov="y"
 
