@@ -1,0 +1,53 @@
+int f() {
+    int i ;
+    int j ;
+    i = 0 ;
+    j = 0 ;
+    while(i<10) {
+        if(fork() == -1) {
+            fprintf(stderr, Erreur_dans, getpid()) ;
+            perror(fork) ;
+            exit(1) ;
+        }
+        if (fork() == 0) {
+            i = 0 ;
+            while(i<10) {
+            printf(i) ;
+            fflush(stdout) ;
+            j = j + 1 ;
+            }
+            exit(0) ;
+        }
+        i = i + 1 ;
+    }
+    i = 0 ;
+    while(i<10) {
+        wait(NULL) ;
+        i = i + 1 ;
+    }
+    exit(0) ;
+}
+
+int g(int n) {
+    int i ;
+    i = 0 ;
+    while(i<n) {
+        if (fork() == 0) {
+            printf(Processus_d_et_Pid_d, i, getpid()) ;
+            printf(Processus_d_et_Ppid_d, i, getppid()) ;
+            exit(0) ;
+        }
+        i = i + 1 ;
+    }
+}
+
+int h(int n) {
+    printf(Processus_d_et_Pid_d, n, getpid()) ;
+    printf(Processus_d_et_Ppid_d, n, getppid()) ;
+    if (n > 0) {
+        if (fork() == 0) {
+            h(n - 1) ;
+        }
+    }
+    exit(0) ;
+}
