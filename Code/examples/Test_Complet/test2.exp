@@ -6,9 +6,9 @@ struct directory * directory_create(int size) {
     d->tab = calloc(d->compteur,sizeof(struct list)) ;
     i = 0 ;
     while (i<d->compteur) {
-        d->tab[i]->taille = 0 ;
-        d->tab[i]->tab_p = calloc(1,sizeof(struct person)) ;
-        d->tab[i]->tab_p[0] = NULL ;
+        d->tab_i->taille = 0 ;
+        d->tab_i->tab_p = calloc(1,sizeof(struct person)) ;
+        d->tab_i->tab_p_0 = NULL ;
         i = i + 1 ;
     }
     return d ;
@@ -20,13 +20,13 @@ struct directory * directory_destroy(struct directory * d) {
     j = 0 ;
     i = 0 ;
     while( i<d->compteur) {
-        if (d->tab[i]) {
+        if (d->tab_i) {
             j = 0 ;
-            while(d->tab[i]->tab_p[j]) {
-                person_destroy(d->tab[i]->tab_p[j]) ;
+            while(d->tab_i->tab_p_j) {
+                person_destroy(d->tab_i->tab_p_j) ;
                 j = j + 1 ;
             }
-            free(d->tab[i]->tab_p) ;
+            free(d->tab_i->tab_p) ;
         }
         free(d->tab) ;
         i = i + 1 ;
@@ -39,11 +39,11 @@ struct directory * directory_add_person(struct directory * d, struct person * p)
     int h ;
     size = 10 ;
     h = hash(p->numero, size) ;
-    if (d->tab[h]->tab_p) {
+    if (d->tab_h->tab_p) {
         int i ;
         i = 0 ;
-        if (d->tab[h]->tab_p[i] == NULL) {
-            d->tab[h]->tab_p[i] = p ;
+        if (d->tab_h->tab_p_i == NULL) {
+            d->tab_h->tab_p_i = p ;
             return d ;
         }
     }
@@ -59,7 +59,7 @@ int directory_stat(struct directory * d) {
     //printf("%d \n", d->compteur) ;
     while (i< d->compteur) {
         j = 0 ;
-        while (d->tab[i] && d->tab[i]->tab_p && d->tab[i]->tab_p[j]) {
+        while (d->tab_i && d->tab_i->tab_p && d->tab_i->tab_p_j) {
             nombre_personne = nombre_personne + 1 ;
             j = j + 1 ;
         }
@@ -70,7 +70,7 @@ int directory_stat(struct directory * d) {
     while(i< d->compteur) {
         nombre_personne = 0 ;
         j = 0 ;
-        while (d->tab[i] && d->tab[i]->tab_p && d->tab[i]->tab_p[j]) {
+        while (d->tab_i && d->tab_i->tab_p && d->tab_i->tab_p_j) {
             nombre_personne = nombre_personne + 1 ;
             j = j + 1 ;
         }
@@ -84,9 +84,9 @@ int directory_display(struct directory * d) {
     j = 0 ;
     i = 0 ;
     while( i< d->compteur) {
-        if (d->tab && d->tab[i]) {
-            while (d->tab[i]->tab_p && d->tab[i]->tab_p[j]) {
-                person_display(d->tab[i]->tab_p[j]) ;
+        if (d->tab && d->tab_i) {
+            while (d->tab_i->tab_p && d->tab_i->tab_p_j) {
+                person_display(d->tab_i->tab_p_j) ;
             }
         }
         i = i + 1 ;
