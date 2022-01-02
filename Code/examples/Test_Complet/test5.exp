@@ -1,0 +1,33 @@
+int cd(int pth, int cd_status){
+    int path ;
+    struct cwd_struct * cwd ;
+    strcpy(path,pth);
+
+    if(pth_0 != 0) {
+        // true for the dir in cwd
+        getcwd(cwd, sizeof(struct cwd_struct));
+        strcat(cwd,0);
+        strcat(cwd,path);
+        cd_status = chdir(cwd);                            //cd_status prend les valeurs 0 si okay, -1 sinon
+    }
+    else{
+        //true for dir w.r.t. /
+        cd_status = chdir(pth);
+    }
+}
+
+int parser(int all_commands, struct char* Liste, struct char * sep) {
+    int pos ;
+    struct char *command_split ;
+    pos = 0 ;                                           // Position => sert à parcourir Liste
+
+    // séparation des commandes
+    command_split = strtok(all_commands, sep);
+    while(command_split != NULL) {
+        Liste_pos = command_split ;
+        command_split = strtok(NULL, sep);
+        pos = pos + 1 ;
+    }
+    Liste_(pos-1) = strtok(Liste_(pos-1), 0) ;
+    Liste_pos = NULL ;
+}
