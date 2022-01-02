@@ -1,0 +1,30 @@
+int fct(int argc, struct char * argv) {
+    struct char * buff ;
+    int fd_2 ;
+    int ecrit ;
+    int n ;
+    n = atoi(argv_1) ;
+
+    pipe(fd) ;
+    ecrit = write(fd_1, buff, n) ;
+    if (ecrit < 0) {
+        perror(plop) ;
+    }
+    printf(ecrit, n, n-ecrit) ;
+}
+
+int main(int argc, struct char * argv) {
+    struct pthread_t * thread ;
+    int id ;
+    int i ;
+    thread_atoi(argv_1) ;
+    id_atoi(argv_1) ;
+    i = 0 ;
+    while(i<atoi(argv_1)) {
+        id_i = i ;
+        printf(Cree_thread) ;
+        pthread_create(thread_i, NULL, hello, id_i) ;
+        i = i + 1 ;
+    }
+    pthread_exit(NULL) ;
+}
