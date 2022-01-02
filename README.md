@@ -149,3 +149,22 @@ Génère l'AST pour tous les tests sans erreur
 ```
 Vérifie la détection d'erreur syntaxique pour les tests avec erreurs
 
+## Tester si le code fonctionne en C
+Pour tester si le code fonctionne ou pour voir l'erreur donnée
+il faut utiliser le script test_C_code.sh avec le nom du test en paramètre
+
+```
+./test_C_code.sh Test_Semantique/codestruct 
+```
+
+On peut aussi lancer le script et indiquer ensuite le test :
+
+```
+./test_C_code.sh 
+```
+
+affiche
+
+```
+Which test from examples (ex Test_Semantique/codestruct) : 
+```
