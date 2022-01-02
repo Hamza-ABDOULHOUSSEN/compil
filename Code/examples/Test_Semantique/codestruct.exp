@@ -1,0 +1,31 @@
+struct nombre {
+    int val;
+};
+
+struct somme {
+    struct nombre *left, *right;
+};
+
+int result(struct somme *s) {
+    int val;
+    val = s->left->val + s->right->val;
+    return val;
+}
+
+int main() {
+    struct nombre *a;
+    struct nombre *b;
+    struct somme *s;
+
+    a = malloc(sizeof(struct nombre));
+    a->val = 5;
+
+    b = malloc(sizeof(struct nombre));
+    b->val = 10;
+
+    s = malloc(sizeof(struct somme));
+    s->left = a;
+    s->right = b;
+
+    print(result(s));
+}
