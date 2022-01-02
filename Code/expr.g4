@@ -54,20 +54,19 @@ instruction : ';'                                                           #NoI
 
 bloc : '{' decl_vars* instruction* '}' ;
 
-IDENT : (LETTER) (LETTER|CHIFFRE| '['.+?']')* ;
+IDENT : (LETTER) (LETTER|CHIFFRE| '_')* ;
 
-INT : '0' | ('1'..'9') CHIFFRE* | LETTER ;
+INT : '0' | ('1'..'9') CHIFFRE* | '\''CARACTERE'\''  ;
 
-LETTER : 'A'..'Z' | 'a'..'z' | '_' ;
+LETTER : 'A'..'Z' | 'a'..'z' ;
 
-/*
-CARACSPECIAUX : LETTER
-    | '!' | '"' | '#' | '$' | '%' | '&' | '(' | ')' | '*' | '+'
-    | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>' | '?'
-    | '@' | '[' | ']' | '^' | '{' | '|' | '}' | '~' | ('0'..'9')
+CARACTERE : LETTER | CHIFFRE
+    | '!' | '"' | '#' | '$' | '%' | '&' | '\'' | '(' | ')' | '*'
+    | '+' | ',' | '-' | '.' | '/' | ':' | ';' | '<' | '=' | '>'
+    | '?' | '@' | '[' | '\\' | ']' | '^' | '_' | '`' | '{' | '|'
+    | '}' | '~'
     ;
-TEXTE : CARACSPECIAUX* ;
-*/
+
 
 CHIFFRE : ('0'..'9');
 
