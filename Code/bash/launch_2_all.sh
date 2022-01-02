@@ -37,7 +37,7 @@ for directory in $(find examples -type d); do
             echo
             echo "=========== Analyse : $basename ==========="
 
-            #echo "[+] Creation parser"
+            #echo "[+] Parser creation"
             java -jar ./lib/antlr-4.9.2-complete.jar expr.g4 -no-listener -no-visitor -o ./src/parser >/dev/null
 
             #echo "[+] Compilation"

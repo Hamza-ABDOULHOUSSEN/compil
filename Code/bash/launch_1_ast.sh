@@ -22,7 +22,7 @@ fi
 FILE=./examples/$varname
 
 if test -f "$FILE"; then
-    echo "[+] Creation parser"
+    echo "[+] Parser creation"
     make parser >/dev/null
 
     echo "[+] Compilation"
@@ -47,20 +47,20 @@ if test -f "$FILE"; then
         fi
 
         if [ "$ov" == "y" ]; then
-            echo "[+] Generation ast file dot"
+            echo "[+] Ast file dot generation"
             make run target="$FILE" name="$tree" >/dev/null
 
-            echo "[+] Generation ast file svg"
+            echo "[+] Ast file svg generation"
             dot -Tsvg ./out/dot/$tree.dot -o ./out/svg/$tree.svg >/dev/null
 
             echo "[+] Done, files are in out"
         fi
 
     else
-        echo "[+] Generation ast file dot" >/dev/null
+        echo "[+] Ast file dot generation" >/dev/null
         make run target="$FILE" name="$tree" >/dev/null
 
-        echo "[+] Generation ast file svg"
+        echo "[+] Ast file svg generation"
         dot -Tsvg ./out/dot/$tree.dot -o ./out/svg/$tree.svg >/dev/null
 
         echo "[+] Done, files are in out"

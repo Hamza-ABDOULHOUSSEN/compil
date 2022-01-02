@@ -5,30 +5,48 @@ rm temp2 2>/dev/null
 touch temp1
 touch temp2
 
-echo "========================================================== Ast creation test =========================================================="
+echo " 👉 🅢🅣🅐🅡🅣 ============================= Ast creation test ============================= 🅢🅣🅐🅡🅣 👈"
 
-for file in $(find * | grep '[^X].exp$'); do
-    basename="${file##*/}"
-    basename="${basename%.exp}"
-    file="./$file"
+for directory in $(find examples -type d); do
+    if [ "$directory" != "examples" ]; then
+        basedir="${directory##*/}"
 
-    echo
-    echo "=========== Creation arbre : $basename ==========="
-    echo "[+] Creation parser"
-    make parser >/dev/null
+        count=$(find  $directory -type f | grep [^X].exp$ | wc -l)
 
-    echo "[+] Compilation"
-    make compile >/dev/null
+        if [ $count != 0 ]; then
+            echo
+            echo
+            echo "=================== $basedir ===================="
 
-    echo "[+] Generation ast file dot"
-    make run target="$file" name="$basename" >/dev/null 2>temp2
+            for file in $(find  $directory -type f | grep [^X].exp$); do
+                basename="${file##*/}"
+                basename="${basename%.exp}"
+                file="./$file"
 
-    if cmp -s temp1 temp2; then
-      echo "[+] Generation ast file svg"
-      dot -Tsvg ./out/dot/$basename.dot -o ./out/svg/$basename.svg >/dev/null
-      echo '### ✅ ✅ ✅ : Done, files are in out ###'
-    else
-      echo '### ❌ ❌ ❌ : ERROR ###'
+                echo
+                echo "=========== Ast creation : $basename ==========="
+                echo "[+] Parser creation"
+                make parser >/dev/null
+
+                echo "[+] Compilation"
+                make compile >/dev/null
+
+                echo "[+] Ast file dot generation"
+                mkdir -p "out/dot/$basedir"
+                mkdir -p "out/svg/$basedir"
+                make run target="$file" name="$basedir/$basename" >/dev/null 2>temp2
+
+                if cmp -s temp1 temp2; then
+                  echo "[+] Ast file svg generation"
+                  dot -Tsvg ./out/dot/$basedir/$basename.dot -o ./out/svg/$basedir/$basename.svg >/dev/null
+                  echo '### ✅ ✅ ✅ : Done, files are in out ###'
+                else
+                  echo '### ❌ ❌ ❌ : ERROR ###'
+                fi
+            done
+
+        fi
+
     fi
 done
 

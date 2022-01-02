@@ -22,7 +22,7 @@ fi
 FILE=./examples/$varname
 
 if test -f "$FILE"; then
-    echo "[+] Creation parser"
+    echo "[+] Parser creation"
     java -jar ./lib/antlr-4.9.2-complete.jar expr.g4 -no-listener -no-visitor -o ./src/parser >/dev/null
 
     echo "[+] Compilation"
