@@ -1,0 +1,72 @@
+struct equipe * equipe_init(int nbr_joueurs) {
+    struct equipe *new_equipe ;
+    int i ;
+    new_equipe = calloc(1,sizeof(struct equipe)) ;
+    new_equipe->nbr_joueurs = nbr_joueurs ;
+    i = 0 ;
+    while(i<nbr_joueurs){
+        new_equipe->joueurs_i = joueur_init(0);
+        i = i + 1 ;
+    }
+    return new_equipe;
+}
+
+int equipe_ajouteJoueur(struct equipe * team_rocket, struct joueur *sacha) {
+    int i ;
+    i = 0 ;
+    while ((i< team_rocket->nbr_joueurs) && (team_rocket->joueurs_i != NULL)) {
+        i = i + 1 ;
+    }
+    if(i < team_rocket->nbr_joueurs){
+        team_rocket->joueurs_i = sacha ;
+    }
+}
+
+struct equipe * equipe_free(struct equipe *team_rocket) {
+    int i ;
+    int j ;
+    i = 0 ;
+    j = 0 ;
+    while(i<team_rocket->nbr_joueurs){
+        while(j<(team_rocket->joueurs_i)->nbr_pokeballs){
+            pokemon_free((team_rocket->joueurs_i)->pokeballs_j) ;
+            j = j + 1 ;
+        }
+        joueur_free(team_rocket->joueurs_i) ;
+        i = i + 1 ;
+    }
+    free(team_rocket) ;
+}
+
+int equipe_sommePoints(struct equipe * team_rocket, int points_combat, int points_vie) {
+    int i ;
+    int j ;
+    i = 0 ;
+    j = 0 ;
+    while(i<team_rocket->nbr_joueurs){
+        while(j<(team_rocket->joueurs_i)->nbr_pokeballs){
+            if(((team_rocket->joueurs_i)->pokeballs_j)->type == FEU ) {
+                points_combat_0 = points_combat_0 + ((team_rocket->joueurs_i)->pokeballs_j)->points_combat ;
+                points_vie_0 = points_vie_0 + ((team_rocket->joueurs_i)->pokeballs_j)->points_vie ;
+            }
+            if(((team_rocket->joueurs_i)->pokeballs_j)->type == EAU ) {
+                points_combat_1 = points_combat_1 + ((team_rocket->joueurs_i)->pokeballs_j)->points_combat ;
+                points_vie_1 = points_vie_1 + ((team_rocket->joueurs_i)->pokeballs_j)->points_vie ;
+            }
+            if(((team_rocket->joueurs_i)->pokeballs_j)->type == AIR ) {
+                points_combat_2 = points_combat_2 + ((team_rocket->joueurs_i)->pokeballs_j)->points_combat ;
+                points_vie_2 = points_vie_2 + ((team_rocket->joueurs_i)->pokeballs_j)->points_vie ;
+            }
+            if(((team_rocket->joueurs_i)->pokeballs_j)->type == TERRE ) {
+                points_combat_3 = points_combat_3 + ((team_rocket->joueurs_i)->pokeballs_j)->points_combat ;
+                points_vie_3 = points_vie_3 + ((team_rocket->joueurs_i)->pokeballs_j)->points_vie ;
+            }
+            if(((team_rocket->joueurs_i)->pokeballs_j)->type == LILOU_DALLAS_MULTIPASS ) {
+                points_combat_4 = points_combat_4 + ((team_rocket->joueurs_i)->pokeballs_j)->points_combat ;
+                points_vie_4 = points_vie_4 + ((team_rocket->joueurs_i)->pokeballs_j)->points_vie ;
+            }
+            j = j + 1 ;
+        }
+        i = i + 1 ;
+    }
+}
