@@ -1,0 +1,17 @@
+int main() {
+    int _x ;
+    int 5x ;
+
+    int x ;
+    int if ;
+    x = if ;
+    x = int ;
+    x = else ;
+    x = while ;
+    x = struct ;
+    x = return ;
+    x = sizeof ;
+    if = int ;
+    if = else ;
+    while = sizeof ;
+}
