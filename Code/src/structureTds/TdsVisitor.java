@@ -15,6 +15,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     public ArrayList<TdsBloc> TdsBloc = new ArrayList<TdsBloc>();
 
     public Stack<Tds> TdsStack = new Stack<Tds>();
+    public Stack<String> blocLabel = new Stack<String>();
     public int NumImbr = 0;
 
     public GraphVizTds graphviztds = new GraphVizTds();
@@ -58,6 +59,7 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         NumImbr++;
         this.TdsStack.push(function_table);
+        this.blocLabel.push("fonction");
 
         Bloc bloc = (Bloc) def_fct_int.bloc;
         bloc.accept(this);
@@ -65,6 +67,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         graphviztds.addEndTable();
 
         this.TdsStack.pop();
+        this.blocLabel.pop();
         NumImbr--;
 
         return null;
@@ -78,6 +81,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         this.TableFunction.put(nom, function_table);
         NumImbr++;
         this.TdsStack.push(function_table);
+        this.blocLabel.push("fonction");
 
         graphviztds.addStartTable("fonction : " + nom);
 
@@ -92,6 +96,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         graphviztds.addEndTable();
 
         this.TdsStack.pop();
+        this.blocLabel.pop();
         NumImbr--;
 
         return null;
@@ -99,11 +104,56 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(DefFctStruct def_fct_struct) {
+        Ident identType = (Ident) def_fct_struct.ident1;
+        Ident identNom = (Ident) def_fct_struct.ident2;
+        String nom = identNom.name;
+        String type = "struct " + identType ;
+        TdsFunction function_table = new TdsFunction(nom, type);
+        this.TableFunction.put(nom, function_table);
+
+        graphviztds.addStartTable("fonction : " + nom);
+
+        NumImbr++;
+        this.TdsStack.push(function_table);
+
+        Bloc bloc = (Bloc) def_fct_struct.bloc;
+        bloc.accept(this);
+
+        graphviztds.addEndTable();
+
+        this.TdsStack.pop();
+        NumImbr--;
+
         return null;
     }
 
     @Override
     public Object visit(DefFctStructParam def_fct_struct_param) {
+        Ident identType = (Ident) def_fct_struct_param.ident1;
+        Ident identNom = (Ident) def_fct_struct_param.ident2;
+        String nom = identNom.name;
+        String type = "struct " + identType ;
+        TdsFunction function_table = new TdsFunction(nom, type);
+        this.TableFunction.put(nom, function_table);
+
+        graphviztds.addStartTable("fonction : " + nom);
+
+        NumImbr++;
+        this.TdsStack.push(function_table);
+
+        ArrayList<Ast> params = def_fct_struct_param.params;
+        for (Ast param : params) {
+            param.accept(this);
+        }
+
+        Bloc bloc = (Bloc) def_fct_struct_param.bloc;
+        bloc.accept(this);
+
+        graphviztds.addEndTable();
+
+        this.TdsStack.pop();
+        NumImbr--;
+
         return null;
     }
 
@@ -159,6 +209,23 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(Bloc bloc) {
+
+        String label = blocLabel.lastElement();
+        NumImbr++;
+        TdsBloc tdsbloc = new TdsBloc(TdsStack.lastElement(), NumImbr);
+        graphviztds.addStartTable("bloc : " + label + "  " + NumImbr);
+        this.TdsStack.push(tdsbloc);
+        blocLabel.push("bloc");
+
+        ArrayList<Ast> vars = bloc.vars;
+        for (Ast var : vars) {
+            var.accept(this);
+        }
+
+        TdsStack.pop();
+        blocLabel.pop();
+        graphviztds.addEndTable();
+
         return null;
     }
 
@@ -229,7 +296,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         String nom = ident.name;
 
         actualTable.addParam(nom, type);
-        graphviztds.addElement(nom, "param", type, "depl");
+        graphviztds.addElement(nom, "param", "struct " + type, "depl");
 
         TdsStack.push(actualTable);
 
@@ -238,11 +305,30 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(If ifinstr) {
+
+        blocLabel.push("Bloc If");
+
+        Bloc blocif = (Bloc) ifinstr.instruction;
+        blocif.accept(this);
+
+        blocLabel.pop();
+
         return null;
     }
 
     @Override
     public Object visit(IfElse ifelseinstr) {
+
+        blocLabel.push("Bloc If");
+        Bloc blocif = (Bloc) ifelseinstr.instruction1;
+        blocif.accept(this);
+        blocLabel.pop();
+
+        blocLabel.push("Bloc Else");
+        Bloc blocelse = (Bloc) ifelseinstr.instruction2;
+        blocelse.accept(this);
+        blocLabel.pop();
+
         return null;
     }
 
