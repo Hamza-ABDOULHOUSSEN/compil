@@ -247,7 +247,12 @@ public class TdsVisitor implements AstVisitor<Void> {
     }
 
     @Override
-    public Void visit(SupEgal supEgal) {
+    public Void visit(DeclVarStruct declvarstruct) {
+        this.visitingStruct = declvarstruct.struct_type;
+        for (Ast ast : declvarstruct.struct_names) {
+            ast.accept(this);
+        }
+        this.visitingStruct = null;
         return null;
     }
 }
