@@ -282,7 +282,12 @@ public class TdsVisitor implements AstVisitor<Void> {
     }
 
     @Override
-    public Void visit(Plus plus) {
+    public Void visit(Moins moins) {
+        return null;
+    }
+
+    @Override
+    public Void visit(Moins moins) {
         return null;
     }
 }
