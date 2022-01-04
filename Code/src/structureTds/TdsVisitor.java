@@ -237,6 +237,7 @@ public class TdsVisitor implements AstVisitor<Object> {
             var.accept(this);
         }
 
+        NumImbr--;
         TdsStack.pop();
         blocLabel.pop();
         graphviztds.addEndTable();
