@@ -54,17 +54,17 @@ public class TdsVisitor implements AstVisitor<Void> {
     }
 
     @Override
-    public Void visit(DefStruct defStruct) {
-        if (this.table.getRefStruct(defStruct.ident) != null) {
+    public Void visit(DefStruct def_struct) {
+        if (this.table.getRefStruct(def_struct.ident) != null) {
             throw new IllegalArgumentException("Invalid ident");
         }
-        this.table.addRefStruct(new TDSStructDecl(defStruct));
+        this.table.addRefStruct(new TDSStructDecl(def_struct));
         return null;
     }
 
     @Override
-    public Void visit(DefFctInt defFctInt) {
-        TDSFuncEntry entry = new TDSFuncEntry(defFctInt, this.table);
+    public Void visit(DefFctInt def_fct_int) {
+        TDSFuncEntry entry = new TDSFuncEntry(def_fct_int, this.table);
         this.addEntry(entry);
         return null;
     }
@@ -76,8 +76,8 @@ public class TdsVisitor implements AstVisitor<Void> {
     }
 
     @Override
-    public Void visit(DefFctIntParam defFctIntParam) {
-        TDSFuncEntry entry = new TDSFuncEntry(defFctIntParam, this.table);
+    public Void visit(DefFctIntParam def_fct_int_param) {
+        TDSFuncEntry entry = new TDSFuncEntry(def_fct_int_param, this.table);
         this.addEntry(entry);
         return null;
     }
@@ -95,15 +95,15 @@ public class TdsVisitor implements AstVisitor<Void> {
     }
 
     @Override
-    public Void visit(DefFctStruct defFctStruct) {
-        TDSFuncEntry entry = new TDSFuncEntry(defFctStruct, this.table);
+    public Void visit(DefFctStruct def_fct_struct) {
+        TDSFuncEntry entry = new TDSFuncEntry(def_fct_struct, this.table);
         this.addEntry(entry);
         return null;
     }
 
     @Override
-    public Void visit(DefFctStructParam defFctStructParam) {
-        TDSFuncEntry entry = new TDSFuncEntry(defFctStructParam, this.table);
+    public Void visit(DefFctStructParam def_fct_struct_param) {
+        TDSFuncEntry entry = new TDSFuncEntry(def_fct_struct_param, this.table);
         this.addEntry(entry);
         return null;
     }
@@ -140,5 +140,74 @@ public class TdsVisitor implements AstVisitor<Void> {
         return null;
     }
 
+    @Override
+    public Void visit(DeclVarInt var) {
+        for (Ast ast : var.ident) {
+            ast.accept(this);
+        }
+        return null;
+    }
+
+    @Override
+    public Void visit(SizeOf sizeOf) {
+        return null;
+    }
+
+    @Override
+    public Void visit(Parenthese parenthese) {
+        return null;
+    }
+
+    @Override
+    public Void visit(FctParam fct_param) {
+        if (this.table.getRefEntry(fct_param.ident) == null) throw new IllegalArgumentException("No such function");
+        TDSEntry tdsEntry = this.table.getRefEntry(fct_param.ident);
+        if (!(tdsEntry instanceof TDSFuncEntry)) throw new IllegalArgumentException("No such function");
+        TDSFuncEntry tdsFuncEntry = (TDSFuncEntry) tdsEntry;
+        if (tdsFuncEntry.params.size() != fct_param.exprs.size()) throw new IllegalArgumentException("Illegal argument");
+        for (int i = 0; i < tdsFuncEntry.params.size(); i++) {
+            if (tdsFuncEntry.params.get(i) instanceof IntParam && t.typeOf(fct_param.exprs.get(i))!=0) {
+                throw new IllegalArgumentException("Illegal argument");
+            }
+            if (tdsFuncEntry.params.get(i) instanceof StructParam && t.typeOf(fct_param.exprs.get(i))!=1) {
+                throw new IllegalArgumentException("Illegal argument");
+            }
+        }
+        return null;
+    }
     
+    @Override
+    public Void visit(Fct fct) {
+        if (this.table.getRefEntry(fct.ident) == null) throw new IllegalArgumentException("No such function");
+        TDSEntry tdsEntry = this.table.getRefEntry(fct.ident);
+        if (!(tdsEntry instanceof TDSFuncEntry)) throw new IllegalArgumentException("No such function");
+        TDSFuncEntry tdsFuncEntry = (TDSFuncEntry) tdsEntry;
+        if (!tdsFuncEntry.params.isEmpty()) throw new IllegalArgumentException("Illegal argument");
+        return null;
+    }
+
+    @Override
+    public Void visit(Sup sup) {
+        return null;
+    }
+
+    @Override
+    public Void visit(Egal egal) {
+        return null;
+    }
+
+    @Override
+    public Void visit(Mult mult) {
+        return null;
+    }
+
+    @Override
+    public Void visit(Not ast) {
+        return null;
+    }
+
+    @Override
+    public Void visit(Moinsunaire moinsunaire) {
+        return null;
+    }
 }
