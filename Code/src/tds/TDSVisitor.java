@@ -210,4 +210,14 @@ public class TdsVisitor implements AstVisitor<Void> {
     public Void visit(Moinsunaire moinsunaire) {
         return null;
     }
+
+    @Override
+    public Void visit(Affect affect) {
+        return null;
+    }
+
+    @Override
+    public Void visit(Affect affect) {
+        return null;
+    }
 }
