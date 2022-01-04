@@ -222,9 +222,12 @@ public class TdsVisitor implements AstVisitor<Void> {
     }
 
     @Override
-    public Void visit(Bloc bloc) {
+    public Void visit(Div div) {
         return null;
     }
 
-
+    @Override
+    public Void visit(Div div) {
+        return null;
+    }
 }
