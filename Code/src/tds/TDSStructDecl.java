@@ -19,8 +19,17 @@ public class TDSStructDecl {
                     this.termes.add(Ident);
                 }
             }
-            
+            else if (terme instanceof DeclVarStruct) {
+                DeclVarStruct declvarstruct = (DeclVarStruct)terme;
+                for (Ast Ident: declvarstruct.struct_names) {
+                    this.termes.add(Ident);
+                }
+            }
+            else throw new IllegalArgumentException("Wrong argument in type declaration");
         }
     }
 
+    public String toString() {
+        return "Struct" + name;
+    }
 }
