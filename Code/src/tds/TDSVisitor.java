@@ -217,7 +217,14 @@ public class TdsVisitor implements AstVisitor<Void> {
     }
 
     @Override
-    public Void visit(Affect affect) {
+    public Void visit(Bloc bloc) {
         return null;
     }
+
+    @Override
+    public Void visit(Bloc bloc) {
+        return null;
+    }
+
+
 }
