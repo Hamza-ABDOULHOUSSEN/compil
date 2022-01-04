@@ -7,8 +7,9 @@ public class TdsBloc implements Tds {
     public int NumImbr;
     public Hashtable<String, String> variables = new Hashtable<String, String>();
 
-    public TdsBloc(Tds pere) {
+    public TdsBloc(Tds pere, int NumImbr) {
         this.pere = pere;
+        this.NumImbr = NumImbr;
     }
 
     @Override

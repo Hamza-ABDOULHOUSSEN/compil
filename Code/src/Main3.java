@@ -23,7 +23,6 @@ public class Main3 {
 
         try {
 
-
             //chargement du fichier et construction du parser
 
             CharStream input = CharStreams.fromFileName(testFile);
