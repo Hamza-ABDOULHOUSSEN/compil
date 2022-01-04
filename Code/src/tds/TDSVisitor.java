@@ -131,10 +131,9 @@ public class TdsVisitor implements AstVisitor<Void> {
 
 ///////////////Changer
     @Override
-    public Void visit(While while1) {
-        TDSWhileEntry entry = new TDSWhileEntry(while1, this.table);
+    public Void visit(While whileinstr) {
+        TDSWhileEntry entry = new TDSWhileEntry(whileinstr, this.table);
         if (entry.bloc != null) {
-            //this.addEntry(entry.bloc);
         }
         this.addEntry(entry);
         return null;
@@ -253,6 +252,32 @@ public class TdsVisitor implements AstVisitor<Void> {
             ast.accept(this);
         }
         this.visitingStruct = null;
+        return null;
+    }
+
+    @Override
+    public Void visit(Int entier) {
+        return null;
+    }
+
+    @Override
+    public Void visit(Return ret) {
+        // TODO something can be done with semantical check
+        return null;
+    }
+
+    @Override
+    public Void visit(Et et) {
+        return null;
+    }
+
+    @Override
+    public Void visit(Ou ou) {
+        return null;
+    }
+
+    @Override
+    public Void visit(Ou ou) {
         return null;
     }
 }
