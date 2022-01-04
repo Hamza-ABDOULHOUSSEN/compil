@@ -10,7 +10,8 @@ if [ "$var1" != "0" ] && [ "$var1" != "1" ] && [ "$var1" != "2" ] && [ "$var1" !
   echo "2 : test all complete tree"
   echo "3 : generate all ast"
   echo "4 : syntax error detection"
-  read -p "Which option [0/1/2/3/4] : " var1
+  echo "5 : symbol table"
+  read -p "Which option [0/1/2/3/4/5] : " var1
   echo
 fi
 
@@ -24,6 +25,8 @@ elif [ "$var1" == "3" ]; then
     ./bash/launch_3_all_tree.sh
 elif [ "$var1" == "4" ]; then
     ./bash/launch_4_syntax_error_detection.sh
+elif [ "$var1" == "5" ]; then
+    ./bash/launch_5_tds.sh
 else
     echo "ERROR press 0 1 2 3 or 4"
 fi

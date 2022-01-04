@@ -44,7 +44,7 @@ public class Main3 {
 
             ast.accept(tdsvisitor);
 
-            String filepath = "./out/dot/" + name + ".dot";
+            String filepath = "./out/tds/dot/" + name + ".dot";
 
             tdsvisitor.createGraph(filepath);
 
