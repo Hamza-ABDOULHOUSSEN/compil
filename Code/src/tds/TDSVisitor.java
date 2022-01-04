@@ -242,7 +242,12 @@ public class TdsVisitor implements AstVisitor<Void> {
     }
 
     @Override
-    public Void visit(InfEgal infEgal) {
+    public Void visit(SupEgal supEgal) {
+        return null;
+    }
+
+    @Override
+    public Void visit(SupEgal supEgal) {
         return null;
     }
 }
