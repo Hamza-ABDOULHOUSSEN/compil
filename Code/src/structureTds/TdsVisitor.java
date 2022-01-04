@@ -39,6 +39,26 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(DefStruct def_struct) {
+        Ident ident = (Ident) def_struct.ident;
+        String nom = ident.name;
+        TdsStruct struct_table = new TdsStruct(nom);
+        this.TableStruct.put(nom, struct_table);
+
+        graphviztds.addStartTable("structure : " + nom);
+
+        NumImbr++;
+        this.TdsStack.push(struct_table);
+
+        ArrayList<Ast> params = def_struct.decl_vars;
+        for (Ast param : params) {
+            param.accept(this);
+        }
+
+        graphviztds.addEndTable();
+
+        this.TdsStack.pop();
+        NumImbr--;
+
         return null;
     }
 
