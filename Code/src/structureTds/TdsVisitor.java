@@ -99,11 +99,56 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(DefFctStruct def_fct_struct) {
+        Ident identType = (Ident) def_fct_struct.ident1;
+        Ident identNom = (Ident) def_fct_struct.ident2;
+        String nom = identNom.name;
+        String type = "struct " + identType ;
+        TdsFunction function_table = new TdsFunction(nom, type);
+        this.TableFunction.put(nom, function_table);
+
+        graphviztds.addStartTable("fonction : " + nom);
+
+        NumImbr++;
+        this.TdsStack.push(function_table);
+
+        Bloc bloc = (Bloc) def_fct_struct.bloc;
+        bloc.accept(this);
+
+        graphviztds.addEndTable();
+
+        this.TdsStack.pop();
+        NumImbr--;
+
         return null;
     }
 
     @Override
     public Object visit(DefFctStructParam def_fct_struct_param) {
+        Ident identType = (Ident) def_fct_struct_param.ident1;
+        Ident identNom = (Ident) def_fct_struct_param.ident2;
+        String nom = identNom.name;
+        String type = "struct " + identType ;
+        TdsFunction function_table = new TdsFunction(nom, type);
+        this.TableFunction.put(nom, function_table);
+
+        graphviztds.addStartTable("fonction : " + nom);
+
+        NumImbr++;
+        this.TdsStack.push(function_table);
+
+        ArrayList<Ast> params = def_fct_struct_param.params;
+        for (Ast param : params) {
+            param.accept(this);
+        }
+
+        Bloc bloc = (Bloc) def_fct_struct_param.bloc;
+        bloc.accept(this);
+
+        graphviztds.addEndTable();
+
+        this.TdsStack.pop();
+        NumImbr--;
+
         return null;
     }
 
