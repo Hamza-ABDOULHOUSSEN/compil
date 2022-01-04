@@ -43,11 +43,6 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DeclVarInt var) {
-        return null;
-    }
-
-    @Override
     public Object visit(DefFctInt def_fct_int) {
         Ident ident = (Ident) def_fct_int.ident;
         String nom = ident.name;
@@ -233,7 +228,32 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DeclVarStruct declvarstruct) {
+    public Object visit(DeclVarInt declVarInt) {
+        ArrayList<Ast> idents = (ArrayList<Ast>) declVarInt.ident ;
+
+        Tds actualTable = TdsStack.pop();
+        for (int i = 0; i < idents.size(); i++) {
+            Ident ident = (Ident) idents.get(i) ;
+            actualTable.addParam(ident.toString(), "int");
+            graphviztds.addElement(ident.name, "attribut", "int", "depl");
+        }
+        TdsStack.push(actualTable);
+        return null;
+    }
+
+    @Override
+    public Object visit(DeclVarStruct declVarStruct) {
+        ArrayList<Ast> idents = (ArrayList<Ast>) declVarStruct.struct_names ;
+        Ident identType = (Ident) declVarStruct.struct_type ;
+        String type = identType.name ;
+
+        Tds actualTable = TdsStack.pop();
+        for (int i = 0; i < idents.size(); i++) {
+            Ident ident = (Ident) idents.get(i) ;
+            actualTable.addParam(ident.toString(), type);
+            graphviztds.addElement(ident.name, "attribut", type, "depl");
+        }
+        TdsStack.push(actualTable);
         return null;
     }
 
