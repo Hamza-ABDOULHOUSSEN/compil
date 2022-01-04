@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Stack;
 
-public class TdsVisitor implements AstVisitor {
+public class TdsVisitor implements AstVisitor<Object> {
 
     public Hashtable<String, TdsFunction> TableFunction = new Hashtable<String, TdsFunction>();
     public Hashtable<String, TdsStruct> TableStruct = new Hashtable<String, TdsStruct>();
@@ -25,6 +25,11 @@ public class TdsVisitor implements AstVisitor {
 
     @Override
     public Object visit(Fichier fichier) {
+        ArrayList<Ast> declarations = fichier.declarations;
+        for (Ast declaration : declarations) {
+            declaration.accept(this);
+        }
+
         return null;
     }
 

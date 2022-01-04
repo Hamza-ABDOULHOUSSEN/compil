@@ -121,6 +121,8 @@ public class GraphVizTds /*implements AstVisitor<String>*/ {
         /* AIIIIILLLL RIENNN NE VASSSS C'EST TROP DURE DE FAIRE CA ITERATIVEMENT
         FAUT LE FAIRE PENDANT LE PARCOURS DE L'AST !!!!!!!!!!!!!!!!!!!!!!!!!
          */
+
+        addEndTable();
     }
 
 }
