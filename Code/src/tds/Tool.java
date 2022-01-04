@@ -27,11 +27,40 @@ public class Tool {
         //if (ast instanceof ExprOper) {
         //   return 0;
         //}
-        Parenthese
         if (ast instanceof Parenthese) {
             Parenthese p = (Parenthese)ast;
             return typeOf(p.expr);
         }
+        if (ast instanceof FctParam) {
+            FctParam fp = (FctParam)ast;
+            TDSEntry tdsEntry = tds.getRefEntry(fp.ident);
+            if (tdsEntry == null) {
+                throw new IllegalArgumentException();
+            }
+            if (!(tdsEntry instanceof TDSFuncEntry)) {
+                throw new IllegalArgumentException();
+            }
+            TDSFuncEntry tdsFuncEntry = (TDSFuncEntry) tdsEntry;
+            if (tdsFuncEntry.type.equals("INT")) return 0;
+            else return 1;
+        }
+        if (ast instanceof Fct) {
+            Fct f = (Fct)ast;
+            TDSEntry tdsEntry = tds.getRefEntry(f.ident);
+            if (tdsEntry == null) {
+                throw new IllegalArgumentException();
+            }
+            if (!(tdsEntry instanceof TDSFuncEntry)) {
+                throw new IllegalArgumentException();
+            }
+            TDSFuncEntry tdsFuncEntry = (TDSFuncEntry) tdsEntry;
+            if (tdsFuncEntry.type.equals("INT")) return 0;
+            else return 1;
+        }
+
+        if (ast instanceof IntegerC || ast instanceof SizeOf) {
+            return 0;
+
     }
 
 }
