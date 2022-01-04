@@ -290,4 +290,9 @@ public class TdsVisitor implements AstVisitor<Void> {
     public Void visit(Moins moins) {
         return null;
     }
+
+    @Override
+    public Void visit(Fleche fleche) {
+        return null;
+    }
 }
