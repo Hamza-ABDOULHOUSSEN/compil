@@ -81,9 +81,15 @@ public class TDSFuncEntry extends TDSNamedEntry {
     }
 
     public String toString() {
-        return "function " + ident + " : " + type;
-        return "function " + ident1 + " : " + type;
-        return "function " + ident2 + " : " + type;
+        if (this.type == "INT" && this.ident != null ){
+            return "function " + ident + " : " + type;
+        }
+        else if (this.type == "STRUCT" && this.ident1 != null && this.ident2 != null ){
+            return "function " + ident1 + " : " + type;
+            return "function " + ident2 + " : " + type;
+        }
+       
+        
     }
 
     @Override
