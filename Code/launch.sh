@@ -3,7 +3,7 @@ var1=$1
 var2=$2
 var3=$3
 
-if [ "$var1" != "0" ] && [ "$var1" != "1" ] && [ "$var1" != "2" ] && [ "$var1" != "3" ] && [ "$var1" != "4" ]; then
+if [ "$var1" != "0" ] && [ "$var1" != "1" ] && [ "$var1" != "2" ] && [ "$var1" != "3" ] && [ "$var1" != "4" ] && [ "$var1" != "5" ]; then
   echo
   echo "0 : complete tree"
   echo "1 : ast"
@@ -26,7 +26,7 @@ elif [ "$var1" == "3" ]; then
 elif [ "$var1" == "4" ]; then
     ./bash/launch_4_syntax_error_detection.sh
 elif [ "$var1" == "5" ]; then
-    ./bash/launch_5_tds.sh
+    ./bash/launch_5_tds.sh $var2 $var3
 else
     echo "ERROR press 0 1 2 3 or 4"
 fi

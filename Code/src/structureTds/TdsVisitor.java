@@ -125,6 +125,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         String type = "struct " + identType ;
         TdsFunction function_table = new TdsFunction(nom, type);
         this.TableFunction.put(nom, function_table);
+        this.blocLabel.push("fonction");
 
         graphviztds.addStartTable("fonction : " + nom);
 
@@ -137,6 +138,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         graphviztds.addEndTable();
 
         this.TdsStack.pop();
+        this.blocLabel.pop();
         NumImbr--;
 
         return null;
@@ -155,6 +157,7 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         NumImbr++;
         this.TdsStack.push(function_table);
+        this.blocLabel.push("fonction");
 
         ArrayList<Ast> params = def_fct_struct_param.params;
         for (Ast param : params) {
@@ -167,6 +170,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         graphviztds.addEndTable();
 
         this.TdsStack.pop();
+        this.blocLabel.pop();
         NumImbr--;
 
         return null;
