@@ -5,8 +5,9 @@ import ast.Bloc;
 public class TDSBlocEntry extends TDSEntry {
     private TdsVisitor visitor;
 
-    public TDSBlocEntry(Bloc bloc) {
+    public TDSBlocEntry(TDS father, Bloc bloc) {
         this.visitor = new TdsVisitor();
+        this.visitor.getTable().setFatherTDS(father);
         for (ast.Ast vars: bloc.vars) {
             if (vars == null) continue;
             vars.accept(this.visitor);

@@ -90,13 +90,25 @@ public class TDS {
 
         for (TDSEntry entry: entries) {
             if (entry instanceof TDSWhileEntry) {
-                ret += strind + "containing following TDS (While):\n";
-                TDSWhileEntry fentry = (TDSWhileEntry)entry;
-                if (fentry.bloc != null && fentry.bloc.getTable().toString() != null) {
-                    ret += strind + fentry.bloc.getTable().toString2(ind + 1);
-                }
-            }
+				TDSWhileEntry fentry = (TDSWhileEntry)entry;
+				if (fentry.bloc == null) continue;
+				ret += strind + "containing following TDS (While):\n";
+				if (fentry.bloc != null && fentry.bloc.getTable().toString() != null) {
+					ret += strind + fentry.bloc.getTable().toString2(ind + 1);
+				}
+			}
         }
+
+        for (TDSEntry entry: entries) {
+			if (entry instanceof TDSFuncEntry) {
+				TDSFuncEntry fentry = (TDSFuncEntry)entry;
+				if (fentry.bloc == null) continue;
+				ret += strind + "containing following TDS (Func):\n";
+				if (fentry.bloc != null && fentry.bloc.getTable().toString() != null) {
+					ret += strind + fentry.bloc.getTable().toString2(ind + 1);
+				}
+			}
+		}
         return ret;
     }
 }

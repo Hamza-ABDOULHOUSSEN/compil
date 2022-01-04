@@ -50,6 +50,11 @@ public class Main2 {
         
             graphViz.dumpGraph(filepath);
 
+            // Visiteur de la table des symboles
+            TdsVisitor tdsViz = new TdsVisitor();
+            ast.accept(tdsViz);
+            System.out.println(tdsViz.table.toString());
+
 
         } catch (IOException e) {
             e.printStackTrace();
