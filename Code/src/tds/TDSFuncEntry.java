@@ -87,7 +87,7 @@ public class TDSFuncEntry extends TDSNamedEntry {
     }
 
     @Override
-	public String getIdent() {
+	public String getName() {
 		return this.ident;
         return this.ident1;
         return this.ident2;
