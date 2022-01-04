@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class Main3 {
     public static void main(String[] args) throws IOException {
-        System.out.println("je suis la");
+
         if (args.length < 1){
             System.out.println("Error : Expected 1 argument filepath, found 0");
             return;
@@ -48,10 +48,6 @@ public class Main3 {
             String filepath = "./out/dot/" + name + ".dot";
 
             tdsvisitor.createGraph(filepath);
-
-
-
-            tdsvisitor.print();
 
         } catch (IOException e) {
             e.printStackTrace();

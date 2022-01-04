@@ -17,18 +17,22 @@ public class TdsVisitor implements AstVisitor<Object> {
     public Stack<Tds> TdsStack = new Stack<Tds>();
     public int NumImbr = 0;
 
+    public GraphVizTds graphviztds = new GraphVizTds();
+
     public void createGraph(String filepath) throws IOException {
-        GraphVizTds graphviz = new GraphVizTds();
-        graphviz.createGraph(TableFunction, TableStruct, TdsBloc);
-        graphviz.dumpGraph(filepath);
+        graphviztds.dumpGraph(filepath);
     }
 
     @Override
     public Object visit(Fichier fichier) {
+        graphviztds.addStartTable("global " + NumImbr);
+
         ArrayList<Ast> declarations = fichier.declarations;
         for (Ast declaration : declarations) {
             declaration.accept(this);
         }
+
+        graphviztds.addEndTable();
 
         return null;
     }
@@ -50,11 +54,15 @@ public class TdsVisitor implements AstVisitor<Object> {
         TdsFunction function_table = new TdsFunction(nom, "int");
         this.TableFunction.put(nom, function_table);
 
+        graphviztds.addStartTable("fonction : " + nom);
+
         NumImbr++;
         this.TdsStack.push(function_table);
 
         Bloc bloc = (Bloc) def_fct_int.bloc;
         bloc.accept(this);
+
+        graphviztds.addEndTable();
 
         this.TdsStack.pop();
         NumImbr--;
@@ -71,6 +79,8 @@ public class TdsVisitor implements AstVisitor<Object> {
         NumImbr++;
         this.TdsStack.push(function_table);
 
+        graphviztds.addStartTable("fonction : " + nom);
+
         ArrayList<Ast> params = def_fct_int_param.params;
         for (Ast param : params) {
             param.accept(this);
@@ -78,6 +88,8 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         Bloc bloc = (Bloc) def_fct_int_param.bloc;
         bloc.accept(this);
+
+        graphviztds.addEndTable();
 
         this.TdsStack.pop();
         NumImbr--;
@@ -199,6 +211,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         String nom = ident.name;
 
         actualTable.addParam(nom, "int");
+        graphviztds.addElement(nom, "param", "int", "depl");
 
         TdsStack.push(actualTable);
 
@@ -216,6 +229,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         String nom = ident.name;
 
         actualTable.addParam(nom, type);
+        graphviztds.addElement(nom, "param", type, "depl");
 
         TdsStack.push(actualTable);
 
