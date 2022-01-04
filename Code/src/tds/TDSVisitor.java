@@ -232,7 +232,12 @@ public class TdsVisitor implements AstVisitor<Void> {
     }
 
     @Override
-    public Void visit(Inegal inegal) {
+    public Void visit(Inf inf) {
+        return null;
+    }
+
+    @Override
+    public Void visit(Inf inf) {
         return null;
     }
 }
