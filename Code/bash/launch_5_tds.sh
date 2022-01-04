@@ -32,7 +32,7 @@ if test -f "$FILE"; then
 
     if [ "$tree" == "" ]; then
 
-        read -p "Which name for the ast : " tree
+        read -p "Which name for the tds : " tree
         echo
 
     fi
