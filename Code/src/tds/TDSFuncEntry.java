@@ -1,5 +1,8 @@
 package tds;
 
+import java.util.ArrayList;
+
+import ast.Ast;
 import ast.Bloc;
 import ast.DefFctIntParam;
 import ast.ParamInt;
@@ -8,8 +11,9 @@ import ast.DefFctStruct;
 import ast.DefFctStructParam;
 import ast.ParamStruct;
 
-public class TDSFuncEntry extends TDSEntry {
+public class TDSFuncEntry extends TDSNamedEntry {
     public Ast ident;
+    public ArrayList<Ast> params;
     public Ast ident1;
     public Ast ident2;
 
@@ -20,9 +24,11 @@ public class TDSFuncEntry extends TDSEntry {
     public TDSFuncEntry(DefFctIntParam fct, TDS father) {
         this.ident = fct.ident;
         this.type = "INT";
-        this.bloc = new TDSBlocEntry((Bloc)fct.bloc);
+        this.bloc = new TDSBlocEntry(father, (Bloc)fct.bloc);
+        if (fct.params != null) {
+            this.params = new ArrayList<Ast>(fct.params);
+        }
 
-        bloc.getTable().setFatherTDS(father);
         TdsVisitor blocVisitor = bloc.getVisitor();
 
         for (ast.Ast param: fct.params) {
@@ -41,9 +47,11 @@ public class TDSFuncEntry extends TDSEntry {
         this.ident1 = fct.ident1;
         this.ident2 = fct.ident2;
         this.type = "STRUCT";
-        this.bloc = new TDSBlocEntry((Bloc)fct.bloc);
+        this.bloc = new TDSBlocEntry(father, (Bloc)fct.bloc);
+        if (fct.params != null) {
+            this.params = new ArrayList<Ast>(fct.params);
+        }
 
-        bloc.getTable().setFatherTDS(father);
 		TdsVisitor blocVisitor = bloc.getVisitor();
 
         for (ast.Ast param: fct.params) {
@@ -61,18 +69,15 @@ public class TDSFuncEntry extends TDSEntry {
     public TDSFuncEntry(DefFctInt fct, TDS father) {
         this.ident = fct.ident;
         this.type = "INT";
-        this.bloc = new TDSBlocEntry((Bloc)fct.bloc);
+        this.bloc = new TDSBlocEntry(father, (Bloc)fct.bloc);
 
-        bloc.getTable().setFatherTDS(father);
     }
 
     public TDSFuncEntry(DefFctStruct fct, TDS father) {
         this.ident1 = fct.ident1;
         this.ident2 = fct.ident2;
         this.type = "STRUCT";
-        this.bloc = new TDSBlocEntry((Bloc)fct.bloc);
-
-        bloc.getTable().setFatherTDS(father);
+        this.bloc = new TDSBlocEntry(father, (Bloc)fct.bloc);
     }
 
     public String toString() {
@@ -81,4 +86,10 @@ public class TDSFuncEntry extends TDSEntry {
         return "function " + ident2 + " : " + type;
     }
 
+    @Override
+	public String getIdent() {
+		return this.ident;
+        return this.ident1;
+        return this.ident2;
+	}
 }
