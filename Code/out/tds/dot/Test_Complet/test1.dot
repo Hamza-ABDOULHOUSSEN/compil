@@ -25,6 +25,9 @@ digraph "tds"{
 	| { p | param | struct person | depl }
 	}"];
 
+	N9 [shape=record label="{ bloc : Bloc While  3
+	}"];
+
 	N8 [shape=record label="{ bloc : fonction  2
 	| { hash | attribut | int | depl }
 	}"];
@@ -46,4 +49,5 @@ digraph "tds"{
 	N5 -> N6; 
 	N0 -> N7; 
 	N7 -> N8; 
+	N8 -> N9; 
 }

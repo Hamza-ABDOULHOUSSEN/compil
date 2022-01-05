@@ -24,6 +24,18 @@ public class TdsVisitor implements AstVisitor<Object> {
         graphviztds.dumpGraph(filepath);
     }
 
+    public void createBloc() {
+        NumImbr++;
+        String label = blocLabel.lastElement();
+        TdsBloc tdsbloc = new TdsBloc(TdsStack.lastElement(), NumImbr);
+        graphviztds.addStartTable("bloc : " + label + "  " + NumImbr);
+        this.TdsStack.push(tdsbloc);
+
+        NumImbr--;
+        TdsStack.pop();
+        graphviztds.addEndTable();
+    }
+
     @Override
     public Object visit(Fichier fichier) {
         graphviztds.addStartTable("global " + NumImbr);
@@ -356,9 +368,16 @@ public class TdsVisitor implements AstVisitor<Object> {
         blocLabel.push("Bloc If");
 
         Ast blocif = ifinstr.instruction;
-        if (blocif != null) {
+        if (blocif == null) {
+            createBloc();
+        }
+        else if (blocif instanceof Bloc || blocif instanceof If || blocif instanceof IfElse || blocif instanceof While ) {
             blocif.accept(this);
         }
+        else {
+            createBloc();
+        }
+        
         blocLabel.pop();
 
         return null;
@@ -369,16 +388,32 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         blocLabel.push("Bloc If");
         Ast blocif = ifelseinstr.instruction1;
-        if (blocif != null) {
+
+        if (blocif == null) {
+            createBloc();
+        }
+        else if (blocif instanceof Bloc || blocif instanceof If || blocif instanceof IfElse || blocif instanceof While ) {
             blocif.accept(this);
         }
+        else {
+            createBloc();
+        }
+        
         blocLabel.pop();
 
         blocLabel.push("Bloc Else");
         Ast blocelse = ifelseinstr.instruction2;
-        if (blocelse != null) {
+
+        if (blocelse == null) {
+            createBloc();
+        }
+        else if (blocelse instanceof Bloc || blocelse instanceof If || blocelse instanceof IfElse || blocelse instanceof While ) {
             blocelse.accept(this);
         }
+        else {
+            createBloc();
+        }
+        
         blocLabel.pop();
 
         return null;
@@ -389,9 +424,17 @@ public class TdsVisitor implements AstVisitor<Object> {
         blocLabel.push("Bloc While");
 
         Ast blocwhile = whileinstr.instruction;
-        if (blocwhile != null) {
+
+        if (blocwhile == null) {
+            createBloc();
+        }
+        else if (blocwhile instanceof Bloc || blocwhile instanceof If || blocwhile instanceof IfElse || blocwhile instanceof While ) {
             blocwhile.accept(this);
         }
+        else {
+            createBloc();
+        }
+        
         blocLabel.pop();
 
         return null;
