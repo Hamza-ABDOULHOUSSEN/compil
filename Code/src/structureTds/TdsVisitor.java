@@ -238,7 +238,9 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         ArrayList<Ast> vars = bloc.vars;
         for (Ast var : vars) {
-            var.accept(this);
+            if (var != null) {
+                var.accept(this);
+            }
         }
 
         NumImbr--;
@@ -353,9 +355,10 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         blocLabel.push("Bloc If");
 
-        Bloc blocif = (Bloc) ifinstr.instruction;
-        blocif.accept(this);
-
+        Ast blocif = ifinstr.instruction;
+        if (blocif != null) {
+            blocif.accept(this);
+        }
         blocLabel.pop();
 
         return null;
@@ -365,13 +368,17 @@ public class TdsVisitor implements AstVisitor<Object> {
     public Object visit(IfElse ifelseinstr) {
 
         blocLabel.push("Bloc If");
-        Bloc blocif = (Bloc) ifelseinstr.instruction1;
-        blocif.accept(this);
+        Ast blocif = ifelseinstr.instruction1;
+        if (blocif != null) {
+            blocif.accept(this);
+        }
         blocLabel.pop();
 
         blocLabel.push("Bloc Else");
-        Bloc blocelse = (Bloc) ifelseinstr.instruction2;
-        blocelse.accept(this);
+        Ast blocelse = ifelseinstr.instruction2;
+        if (blocelse != null) {
+            blocelse.accept(this);
+        }
         blocLabel.pop();
 
         return null;
@@ -379,6 +386,14 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(While whileinstr) {
+        blocLabel.push("Bloc While");
+
+        Ast blocwhile = whileinstr.instruction;
+        if (blocwhile != null) {
+            blocwhile.accept(this);
+        }
+        blocLabel.pop();
+
         return null;
     }
 
