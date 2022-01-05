@@ -3,7 +3,7 @@ package tds;
 import ast.*;
 
 public class TDSVisitor implements AstVisitor<Void> {
-    private TDS table;
+    public TDS table;
     private String visitingStruct = null;
     private Tool t;
 
