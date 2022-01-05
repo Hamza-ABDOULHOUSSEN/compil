@@ -1,0 +1,44 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N2 [shape=record label="{ bloc : fonction  2
+	| { new_joueur | attribut | joueur | depl }
+	}"];
+
+	N1 [shape=record label="{ fonction : joueur_init
+	| { nbr_pokemons | param | int | depl }
+	}"];
+
+	N5 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N4 [shape=record label="{ bloc : fonction  2
+	| { i | attribut | int | depl }
+	}"];
+
+	N3 [shape=record label="{ fonction : joueur_ajoutePokemon
+	| { sacha | param | struct joueur | depl }
+	| { pikachu | param | struct pokemon | depl }
+	}"];
+
+	N7 [shape=record label="{ bloc : fonction  2
+	| { i | attribut | int | depl }
+	}"];
+
+	N6 [shape=record label="{ fonction : joueur_free
+	| { sacha | param | struct joueur | depl }
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N1 -> N2; 
+	N0 -> N3; 
+	N3 -> N4; 
+	N4 -> N5; 
+	N0 -> N6; 
+	N6 -> N7; 
+}
