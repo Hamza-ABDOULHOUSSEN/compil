@@ -1,8 +1,10 @@
 package tds;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.stream.Collectors;
-import org.stringtemplate.v4.compiler.CodeGenerator.conditional_return;
+//import java.util.stream.Collectors;
+//import org.stringtemplate.v4.compiler.CodeGenerator.conditional_return;
+
+import ast.Ident;
 
 public class TDS {
     private ArrayList<TDSEntry> entries;
@@ -26,7 +28,8 @@ public class TDS {
     }
 
     public void addRefStruct(TDSStructDecl struct) {
-		this.refStructs.put(struct.name, struct);
+        Ident newident = (Ident) struct.ident;
+		this.refStructs.put(newident.name, struct);
 	}
 
     public TDSEntry getRefEntry(String idfEntry) {

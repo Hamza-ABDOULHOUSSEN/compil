@@ -33,7 +33,8 @@ public class Tool {
         }
         if (ast instanceof FctParam) {
             FctParam fp = (FctParam)ast;
-            TDSEntry tdsEntry = tds.getRefEntry(fp.ident);
+            Ident newident = (Ident) fp.ident  ;
+            TDSEntry tdsEntry = tds.getRefEntry(newident.name);
             if (tdsEntry == null) {
                 throw new IllegalArgumentException();
             }
@@ -46,7 +47,8 @@ public class Tool {
         }
         if (ast instanceof Fct) {
             Fct f = (Fct)ast;
-            TDSEntry tdsEntry = tds.getRefEntry(f.ident);
+            Ident newident = (Ident) f.ident  ;
+            TDSEntry tdsEntry = tds.getRefEntry(newident.name);
             if (tdsEntry == null) {
                 throw new IllegalArgumentException();
             }
@@ -58,9 +60,10 @@ public class Tool {
             else return 1;
         }
 
-        if (ast instanceof IntegerC || ast instanceof SizeOf) {
+        if (ast instanceof Int || ast instanceof SizeOf) {
             return 0;
 
     }
+        return 0;
 
-}
+}}

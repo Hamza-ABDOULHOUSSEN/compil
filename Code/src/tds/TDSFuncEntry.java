@@ -10,6 +10,7 @@ import ast.DefFctInt;
 import ast.DefFctStruct;
 import ast.DefFctStructParam;
 import ast.ParamStruct;
+import ast.Ident;
 
 public class TDSFuncEntry extends TDSNamedEntry {
     public Ast ident;
@@ -29,7 +30,7 @@ public class TDSFuncEntry extends TDSNamedEntry {
             this.params = new ArrayList<Ast>(fct.params);
         }
 
-        TdsVisitor blocVisitor = bloc.getVisitor();
+        TDSVisitor blocVisitor = bloc.getVisitor();
 
         for (ast.Ast param: fct.params) {
             if (param instanceof ParamInt) {
@@ -52,7 +53,7 @@ public class TDSFuncEntry extends TDSNamedEntry {
             this.params = new ArrayList<Ast>(fct.params);
         }
 
-		TdsVisitor blocVisitor = bloc.getVisitor();
+		TDSVisitor blocVisitor = bloc.getVisitor();
 
         for (ast.Ast param: fct.params) {
             if (param instanceof ParamInt) {
@@ -81,21 +82,33 @@ public class TDSFuncEntry extends TDSNamedEntry {
     }
 
     public String toString() {
-        if (this.type == "INT" && this.ident != null ){
-            return "function " + ident + " : " + type;
+        String result = "" ;
+        if (this.type == "INT"  ){
+            Ident newident = (Ident) this.ident  ;
+            result = "function " + newident.name + " : " + type;
         }
-        else if (this.type == "STRUCT" && this.ident1 != null && this.ident2 != null ){
-            return "function " + ident1 + " : " + type;
-            return "function " + ident2 + " : " + type;
+        else if (this.type == "STRUCT" ){
+            Ident newident1 = (Ident) this.ident1 ;
+            Ident newident2 = (Ident) this.ident2  ;
+            result = "function " + newident1.name + " : " + type + "\n" + " function " + newident2.name + " : " + type;
         }
+        return result ;
        
         
     }
 
     @Override
 	public String getName() {
-		return this.ident;
-        return this.ident1;
-        return this.ident2;
+        String result = "" ;
+        if (this.type == "INT"  ){
+            Ident newident = (Ident) this.ident  ;
+            result = newident.name;
+        }
+        else if (this.type == "STRUCT" ){
+            Ident newident1 = (Ident) this.ident1 ;
+            Ident newident2 = (Ident) this.ident2  ;
+            result = newident1.name + "\n" + newident2.name ;
+        }
+        return result ;
 	}
 }

@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 
 import ast.*;
+import tds.*;
 import graphViz.GraphVizVisitor;
 
 public class Main2 {
@@ -47,8 +48,15 @@ public class Main2 {
             ast.accept(graphViz);
 
             String filepath = "./out/ast/dot/" + name + ".dot";
-
+        
             graphViz.dumpGraph(filepath);
+
+            // Visiteur de la table des symboles
+            TDSVisitor tdsViz = new TDSVisitor();
+            ast.accept(tdsViz);
+            System.out.println(tdsViz.table.toString());
+
+        
 
         } catch (IOException e) {
             e.printStackTrace();

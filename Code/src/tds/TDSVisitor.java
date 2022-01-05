@@ -2,12 +2,12 @@ package tds;
 
 import ast.*;
 
-public class TdsVisitor implements AstVisitor<Void> {
-    private TDS table;
+public class TDSVisitor implements AstVisitor<Void> {
+    public TDS table;
     private String visitingStruct = null;
     private Tool t;
 
-    public TdsVisitor() {
+    public TDSVisitor() {
         table = new TDS();
         t = new Tool(table);
     }
@@ -36,14 +36,9 @@ public class TdsVisitor implements AstVisitor<Void> {
 
     @Override
     public Void visit(Ident ident) {
-        // on rajoute l'entrée courant à la TDS
-        this.addEntry(new TDSVarEntry(ident));
-        return null;
-    }
-
-    @Override
-    public Void visit(Ident ident) {
         // on rajoute l'entrée courante à la TDS
+        this.addEntry(new TDSVarEntry(ident));
+        //return null;
         if (visitingStruct == null) throw new IllegalAccessError();
         if (this.table.getRefStruct(this.visitingStruct) == null) {
             throw new IllegalArgumentException("struct not found");
@@ -53,9 +48,11 @@ public class TdsVisitor implements AstVisitor<Void> {
         return null;
     }
 
+
     @Override
     public Void visit(DefStruct def_struct) {
-        if (this.table.getRefStruct(def_struct.ident) != null) {
+        Ident newident = (Ident) def_struct.ident  ;
+        if (this.table.getRefStruct(newident.name) != null) {
             throw new IllegalArgumentException("Invalid ident");
         }
         this.table.addRefStruct(new TDSStructDecl(def_struct));
@@ -159,16 +156,17 @@ public class TdsVisitor implements AstVisitor<Void> {
 
     @Override
     public Void visit(FctParam fct_param) {
-        if (this.table.getRefEntry(fct_param.ident) == null) throw new IllegalArgumentException("No such function");
-        TDSEntry tdsEntry = this.table.getRefEntry(fct_param.ident);
+        Ident newident = (Ident) fct_param.ident  ;
+        if (this.table.getRefEntry(newident.name) == null) throw new IllegalArgumentException("No such function");
+        TDSEntry tdsEntry = this.table.getRefEntry(newident.name);
         if (!(tdsEntry instanceof TDSFuncEntry)) throw new IllegalArgumentException("No such function");
         TDSFuncEntry tdsFuncEntry = (TDSFuncEntry) tdsEntry;
         if (tdsFuncEntry.params.size() != fct_param.exprs.size()) throw new IllegalArgumentException("Illegal argument");
         for (int i = 0; i < tdsFuncEntry.params.size(); i++) {
-            if (tdsFuncEntry.params.get(i) instanceof IntParam && t.typeOf(fct_param.exprs.get(i))!=0) {
+            if (tdsFuncEntry.params.get(i) instanceof ParamInt && t.typeOf(fct_param.exprs.get(i))!=0) {
                 throw new IllegalArgumentException("Illegal argument");
             }
-            if (tdsFuncEntry.params.get(i) instanceof StructParam && t.typeOf(fct_param.exprs.get(i))!=1) {
+            if (tdsFuncEntry.params.get(i) instanceof ParamStruct && t.typeOf(fct_param.exprs.get(i))!=1) {
                 throw new IllegalArgumentException("Illegal argument");
             }
         }
@@ -177,8 +175,9 @@ public class TdsVisitor implements AstVisitor<Void> {
     
     @Override
     public Void visit(Fct fct) {
-        if (this.table.getRefEntry(fct.ident) == null) throw new IllegalArgumentException("No such function");
-        TDSEntry tdsEntry = this.table.getRefEntry(fct.ident);
+        Ident newident = (Ident) fct.ident  ;
+        if (this.table.getRefEntry(newident.name) == null) throw new IllegalArgumentException("No such function");
+        TDSEntry tdsEntry = this.table.getRefEntry(newident.name);
         if (!(tdsEntry instanceof TDSFuncEntry)) throw new IllegalArgumentException("No such function");
         TDSFuncEntry tdsFuncEntry = (TDSFuncEntry) tdsEntry;
         if (!tdsFuncEntry.params.isEmpty()) throw new IllegalArgumentException("Illegal argument");
@@ -215,10 +214,7 @@ public class TdsVisitor implements AstVisitor<Void> {
         return null;
     }
 
-    @Override
-    public Void visit(Bloc bloc) {
-        return null;
-    }
+
 
     @Override
     public Void visit(Div div) {
@@ -247,7 +243,8 @@ public class TdsVisitor implements AstVisitor<Void> {
 
     @Override
     public Void visit(DeclVarStruct declvarstruct) {
-        this.visitingStruct = declvarstruct.struct_type;
+        Ident newstruct_type = (Ident) declvarstruct.struct_type  ;
+        this.visitingStruct = newstruct_type.name;
         for (Ast ast : declvarstruct.struct_names) {
             ast.accept(this);
         }
@@ -286,10 +283,7 @@ public class TdsVisitor implements AstVisitor<Void> {
         return null;
     }
 
-    @Override
-    public Void visit(Moins moins) {
-        return null;
-    }
+
 
     @Override
     public Void visit(Fleche fleche) {

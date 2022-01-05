@@ -30,6 +30,6 @@ public class TDSStructDecl {
     }
 
     public String toString() {
-        return "Struct" + name;
+        return "Struct" + ident;
     }
 }
