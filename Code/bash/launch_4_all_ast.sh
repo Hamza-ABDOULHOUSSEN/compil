@@ -7,6 +7,13 @@ touch temp2
 
 echo " 👉 🅢🅣🅐🅡🅣 ============================= Ast creation test ============================= 🅢🅣🅐🅡🅣 👈"
 
+echo
+echo "[+] Parser creation"
+make parser >/dev/null
+echo "[+] Compilation"
+make compile >/dev/null
+echo
+
 for directory in $(find examples -type d); do
     if [ "$directory" != "examples" ]; then
         basedir="${directory##*/}"
@@ -25,20 +32,15 @@ for directory in $(find examples -type d); do
 
                 echo
                 echo "=========== Ast creation : $basename ==========="
-                echo "[+] Parser creation"
-                make parser >/dev/null
-
-                echo "[+] Compilation"
-                make compile >/dev/null
 
                 echo "[+] Ast file dot generation"
-                mkdir -p "out/dot/$basedir"
-                mkdir -p "out/svg/$basedir"
+                mkdir -p "out/ast/dot/$basedir"
+                mkdir -p "out/ast/svg/$basedir"
                 make run target="$file" name="$basedir/$basename" >/dev/null 2>temp2
 
                 if cmp -s temp1 temp2; then
                   echo "[+] Ast file svg generation"
-                  dot -Tsvg ./out/dot/$basedir/$basename.dot -o ./out/svg/$basedir/$basename.svg >/dev/null
+                  dot -Tsvg ./out/ast/dot/$basedir/$basename.dot -o ./out/ast/svg/$basedir/$basename.svg >/dev/null
                   echo '### ✅ ✅ ✅ : Done, files are in out ###'
                 else
                   echo '### ❌ ❌ ❌ : ERROR ###'

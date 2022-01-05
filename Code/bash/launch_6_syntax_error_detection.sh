@@ -7,11 +7,22 @@ touch temp2
 
 echo " 👉 🅢🅣🅐🅡🅣 ============================= Syntax error detection ============================= 🅢🅣🅐🅡🅣 👈"
 
+echo
+echo "[+] Parser creation"
+make parser >/dev/null
+echo "[+] Compilation"
+make compile >/dev/null
+echo
+
 for directory in $(find examples -type d); do
     if [ "$directory" != "examples" ]; then
         basedir="${directory##*/}"
 
         count=$(find  $directory -type f | grep X.exp$ | wc -l)
+
+        mkdir -p "out/ast/dot/$basedir"
+        mkdir -p "out/ast/svg/$basedir"
+        error=0
 
         if [ $count != 0 ]; then
             echo
@@ -25,18 +36,14 @@ for directory in $(find examples -type d); do
 
                 echo
                 echo "=========== Syntax check : $basename ==========="
-                echo "[+] Parser creation"
-                make parser >/dev/null
-
-                echo "[+] Compilation"
-                make compile >/dev/null
 
                 echo "[+] Ast file dot generation"
-                make run target="$file" name="$basename" >/dev/null 2>temp2
+                make run target="$file" name="$basedir/$basename" >/dev/null 2>temp2
 
                 if cmp -s temp1 temp2; then
+                  error=1
                   echo "[+] Ast file svg generation"
-                  dot -Tsvg ./out/dot/$1.dot -o ./out/svg/$1.svg >/dev/null
+                  dot -Tsvg ./out/ast/dot/$basedir/$basename.dot -o ./out/ast/svg/$basedir/$basename.svg >/dev/null
                   echo '### ❌ ❌ ❌ : The error was not seen ###'
                   echo '### files are in out ###'
                 else
@@ -48,6 +55,10 @@ for directory in $(find examples -type d); do
 
         fi
 
+        if [ error == 0 ]; then
+            rmdir "out/ast/dot/$basedir"
+            rmdir "out/ast/svg/$basedir"
+        fi
     fi
 done
 
