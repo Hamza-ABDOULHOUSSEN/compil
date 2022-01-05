@@ -5,6 +5,12 @@ rm temp2 2>/dev/null
 touch temp1
 touch temp2
 
+#echo "[+] Parser creation"
+java -jar ./lib/antlr-4.9.2-complete.jar expr.g4 -no-listener -no-visitor -o ./src/parser >/dev/null
+
+#echo "[+] Compilation"
+javac -cp "./lib/antlr-4.9.2-complete.jar:./src" ./src/Main1.java -d ./bin >/dev/null
+
 function test {
       if cmp -s temp1 temp2; then
         echo "### $(tput setaf 2)V V V $(tput setaf 7): test passed ###"
@@ -36,12 +42,6 @@ for directory in $(find examples -type d); do
 
             echo
             echo "=========== Analyse : $basename ==========="
-
-            #echo "[+] Parser creation"
-            java -jar ./lib/antlr-4.9.2-complete.jar expr.g4 -no-listener -no-visitor -o ./src/parser >/dev/null
-
-            #echo "[+] Compilation"
-            javac -cp "./lib/antlr-4.9.2-complete.jar:./src" ./src/Main1.java -d ./bin >/dev/null
 
             #echo "[+] Analyse"
             java -cp "./lib/antlr-4.9.2-complete.jar:./bin" Main1 $file no >/dev/null 2>temp2

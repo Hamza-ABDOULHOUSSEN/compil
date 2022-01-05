@@ -40,11 +40,11 @@ if test -f "$FILE"; then
     if [[ $tree =~ .+/.* ]]; then
         treename="${tree##*/}"
         treedir="${tree%/$treename}"
-        mkdir -p "out/dot/$treedir"
-        mkdir -p "out/svg/$treedir"
+        mkdir -p "out/ast/dot/$treedir"
+        mkdir -p "out/ast/svg/$treedir"
     fi
 
-    if test -f "./out/dot/$tree.dot"; then
+    if test -f "./out/ast/dot/$tree.dot"; then
         ov="y"
 
         if [ "$2" == "" ]; then
@@ -58,17 +58,17 @@ if test -f "$FILE"; then
             make run target="$FILE" name="$tree" >/dev/null
 
             echo "[+] Ast file svg generation"
-            dot -Tsvg ./out/dot/$tree.dot -o ./out/svg/$tree.svg >/dev/null
+            dot -Tsvg ./out/ast/dot/$tree.dot -o ./out/ast/svg/$tree.svg >/dev/null
 
             echo "[+] Done, files are in out"
         fi
 
     else
-        echo "[+] Ast file dot generation" >/dev/null
+        echo "[+] Ast file dot generation"
         make run target="$FILE" name="$tree" >/dev/null
 
         echo "[+] Ast file svg generation"
-        dot -Tsvg ./out/dot/$tree.dot -o ./out/svg/$tree.svg >/dev/null
+        dot -Tsvg ./out/ast/dot/$tree.dot -o ./out/ast/svg/$tree.svg >/dev/null
 
         echo "[+] Done, files are in out"
     fi

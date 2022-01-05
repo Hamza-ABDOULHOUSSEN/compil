@@ -1,0 +1,35 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N2 [shape=record label="{ bloc : fonction  2
+	}"];
+
+	N1 [shape=record label="{ fonction : f
+	| { x | param | int | depl }
+	}"];
+
+	N4 [shape=record label="{ bloc : fonction  2
+	}"];
+
+	N3 [shape=record label="{ fonction : g
+	| { y | param | int | depl }
+	}"];
+
+	N6 [shape=record label="{ bloc : fonction  2
+	}"];
+
+	N5 [shape=record label="{ fonction : main
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N1 -> N2; 
+	N0 -> N3; 
+	N3 -> N4; 
+	N0 -> N5; 
+	N5 -> N6; 
+}
