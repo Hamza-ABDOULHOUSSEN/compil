@@ -2,12 +2,12 @@ package tds;
 
 import ast.*;
 
-public class TdsVisitor implements AstVisitor<Void> {
+public class TDSVisitor implements AstVisitor<Void> {
     private TDS table;
     private String visitingStruct = null;
     private Tool t;
 
-    public TdsVisitor() {
+    public TDSVisitor() {
         table = new TDS();
         t = new Tool(table);
     }
