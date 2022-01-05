@@ -31,7 +31,7 @@ public class Main2 {
             //chargement du fichier et construction du parser
 
             CharStream input = CharStreams.fromFileName(testFile);
-            exprLexer lexer = new exprLexer(input); 
+            exprLexer lexer = new exprLexer(input);
             CommonTokenStream stream = new CommonTokenStream(lexer);
             exprParser parser = new exprParser(stream);
 
@@ -46,15 +46,9 @@ public class Main2 {
             GraphVizVisitor graphViz = new GraphVizVisitor();
             ast.accept(graphViz);
 
-            String filepath = "./out/dot/" + name + ".dot";
-        
+            String filepath = "./out/ast/dot/" + name + ".dot";
+
             graphViz.dumpGraph(filepath);
-
-            // Visiteur de la table des symboles
-            TdsVisitor tdsViz = new TdsVisitor();
-            ast.accept(tdsViz);
-            System.out.println(tdsViz.table.toString());
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,7 +56,7 @@ public class Main2 {
         catch (RecognitionException e) {
             e.printStackTrace();
         }
-        
+
     }
-    
+
 }
