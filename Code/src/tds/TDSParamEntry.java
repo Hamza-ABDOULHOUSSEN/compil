@@ -1,4 +1,5 @@
 package tds;
+import ast.Ast ;
 
 import ast.ParamInt;
 import ast.ParamStruct;
