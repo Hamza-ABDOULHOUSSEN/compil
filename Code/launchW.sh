@@ -38,11 +38,3 @@ else
 fi
 
 
-
-
-
-java -jar ./lib/antlr-4.9.2-complete.jar expr.g4 -no-listener -visitor -o ./src/parser
-javac  -cp "./lib/antlr-4.9.2-complete.jar;./src" ./src/Main2.java -d ./bin
-java -cp "./lib/antlr-4.9.2-complete.jar;./bin" Main2 ./examples/Test_Unaire/bloc.exp abc
-dot -Tsvg ./out/dot/abc.dot -o ./out/svg/abc.svg >/dev/null
-
