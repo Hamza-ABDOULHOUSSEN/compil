@@ -2,7 +2,58 @@ digraph "tds"{
 
 	node [fontname="Arial"];
 
-	N3 [shape=record label="{ bloc : bloc  3
+	N3 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N4 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N5 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N6 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N7 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N8 [shape=record label="{ bloc : Bloc Else  3
+	}"];
+
+	N9 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N10 [shape=record label="{ bloc : Bloc Else  3
+	}"];
+
+	N11 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N12 [shape=record label="{ bloc : Bloc Else  3
+	}"];
+
+	N13 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N14 [shape=record label="{ bloc : Bloc Else  3
+	}"];
+
+	N15 [shape=record label="{ bloc : Bloc While  3
+	}"];
+
+	N16 [shape=record label="{ bloc : Bloc While  3
+	}"];
+
+	N17 [shape=record label="{ bloc : Bloc While  3
+	}"];
+
+	N18 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N19 [shape=record label="{ bloc : Bloc Else  3
+	}"];
+
+	N20 [shape=record label="{ bloc : bloc  3
 	}"];
 
 	N2 [shape=record label="{ bloc : fonction  2
@@ -18,4 +69,21 @@ digraph "tds"{
 	N0 -> N1; 
 	N1 -> N2; 
 	N2 -> N3; 
+	N2 -> N4; 
+	N2 -> N5; 
+	N2 -> N6; 
+	N2 -> N7; 
+	N2 -> N8; 
+	N2 -> N9; 
+	N2 -> N10; 
+	N2 -> N11; 
+	N2 -> N12; 
+	N2 -> N13; 
+	N2 -> N14; 
+	N2 -> N15; 
+	N2 -> N16; 
+	N2 -> N17; 
+	N2 -> N18; 
+	N2 -> N19; 
+	N2 -> N20; 
 }
