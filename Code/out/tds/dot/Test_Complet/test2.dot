@@ -1,0 +1,75 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N2 [shape=record label="{ bloc : fonction  2
+	| { d | attribut | directory | depl }
+	| { i | attribut | int | depl }
+	}"];
+
+	N1 [shape=record label="{ fonction : directory_create
+	| { size | param | int | depl }
+	}"];
+
+	N4 [shape=record label="{ bloc : fonction  2
+	| { j | attribut | int | depl }
+	| { i | attribut | int | depl }
+	}"];
+
+	N3 [shape=record label="{ fonction : directory_destroy
+	| { d | param | struct directory | depl }
+	}"];
+
+	N8 [shape=record label="{ bloc : Bloc If  4
+	}"];
+
+	N7 [shape=record label="{ bloc : Bloc If  3
+	| { i | attribut | int | depl }
+	}"];
+
+	N6 [shape=record label="{ bloc : fonction  2
+	| { size | attribut | int | depl }
+	| { h | attribut | int | depl }
+	}"];
+
+	N5 [shape=record label="{ fonction : directory_add_person
+	| { d | param | struct directory | depl }
+	| { p | param | struct person | depl }
+	}"];
+
+	N10 [shape=record label="{ bloc : fonction  2
+	| { j | attribut | int | depl }
+	| { i | attribut | int | depl }
+	| { nombre_personne | attribut | int | depl }
+	}"];
+
+	N9 [shape=record label="{ fonction : directory_stat
+	| { d | param | struct directory | depl }
+	}"];
+
+	N12 [shape=record label="{ bloc : fonction  2
+	| { j | attribut | int | depl }
+	| { i | attribut | int | depl }
+	}"];
+
+	N11 [shape=record label="{ fonction : directory_display
+	| { d | param | struct directory | depl }
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N1 -> N2; 
+	N0 -> N3; 
+	N3 -> N4; 
+	N0 -> N5; 
+	N5 -> N6; 
+	N6 -> N7; 
+	N7 -> N8; 
+	N0 -> N9; 
+	N9 -> N10; 
+	N0 -> N11; 
+	N11 -> N12; 
+}

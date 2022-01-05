@@ -1,0 +1,40 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N3 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N2 [shape=record label="{ bloc : fonction  2
+	| { buff | attribut | char | depl }
+	| { fd_2 | attribut | int | depl }
+	| { ecrit | attribut | int | depl }
+	| { n | attribut | int | depl }
+	}"];
+
+	N1 [shape=record label="{ fonction : fct
+	| { argc | param | int | depl }
+	| { argv | param | struct char | depl }
+	}"];
+
+	N5 [shape=record label="{ bloc : fonction  2
+	| { thread | attribut | pthread_t | depl }
+	| { id | attribut | int | depl }
+	| { i | attribut | int | depl }
+	}"];
+
+	N4 [shape=record label="{ fonction : main
+	| { argc | param | int | depl }
+	| { argv | param | struct char | depl }
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N1 -> N2; 
+	N2 -> N3; 
+	N0 -> N4; 
+	N4 -> N5; 
+}

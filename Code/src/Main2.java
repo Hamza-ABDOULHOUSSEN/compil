@@ -46,8 +46,8 @@ public class Main2 {
             GraphVizVisitor graphViz = new GraphVizVisitor();
             ast.accept(graphViz);
 
-            String filepath = "./out/ast/dot/" + name + ".dot";
-
+            String filepath = "./out/dot/" + name + ".dot";
+        
             graphViz.dumpGraph(filepath);
 
         } catch (IOException e) {

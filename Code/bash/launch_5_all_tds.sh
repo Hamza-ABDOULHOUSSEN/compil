@@ -7,6 +7,13 @@ touch temp2
 
 echo " 👉 🅢🅣🅐🅡🅣 ============================= Ast creation test ============================= 🅢🅣🅐🅡🅣 👈"
 
+echo
+echo "[+] Parser creation"
+make parser >/dev/null
+echo "[+] Compilation"
+javac -cp ./lib/antlr-4.9.2-complete.jar:./src ./src/Main3.java -d ./bin >/dev/null
+echo
+
 for directory in $(find examples -type d); do
     if [ "$directory" != "examples" ]; then
         basedir="${directory##*/}"
@@ -24,24 +31,19 @@ for directory in $(find examples -type d); do
                 file="./$file"
 
                 echo
-                echo "=========== Ast creation : $basename ==========="
-                echo "[+] Parser creation"
-                make parser >/dev/null
+                echo "=========== TDS creation : $basename ==========="
 
-                echo "[+] Compilation"
-                make compile >/dev/null
-
-                echo "[+] Ast file dot generation"
-                mkdir -p "out/dot/$basedir"
-                mkdir -p "out/svg/$basedir"
-                make run target="$file" name="$basedir/$basename" >/dev/null 2>temp2
+                echo "[+] TDS file dot generation"
+                mkdir -p "out/tds/dot/$basedir"
+                mkdir -p "out/tds/svg/$basedir"
+                java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $file $basedir/$basename >/dev/null 2>temp2
 
                 if cmp -s temp1 temp2; then
-                  echo "[+] Ast file svg generation"
-                  dot -Tsvg ./out/dot/$basedir/$basename.dot -o ./out/svg/$basedir/$basename.svg >/dev/null
-                  echo '### ✅ ✅ ✅ : Done, files are in out ###'
+                    echo "[+] TDS file svg generation"
+                    dot -Tsvg ./out/tds/dot/$basedir/$basename.dot -o ./out/tds/svg/$basedir/$basename.svg >/dev/null
+                    echo '### ✅ ✅ ✅ : Done, files are in out ###'
                 else
-                  echo '### ❌ ❌ ❌ : ERROR ###'
+                    echo '### ❌ ❌ ❌ : ERROR ###'
                 fi
             done
 
