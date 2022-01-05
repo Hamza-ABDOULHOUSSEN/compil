@@ -3,10 +3,10 @@ package tds;
 import ast.Bloc;
 
 public class TDSBlocEntry extends TDSEntry {
-    private TdsVisitor visitor;
+    private TDSVisitor visitor;
 
     public TDSBlocEntry(TDS father, Bloc bloc) {
-        this.visitor = new TdsVisitor();
+        this.visitor = new TDSVisitor();
         this.visitor.getTable().setFatherTDS(father);
         for (ast.Ast vars: bloc.vars) {
             if (vars == null) continue;
@@ -18,7 +18,7 @@ public class TDSBlocEntry extends TDSEntry {
         return this.visitor.getTable();
     }
 
-    public TdsVisitor getVisitor() {
+    public TDSVisitor getVisitor() {
         return this.visitor;
     }
 
