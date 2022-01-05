@@ -30,7 +30,7 @@ public class TDSFuncEntry extends TDSNamedEntry {
             this.params = new ArrayList<Ast>(fct.params);
         }
 
-        TdsVisitor blocVisitor = bloc.getVisitor();
+        TDSVisitor blocVisitor = bloc.getVisitor();
 
         for (ast.Ast param: fct.params) {
             if (param instanceof ParamInt) {
@@ -53,7 +53,7 @@ public class TDSFuncEntry extends TDSNamedEntry {
             this.params = new ArrayList<Ast>(fct.params);
         }
 
-		TdsVisitor blocVisitor = bloc.getVisitor();
+		TDSVisitor blocVisitor = bloc.getVisitor();
 
         for (ast.Ast param: fct.params) {
             if (param instanceof ParamInt) {
