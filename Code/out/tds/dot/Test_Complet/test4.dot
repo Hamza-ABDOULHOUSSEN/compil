@@ -2,6 +2,9 @@ digraph "tds"{
 
 	node [fontname="Arial"];
 
+	N3 [shape=record label="{ bloc : Bloc While  3
+	}"];
+
 	N2 [shape=record label="{ bloc : fonction  2
 	| { new_equipe | attribut | equipe | depl }
 	| { i | attribut | int | depl }
@@ -11,25 +14,25 @@ digraph "tds"{
 	| { nbr_joueurs | param | int | depl }
 	}"];
 
-	N5 [shape=record label="{ bloc : Bloc If  3
+	N6 [shape=record label="{ bloc : Bloc While  3
 	}"];
 
-	N4 [shape=record label="{ bloc : fonction  2
+	N7 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N5 [shape=record label="{ bloc : fonction  2
 	| { i | attribut | int | depl }
 	}"];
 
-	N3 [shape=record label="{ fonction : equipe_ajouteJoueur
+	N4 [shape=record label="{ fonction : equipe_ajouteJoueur
 	| { team_rocket | param | struct equipe | depl }
 	| { sacha | param | struct joueur | depl }
 	}"];
 
-	N7 [shape=record label="{ bloc : fonction  2
-	| { i | attribut | int | depl }
-	| { j | attribut | int | depl }
+	N11 [shape=record label="{ bloc : Bloc While  4
 	}"];
 
-	N6 [shape=record label="{ fonction : equipe_free
-	| { team_rocket | param | struct equipe | depl }
+	N10 [shape=record label="{ bloc : Bloc While  3
 	}"];
 
 	N9 [shape=record label="{ bloc : fonction  2
@@ -37,7 +40,37 @@ digraph "tds"{
 	| { j | attribut | int | depl }
 	}"];
 
-	N8 [shape=record label="{ fonction : equipe_sommePoints
+	N8 [shape=record label="{ fonction : equipe_free
+	| { team_rocket | param | struct equipe | depl }
+	}"];
+
+	N16 [shape=record label="{ bloc : Bloc If  5
+	}"];
+
+	N17 [shape=record label="{ bloc : Bloc If  5
+	}"];
+
+	N18 [shape=record label="{ bloc : Bloc If  5
+	}"];
+
+	N19 [shape=record label="{ bloc : Bloc If  5
+	}"];
+
+	N20 [shape=record label="{ bloc : Bloc If  5
+	}"];
+
+	N15 [shape=record label="{ bloc : Bloc While  4
+	}"];
+
+	N14 [shape=record label="{ bloc : Bloc While  3
+	}"];
+
+	N13 [shape=record label="{ bloc : fonction  2
+	| { i | attribut | int | depl }
+	| { j | attribut | int | depl }
+	}"];
+
+	N12 [shape=record label="{ fonction : equipe_sommePoints
 	| { team_rocket | param | struct equipe | depl }
 	| { points_combat | param | int | depl }
 	| { points_vie | param | int | depl }
@@ -49,11 +82,22 @@ digraph "tds"{
 
 	N0 -> N1; 
 	N1 -> N2; 
-	N0 -> N3; 
-	N3 -> N4; 
+	N2 -> N3; 
+	N0 -> N4; 
 	N4 -> N5; 
-	N0 -> N6; 
-	N6 -> N7; 
+	N5 -> N6; 
+	N5 -> N7; 
 	N0 -> N8; 
 	N8 -> N9; 
+	N9 -> N10; 
+	N10 -> N11; 
+	N0 -> N12; 
+	N12 -> N13; 
+	N13 -> N14; 
+	N14 -> N15; 
+	N15 -> N16; 
+	N15 -> N17; 
+	N15 -> N18; 
+	N15 -> N19; 
+	N15 -> N20; 
 }

@@ -18,6 +18,9 @@ digraph "tds"{
 	| { cd_status | param | int | depl }
 	}"];
 
+	N7 [shape=record label="{ bloc : Bloc While  3
+	}"];
+
 	N6 [shape=record label="{ bloc : fonction  2
 	| { pos | attribut | int | depl }
 	| { command_split | attribut | char | depl }
@@ -39,4 +42,5 @@ digraph "tds"{
 	N2 -> N4; 
 	N0 -> N5; 
 	N5 -> N6; 
+	N6 -> N7; 
 }

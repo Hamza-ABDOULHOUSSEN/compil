@@ -17,6 +17,9 @@ digraph "tds"{
 	| { argv | param | struct char | depl }
 	}"];
 
+	N6 [shape=record label="{ bloc : Bloc While  3
+	}"];
+
 	N5 [shape=record label="{ bloc : fonction  2
 	| { thread | attribut | pthread_t | depl }
 	| { id | attribut | int | depl }
@@ -37,4 +40,5 @@ digraph "tds"{
 	N2 -> N3; 
 	N0 -> N4; 
 	N4 -> N5; 
+	N5 -> N6; 
 }
