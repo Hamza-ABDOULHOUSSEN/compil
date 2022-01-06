@@ -5,6 +5,13 @@ touch temp2
 
 echo " 👉 🅢🅣🅐🅡🅣 ============================= Ast creation test ============================= 🅢🅣🅐🅡🅣 👈"
 
+echo
+echo "[+] Parser creation"
+java -jar ./lib/antlr-4.9.2-complete.jar expr.g4 -no-listener -visitor -o ./src/parser
+echo "[+] Compilation"
+javac  -cp "./lib/antlr-4.9.2-complete.jar;./src" ./src/Main2.java -d ./bin
+echo
+
 for directory in $(find examples -type d); do
     if [ "$directory" != "examples" ]; then
         basedir="${directory##*/}"
@@ -23,15 +30,10 @@ for directory in $(find examples -type d); do
 
                 echo
                 echo "=========== Ast creation : $basename ==========="
-                echo "[+] Parser creation"
-                java -jar ./lib/antlr-4.9.2-complete.jar expr.g4 -no-listener -visitor -o ./src/parser
-
-                echo "[+] Compilation"
-                javac  -cp "./lib/antlr-4.9.2-complete.jar;./src" ./src/Main2.java -d ./bin
 
                 echo "[+] Ast file dot generation"
-                mkdir -p "out/dot/$basedir"
-                mkdir -p "out/svg/$basedir"
+                mkdir -p "out/ast/dot/$basedir"
+                mkdir -p "out/ast/svg/$basedir"
                 java -cp "./lib/antlr-4.9.2-complete.jar;./bin" Main2 $file $basedir/$basename >/dev/null 2>temp2
 
                 if cmp -s temp1 temp2; then

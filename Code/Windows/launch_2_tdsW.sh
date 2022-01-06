@@ -63,8 +63,6 @@ if test -f "$FILE"; then
 
     else
 
-        echo "luffy"
-
         echo "[+] TDS file dot generation" >/dev/null
         java -cp "./lib/antlr-4.9.2-complete.jar;./bin" Main3 $FILE $tree >/dev/null
 
