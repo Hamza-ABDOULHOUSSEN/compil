@@ -64,7 +64,7 @@ if test -f "$FILE"; then
         fi
 
     else
-        echo "[+] TDS file dot generation" >/dev/null
+        echo "[+] TDS file dot generation"
         java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $FILE $tree >/dev/null
 
         echo "[+] TDS file svg generation"
