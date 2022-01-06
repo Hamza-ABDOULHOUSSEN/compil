@@ -181,6 +181,7 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(Parenthese parenthese) {
+        parenthese.expr.accept(this);
         return null;
     }
 
@@ -202,31 +203,41 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(Sup comp) {
+        comp.left.accept(this);
+        comp.right.accept(this);
         return null;
     }
 
     @Override
     public Object visit(Egal egal) {
+        egal.left.accept(this);
+        egal.right.accept(this);
         return null;
     }
 
     @Override
     public Object visit(Mult mult) {
+        mult.left.accept(this);
+        mult.right.accept(this);
         return null;
     }
 
     @Override
     public Object visit(Not ast) {
+        ast.ast.accept(this);
         return null;
     }
 
     @Override
     public Object visit(Moinsunaire moinsunaire) {
+        moinsunaire.ast.accept(this);
         return null;
     }
 
     @Override
     public Object visit(Affect affect) {
+        affect.left.accept(this);
+        affect.right.accept(this);
         return null;
     }
 
@@ -268,26 +279,36 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(Div div) {
+        div.left.accept(this);
+        div.right.accept(this);
         return null;
     }
 
     @Override
     public Object visit(Inegal inegal) {
+        inegal.left.accept(this);
+        inegal.right.accept(this);
         return null;
     }
 
     @Override
     public Object visit(Inf inf) {
+        inf.left.accept(this);
+        inf.right.accept(this);
         return null;
     }
 
     @Override
     public Object visit(InfEgal infEgal) {
+        infEgal.left.accept(this);
+        infEgal.right.accept(this);
         return null;
     }
 
     @Override
     public Object visit(SupEgal supEgal) {
+        supEgal.left.accept(this);
+        supEgal.right.accept(this);
         return null;
     }
 
@@ -462,26 +483,35 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(Et et) {
+        et.left.accept(this);
+        et.right.accept(this);
         return null;
     }
 
     @Override
     public Object visit(Ou ou) {
+        ou.left.accept(this);
+        ou.right.accept(this);
         return null;
     }
 
     @Override
     public Object visit(Plus plus) {
+        plus.left.accept(this);
+        plus.right.accept(this);
         return null;
     }
 
     @Override
     public Object visit(Moins moins) {
+        moins.left.accept(this);
+        moins.right.accept(this);
         return null;
     }
 
     @Override
     public Object visit(Fleche fleche) {
+        fleche.value.accept(this);
         return null;
     }
 }
