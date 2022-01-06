@@ -37,10 +37,11 @@ for directory in $(find examples -type d); do
                 java -cp "./lib/antlr-4.9.2-complete.jar;./bin" Main2 $file $basedir/$basename >/dev/null 2>temp2
 
                 if cmp -s temp1 temp2; then
-                  echo '### ✅ ✅ ✅ : Done, files are in out ###'
+                  echo "### $(tput setaf 2)V V V $(tput setaf 7): Done, files are in out ###"
                 else
-                  echo '### ❌ ❌ ❌ : ERROR ###'
+                  echo "### $(tput setaf 1)X X X $(tput setaf 7): ERROR ###"
                 fi
+
             done
 
         fi

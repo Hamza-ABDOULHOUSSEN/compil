@@ -39,9 +39,9 @@ for directory in $(find examples -type d); do
                 if cmp -s temp1 temp2; then
                     echo "[+] TDS file svg generation"
                     echo -Tsvg ./out/tds/dot/$basedir/$basename.dot -o ./out/tds/svg/$basedir/$basename.svg >/dev/null
-                    echo '### ✅ ✅ ✅ : Done, files are in out ###'
+                    echo "### $(tput setaf 2)V V V $(tput setaf 7): Done, files are in out ###"
                 else
-                    echo '### ❌ ❌ ❌ : ERROR ###'
+                    echo "### $(tput setaf 1)X X X $(tput setaf 7): ERROR ###"
                 fi
             done
 
