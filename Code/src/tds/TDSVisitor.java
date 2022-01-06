@@ -39,10 +39,12 @@ public class TDSVisitor implements AstVisitor<Void> {
         // on rajoute l'entrée courante à la TDS
         this.addEntry(new TDSVarEntry(ident));
         //return null;
+        /*
         if (visitingStruct == null) throw new IllegalAccessError();
         if (this.table.getRefStruct(this.visitingStruct) == null) {
             throw new IllegalArgumentException("struct not found");
         }
+         */
         TDSStructDecl TDSsD = this.table.getRefStruct(this.visitingStruct);
         this.addEntry(new TDSVarEntry(TDSsD, ident));
         return null;
@@ -157,6 +159,7 @@ public class TDSVisitor implements AstVisitor<Void> {
     @Override
     public Void visit(FctParam fct_param) {
         Ident newident = (Ident) fct_param.ident  ;
+        /*
         if (this.table.getRefEntry(newident.name) == null) throw new IllegalArgumentException("No such function");
         TDSEntry tdsEntry = this.table.getRefEntry(newident.name);
         if (!(tdsEntry instanceof TDSFuncEntry)) throw new IllegalArgumentException("No such function");
@@ -170,6 +173,7 @@ public class TDSVisitor implements AstVisitor<Void> {
                 throw new IllegalArgumentException("Illegal argument");
             }
         }
+         */
         return null;
     }
     
