@@ -5,7 +5,6 @@ import graphViz.GraphVizTds;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Stack;
 
 public class TdsVisitor implements AstVisitor<Object> {
