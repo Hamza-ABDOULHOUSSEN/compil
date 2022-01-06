@@ -296,7 +296,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         Tds actualTable = test.TdsStack.pop();
         for (int i = 0; i < idents.size(); i++) {
             Ident ident = (Ident) idents.get(i) ;
-            actualTable.addParam(ident.toString(), "int");
+            actualTable.addVariable(ident.toString(), "int");
             graphviztds.addElement(ident.name, "attribut", "int", "depl");
         }
         test.TdsStack.push(actualTable);
@@ -312,7 +312,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         Tds actualTable = test.TdsStack.pop();
         for (int i = 0; i < idents.size(); i++) {
             Ident ident = (Ident) idents.get(i) ;
-            actualTable.addParam(ident.toString(), type);
+            actualTable.addVariable(ident.toString(), type);
             graphviztds.addElement(ident.name, "attribut", type, "depl");
         }
         test.TdsStack.push(actualTable);
