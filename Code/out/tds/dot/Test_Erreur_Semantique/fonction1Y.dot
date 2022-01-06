@@ -2,10 +2,7 @@ digraph "tds"{
 
 	node [fontname="Arial"];
 
-	N2 [shape=record label="{ bloc : fonction  2
-	}"];
-
-	N1 [shape=record label="{ fonction : addition
+	N1 [shape=record label="{ int fonction : addition 1
 	| { x | param | int | depl }
 	| { x | param | int | depl }
 	}"];
@@ -15,5 +12,4 @@ digraph "tds"{
 
 
 	N0 -> N1; 
-	N1 -> N2; 
 }

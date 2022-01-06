@@ -2,16 +2,13 @@ digraph "tds"{
 
 	node [fontname="Arial"];
 
-	N1 [shape=record label="{ structure : nombre
+	N1 [shape=record label="{ structure : nombre 1
 	| { val | attribut | int | depl }
 	}"];
 
-	N3 [shape=record label="{ bloc : fonction  2
-	| { a | attribut | nombre | depl }
+	N2 [shape=record label="{ int fonction : main 1
+	| { a | attribut | struct nombre | depl }
 	| { b | attribut | int | depl }
-	}"];
-
-	N2 [shape=record label="{ fonction : main
 	}"];
 
 	N0 [shape=record label="{ global 0
@@ -20,5 +17,4 @@ digraph "tds"{
 
 	N0 -> N1; 
 	N0 -> N2; 
-	N2 -> N3; 
 }

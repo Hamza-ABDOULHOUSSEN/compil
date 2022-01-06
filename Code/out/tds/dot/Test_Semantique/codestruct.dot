@@ -2,30 +2,24 @@ digraph "tds"{
 
 	node [fontname="Arial"];
 
-	N1 [shape=record label="{ structure : nombre
+	N1 [shape=record label="{ structure : nombre 1
 	| { val | attribut | int | depl }
 	}"];
 
-	N2 [shape=record label="{ structure : somme
-	| { left | attribut | nombre | depl }
-	| { right | attribut | nombre | depl }
+	N2 [shape=record label="{ structure : somme 1
+	| { left | attribut | struct nombre | depl }
+	| { right | attribut | struct nombre | depl }
 	}"];
 
-	N4 [shape=record label="{ bloc : fonction  2
-	| { val | attribut | int | depl }
-	}"];
-
-	N3 [shape=record label="{ fonction : result
+	N3 [shape=record label="{ int fonction : result 1
 	| { s | param | struct somme | depl }
+	| { val | attribut | int | depl }
 	}"];
 
-	N6 [shape=record label="{ bloc : fonction  2
-	| { a | attribut | nombre | depl }
-	| { b | attribut | nombre | depl }
-	| { s | attribut | somme | depl }
-	}"];
-
-	N5 [shape=record label="{ fonction : main
+	N4 [shape=record label="{ int fonction : main 1
+	| { a | attribut | struct nombre | depl }
+	| { b | attribut | struct nombre | depl }
+	| { s | attribut | struct somme | depl }
 	}"];
 
 	N0 [shape=record label="{ global 0
@@ -35,7 +29,5 @@ digraph "tds"{
 	N0 -> N1; 
 	N0 -> N2; 
 	N0 -> N3; 
-	N3 -> N4; 
-	N0 -> N5; 
-	N5 -> N6; 
+	N0 -> N4; 
 }
