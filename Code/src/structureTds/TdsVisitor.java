@@ -53,9 +53,8 @@ public class TdsVisitor implements AstVisitor<Object> {
         TdsStruct struct_table = new TdsStruct(nom);
         this.test.TableStruct.put(nom, struct_table);
 
-        graphviztds.addStartTable("structure : " + nom);
-
         NumImbr++;
+        graphviztds.addStartTable("structure : " + nom + " " + NumImbr);
         this.test.TdsStack.push(struct_table);
 
         ArrayList<Ast> params = def_struct.decl_vars;
@@ -64,7 +63,6 @@ public class TdsVisitor implements AstVisitor<Object> {
         }
 
         graphviztds.addEndTable();
-
         this.test.TdsStack.pop();
         NumImbr--;
 
@@ -78,9 +76,8 @@ public class TdsVisitor implements AstVisitor<Object> {
         TdsFunction function_table = new TdsFunction(nom, "int");
         this.test.TableFunction.put(nom, function_table);
 
-        graphviztds.addStartTable("fonction : " + nom);
-
         NumImbr++;
+        graphviztds.addStartTable("int" + " fonction : " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
         this.blocLabel.push("fonction");
 
@@ -88,7 +85,6 @@ public class TdsVisitor implements AstVisitor<Object> {
         bloc.accept(this);
 
         graphviztds.addEndTable();
-
         this.test.TdsStack.pop();
         this.blocLabel.pop();
         NumImbr--;
@@ -102,11 +98,11 @@ public class TdsVisitor implements AstVisitor<Object> {
         String nom = ident.name;
         TdsFunction function_table = new TdsFunction(nom, "int");
         this.test.TableFunction.put(nom, function_table);
+
         NumImbr++;
         this.test.TdsStack.push(function_table);
         this.blocLabel.push("fonction");
-
-        graphviztds.addStartTable("fonction : " + nom);
+        graphviztds.addStartTable("int fonction : " + nom + " " + NumImbr);
 
         ArrayList<Ast> params = def_fct_int_param.params;
         for (Ast param : params) {
@@ -117,7 +113,6 @@ public class TdsVisitor implements AstVisitor<Object> {
         bloc.accept(this);
 
         graphviztds.addEndTable();
-
         this.test.TdsStack.pop();
         this.blocLabel.pop();
         NumImbr--;
@@ -130,21 +125,19 @@ public class TdsVisitor implements AstVisitor<Object> {
         Ident identType = (Ident) def_fct_struct.ident1;
         Ident identNom = (Ident) def_fct_struct.ident2;
         String nom = identNom.name;
-        String type = "struct " + identType ;
+        String type = "struct " + identType.name ;
         TdsFunction function_table = new TdsFunction(nom, type);
         this.test.TableFunction.put(nom, function_table);
-        this.blocLabel.push("fonction");
-
-        graphviztds.addStartTable("fonction : " + nom);
 
         NumImbr++;
+        graphviztds.addStartTable(type + " fonction : " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
+        this.blocLabel.push("fonction");
 
         Bloc bloc = (Bloc) def_fct_struct.bloc;
         bloc.accept(this);
 
         graphviztds.addEndTable();
-
         this.test.TdsStack.pop();
         this.blocLabel.pop();
         NumImbr--;
@@ -157,13 +150,12 @@ public class TdsVisitor implements AstVisitor<Object> {
         Ident identType = (Ident) def_fct_struct_param.ident1;
         Ident identNom = (Ident) def_fct_struct_param.ident2;
         String nom = identNom.name;
-        String type = "struct " + identType ;
+        String type = "struct " + identType.name ;
         TdsFunction function_table = new TdsFunction(nom, type);
         this.test.TableFunction.put(nom, function_table);
 
-        graphviztds.addStartTable("fonction : " + nom);
-
         NumImbr++;
+        graphviztds.addStartTable(type + " fonction : " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
         this.blocLabel.push("fonction");
 
@@ -176,7 +168,6 @@ public class TdsVisitor implements AstVisitor<Object> {
         bloc.accept(this);
 
         graphviztds.addEndTable();
-
         this.test.TdsStack.pop();
         this.blocLabel.pop();
         NumImbr--;
@@ -196,6 +187,8 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(FctParam fct_param) {
+        String name = ( (Ident) fct_param.ident).name;
+        test.fonctionNonDef(name);
         return null;
     }
 
@@ -203,7 +196,6 @@ public class TdsVisitor implements AstVisitor<Object> {
     public Object visit(Fct fct) {
 
         String name = ( (Ident) fct.ident).name;
-
         test.fonctionNonDef(name);
 
         return null;
@@ -243,23 +235,34 @@ public class TdsVisitor implements AstVisitor<Object> {
     public Object visit(Bloc bloc) {
 
         String label = blocLabel.lastElement();
-        NumImbr++;
-        TdsBloc tdsbloc = new TdsBloc(test.TdsStack.lastElement(), NumImbr);
-        graphviztds.addStartTable("bloc : " + label + "  " + NumImbr);
-        this.test.TdsStack.push(tdsbloc);
-        blocLabel.push("bloc");
 
-        ArrayList<Ast> vars = bloc.vars;
-        for (Ast var : vars) {
-            if (var != null) {
-                var.accept(this);
+        if (label.equals("fonction")) {
+            ArrayList<Ast> vars = bloc.vars;
+            for (Ast var : vars) {
+                if (var != null) {
+                    var.accept(this);
+                }
             }
         }
+        else {
+            NumImbr++;
+            TdsBloc tdsbloc = new TdsBloc(test.TdsStack.lastElement(), NumImbr);
+            graphviztds.addStartTable("bloc : " + label + "  " + NumImbr);
+            this.test.TdsStack.push(tdsbloc);
+            blocLabel.push("bloc");
 
-        NumImbr--;
-        test.TdsStack.pop();
-        blocLabel.pop();
-        graphviztds.addEndTable();
+            ArrayList<Ast> vars = bloc.vars;
+            for (Ast var : vars) {
+                if (var != null) {
+                    var.accept(this);
+                }
+            }
+
+            test.TdsStack.pop();
+            blocLabel.pop();
+            graphviztds.addEndTable();
+            NumImbr--;
+        }
 
         return null;
     }
@@ -307,7 +310,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     public Object visit(DeclVarStruct declVarStruct) {
         ArrayList<Ast> idents = declVarStruct.struct_names ;
         Ident identType = (Ident) declVarStruct.struct_type ;
-        String type = identType.name ;
+        String type = "struct " + identType.name ;
 
         Tds actualTable = test.TdsStack.pop();
         for (int i = 0; i < idents.size(); i++) {
@@ -350,13 +353,13 @@ public class TdsVisitor implements AstVisitor<Object> {
         Tds actualTable = test.TdsStack.pop();
 
         Ident ident = (Ident) paramstruct.struct_type;
-        String type = ident.name;
+        String type = "struct " + ident.name;
 
         ident = (Ident) paramstruct.struct_name;
         String nom = ident.name;
 
         actualTable.addParam(nom, type);
-        graphviztds.addElement(nom, "param", "struct " + type, "depl");
+        graphviztds.addElement(nom, "param", type, "depl");
 
         test.TdsStack.push(actualTable);
 
