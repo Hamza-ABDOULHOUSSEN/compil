@@ -291,7 +291,7 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(DeclVarInt declVarInt) {
-        ArrayList<Ast> idents = (ArrayList<Ast>) declVarInt.ident ;
+        ArrayList<Ast> idents = declVarInt.ident ;
 
         Tds actualTable = test.TdsStack.pop();
         for (int i = 0; i < idents.size(); i++) {
@@ -305,7 +305,7 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(DeclVarStruct declVarStruct) {
-        ArrayList<Ast> idents = (ArrayList<Ast>) declVarStruct.struct_names ;
+        ArrayList<Ast> idents = declVarStruct.struct_names ;
         Ident identType = (Ident) declVarStruct.struct_type ;
         String type = identType.name ;
 
@@ -366,6 +366,8 @@ public class TdsVisitor implements AstVisitor<Object> {
     @Override
     public Object visit(If ifinstr) {
 
+        ifinstr.expr.accept(this);
+
         blocLabel.push("Bloc If");
 
         Ast blocif = ifinstr.instruction;
@@ -377,6 +379,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         }
         else {
             createBloc();
+            blocif.accept(this);
         }
         
         blocLabel.pop();
@@ -386,6 +389,8 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(IfElse ifelseinstr) {
+
+        ifelseinstr.expr.accept(this);
 
         blocLabel.push("Bloc If");
         Ast blocif = ifelseinstr.instruction1;
@@ -398,6 +403,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         }
         else {
             createBloc();
+            blocif.accept(this);
         }
         
         blocLabel.pop();
@@ -413,6 +419,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         }
         else {
             createBloc();
+            blocelse.accept(this);
         }
         
         blocLabel.pop();
@@ -422,6 +429,9 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(While whileinstr) {
+
+        whileinstr.expr.accept(this);
+
         blocLabel.push("Bloc While");
 
         Ast blocwhile = whileinstr.instruction;
@@ -434,6 +444,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         }
         else {
             createBloc();
+            blocwhile.accept(this);
         }
         
         blocLabel.pop();
@@ -443,6 +454,7 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(Return ret) {
+        ret.expr.accept(this);
         return null;
     }
 
