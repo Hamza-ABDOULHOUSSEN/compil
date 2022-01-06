@@ -18,14 +18,14 @@ for directory in $(find examples -type d); do
     if [ "$directory" != "examples" ]; then
         basedir="${directory##*/}"
 
-        count=$(find  $directory -type f | grep [^X].exp$ | wc -l)
+        count=$(find  $directory -type f | grep [^XY].exp$ | wc -l)
 
         if [ $count != 0 ]; then
             echo
             echo
             echo "=================== $basedir ===================="
 
-            for file in $(find  $directory -type f | grep [^X].exp$); do
+            for file in $(find  $directory -type f | grep [^XY].exp$); do
                 basename="${file##*/}"
                 basename="${basename%.exp}"
                 file="./$file"
