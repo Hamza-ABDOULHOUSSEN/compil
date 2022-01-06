@@ -22,6 +22,12 @@ fi
 FILE=./examples/$varname
 
 if test -f "$FILE"; then
+
+    rm temp1 2>/dev/null
+    rm temp2 2>/dev/null
+    touch temp1
+    touch temp2
+
     echo "[+] Parser creation"
     make parser >/dev/null
 
@@ -55,23 +61,37 @@ if test -f "$FILE"; then
 
         if [ "$ov" == "y" ]; then
             echo "[+] Ast file dot generation"
-            make run target="$FILE" name="$tree" >/dev/null
+            make run target="$FILE" name="$tree" >/dev/null 2>temp2
 
-            echo "[+] Ast file svg generation"
-            dot -Tsvg ./out/ast/dot/$tree.dot -o ./out/ast/svg/$tree.svg >/dev/null
+            if cmp -s temp1 temp2; then
+                echo "[+] Ast file svg generation"
+                dot -Tsvg ./out/ast/dot/$tree.dot -o ./out/ast/svg/$tree.svg >/dev/null
 
-            echo "[+] Done, files are in out"
+                echo "[+] Done, files are in out"
+            else
+                cat temp2
+                echo "ERROR : dot generation"
+            fi
+
         fi
 
     else
         echo "[+] Ast file dot generation"
-        make run target="$FILE" name="$tree" >/dev/null
+        make run target="$FILE" name="$tree" >/dev/null 2>temp2
 
-        echo "[+] Ast file svg generation"
-        dot -Tsvg ./out/ast/dot/$tree.dot -o ./out/ast/svg/$tree.svg >/dev/null
+        if cmp -s temp1 temp2; then
+            echo "[+] Ast file svg generation"
+            dot -Tsvg ./out/ast/dot/$tree.dot -o ./out/ast/svg/$tree.svg >/dev/null
 
-        echo "[+] Done, files are in out"
+            echo "[+] Done, files are in out"
+        else
+            cat temp2
+            echo "ERROR : dot generation"
+        fi
     fi
+
+    rm temp1 2>/dev/null
+    rm temp2 2>/dev/null
 
 else
     echo "ERROR"

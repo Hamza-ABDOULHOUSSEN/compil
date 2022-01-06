@@ -15,7 +15,7 @@ javac -cp ./lib/antlr-4.9.2-complete.jar:./src ./src/Main3.java -d ./bin >/dev/n
 echo
 
 for directory in $(find examples -type d); do
-    if [ "$directory" != "examples" ]; then
+    if [ "$directory" == "examples/Test_Semantique" ]; then
         basedir="${directory##*/}"
 
         count=$(find  $directory -type f | grep [^XY].exp$ | wc -l)
