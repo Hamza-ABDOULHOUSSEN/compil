@@ -1,0 +1,18 @@
+int facture(int a, int b)
+{
+    return 1;
+}
+
+struct Bonus{
+    int c;
+    int d;
+};
+
+
+int main()
+{
+    struct Bonus *x;
+    struct Bonus *y;
+
+    return facture(*x,*y);
+}

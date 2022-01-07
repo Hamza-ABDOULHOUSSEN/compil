@@ -1,0 +1,13 @@
+struct nombre {
+    int val;
+};
+
+int main() {
+    struct nombre *a;
+    int b;
+
+    a = malloc(sizeof(struct nombre));
+    b = 0;
+
+    return a*b;
+}
