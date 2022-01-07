@@ -41,6 +41,10 @@ public class TdsVisitor implements AstVisitor<Object> {
         }
 
         graphviztds.addEndTable();
+        //test le main_non_def
+        test.fonc_non_def("main");
+        
+
 
         return null;
     }
