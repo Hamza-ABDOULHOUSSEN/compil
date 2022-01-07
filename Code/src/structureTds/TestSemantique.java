@@ -27,6 +27,18 @@ public class TestSemantique {
         }
     }
 
+    public void struct_non_def(String name) {
+        if (! TableStruct.containsKey(name)) {
+            throw new RuntimeException("Erreur struct : "+ name +" => non definie");
+        }
+    }
+
+    public void struct_deja_def(String name) {
+        if (TableStruct.containsKey(name)) {
+            throw new RuntimeException("Erreur struct : "+ name +" => déjà definie");
+        }
+    }
+
     public void nombre_param(String name, int nb) {
         TdsFunction function = TableFunction.get(name);
         int nb_param = function.params.size();
