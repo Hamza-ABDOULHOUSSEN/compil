@@ -13,14 +13,14 @@ digraph "tds"{
 	N3 [shape=record label="{ bloc : Bloc While  2
 	}"];
 
-	N2 [shape=record label="{ fonction int : appartient 1
+	N2 [shape=record label="{ fonction : int appartient 1
 	| { l | param | struct list | depl }
 	| { val | param | int | depl }
 	| { bool | attribut | int | depl }
 	| { l_copy | attribut | struct list | depl }
 	}"];
 
-	N5 [shape=record label="{ fonction : struct list list_add 1
+	N5 [shape=record label="{ fonction : struct list * list_add 1
 	| { l | param | struct list | depl }
 	| { val | param | int | depl }
 	| { new_liste | attribut | struct list | depl }
@@ -46,12 +46,12 @@ digraph "tds"{
 	| { compt | attribut | int | depl }
 	}"];
 
-	N6 [shape=record label="{ fonction int : crible 1
+	N6 [shape=record label="{ fonction : int crible 1
 	| { n | param | int | depl }
 	| { vu | attribut | struct list | depl }
 	}"];
 
-	N13 [shape=record label="{ fonction int : main 1
+	N13 [shape=record label="{ fonction : int main 1
 	}"];
 
 	N0 [shape=record label="{ global 0

@@ -53,7 +53,7 @@
 <g id="node4" class="node">
 <title>N2</title>
 <polygon fill="none" stroke="black" points="233,-312.5 233,-427.5 464,-427.5 464,-312.5 233,-312.5"/>
-<text text-anchor="middle" x="348.5" y="-412.3" font-family="Arial" font-size="14.00">fonction int : appartient 1</text>
+<text text-anchor="middle" x="348.5" y="-412.3" font-family="Arial" font-size="14.00">fonction : int appartient 1</text>
 <polyline fill="none" stroke="black" points="233,-404.5 464,-404.5 "/>
 <text text-anchor="middle" x="248" y="-389.3" font-family="Arial" font-size="14.00">l</text>
 <polyline fill="none" stroke="black" points="263,-381.5 263,-404.5 "/>
@@ -97,7 +97,7 @@
 <g id="node5" class="node">
 <title>N5</title>
 <polygon fill="none" stroke="black" points="482,-324 482,-416 731,-416 731,-324 482,-324"/>
-<text text-anchor="middle" x="606.5" y="-400.8" font-family="Arial" font-size="14.00">fonction : struct list list_add 1</text>
+<text text-anchor="middle" x="606.5" y="-400.8" font-family="Arial" font-size="14.00">fonction : struct list * list_add 1</text>
 <polyline fill="none" stroke="black" points="482,-393 731,-393 "/>
 <text text-anchor="middle" x="499" y="-377.8" font-family="Arial" font-size="14.00">l</text>
 <polyline fill="none" stroke="black" points="516,-370 516,-393 "/>
@@ -197,7 +197,7 @@
 <g id="node12" class="node">
 <title>N6</title>
 <polygon fill="none" stroke="black" points="749,-335.5 749,-404.5 954,-404.5 954,-335.5 749,-335.5"/>
-<text text-anchor="middle" x="851.5" y="-389.3" font-family="Arial" font-size="14.00">fonction int : crible 1</text>
+<text text-anchor="middle" x="851.5" y="-389.3" font-family="Arial" font-size="14.00">fonction : int crible 1</text>
 <polyline fill="none" stroke="black" points="749,-381.5 954,-381.5 "/>
 <text text-anchor="middle" x="767" y="-366.3" font-family="Arial" font-size="14.00">n</text>
 <polyline fill="none" stroke="black" points="785,-358.5 785,-381.5 "/>
@@ -237,7 +237,7 @@
 <g id="node13" class="node">
 <title>N13</title>
 <polygon fill="none" stroke="black" points="972.5,-352 972.5,-388 1110.5,-388 1110.5,-352 972.5,-352"/>
-<text text-anchor="middle" x="1041.5" y="-366.3" font-family="Arial" font-size="14.00">fonction int : main 1</text>
+<text text-anchor="middle" x="1041.5" y="-366.3" font-family="Arial" font-size="14.00">fonction : int main 1</text>
 </g>
 <!-- N0 -->
 <g id="node14" class="node">
