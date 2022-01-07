@@ -55,5 +55,11 @@ public class TestSemantique {
         }
     }
 
+    public void divis_zero(int value) {
+        if (value == 0) {
+            throw new RuntimeException("Erreur division par zéro");
+        }
+    }
+
 
 }
