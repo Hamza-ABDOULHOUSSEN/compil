@@ -76,7 +76,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         this.test.TableFunction.put(nom, function_table);
 
         NumImbr++;
-        graphviztds.addStartTable("int" + " fonction : " + nom + " " + NumImbr);
+        graphviztds.addStartTable("fonction : int " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
         this.blocLabel.push("fonction");
 
@@ -101,7 +101,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         NumImbr++;
         this.test.TdsStack.push(function_table);
         this.blocLabel.push("fonction");
-        graphviztds.addStartTable("int fonction : " + nom + " " + NumImbr);
+        graphviztds.addStartTable("fonction : int " + nom + " " + NumImbr);
 
         ArrayList<Ast> params = def_fct_int_param.params;
         for (Ast param : params) {
@@ -129,7 +129,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         this.test.TableFunction.put(nom, function_table);
 
         NumImbr++;
-        graphviztds.addStartTable(type + " fonction : " + nom + " " + NumImbr);
+        graphviztds.addStartTable("fonction : " + type + " * " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
         this.blocLabel.push("fonction");
 
@@ -154,7 +154,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         this.test.TableFunction.put(nom, function_table);
 
         NumImbr++;
-        graphviztds.addStartTable(type + " fonction : " + nom + " " + NumImbr);
+        graphviztds.addStartTable("fonction : " + type + " * " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
         this.blocLabel.push("fonction");
 
@@ -188,7 +188,10 @@ public class TdsVisitor implements AstVisitor<Object> {
     @Override
     public Object visit(FctParam fct_param) {
         String name = ( (Ident) fct_param.ident).name;
-        test.fonctionNonDef(name);
+        ArrayList<Ast> exprs = fct_param.exprs;
+        int nb = exprs.size();
+        test.fonc_non_def(name);
+        test.nombre_param(name, nb);
         return null;
     }
 
@@ -196,7 +199,8 @@ public class TdsVisitor implements AstVisitor<Object> {
     public Object visit(Fct fct) {
 
         String name = ( (Ident) fct.ident).name;
-        test.fonctionNonDef(name);
+        test.fonc_non_def(name);
+        test.nombre_param(name, 0);
 
         return null;
     }
