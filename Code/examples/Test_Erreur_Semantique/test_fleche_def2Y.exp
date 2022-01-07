@@ -1,0 +1,14 @@
+struct * voiture {
+    int immatriculation ;
+}
+struct * person {
+    int age ;
+    struct * voiture bolide ;
+}
+int main() {
+    struct voiture* v ;
+    struct person* p ;
+    p->bolide = v ;
+    p->bolide->roue = 1 ;
+    return 1 ;
+}
