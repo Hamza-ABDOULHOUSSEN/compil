@@ -1,0 +1,12 @@
+int division(int x) {
+    if (x/0) {
+    }
+    else {
+
+    }
+    return 0;
+}
+
+int main() {
+    return 0;
+}

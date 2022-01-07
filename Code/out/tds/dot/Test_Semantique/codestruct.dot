@@ -11,12 +11,12 @@ digraph "tds"{
 	| { right | attribut | struct nombre | depl }
 	}"];
 
-	N3 [shape=record label="{ int fonction : result 1
+	N3 [shape=record label="{ fonction : int result 1
 	| { s | param | struct somme | depl }
 	| { val | attribut | int | depl }
 	}"];
 
-	N4 [shape=record label="{ int fonction : main 1
+	N4 [shape=record label="{ fonction : int main 1
 	| { a | attribut | struct nombre | depl }
 	| { b | attribut | struct nombre | depl }
 	| { s | attribut | struct somme | depl }
