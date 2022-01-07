@@ -1,0 +1,10 @@
+int main() {
+    int x;
+    while (0) {
+        int x;
+    }
+    else {
+        int x;
+    }
+    return 0;
+}

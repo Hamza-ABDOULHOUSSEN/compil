@@ -1,0 +1,10 @@
+int main() {
+    int x;
+    if (0) {
+        int x;
+    }
+    else {
+        int x;
+    }
+    return 0;
+}
