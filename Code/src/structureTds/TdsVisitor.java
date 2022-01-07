@@ -76,7 +76,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         this.test.TableFunction.put(nom, function_table);
 
         NumImbr++;
-        graphviztds.addStartTable("fonction int : " + nom + " " + NumImbr);
+        graphviztds.addStartTable("fonction : int " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
         this.blocLabel.push("fonction");
 
@@ -101,7 +101,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         NumImbr++;
         this.test.TdsStack.push(function_table);
         this.blocLabel.push("fonction");
-        graphviztds.addStartTable("fonction int : " + nom + " " + NumImbr);
+        graphviztds.addStartTable("fonction : int " + nom + " " + NumImbr);
 
         ArrayList<Ast> params = def_fct_int_param.params;
         for (Ast param : params) {
@@ -129,7 +129,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         this.test.TableFunction.put(nom, function_table);
 
         NumImbr++;
-        graphviztds.addStartTable("fonction : " + type + " " + nom + " " + NumImbr);
+        graphviztds.addStartTable("fonction : " + type + " * " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
         this.blocLabel.push("fonction");
 
@@ -154,7 +154,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         this.test.TableFunction.put(nom, function_table);
 
         NumImbr++;
-        graphviztds.addStartTable("fonction : " + type + " " + nom + " " + NumImbr);
+        graphviztds.addStartTable("fonction : " + type + " * " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
         this.blocLabel.push("fonction");
 
