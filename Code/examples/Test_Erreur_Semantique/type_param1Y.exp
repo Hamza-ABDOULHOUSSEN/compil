@@ -11,8 +11,8 @@ struct Bonus{
 
 int main()
 {
-    struct Bonus *c;
-    struct Bonus *d;
+    struct Bonus *x;
+    struct Bonus *y;
 
-    return facture(*c,*d);
+    return facture(*x,*y);
 }
