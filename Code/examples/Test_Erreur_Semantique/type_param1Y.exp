@@ -6,7 +6,7 @@ int facture(int a, int b)
 struct Bonus{
     int c;
     int d;
-}
+};
 
 
 int main()

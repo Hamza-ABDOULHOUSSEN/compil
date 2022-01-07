@@ -1,10 +1,10 @@
 struct * voiture {
     int immatriculation ;
-}
+};
 struct * person {
     int age ;
     struct * voiture bolide ;
-}
+};
 int main() {
     struct voiture* v ;
     struct person* p ;

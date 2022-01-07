@@ -1,10 +1,10 @@
 struct list {
     int val;
-}
+};
 
 struct list {
     struct list * l;
-}
+};
 
 int main() {
     return 0;
