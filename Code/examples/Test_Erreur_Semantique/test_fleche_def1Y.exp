@@ -1,0 +1,8 @@
+struct * person {
+    int age ;
+}
+int main() {
+    struct person* p ;
+    p->nom = 1 ;
+    return 1 ;
+}
