@@ -42,12 +42,14 @@ int crible(int n) {
         return 0;
     }
     else {
-        int compt = 2;
+        int compt;
+        compt=2;
         while (compt < n+1) {
             if (! appartient(vu, compt)) {
+                int multiple;
+
                 print(compt);
 
-                int multiple;
                 multiple = compt;
                 while (multiple < n+1) {
                     vu = list_add(vu, multiple);
