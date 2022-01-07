@@ -1,4 +1,4 @@
-struct * person {
+struct person {
     int age ;
 };
 int main() {
