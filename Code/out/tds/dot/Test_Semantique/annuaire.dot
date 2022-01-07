@@ -1,0 +1,64 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N1 [shape=record label="{ structure : person 1
+	| { nom | attribut | int | depl }
+	| { tel | attribut | int | depl }
+	}"];
+
+	N2 [shape=record label="{ structure : list 1
+	| { p | attribut | struct person | depl }
+	| { suiv | attribut | struct list | depl }
+	}"];
+
+	N3 [shape=record label="{ structure : directory 1
+	| { liste | attribut | struct list | depl }
+	| { taille | attribut | int | depl }
+	}"];
+
+	N4 [shape=record label="{ struct person fonction : person_create 1
+	| { nom | param | int | depl }
+	| { tel | param | int | depl }
+	| { p | attribut | struct person | depl }
+	}"];
+
+	N5 [shape=record label="{ struct directory fonction : directory_create 1
+	| { d | attribut | struct directory | depl }
+	}"];
+
+	N6 [shape=record label="{ struct directory fonction : directory_add_person 1
+	| { d | param | struct directory | depl }
+	| { p | param | struct person | depl }
+	| { new_liste | attribut | struct list | depl }
+	}"];
+
+	N8 [shape=record label="{ bloc : Bloc While  2
+	}"];
+
+	N7 [shape=record label="{ int fonction : directory_display 1
+	| { d | param | struct directory | depl }
+	| { l_copy | attribut | struct list | depl }
+	}"];
+
+	N9 [shape=record label="{ int fonction : main 1
+	| { d | attribut | struct directory | depl }
+	| { p1 | attribut | struct person | depl }
+	| { p2 | attribut | struct person | depl }
+	| { p3 | attribut | struct person | depl }
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N0 -> N2; 
+	N0 -> N3; 
+	N0 -> N4; 
+	N0 -> N5; 
+	N0 -> N6; 
+	N0 -> N7; 
+	N7 -> N8; 
+	N0 -> N9; 
+}
