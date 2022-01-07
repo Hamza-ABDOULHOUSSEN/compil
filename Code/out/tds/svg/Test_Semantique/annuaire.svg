@@ -79,7 +79,7 @@
 <g id="node4" class="node">
 <title>N4</title>
 <polygon fill="none" stroke="black" points="669,-85 669,-177 932,-177 932,-85 669,-85"/>
-<text text-anchor="middle" x="800.5" y="-161.8" font-family="Arial" font-size="14.00">struct person fonction : person_create 1</text>
+<text text-anchor="middle" x="800.5" y="-161.8" font-family="Arial" font-size="14.00">fonction : struct person person_create 1</text>
 <polyline fill="none" stroke="black" points="669,-154 932,-154 "/>
 <text text-anchor="middle" x="702" y="-138.8" font-family="Arial" font-size="14.00">nom</text>
 <polyline fill="none" stroke="black" points="735,-131 735,-154 "/>
@@ -109,7 +109,7 @@
 <g id="node5" class="node">
 <title>N5</title>
 <polygon fill="none" stroke="black" points="950,-108 950,-154 1235,-154 1235,-108 950,-108"/>
-<text text-anchor="middle" x="1092.5" y="-138.8" font-family="Arial" font-size="14.00">struct directory fonction : directory_create 1</text>
+<text text-anchor="middle" x="1092.5" y="-138.8" font-family="Arial" font-size="14.00">fonction : struct directory directory_create 1</text>
 <polyline fill="none" stroke="black" points="950,-131 1235,-131 "/>
 <text text-anchor="middle" x="968" y="-115.8" font-family="Arial" font-size="14.00">d</text>
 <polyline fill="none" stroke="black" points="986,-108 986,-131 "/>
@@ -123,7 +123,7 @@
 <g id="node6" class="node">
 <title>N6</title>
 <polygon fill="none" stroke="black" points="1253.5,-85 1253.5,-177 1573.5,-177 1573.5,-85 1253.5,-85"/>
-<text text-anchor="middle" x="1413.5" y="-161.8" font-family="Arial" font-size="14.00">struct directory fonction : directory_add_person 1</text>
+<text text-anchor="middle" x="1413.5" y="-161.8" font-family="Arial" font-size="14.00">fonction : struct directory directory_add_person 1</text>
 <polyline fill="none" stroke="black" points="1253.5,-154 1573.5,-154 "/>
 <text text-anchor="middle" x="1276.5" y="-138.8" font-family="Arial" font-size="14.00">d</text>
 <polyline fill="none" stroke="black" points="1299.5,-131 1299.5,-154 "/>
@@ -159,7 +159,7 @@
 <g id="node8" class="node">
 <title>N7</title>
 <polygon fill="none" stroke="black" points="1592,-96.5 1592,-165.5 1823,-165.5 1823,-96.5 1592,-96.5"/>
-<text text-anchor="middle" x="1707.5" y="-150.3" font-family="Arial" font-size="14.00">int fonction : directory_display 1</text>
+<text text-anchor="middle" x="1707.5" y="-150.3" font-family="Arial" font-size="14.00">fonction int : directory_display 1</text>
 <polyline fill="none" stroke="black" points="1592,-142.5 1823,-142.5 "/>
 <text text-anchor="middle" x="1604" y="-127.3" font-family="Arial" font-size="14.00">d</text>
 <polyline fill="none" stroke="black" points="1616,-119.5 1616,-142.5 "/>
@@ -187,7 +187,7 @@
 <g id="node9" class="node">
 <title>N9</title>
 <polygon fill="none" stroke="black" points="1841.5,-73.5 1841.5,-188.5 2075.5,-188.5 2075.5,-73.5 1841.5,-73.5"/>
-<text text-anchor="middle" x="1958.5" y="-173.3" font-family="Arial" font-size="14.00">int fonction : main 1</text>
+<text text-anchor="middle" x="1958.5" y="-173.3" font-family="Arial" font-size="14.00">fonction int : main 1</text>
 <polyline fill="none" stroke="black" points="1841.5,-165.5 2075.5,-165.5 "/>
 <text text-anchor="middle" x="1853.5" y="-150.3" font-family="Arial" font-size="14.00">d</text>
 <polyline fill="none" stroke="black" points="1865.5,-142.5 1865.5,-165.5 "/>

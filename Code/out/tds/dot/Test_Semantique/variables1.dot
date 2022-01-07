@@ -6,7 +6,7 @@ digraph "tds"{
 	| { x | attribut | int | depl }
 	}"];
 
-	N1 [shape=record label="{ int fonction : main 1
+	N1 [shape=record label="{ fonction int : main 1
 	| { x | attribut | int | depl }
 	}"];
 

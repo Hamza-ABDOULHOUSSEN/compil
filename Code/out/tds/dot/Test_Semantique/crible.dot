@@ -1,0 +1,74 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N1 [shape=record label="{ structure : list 1
+	| { val | attribut | int | depl }
+	| { suiv | attribut | struct list | depl }
+	}"];
+
+	N4 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N3 [shape=record label="{ bloc : Bloc While  2
+	}"];
+
+	N2 [shape=record label="{ fonction int : appartient 1
+	| { l | param | struct list | depl }
+	| { val | param | int | depl }
+	| { bool | attribut | int | depl }
+	| { l_copy | attribut | struct list | depl }
+	}"];
+
+	N5 [shape=record label="{ fonction : struct list list_add 1
+	| { l | param | struct list | depl }
+	| { val | param | int | depl }
+	| { new_liste | attribut | struct list | depl }
+	}"];
+
+	N7 [shape=record label="{ bloc : Bloc If  2
+	}"];
+
+	N8 [shape=record label="{ bloc : Bloc If  2
+	}"];
+
+	N12 [shape=record label="{ bloc : Bloc While  5
+	}"];
+
+	N11 [shape=record label="{ bloc : Bloc If  4
+	| { multiple | attribut | int | depl }
+	}"];
+
+	N10 [shape=record label="{ bloc : Bloc While  3
+	}"];
+
+	N9 [shape=record label="{ bloc : Bloc Else  2
+	| { compt | attribut | int | depl }
+	}"];
+
+	N6 [shape=record label="{ fonction int : crible 1
+	| { n | param | int | depl }
+	| { vu | attribut | struct list | depl }
+	}"];
+
+	N13 [shape=record label="{ fonction int : main 1
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N0 -> N2; 
+	N2 -> N3; 
+	N3 -> N4; 
+	N0 -> N5; 
+	N0 -> N6; 
+	N6 -> N7; 
+	N6 -> N8; 
+	N6 -> N9; 
+	N9 -> N10; 
+	N10 -> N11; 
+	N11 -> N12; 
+	N0 -> N13; 
+}
