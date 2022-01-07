@@ -1,0 +1,4 @@
+int main() {
+    struct Personne *p;
+    return 2703 ; 
+}

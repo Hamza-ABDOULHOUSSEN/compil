@@ -17,17 +17,17 @@ digraph "tds"{
 	| { taille | attribut | int | depl }
 	}"];
 
-	N4 [shape=record label="{ struct person fonction : person_create 1
+	N4 [shape=record label="{ fonction : struct person * person_create 1
 	| { nom | param | int | depl }
 	| { tel | param | int | depl }
 	| { p | attribut | struct person | depl }
 	}"];
 
-	N5 [shape=record label="{ struct directory fonction : directory_create 1
+	N5 [shape=record label="{ fonction : struct directory * directory_create 1
 	| { d | attribut | struct directory | depl }
 	}"];
 
-	N6 [shape=record label="{ struct directory fonction : directory_add_person 1
+	N6 [shape=record label="{ fonction : struct directory * directory_add_person 1
 	| { d | param | struct directory | depl }
 	| { p | param | struct person | depl }
 	| { new_liste | attribut | struct list | depl }
@@ -36,12 +36,12 @@ digraph "tds"{
 	N8 [shape=record label="{ bloc : Bloc While  2
 	}"];
 
-	N7 [shape=record label="{ int fonction : directory_display 1
+	N7 [shape=record label="{ fonction : int directory_display 1
 	| { d | param | struct directory | depl }
 	| { l_copy | attribut | struct list | depl }
 	}"];
 
-	N9 [shape=record label="{ int fonction : main 1
+	N9 [shape=record label="{ fonction : int main 1
 	| { d | attribut | struct directory | depl }
 	| { p1 | attribut | struct person | depl }
 	| { p2 | attribut | struct person | depl }

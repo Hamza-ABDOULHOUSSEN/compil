@@ -21,9 +21,19 @@ public class TestSemantique {
         TableFunction.put("malloc", malloc);
     }
 
-    public void fonctionNonDef(String name) {
+    public void fonc_non_def(String name) {
         if (! TableFunction.containsKey(name)) {
-            throw new RuntimeException("Erreur fonction non definis");
+            throw new RuntimeException("Erreur fonction : "+ name +" => non definie");
         }
+    }
+
+    public void nombre_param(String name, int nb) {
+        TdsFunction function = TableFunction.get(name);
+        int nb_param = function.params.size();
+
+        if (nb_param != nb) {
+            throw new RuntimeException("Erreur fonction : "+ name +" => nombre de paramètres ne correspond pas");
+        }
+
     }
 }

@@ -1,0 +1,15 @@
+int main()
+{
+    if (longname==1)
+    {
+        int b;
+    }
+    else
+    {
+        int b;
+        if (b<8)
+        {
+            b=2;
+        }
+    }
+}
