@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class TdsVisitor implements AstVisitor<Object> {
+public class TdsVisitor implements AstVisitor<String> {
     
     public Stack<String> blocLabel = new Stack<String>();
     public int NumImbr = 0;
@@ -32,7 +32,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(Fichier fichier) {
+    public String visit(Fichier fichier) {
         graphviztds.addStartTable("global " + NumImbr);
 
         ArrayList<Ast> declarations = fichier.declarations;
@@ -46,9 +46,9 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DefStruct def_struct) {
+    public String visit(DefStruct def_struct) {
         Ident ident = (Ident) def_struct.ident;
-        String nom = ident.name;
+        String nom = "struct " + ident.name;
         TdsStruct struct_table = new TdsStruct(nom);
         this.test.TableStruct.put(nom, struct_table);
 
@@ -69,7 +69,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DefFctInt def_fct_int) {
+    public String visit(DefFctInt def_fct_int) {
         Ident ident = (Ident) def_fct_int.ident;
         String nom = ident.name;
         TdsFunction function_table = new TdsFunction(nom, "int");
@@ -92,7 +92,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DefFctIntParam def_fct_int_param) {
+    public String visit(DefFctIntParam def_fct_int_param) {
         Ident ident = (Ident) def_fct_int_param.ident;
         String nom = ident.name;
         TdsFunction function_table = new TdsFunction(nom, "int");
@@ -120,7 +120,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DefFctStruct def_fct_struct) {
+    public String visit(DefFctStruct def_fct_struct) {
         Ident identType = (Ident) def_fct_struct.ident1;
         Ident identNom = (Ident) def_fct_struct.ident2;
         String nom = identNom.name;
@@ -145,7 +145,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DefFctStructParam def_fct_struct_param) {
+    public String visit(DefFctStructParam def_fct_struct_param) {
         Ident identType = (Ident) def_fct_struct_param.ident1;
         Ident identNom = (Ident) def_fct_struct_param.ident2;
         String nom = identNom.name;
@@ -175,18 +175,18 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(SizeOf sizeof) {
+    public String visit(SizeOf sizeof) {
         return null;
     }
 
     @Override
-    public Object visit(Parenthese parenthese) {
+    public String visit(Parenthese parenthese) {
         parenthese.expr.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(FctParam fct_param) {
+    public String visit(FctParam fct_param) {
         String name = ( (Ident) fct_param.ident).name;
         ArrayList<Ast> exprs = fct_param.exprs;
         int nb = exprs.size();
@@ -196,7 +196,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(Fct fct) {
+    public String visit(Fct fct) {
 
         String name = ( (Ident) fct.ident).name;
         test.fonc_non_def(name);
@@ -206,47 +206,47 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(Sup comp) {
+    public String visit(Sup comp) {
         comp.left.accept(this);
         comp.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Egal egal) {
+    public String visit(Egal egal) {
         egal.left.accept(this);
         egal.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Mult mult) {
+    public String visit(Mult mult) {
         mult.left.accept(this);
         mult.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Not ast) {
+    public String visit(Not ast) {
         ast.ast.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Moinsunaire moinsunaire) {
+    public String visit(Moinsunaire moinsunaire) {
         moinsunaire.ast.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Affect affect) {
+    public String visit(Affect affect) {
         affect.left.accept(this);
         affect.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Bloc bloc) {
+    public String visit(Bloc bloc) {
 
         String label = blocLabel.lastElement();
 
@@ -282,48 +282,48 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(Div div) {
+    public String visit(Div div) {
         div.left.accept(this);
         div.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Inegal inegal) {
+    public String visit(Inegal inegal) {
         inegal.left.accept(this);
         inegal.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Inf inf) {
+    public String visit(Inf inf) {
         inf.left.accept(this);
         inf.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(InfEgal infEgal) {
+    public String visit(InfEgal infEgal) {
         infEgal.left.accept(this);
         infEgal.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(SupEgal supEgal) {
+    public String visit(SupEgal supEgal) {
         supEgal.left.accept(this);
         supEgal.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(DeclVarInt declVarInt) {
+    public String visit(DeclVarInt declVarInt) {
         ArrayList<Ast> idents = declVarInt.ident ;
 
         Tds actualTable = test.TdsStack.pop();
         for (int i = 0; i < idents.size(); i++) {
             Ident ident = (Ident) idents.get(i) ;
-            actualTable.addVariable(ident.toString(), "int");
+            actualTable.addVariable(ident.name, "int");
             graphviztds.addElement(ident.name, "attribut", "int", "depl");
         }
         test.TdsStack.push(actualTable);
@@ -331,7 +331,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DeclVarStruct declVarStruct) {
+    public String visit(DeclVarStruct declVarStruct) {
         ArrayList<Ast> idents = declVarStruct.struct_names ;
         Ident identType = (Ident) declVarStruct.struct_type ;
         String type = "struct " + identType.name ;
@@ -339,7 +339,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         Tds actualTable = test.TdsStack.pop();
         for (int i = 0; i < idents.size(); i++) {
             Ident ident = (Ident) idents.get(i) ;
-            actualTable.addVariable(ident.toString(), type);
+            actualTable.addVariable(ident.name, type);
             graphviztds.addElement(ident.name, "attribut", type, "depl");
         }
         test.TdsStack.push(actualTable);
@@ -347,17 +347,17 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(Ident ident) {
+    public String visit(Ident ident) {
         return null;
     }
 
     @Override
-    public Object visit(Int entier) {
-        return null;
+    public String visit(Int entier) {
+        return "int";
     }
 
     @Override
-    public Object visit(ParamInt paramint) {
+    public String visit(ParamInt paramint) {
 
         Tds actualTable = test.TdsStack.pop();
 
@@ -373,7 +373,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(ParamStruct paramstruct) {
+    public String visit(ParamStruct paramstruct) {
         Tds actualTable = test.TdsStack.pop();
 
         Ident ident = (Ident) paramstruct.struct_type;
@@ -391,7 +391,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(If ifinstr) {
+    public String visit(If ifinstr) {
 
         ifinstr.expr.accept(this);
 
@@ -415,7 +415,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(IfElse ifelseinstr) {
+    public String visit(IfElse ifelseinstr) {
 
         ifelseinstr.expr.accept(this);
 
@@ -455,7 +455,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(While whileinstr) {
+    public String visit(While whileinstr) {
 
         whileinstr.expr.accept(this);
 
@@ -480,42 +480,67 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(Return ret) {
+    public String visit(Return ret) {
         ret.expr.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Et et) {
+    public String visit(Et et) {
         et.left.accept(this);
         et.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Ou ou) {
+    public String visit(Ou ou) {
         ou.left.accept(this);
         ou.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Plus plus) {
+    public String visit(Plus plus) {
         plus.left.accept(this);
         plus.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Moins moins) {
+    public String visit(Moins moins) {
         moins.left.accept(this);
         moins.right.accept(this);
         return null;
     }
 
     @Override
-    public Object visit(Fleche fleche) {
-        fleche.value.accept(this);
-        return null;
+    public String visit(Fleche fleche) {
+        
+        Ast gauche = fleche.value;
+        Ident droite = (Ident) fleche.ident;
+        String typeg;
+        String named = droite.name;
+
+        if (gauche instanceof Int) {
+            throw new RuntimeException("Erreur struct => entier -> ident");
+        }
+        else if (gauche instanceof SizeOf) {
+            throw new RuntimeException("Erreur struct => size of -> ident");
+        }
+        else if (gauche instanceof Ident) {
+            typeg = test.var_non_def(((Ident) gauche).name);
+        }
+        else {
+            typeg = gauche.accept(this);
+        }
+
+        String type = test.test_fleche_def(typeg, named);
+
+
+
+        System.out.println(typeg);
+        System.out.println(named);
+
+         return type;
     }
 }
