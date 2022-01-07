@@ -1,0 +1,7 @@
+int addition() {
+    return 0;
+}
+
+int main(int n) {
+    return n;
+}
