@@ -90,7 +90,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
         //test pour savoir si la fonction a deja été utilisee
-        this.fonc_deja_def(ident.name);
+        this.test.fonc_deja_def(ident.name);
         this.blocLabel.pop();
         NumImbr--;
 
@@ -119,6 +119,8 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
+        //test pour savoir si la fonction a deja été utilisee
+        this.test.fonc_deja_def(ident.name);
         this.blocLabel.pop();
         NumImbr--;
 
@@ -144,6 +146,8 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
+        //test pour savoir si la fonction a deja été utilisee
+        this.test.fonc_deja_def(identNom.name);
         this.blocLabel.pop();
         NumImbr--;
 
@@ -174,6 +178,8 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
+        //test pour savoir si la fonction a deja été utilisee
+        this.test.fonc_deja_def(identNom.name);
         this.blocLabel.pop();
         NumImbr--;
 
