@@ -63,6 +63,7 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
+        this.test.struct_deja_def(ident.name);
         NumImbr--;
 
         return null;
@@ -138,6 +139,7 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
+        this.test.struct_non_def(identType.name);
         this.blocLabel.pop();
         NumImbr--;
 
@@ -168,6 +170,7 @@ public class TdsVisitor implements AstVisitor<Object> {
 
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
+        this.test.struct_non_def(identType.name);
         this.blocLabel.pop();
         NumImbr--;
 
@@ -176,6 +179,8 @@ public class TdsVisitor implements AstVisitor<Object> {
 
     @Override
     public Object visit(SizeOf sizeof) {
+        Ident ident = (Ident) sizeof.ident ;
+        test.struct_non_def(ident.name);
         return null;
     }
 
@@ -192,6 +197,8 @@ public class TdsVisitor implements AstVisitor<Object> {
         int nb = exprs.size();
         test.fonc_non_def(name);
         test.nombre_param(name, nb);
+        test.type_param(name, fct_param.exprs);
+
         return null;
     }
 
@@ -201,6 +208,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         String name = ( (Ident) fct.ident).name;
         test.fonc_non_def(name);
         test.nombre_param(name, 0);
+        test.type_param(name, new ArrayList<Ast>());
 
         return null;
     }
@@ -343,6 +351,7 @@ public class TdsVisitor implements AstVisitor<Object> {
             graphviztds.addElement(ident.name, "attribut", type, "depl");
         }
         test.TdsStack.push(actualTable);
+        test.struct_non_def(identType.name);
         return null;
     }
 
@@ -386,6 +395,8 @@ public class TdsVisitor implements AstVisitor<Object> {
         graphviztds.addElement(nom, "param", type, "depl");
 
         test.TdsStack.push(actualTable);
+        this.test.struct_non_def(ident.name);
+
 
         return null;
     }
