@@ -48,4 +48,12 @@ public class TestSemantique {
         }
 
     }
+
+    public void fonc_deja_def(String name) {
+        if (TableFunction.containsKey(name)) {
+            throw new RuntimeException("Erreur fonction : "+ name +" => déjà definie");
+        }
+    }
+
+
 }
