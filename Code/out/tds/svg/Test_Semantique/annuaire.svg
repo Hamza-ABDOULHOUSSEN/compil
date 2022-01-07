@@ -13,7 +13,7 @@
 <g id="node1" class="node">
 <title>N1</title>
 <polygon fill="none" stroke="black" points="0,-96.5 0,-165.5 177,-165.5 177,-96.5 0,-96.5"/>
-<text text-anchor="middle" x="88.5" y="-150.3" font-family="Arial" font-size="14.00">structure : person 1</text>
+<text text-anchor="middle" x="88.5" y="-150.3" font-family="Arial" font-size="14.00">structure : struct person 1</text>
 <polyline fill="none" stroke="black" points="0,-142.5 177,-142.5 "/>
 <text text-anchor="middle" x="22" y="-127.3" font-family="Arial" font-size="14.00">nom</text>
 <polyline fill="none" stroke="black" points="44,-119.5 44,-142.5 "/>
@@ -35,7 +35,7 @@
 <g id="node2" class="node">
 <title>N2</title>
 <polygon fill="none" stroke="black" points="195,-96.5 195,-165.5 418,-165.5 418,-96.5 195,-96.5"/>
-<text text-anchor="middle" x="306.5" y="-150.3" font-family="Arial" font-size="14.00">structure : list 1</text>
+<text text-anchor="middle" x="306.5" y="-150.3" font-family="Arial" font-size="14.00">structure : struct list 1</text>
 <polyline fill="none" stroke="black" points="195,-142.5 418,-142.5 "/>
 <text text-anchor="middle" x="207" y="-127.3" font-family="Arial" font-size="14.00">p</text>
 <polyline fill="none" stroke="black" points="219,-119.5 219,-142.5 "/>
@@ -57,7 +57,7 @@
 <g id="node3" class="node">
 <title>N3</title>
 <polygon fill="none" stroke="black" points="436,-96.5 436,-165.5 651,-165.5 651,-96.5 436,-96.5"/>
-<text text-anchor="middle" x="543.5" y="-150.3" font-family="Arial" font-size="14.00">structure : directory 1</text>
+<text text-anchor="middle" x="543.5" y="-150.3" font-family="Arial" font-size="14.00">structure : struct directory 1</text>
 <polyline fill="none" stroke="black" points="436,-142.5 651,-142.5 "/>
 <text text-anchor="middle" x="456.5" y="-127.3" font-family="Arial" font-size="14.00">liste</text>
 <polyline fill="none" stroke="black" points="477,-119.5 477,-142.5 "/>

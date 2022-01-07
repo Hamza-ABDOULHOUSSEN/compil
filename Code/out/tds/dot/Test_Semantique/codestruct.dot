@@ -2,11 +2,11 @@ digraph "tds"{
 
 	node [fontname="Arial"];
 
-	N1 [shape=record label="{ structure : nombre 1
+	N1 [shape=record label="{ structure : struct nombre 1
 	| { val | attribut | int | depl }
 	}"];
 
-	N2 [shape=record label="{ structure : somme 1
+	N2 [shape=record label="{ structure : struct somme 1
 	| { left | attribut | struct nombre | depl }
 	| { right | attribut | struct nombre | depl }
 	}"];

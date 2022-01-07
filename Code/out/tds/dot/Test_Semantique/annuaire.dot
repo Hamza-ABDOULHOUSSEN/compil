@@ -2,17 +2,17 @@ digraph "tds"{
 
 	node [fontname="Arial"];
 
-	N1 [shape=record label="{ structure : person 1
+	N1 [shape=record label="{ structure : struct person 1
 	| { nom | attribut | int | depl }
 	| { tel | attribut | int | depl }
 	}"];
 
-	N2 [shape=record label="{ structure : list 1
+	N2 [shape=record label="{ structure : struct list 1
 	| { p | attribut | struct person | depl }
 	| { suiv | attribut | struct list | depl }
 	}"];
 
-	N3 [shape=record label="{ structure : directory 1
+	N3 [shape=record label="{ structure : struct directory 1
 	| { liste | attribut | struct list | depl }
 	| { taille | attribut | int | depl }
 	}"];
