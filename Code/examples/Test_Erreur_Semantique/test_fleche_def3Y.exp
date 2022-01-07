@@ -1,13 +1,13 @@
 struct permis {
     int points ;
 };
-struct * voiture {
+struct voiture {
     int immatriculation ;
-    struct permis license ;
+    struct permis * license ;
 };
-struct * person {
+struct person {
     int age ;
-    struct * voiture bolide ;
+    struct voiture * bolide ;
 };
 int main() {
     struct permis* p ;

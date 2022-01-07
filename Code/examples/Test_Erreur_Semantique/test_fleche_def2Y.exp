@@ -1,9 +1,9 @@
-struct * voiture {
+struct voiture {
     int immatriculation ;
 };
-struct * person {
+struct person {
     int age ;
-    struct * voiture bolide ;
+    struct voiture * bolide ;
 };
 int main() {
     struct voiture* v ;

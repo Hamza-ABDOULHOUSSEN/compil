@@ -14,5 +14,5 @@ int main()
     struct Bonus *x;
     struct Bonus *y;
 
-    return facture(*x,*y);
+    return facture(x, y);
 }
