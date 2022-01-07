@@ -1,0 +1,75 @@
+struct person {
+    int nom;
+    int tel;
+};
+
+struct list {
+    struct person * p;
+    struct list * suiv;
+};
+
+struct directory {
+    struct list * liste;
+    int taille;
+};
+
+struct person * person_create(int nom, int tel) {
+    struct person * p ;
+    p = malloc(sizeof(struct person)) ;
+    p->nom = nom;
+    p->tel = tel;
+    return p ;
+}
+
+struct directory * directory_create() {
+    struct directory * d ;
+    d = malloc(sizeof(struct directory)) ;
+    d->taille = 0;
+    return d ;
+}
+
+struct directory * directory_add_person(struct directory * d, struct person * p) {
+    struct list * new_liste;
+
+    new_liste = malloc(sizeof(struct list));
+    new_liste->p = p;
+    new_liste->suiv = d->liste;
+    d->taille = d->taille+1;
+    d->liste = new_liste;
+
+    return d;
+}
+
+int directory_display(struct directory * d) {
+    struct list * l_copy;
+
+    l_copy = d->liste;
+    while(l_copy) {
+        print(l_copy->p->nom);
+        l_copy = l_copy->suiv;
+    }
+
+    return 0;
+
+}
+
+int main() {
+    struct directory * d;
+    struct person * p1;
+    struct person * p2;
+    struct person * p3;
+
+    d = directory_create();
+    p1 = person_create(2, 0);
+    p2 = person_create(3, 1);
+    p3 = person_create(5, 2);
+
+    d = directory_add_person(d, p1);
+    d = directory_add_person(d, p2);
+    d = directory_add_person(d, p3);
+
+    directory_display(d);
+
+    return 0;
+
+}
