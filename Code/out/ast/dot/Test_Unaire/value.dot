@@ -34,8 +34,7 @@ digraph "ast"{
 	N28 [label="jaune", shape="box"];
 	N29 [label="sizeof", shape="box"];
 	N30 [label="couleur", shape="box"];
-	N31 [label="()", shape="box"];
-	N32 [label="or", shape="box"];
+	N31 [label="or", shape="box"];
 
 	N1 -> N2; 
 	N3 -> N4; 
@@ -65,7 +64,6 @@ digraph "ast"{
 	N3 -> N19; 
 	N29 -> N30; 
 	N3 -> N29; 
-	N31 -> N32; 
 	N3 -> N31; 
 	N1 -> N3; 
 	N0 -> N1; 
