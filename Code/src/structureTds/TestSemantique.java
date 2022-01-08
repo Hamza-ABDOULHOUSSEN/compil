@@ -122,7 +122,12 @@ public class TestSemantique {
     }
 
     public void test_type(String operation, String type_insert, String type_request) {
-        if(!type_insert.equals(type_request)) {
+        if (type_insert.equals("void *")) {
+            if (type_request.equals("int")) {
+                throw new RuntimeException("Erreur malloc avec un entier");
+            }
+        }
+        else if(!type_insert.equals(type_request)) {
             throw new RuntimeException("Erreur type : " + operation + " avec "+ type_insert + " au lieu de "+ type_request );
         }
     }

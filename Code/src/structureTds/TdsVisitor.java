@@ -248,6 +248,10 @@ public class TdsVisitor implements AstVisitor<String> {
 
     @Override
     public String visit(Affect affect) {
+        Ast left = affect.left;
+        if ( !(left instanceof Ident || left instanceof Fleche)) {
+            throw new RuntimeException("Erreur : affectation impossible");
+        }
         String type1 = affect.left.accept(this);
         String type2 = affect.right.accept(this);
         test.test_type("=", type2, type1);
