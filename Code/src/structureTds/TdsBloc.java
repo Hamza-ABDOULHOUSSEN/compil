@@ -1,11 +1,11 @@
 package structureTds;
 
-import java.util.Hashtable;
+import java.util.LinkedHashMap;
 
 public class TdsBloc implements Tds {
     public Tds pere;
     public int NumImbr;
-    public Hashtable<String, String> variables = new Hashtable<String, String>();
+    public LinkedHashMap<String, String> variables = new LinkedHashMap<String, String>();
 
     public TdsBloc(Tds pere, int NumImbr) {
         this.pere = pere;

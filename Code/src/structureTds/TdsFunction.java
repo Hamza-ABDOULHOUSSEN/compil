@@ -1,13 +1,13 @@
 package structureTds;
 
-import java.util.Hashtable;
+import java.util.LinkedHashMap;
 
 public class TdsFunction implements Tds {
 
     public String nom;
     public String type;
-    public Hashtable<String, String> params = new Hashtable<String, String>();
-    public Hashtable<String, String> variables = new Hashtable<String, String>();
+    public LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+    public LinkedHashMap<String, String> variables = new LinkedHashMap<String, String>();
 
     public TdsFunction(String nom, String type) {
         this.nom = nom;

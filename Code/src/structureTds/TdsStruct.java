@@ -1,11 +1,11 @@
 package structureTds;
 
-import java.util.Hashtable;
+import java.util.LinkedHashMap;
 
 public class TdsStruct implements Tds {
 
     public String nom;
-    public Hashtable<String, String> params = new Hashtable<String, String>();
+    public LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
 
     public TdsStruct(String nom) {
         this.nom = nom;

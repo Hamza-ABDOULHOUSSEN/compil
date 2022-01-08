@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.Stack;
 
 public class GraphVizTds /*implements AstVisitor<String>*/ {
@@ -87,13 +88,13 @@ public class GraphVizTds /*implements AstVisitor<String>*/ {
 
             addStartTable( "fonction : " + f);
 
-            Hashtable<String, String> params = tds.params;
+            LinkedHashMap<String, String> params = tds.params;
             for (String nom : params.keySet()) {
                 String type = params.get(nom);
                 addElement(nom, "param", type, "depl");
             }
 
-            Hashtable<String, String> variables = tds.variables;
+            LinkedHashMap<String, String> variables = tds.variables;
             for (String nom : variables.keySet()) {
                 String type = variables.get(nom);
                 addElement(nom, "variable", type, "depl");
@@ -108,7 +109,7 @@ public class GraphVizTds /*implements AstVisitor<String>*/ {
 
             addStartTable("structure : " + s);
 
-            Hashtable<String, String> params = tds.params;
+            LinkedHashMap<String, String> params = tds.params;
             for (String nom : params.keySet()) {
                 String type = params.get(nom);
                 addElement(nom, "param", type, "depl");
