@@ -32,15 +32,19 @@ public class TestSemantique {
 
     }
 
-    public void struct_non_def(String name) {
-        if (!TableStruct.containsKey(name)) {
-            throw new RuntimeException("Erreur struct : " + name + " => non definie");
+    public String struct_non_def(String type) {
+        type = "struct " + type ;
+        if (!TableStruct.containsKey(type)) {
+            throw new RuntimeException("Erreur struct : " + type + " => non definie");
         }
+        TdsStruct struct = TableStruct.get(type);
+        return type ;
     }
 
-    public void struct_deja_def(String name) {
-        if (TableStruct.containsKey(name)) {
-            throw new RuntimeException("Erreur struct : " + name + " => déjà definie");
+    public void struct_deja_def(String type) {
+        type = "struct " + type ;
+        if (TableStruct.containsKey(type)) {
+            throw new RuntimeException("Erreur struct : " + type + " => déjà definie");
         }
     }
 
@@ -59,9 +63,9 @@ public class TestSemantique {
             defParam.add(function.params.get(key)) ;
         }
         for (int i = 0; i<defParam.size(); i++) {
-            if (!defParam.get(i).equals(newParam.get(i).)) {
-                throw new RuntimeException("Erreur sur le paramètre " + i + " type definition = " + defParam.get(i) +" et type declaration = " + newParam) ;
-            }
+            //if (!defParam.get(i).equals(newParam.get(i).)) {
+            //    throw new RuntimeException("Erreur sur le paramètre " + i + " type definition = " + defParam.get(i) +" et type declaration = " + newParam) ;
+            //}
         }
     }
 
