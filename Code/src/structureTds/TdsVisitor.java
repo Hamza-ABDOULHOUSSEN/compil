@@ -536,11 +536,6 @@ public class TdsVisitor implements AstVisitor<String> {
 
         String type = test.test_fleche_def(typeg, named);
 
-
-
-        System.out.println(typeg);
-        System.out.println(named);
-
          return type;
     }
 }

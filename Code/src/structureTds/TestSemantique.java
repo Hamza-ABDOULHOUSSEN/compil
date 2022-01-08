@@ -70,7 +70,7 @@ public class TestSemantique {
             }
 
             if (liste_param.containsKey(name)) {
-                type = liste_var.get(name);
+                type = liste_param.get(name);
                 return type;
             }
 
