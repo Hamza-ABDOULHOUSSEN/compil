@@ -48,7 +48,10 @@ public class TestSemantique {
         }
     }
 
-    public void return_type(String name) {
+    public void return_type(String typeDef, String typeRetour) {
+        if (typeDef != typeRetour) {
+            throw new RuntimeException("Erreur sur le type de retour " + typeRetour + " le type dans la definition est " + typeDef) ;
+        }
     }
 
     public void return_bloc(String name) {

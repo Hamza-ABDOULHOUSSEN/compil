@@ -104,6 +104,7 @@ public class TdsVisitor implements AstVisitor<String> {
         // fin du bloc et on le retire de la stack
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
+        this.test.return_type("int", bloc.accept(this));
         this.blocLabel.pop();
         NumImbr--;
 
@@ -123,8 +124,10 @@ public class TdsVisitor implements AstVisitor<String> {
         this.test.TableFunction.put(nom, function_table);
 
         // Creation du bloc et ajout dans la stack
+        Bloc bloc = (Bloc) def_fct_int_param.bloc;
         NumImbr++;
         this.test.TdsStack.push(function_table);
+        this.test.return_type("int", bloc.accept(this));
         this.blocLabel.push("fonction");
         graphviztds.addStartTable("fonction : int " + nom + " " + NumImbr);
 
@@ -138,7 +141,6 @@ public class TdsVisitor implements AstVisitor<String> {
         }
 
         // visite des blocs de la fonction
-        Bloc bloc = (Bloc) def_fct_int_param.bloc;
         bloc.accept(this);
 
         // fin du bloc et on le retire de la stack
@@ -165,13 +167,14 @@ public class TdsVisitor implements AstVisitor<String> {
         this.test.TableFunction.put(nom, function_table);
 
         // Creation du bloc et ajout dans la stack
+        Bloc bloc = (Bloc) def_fct_struct.bloc;
         NumImbr++;
         graphviztds.addStartTable("fonction : " + type + " * " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
+        this.test.return_type(type, bloc.accept(this));
         this.blocLabel.push("fonction");
 
         // visite des blocs de la fonction
-        Bloc bloc = (Bloc) def_fct_struct.bloc;
         bloc.accept(this);
 
         // fin du bloc et on le retire de la stack
@@ -199,9 +202,11 @@ public class TdsVisitor implements AstVisitor<String> {
         this.test.TableFunction.put(nom, function_table);
 
         // Creation du bloc et ajout dans la stack
+        Bloc bloc = (Bloc) def_fct_struct_param.bloc;
         NumImbr++;
         graphviztds.addStartTable("fonction : " + type + " * " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
+        this.test.return_type(type, bloc.accept(this));
         this.blocLabel.push("fonction");
 
         // visite des paramètres
@@ -214,7 +219,6 @@ public class TdsVisitor implements AstVisitor<String> {
         }
 
         // visite des blocs de la fonction
-        Bloc bloc = (Bloc) def_fct_struct_param.bloc;
         bloc.accept(this);
 
         // fin du bloc et on le retire de la stack
