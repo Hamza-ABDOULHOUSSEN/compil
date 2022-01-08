@@ -10,7 +10,6 @@ public interface AstVisitor<T> {
     T visit(DefFctStruct def_fct_struct);
     T visit(DefFctStructParam def_fct_struct_param);
     T visit(SizeOf sizeof);
-    T visit(Parenthese parenthese);
     T visit(FctParam fct_param);
     T visit(Fct fct);
     T visit(Sup comp);

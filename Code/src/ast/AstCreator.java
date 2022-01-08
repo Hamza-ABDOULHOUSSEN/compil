@@ -187,9 +187,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 
 	@Override
 	public Ast visitParenthese(exprParser.ParentheseContext ctx) {
-		Ast expr = ctx.getChild(1).accept(this);
-		Parenthese val = new Parenthese(expr);
-		return val;
+		return ctx.getChild(1).accept(this);
 	}
 
 	@Override
