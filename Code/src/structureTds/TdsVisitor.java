@@ -2,6 +2,7 @@ package structureTds;
 
 import ast.*;
 import graphViz.GraphVizTds;
+import org.stringtemplate.v4.ST;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -371,7 +372,12 @@ public class TdsVisitor implements AstVisitor<String> {
 
     @Override
     public String visit(Ident ident) {
-        return null;
+
+        // ATTENTION on ne visite Ident que si c'est une variable
+
+        String name = ((Ident) ident).name;
+        String type = test.var_non_def(name);
+        return type;
     }
 
     @Override
@@ -561,9 +567,6 @@ public class TdsVisitor implements AstVisitor<String> {
         }
         else if (gauche instanceof SizeOf) {
             throw new RuntimeException("Erreur struct => size of -> ident");
-        }
-        else if (gauche instanceof Ident) {
-            typeg = test.var_non_def(((Ident) gauche).name);
         }
         else {
             typeg = gauche.accept(this);
