@@ -184,7 +184,8 @@ elif [ "$var1" == "2" ]; then
                   mkdir -p "out/ast/svg/$basedir"
                   echo "[+] Ast file svg generation"
                   dot -Tsvg ./out/ast/dot/$basedir/$basename.dot -o ./out/ast/svg/$basedir/$basename.svg >/dev/null
-                  echo '### ✅ ✅ ✅ : Done, files are in out ###'
+                  echo "### $(tput setaf 2)V V V $(tput setaf 7): Done, files are in out ###"
+
               done
           fi
       fi
@@ -216,7 +217,8 @@ elif [ "$var1" == "3" ]; then
                       mkdir -p "out/ast/svg/$basedir"
                       echo "[+] Tds file svg generation"
                       dot -Tsvg ./out/tds/dot/$basedir/$basename.dot -o ./out/tds/svg/$basedir/$basename.svg >/dev/null
-                      echo '### ✅ ✅ ✅ : Done, files are in out ###'
+                      echo "### $(tput setaf 2)V V V $(tput setaf 7): Done, files are in out ###"
+
                   done
               fi
           fi

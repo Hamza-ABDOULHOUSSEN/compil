@@ -42,10 +42,9 @@ for directory in $(find examples -type d); do
                   error=1
                   echo "[+] TDS file svg generation"
                   echo -Tsvg ./out/tds/dot/$basedir/$basename.dot -o ./out/tds/svg/$basedir/$basename.svg >/dev/null
-                  echo '### ❌ ❌ ❌ : The error was not seen ###'
-                  echo '### files are in out ###'
+                  echo "### $(tput setaf 1)X X X $(tput setaf 7): The error was not seen ###"
                 else
-                  echo '### ✅ ✅ ✅ : The error was detected ###'
+                  echo "### $(tput setaf 2)V V V $(tput setaf 7): The error was detected ###"
                 fi
 
                 echo
@@ -62,3 +61,5 @@ done
 
 rm temp1 2>/dev/null
 rm temp2 2>/dev/null
+
+powershell -noexit

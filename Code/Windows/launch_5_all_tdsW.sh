@@ -13,7 +13,7 @@ javac  -cp "./lib/antlr-4.9.2-complete.jar;./src" ./src/Main3.java -d ./bin
 echo
 
 for directory in $(find examples -type d); do
-    if [ "$directory" != "examples" ]; then
+    if [ "$directory" == "examples/Test_Semantique" ]; then
         basedir="${directory##*/}"
 
         count=$(find  $directory -type f | grep [^X].exp$ | wc -l)
@@ -34,7 +34,7 @@ for directory in $(find examples -type d); do
                 echo "[+] TDS file dot generation"
                 mkdir -p "out/tds/dot/$basedir"
                 mkdir -p "out/tds/svg/$basedir"
-                java -cp "./lib/antlr-4.9.2-complete.jar;./bin" Main3 file $basedir/$basename >/dev/null 2>temp2
+                java -cp "./lib/antlr-4.9.2-complete.jar;./bin" Main3 $file $basedir/$basename >/dev/null 2>temp2
 
                 if cmp -s temp1 temp2; then
                     echo "[+] TDS file svg generation"
@@ -52,3 +52,5 @@ done
 
 rm temp1 2>/dev/null
 rm temp2 2>/dev/null
+
+powershell -noexit

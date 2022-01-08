@@ -80,4 +80,6 @@ fi
 
 echo
 
+powershell -noexit
 
+echo

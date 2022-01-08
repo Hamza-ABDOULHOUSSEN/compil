@@ -36,16 +36,17 @@ for directory in $(find examples -type d); do
                 echo "=========== Syntax check : $basename ==========="
 
                 echo "[+] Ast file dot generation"
-                java -cp "./lib/antlr-4.9.2-complete.jar;./bin" Main2 $file" name="$basedir/$basename >/dev/null
+                java -cp "./lib/antlr-4.9.2-complete.jar;./bin" Main2 $file $basedir/$basename >/dev/null 2>temp2
+
 
                 if cmp -s temp1 temp2; then
                   error=1
                   echo "[+] Ast file svg generation"
                   echo -Tsvg ./out/ast/dot/$basedir/$basename.dot -o ./out/ast/svg/$basedir/$basename.svg >/dev/null
-                  echo '### ❌ ❌ ❌ : The error was not seen ###'
+                  echo "### $(tput setaf 1)X X X $(tput setaf 7): files are in out ###"
                   echo '### files are in out ###'
                 else
-                  echo '### ✅ ✅ ✅ : The error was detected ###'
+                  echo "### $(tput setaf 2)V V V $(tput setaf 7): The error was detected ###"
                 fi
 
                 echo
@@ -62,3 +63,5 @@ done
 
 rm temp1 2>/dev/null
 rm temp2 2>/dev/null
+
+powershell -noexit

@@ -51,3 +51,5 @@ done
 
 rm temp1 2>/dev/null
 rm temp2 2>/dev/null
+
+powershell -noexit
