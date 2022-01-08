@@ -2,7 +2,7 @@ digraph "tds"{
 
 	node [fontname="Arial"];
 
-	N1 [shape=record label="{ structure : nombre 1
+	N1 [shape=record label="{ structure : struct nombre 1
 	| { val | attribut | int | depl }
 	}"];
 
