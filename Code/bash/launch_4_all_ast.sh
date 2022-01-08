@@ -14,7 +14,7 @@ echo "[+] Compilation"
 make compile >/dev/null
 echo
 
-for directory in $(find examples -type d); do
+for directory in $(find examples -type d | sort); do
     if [ "$directory" != "examples" ]; then
         basedir="${directory##*/}"
 
@@ -25,7 +25,7 @@ for directory in $(find examples -type d); do
             echo
             echo "=================== $basedir ===================="
 
-            for file in $(find  $directory -type f | grep [^X].exp$); do
+            for file in $(find  $directory -type f | grep [^X].exp$ | sort); do
                 basename="${file##*/}"
                 basename="${basename%.exp}"
                 file="./$file"
