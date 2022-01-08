@@ -4,10 +4,7 @@ import ast.Ast;
 import ast.ParamInt;
 import ast.ParamStruct;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.LinkedHashMap;
-import java.util.Stack;
+import java.util.*;
 
 public class TestSemantique {
 
@@ -62,12 +59,12 @@ public class TestSemantique {
     public void type_param(String name, ArrayList<String> declParamTypes) {
         ArrayList<String> defParamTypes = new ArrayList<String>() ;
         TdsFunction function = TableFunction.get(name);
-        for (String key : function.params.keySet()) {
-            defParamTypes.add(function.params.get(key)) ;
+        Collection<String> collectionDefParamTypes = function.params.values();
+        for (String elem : collectionDefParamTypes) {
+            defParamTypes.add(elem) ;
         }
         for (int i = 0; i<defParamTypes.size(); i++) {
             if (!defParamTypes.get(i).equals(declParamTypes.get(i))) {
-                //throw new RuntimeException(declParamTypes.get(0) + " puis " + declParamTypes.get(1) + " puis " + declParamTypes.get(2) + " puis " + declParamTypes.get(3) + " ensuite " + defParamTypes.get(0) + " puis " + defParamTypes.get(1) + " puis " + defParamTypes.get(2) + " puis " + defParamTypes.get(3)) ;
                 throw new RuntimeException("Erreur sur le " + i + "-eme parametre, type definition = " + defParamTypes.get(i) +" et type declaration = " + declParamTypes.get(i)) ;
             }
         }
