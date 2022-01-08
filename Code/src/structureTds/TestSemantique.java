@@ -45,6 +45,10 @@ public class TestSemantique {
         //if (TableStruct.get(name) == //Type sur le retour)
     }
 
+    public void return_bloc(String name) {
+
+    }
+
     public void type_param(String name, ArrayList<Ast> newParam) {
         ArrayList<String> defParam = new ArrayList<String>() ;
         TdsFunction function = TableFunction.get(name);
