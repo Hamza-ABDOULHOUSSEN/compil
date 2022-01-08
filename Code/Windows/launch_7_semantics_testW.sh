@@ -36,7 +36,7 @@ for directory in $(find examples -type d); do
                 echo "=========== Semantics check : $basename ==========="
 
                 echo "[+] TDS file dot generation"
-                java -cp "./lib/antlr-4.9.2-complete.jar;./bin" Main3 $file $basedir/$basename >/dev/null
+                java -cp "./lib/antlr-4.9.2-complete.jar;./bin" Main3 $file $basedir/$basename >/dev/null 2>temp2
 
                 if cmp -s temp1 temp2; then
                   error=1

@@ -54,7 +54,7 @@ public class TdsVisitor implements AstVisitor<String> {
         Ident ident = (Ident) def_struct.ident;
         String nom = "struct " + ident.name;
 
-        test.struct_deja_def(ident.name);
+        this.test.struct_deja_def(ident.name);
 
         // Creation de la structure et ajout dans la table
         TdsStruct struct_table = new TdsStruct(nom);
@@ -74,7 +74,6 @@ public class TdsVisitor implements AstVisitor<String> {
         // fin du bloc et on le retire de la stack
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
-        this.test.struct_deja_def(ident.name);
         NumImbr--;
 
         return "void";
@@ -239,6 +238,11 @@ public class TdsVisitor implements AstVisitor<String> {
     public String visit(FctParam fct_param) {
         String name = ( (Ident) fct_param.ident).name;
         ArrayList<Ast> exprs = fct_param.exprs;
+        ArrayList<String> declParamTypes = new ArrayList<String>() ;
+        for (Ast expr : exprs) {
+            declParamTypes.add(expr.accept(this)) ;
+        }
+
         int nb = exprs.size();
 
         //test fonction non definie
@@ -246,7 +250,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //test nombre de paramètres si definie
         test.nombre_param(name, nb);
-        test.type_param(name, fct_param.exprs);
+        test.type_param(name, declParamTypes);
         return type;
     }
 
@@ -260,7 +264,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //test nombre de paramètres si definie
         test.nombre_param(name, 0);
-        test.type_param(name, new ArrayList<Ast>());
+        //test.type_param(name, new ArrayList<Ast>());
 
         return type;
     }

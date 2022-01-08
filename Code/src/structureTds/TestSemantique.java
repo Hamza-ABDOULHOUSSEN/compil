@@ -1,6 +1,8 @@
 package structureTds;
 
 import ast.Ast;
+import ast.ParamInt;
+import ast.ParamStruct;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -56,16 +58,17 @@ public class TestSemantique {
 
     }
 
-    public void type_param(String name, ArrayList<Ast> newParam) {
-        ArrayList<String> defParam = new ArrayList<String>() ;
+    public void type_param(String name, ArrayList<String> declParamTypes) {
+        ArrayList<String> defParamTypes = new ArrayList<String>() ;
         TdsFunction function = TableFunction.get(name);
         for (String key : function.params.keySet()) {
-            defParam.add(function.params.get(key)) ;
+            defParamTypes.add(function.params.get(key)) ;
         }
-        for (int i = 0; i<defParam.size(); i++) {
-            //if (!defParam.get(i).equals(newParam.get(i).)) {
-            //    throw new RuntimeException("Erreur sur le paramètre " + i + " type definition = " + defParam.get(i) +" et type declaration = " + newParam) ;
-            //}
+        for (int i = 0; i<defParamTypes.size(); i++) {
+            if (!defParamTypes.get(i).equals(declParamTypes.get(i))) {
+                //throw new RuntimeException(declParamTypes.get(0) + " puis " + declParamTypes.get(1) + " puis " + declParamTypes.get(2) + " puis " + declParamTypes.get(3) + " ensuite " + defParamTypes.get(0) + " puis " + defParamTypes.get(1) + " puis " + defParamTypes.get(2) + " puis " + defParamTypes.get(3)) ;
+                throw new RuntimeException("Erreur sur le " + i + "-eme parametre, type definition = " + defParamTypes.get(i) +" et type declaration = " + declParamTypes.get(i)) ;
+            }
         }
     }
 
