@@ -51,7 +51,6 @@ public class TestSemantique {
     }
 
     public void return_type(String name) {
-        //if (TableStruct.get(name) == //Type sur le retour)
     }
 
     public void return_bloc(String name) {
