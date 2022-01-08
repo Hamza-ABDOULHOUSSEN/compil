@@ -6,6 +6,7 @@ import ast.ParamStruct;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.Stack;
 
 public class TestSemantique {
@@ -86,8 +87,8 @@ public class TestSemantique {
         String type;
 
         for (Tds tds : TdsStack) {
-            Hashtable<String, String> liste_param = new Hashtable<String, String>();
-            Hashtable<String, String> liste_var = new Hashtable<String, String>();
+            LinkedHashMap<String, String> liste_param = new LinkedHashMap<String, String>();
+            LinkedHashMap<String, String> liste_var = new LinkedHashMap<String, String>();
             if (tds instanceof TdsBloc) {
                 liste_var = ((TdsBloc) tds).variables;
             } else if (tds instanceof TdsFunction) {
@@ -118,8 +119,8 @@ public class TestSemantique {
         String type;
 
         for (Tds tds : TdsStack) {
-            Hashtable<String, String> liste_param = new Hashtable<String, String>();
-            Hashtable<String, String> liste_var = new Hashtable<String, String>();
+            LinkedHashMap<String, String> liste_param = new LinkedHashMap<String, String>();
+            LinkedHashMap<String, String> liste_var = new LinkedHashMap<String, String>();
             if (tds instanceof TdsBloc) {
                 liste_var = ((TdsBloc) tds).variables;
             } else if (tds instanceof TdsFunction) {
