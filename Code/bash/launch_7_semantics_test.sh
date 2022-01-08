@@ -14,7 +14,7 @@ echo "[+] Compilation"
 javac -cp ./lib/antlr-4.9.2-complete.jar:./src ./src/Main3.java -d ./bin >/dev/null
 echo
 
-for directory in $(find examples -type d); do
+for directory in $(find examples -type d | sort); do
     if [ "$directory" != "examples" ]; then
         basedir="${directory##*/}"
 
@@ -29,7 +29,7 @@ for directory in $(find examples -type d); do
             echo
             echo "=================== $basedir ===================="
 
-            for file in $(find  $directory -type f | grep 'Y.exp$'); do
+            for file in $(find  $directory -type f | grep 'Y.exp$' | sort); do
                 basename="${file##*/}"
                 basename="${basename%.exp}"
                 file="./$file"
@@ -47,6 +47,9 @@ for directory in $(find examples -type d); do
                   echo '### ❌ ❌ ❌ : The error was not seen ###'
                   echo '### files are in out ###'
                 else
+                  erreur=$(head -1 temp2)
+                  erreur="${erreur##*RuntimeException: }"
+                  echo $erreur
                   echo '### ✅ ✅ ✅ : The error was detected ###'
                 fi
 

@@ -27,7 +27,7 @@ function testErreur {
       fi
 }
 
-for directory in $(find examples -type d); do
+for directory in $(find examples -type d | sort); do
     if [ "$directory" != "examples" ]; then
         basedir="${directory##*/}"
         echo
@@ -35,7 +35,7 @@ for directory in $(find examples -type d); do
         echo "=================== $basedir ===================="
         echo
 
-        for file in $(find  $directory -type f); do
+        for file in $(find  $directory -type f | sort); do
             basename="${file##*/}"
             basename="${basename%.exp}"
             file="./$file"
