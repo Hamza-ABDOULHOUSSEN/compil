@@ -187,9 +187,7 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 
 	@Override
 	public Ast visitParenthese(exprParser.ParentheseContext ctx) {
-		Ast expr = ctx.getChild(1).accept(this);
-		Parenthese val = new Parenthese(expr);
-		return val;
+		return ctx.getChild(1).accept(this);
 	}
 
 	@Override
@@ -338,14 +336,12 @@ public class AstCreator extends exprBaseVisitor<Ast>{
 			return ctx.getChild(0).accept(this);
 		}
 		else {
-			Ast noeudTemporaire = new Ident(ctx.getChild(nb_child - 1).toString());
+			Ast noeudTemporaire = ctx.getChild(0).accept(this);
 
-			for (int i = nb_child - 3; i > 1; i -= 2) {
+			for (int i = 2; i < nb_child; i += 2) {
 				Ast left = new Ident(ctx.getChild(i).toString());
-				noeudTemporaire = new Fleche(left, noeudTemporaire);
+				noeudTemporaire = new Fleche(noeudTemporaire, left);
 			}
-			Ast left = ctx.getChild(0).accept(this);
-			noeudTemporaire = new Fleche(left, noeudTemporaire);
 
 			return noeudTemporaire;
 		}

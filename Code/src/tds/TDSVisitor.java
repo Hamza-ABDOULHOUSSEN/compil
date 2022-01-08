@@ -152,11 +152,6 @@ public class TDSVisitor implements AstVisitor<Void> {
     }
 
     @Override
-    public Void visit(Parenthese parenthese) {
-        return null;
-    }
-
-    @Override
     public Void visit(FctParam fct_param) {
         Ident newident = (Ident) fct_param.ident  ;
         /*

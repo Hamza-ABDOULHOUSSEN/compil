@@ -385,19 +385,6 @@ public class GraphVizVisitor implements AstVisitor<String> {
         return nodeIdentifier;
     }
 
-    //Parenthese
-    @Override
-    public String visit(Parenthese parenthese) {
-
-        String nodeIdentifier = this.nextState();
-        this.addNode(nodeIdentifier, "()");
-
-        String idfState = parenthese.expr.accept(this);
-        this.addTransition(nodeIdentifier, idfState);
-
-        return nodeIdentifier;
-    }
-
     //FctParam
     @Override
     public String visit(FctParam fctparam) {

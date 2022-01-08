@@ -13,7 +13,7 @@
 <g id="node1" class="node">
 <title>N1</title>
 <polygon fill="none" stroke="black" points="0,-335.5 0,-404.5 215,-404.5 215,-335.5 0,-335.5"/>
-<text text-anchor="middle" x="107.5" y="-389.3" font-family="Arial" font-size="14.00">structure : list 1</text>
+<text text-anchor="middle" x="107.5" y="-389.3" font-family="Arial" font-size="14.00">structure : struct list 1</text>
 <polyline fill="none" stroke="black" points="0,-381.5 215,-381.5 "/>
 <text text-anchor="middle" x="23" y="-366.3" font-family="Arial" font-size="14.00">val</text>
 <polyline fill="none" stroke="black" points="46,-358.5 46,-381.5 "/>

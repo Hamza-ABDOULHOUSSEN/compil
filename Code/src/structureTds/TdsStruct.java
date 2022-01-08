@@ -13,12 +13,12 @@ public class TdsStruct implements Tds {
 
     @Override
     public void addParam(String nom, String type) {
-        this.params.put(nom, type);
+
     }
 
     @Override
     public void addVariable(String nom, String type) {
-
+        this.params.put(nom, type);
     }
 
 }

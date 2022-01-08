@@ -2,12 +2,13 @@ package structureTds;
 
 import ast.*;
 import graphViz.GraphVizTds;
+import org.stringtemplate.v4.ST;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
 
-public class TdsVisitor implements AstVisitor<Object> {
+public class TdsVisitor implements AstVisitor<String> {
     
     public Stack<String> blocLabel = new Stack<String>();
     public int NumImbr = 0;
@@ -32,7 +33,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(Fichier fichier) {
+    public String visit(Fichier fichier) {
         graphviztds.addStartTable("global " + NumImbr);
 
         ArrayList<Ast> declarations = fichier.declarations;
@@ -50,9 +51,9 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DefStruct def_struct) {
+    public String visit(DefStruct def_struct) {
         Ident ident = (Ident) def_struct.ident;
-        String nom = ident.name;
+        String nom = "struct " + ident.name;
         TdsStruct struct_table = new TdsStruct(nom);
         this.test.TableStruct.put(nom, struct_table);
 
@@ -73,7 +74,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DefFctInt def_fct_int) {
+    public String visit(DefFctInt def_fct_int) {
         Ident ident = (Ident) def_fct_int.ident;
         String nom = ident.name;
         TdsFunction function_table = new TdsFunction(nom, "int");
@@ -98,7 +99,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DefFctIntParam def_fct_int_param) {
+    public String visit(DefFctIntParam def_fct_int_param) {
         Ident ident = (Ident) def_fct_int_param.ident;
         String nom = ident.name;
         TdsFunction function_table = new TdsFunction(nom, "int");
@@ -128,7 +129,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DefFctStruct def_fct_struct) {
+    public String visit(DefFctStruct def_fct_struct) {
         Ident identType = (Ident) def_fct_struct.ident1;
         Ident identNom = (Ident) def_fct_struct.ident2;
         String nom = identNom.name;
@@ -155,7 +156,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DefFctStructParam def_fct_struct_param) {
+    public String visit(DefFctStructParam def_fct_struct_param) {
         Ident identType = (Ident) def_fct_struct_param.ident1;
         Ident identNom = (Ident) def_fct_struct_param.ident2;
         String nom = identNom.name;
@@ -187,78 +188,90 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(SizeOf sizeof) {
-        return null;
+    public String visit(SizeOf sizeof) {
+        return "int";
     }
 
     @Override
-    public Object visit(Parenthese parenthese) {
-        parenthese.expr.accept(this);
-        return null;
-    }
-
-    @Override
-    public Object visit(FctParam fct_param) {
+    public String visit(FctParam fct_param) {
         String name = ( (Ident) fct_param.ident).name;
         ArrayList<Ast> exprs = fct_param.exprs;
         int nb = exprs.size();
-        test.fonc_non_def(name);
+        String type = test.fonc_non_def(name);
         test.nombre_param(name, nb);
-        return null;
+        return type;
     }
 
     @Override
-    public Object visit(Fct fct) {
+    public String visit(Fct fct) {
 
         String name = ( (Ident) fct.ident).name;
-        test.fonc_non_def(name);
+        String type = test.fonc_non_def(name);
         test.nombre_param(name, 0);
 
-        return null;
+        return type;
     }
 
     @Override
-    public Object visit(Sup comp) {
-        comp.left.accept(this);
-        comp.right.accept(this);
-        return null;
+    public String visit(Sup comp) {
+        String type1 = comp.left.accept(this);
+        String type2 = comp.right.accept(this);
+        String type_request = "int";
+        test.test_type(">", type1, type_request);
+        test.test_type(">", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(Egal egal) {
-        egal.left.accept(this);
-        egal.right.accept(this);
-        return null;
+    public String visit(Egal egal) {
+        String type1 = egal.left.accept(this);
+        String type2 = egal.right.accept(this);
+        String type_request = "int";
+        test.test_type("==", type1, type_request);
+        test.test_type("==", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(Mult mult) {
-        mult.left.accept(this);
-        mult.right.accept(this);
-        return null;
+    public String visit(Mult mult) {
+        String type1 = mult.left.accept(this);
+        String type2 = mult.right.accept(this);
+        String type_request = "int";
+        test.test_type("*", type1, type_request);
+        test.test_type("*", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(Not ast) {
-        ast.ast.accept(this);
-        return null;
+    public String visit(Not ast) {
+        String type = ast.ast.accept(this);
+        String type_request = "int";
+        test.test_type("!", type, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(Moinsunaire moinsunaire) {
-        moinsunaire.ast.accept(this);
-        return null;
+    public String visit(Moinsunaire moinsunaire) {
+        String type = moinsunaire.ast.accept(this);
+        String type_request = "int";
+        test.test_type("- (unaire)", type, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(Affect affect) {
-        affect.left.accept(this);
-        affect.right.accept(this);
-        return null;
+    public String visit(Affect affect) {
+        Ast left = affect.left;
+        if ( !(left instanceof Ident || left instanceof Fleche)) {
+            throw new RuntimeException("Erreur : affectation impossible");
+        }
+        String type1 = affect.left.accept(this);
+        String type2 = affect.right.accept(this);
+        test.test_type("=", type2, type1);
+        return type1;
     }
 
     @Override
-    public Object visit(Bloc bloc) {
+    public String visit(Bloc bloc) {
 
         String label = blocLabel.lastElement();
 
@@ -294,48 +307,63 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(Div div) {
-        div.left.accept(this);
-        div.right.accept(this);
-        return null;
+    public String visit(Div div) {
+        String type1 = div.left.accept(this);
+        String type2 = div.right.accept(this);
+        String type_request = "int";
+        test.test_type("/", type1, type_request);
+        test.test_type("/", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(Inegal inegal) {
-        inegal.left.accept(this);
-        inegal.right.accept(this);
-        return null;
+    public String visit(Inegal inegal) {
+        String type1 = inegal.left.accept(this);
+        String type2 = inegal.right.accept(this);
+        String type_request = "int";
+        test.test_type("!=", type1, type_request);
+        test.test_type("!=", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(Inf inf) {
-        inf.left.accept(this);
-        inf.right.accept(this);
-        return null;
+    public String visit(Inf inf) {
+        String type1 = inf.left.accept(this);
+        String type2 = inf.right.accept(this);
+        String type_request = "int";
+        test.test_type("<", type1, type_request);
+        test.test_type("<", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(InfEgal infEgal) {
-        infEgal.left.accept(this);
-        infEgal.right.accept(this);
-        return null;
+    public String visit(InfEgal infEgal) {
+        String type1 = infEgal.left.accept(this);
+        String type2 = infEgal.right.accept(this);
+        String type_request = "int";
+        test.test_type("<=", type1, type_request);
+        test.test_type("<=", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(SupEgal supEgal) {
-        supEgal.left.accept(this);
-        supEgal.right.accept(this);
-        return null;
+    public String visit(SupEgal supEgal) {
+        String type1 = supEgal.left.accept(this);
+        String type2 = supEgal.right.accept(this);
+        String type_request = "int";
+        test.test_type(">=", type1, type_request);
+        test.test_type(">=", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(DeclVarInt declVarInt) {
+    public String visit(DeclVarInt declVarInt) {
         ArrayList<Ast> idents = declVarInt.ident ;
 
         Tds actualTable = test.TdsStack.pop();
         for (int i = 0; i < idents.size(); i++) {
             Ident ident = (Ident) idents.get(i) ;
-            actualTable.addVariable(ident.toString(), "int");
+            actualTable.addVariable(ident.name, "int");
             graphviztds.addElement(ident.name, "attribut", "int", "depl");
         }
         test.TdsStack.push(actualTable);
@@ -343,7 +371,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(DeclVarStruct declVarStruct) {
+    public String visit(DeclVarStruct declVarStruct) {
         ArrayList<Ast> idents = declVarStruct.struct_names ;
         Ident identType = (Ident) declVarStruct.struct_type ;
         String type = "struct " + identType.name ;
@@ -351,7 +379,7 @@ public class TdsVisitor implements AstVisitor<Object> {
         Tds actualTable = test.TdsStack.pop();
         for (int i = 0; i < idents.size(); i++) {
             Ident ident = (Ident) idents.get(i) ;
-            actualTable.addVariable(ident.toString(), type);
+            actualTable.addVariable(ident.name, type);
             graphviztds.addElement(ident.name, "attribut", type, "depl");
         }
         test.TdsStack.push(actualTable);
@@ -359,17 +387,22 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(Ident ident) {
-        return null;
+    public String visit(Ident ident) {
+
+        // ATTENTION on ne visite Ident que si c'est une variable
+
+        String name = ((Ident) ident).name;
+        String type = test.var_non_def(name);
+        return type;
     }
 
     @Override
-    public Object visit(Int entier) {
-        return null;
+    public String visit(Int entier) {
+        return "int";
     }
 
     @Override
-    public Object visit(ParamInt paramint) {
+    public String visit(ParamInt paramint) {
 
         Tds actualTable = test.TdsStack.pop();
 
@@ -385,7 +418,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(ParamStruct paramstruct) {
+    public String visit(ParamStruct paramstruct) {
         Tds actualTable = test.TdsStack.pop();
 
         Ident ident = (Ident) paramstruct.struct_type;
@@ -403,7 +436,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(If ifinstr) {
+    public String visit(If ifinstr) {
 
         ifinstr.expr.accept(this);
 
@@ -427,7 +460,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(IfElse ifelseinstr) {
+    public String visit(IfElse ifelseinstr) {
 
         ifelseinstr.expr.accept(this);
 
@@ -467,7 +500,7 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(While whileinstr) {
+    public String visit(While whileinstr) {
 
         whileinstr.expr.accept(this);
 
@@ -492,42 +525,71 @@ public class TdsVisitor implements AstVisitor<Object> {
     }
 
     @Override
-    public Object visit(Return ret) {
-        ret.expr.accept(this);
-        return null;
+    public String visit(Return ret) {
+        String type = ret.expr.accept(this);
+        return type;
     }
 
     @Override
-    public Object visit(Et et) {
-        et.left.accept(this);
-        et.right.accept(this);
-        return null;
+    public String visit(Et et) {
+        String type1 = et.left.accept(this);
+        String type2 = et.right.accept(this);
+        String type_request = "int";
+        test.test_type("&&", type1, type_request);
+        test.test_type("&&", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(Ou ou) {
-        ou.left.accept(this);
-        ou.right.accept(this);
-        return null;
+    public String visit(Ou ou) {
+        String type1 = ou.left.accept(this);
+        String type2 = ou.right.accept(this);
+        String type_request = "int";
+        test.test_type("||", type1, type_request);
+        test.test_type("||", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(Plus plus) {
-        plus.left.accept(this);
-        plus.right.accept(this);
-        return null;
+    public String visit(Plus plus) {
+        String type1 = plus.left.accept(this);
+        String type2 = plus.right.accept(this);
+        String type_request = "int";
+        test.test_type("+", type1, type_request);
+        test.test_type("+", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(Moins moins) {
-        moins.left.accept(this);
-        moins.right.accept(this);
-        return null;
+    public String visit(Moins moins) {
+        String type1 = moins.left.accept(this);
+        String type2 = moins.right.accept(this);
+        String type_request = "int";
+        test.test_type("-", type1, type_request);
+        test.test_type("-", type2, type_request);
+        return type_request;
     }
 
     @Override
-    public Object visit(Fleche fleche) {
-        fleche.value.accept(this);
-        return null;
+    public String visit(Fleche fleche) {
+        
+        Ast gauche = fleche.value;
+        Ident droite = (Ident) fleche.ident;
+        String typeg;
+        String named = droite.name;
+
+        if (gauche instanceof Int) {
+            throw new RuntimeException("Erreur struct => entier -> ident");
+        }
+        else if (gauche instanceof SizeOf) {
+            throw new RuntimeException("Erreur struct => size of -> ident");
+        }
+        else {
+            typeg = gauche.accept(this);
+        }
+
+        String type = test.test_fleche_def(typeg, named);
+
+         return type;
     }
 }
