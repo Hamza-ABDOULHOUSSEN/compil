@@ -1,5 +1,7 @@
 package structureTds;
 
+import ast.Ast;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Stack;
@@ -39,6 +41,27 @@ public class TestSemantique {
     public void struct_deja_def(String name) {
         if (TableStruct.containsKey(name)) {
             throw new RuntimeException("Erreur struct : " + name + " => déjà definie");
+        }
+    }
+
+    public void return_type(String name) {
+        //if (TableStruct.get(name) == //Type sur le retour)
+    }
+
+    public void return_bloc(String name) {
+
+    }
+
+    public void type_param(String name, ArrayList<Ast> newParam) {
+        ArrayList<String> defParam = new ArrayList<String>() ;
+        TdsFunction function = TableFunction.get(name);
+        for (String key : function.params.keySet()) {
+            defParam.add(function.params.get(key)) ;
+        }
+        for (int i = 0; i<defParam.size(); i++) {
+            if (!defParam.get(i).equals(newParam.get(i).)) {
+                throw new RuntimeException("Erreur sur le paramètre " + i + " type definition = " + defParam.get(i) +" et type declaration = " + newParam) ;
+            }
         }
     }
 

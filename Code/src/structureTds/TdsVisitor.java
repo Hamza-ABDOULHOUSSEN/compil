@@ -72,6 +72,7 @@ public class TdsVisitor implements AstVisitor<String> {
         // fin du bloc et on le retire de la stack
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
+        this.test.struct_deja_def(ident.name);
         NumImbr--;
 
         return "void";
@@ -129,6 +130,9 @@ public class TdsVisitor implements AstVisitor<String> {
         // visite des paramètres
         ArrayList<Ast> params = def_fct_int_param.params;
         for (Ast param : params) {
+            if (param instanceof ParamStruct) {
+                test.struct_non_def(((ParamStruct) param).struct_type.name) ;
+            }
             param.accept(this);
         }
 
@@ -172,6 +176,7 @@ public class TdsVisitor implements AstVisitor<String> {
         // fin du bloc et on le retire de la stack
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
+        this.test.struct_non_def(identType.name);
         this.blocLabel.pop();
         NumImbr--;
 
@@ -201,6 +206,9 @@ public class TdsVisitor implements AstVisitor<String> {
         // visite des paramètres
         ArrayList<Ast> params = def_fct_struct_param.params;
         for (Ast param : params) {
+            if (param instanceof ParamStruct) {
+                test.struct_non_def(((ParamStruct) param).struct_type.name) ;
+            }
             param.accept(this);
         }
 
@@ -211,6 +219,7 @@ public class TdsVisitor implements AstVisitor<String> {
         // fin du bloc et on le retire de la stack
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
+        this.test.struct_non_def(identType.name);
         this.blocLabel.pop();
         NumImbr--;
 
@@ -219,6 +228,8 @@ public class TdsVisitor implements AstVisitor<String> {
 
     @Override
     public String visit(SizeOf sizeof) {
+        Ident ident = (Ident) sizeof.ident ;
+        test.struct_non_def(ident.name);
         return "int";
     }
 
@@ -233,7 +244,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //test nombre de paramètres si definie
         test.nombre_param(name, nb);
-
+        test.type_param(name, fct_param.exprs);
         return type;
     }
 
@@ -247,6 +258,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //test nombre de paramètres si definie
         test.nombre_param(name, 0);
+        test.type_param(name, new ArrayList<Ast>());
 
         return type;
     }
@@ -446,6 +458,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
         test.TdsStack.push(actualTable);
+        test.struct_non_def(identType.name);
         return "void";
     }
 
@@ -487,12 +500,10 @@ public class TdsVisitor implements AstVisitor<String> {
     public String visit(ParamStruct paramstruct) {
         //récupération du bloc actuel
         Tds actualTable = test.TdsStack.pop();
-
-        Ident ident = (Ident) paramstruct.struct_type;
-        String type = "struct " + ident.name;
-
-        ident = (Ident) paramstruct.struct_name;
-        String nom = ident.name;
+        Ident identType = (Ident) paramstruct.struct_type ;
+        Ident identName = (Ident) paramstruct.struct_name ;
+        String type = "struct " + identType.name;
+        String nom = identName.name;
 
         //ajout des variables dans la table et le graph de la TDS
         actualTable.addParam(nom, type);
@@ -500,6 +511,8 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
         test.TdsStack.push(actualTable);
+        this.test.struct_non_def(identType.name);
+
 
         return type;
     }
