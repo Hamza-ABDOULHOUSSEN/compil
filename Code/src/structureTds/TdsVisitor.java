@@ -54,6 +54,8 @@ public class TdsVisitor implements AstVisitor<String> {
         Ident ident = (Ident) def_struct.ident;
         String nom = "struct " + ident.name;
 
+        test.struct_deja_def(ident.name);
+
         // Creation de la structure et ajout dans la table
         TdsStruct struct_table = new TdsStruct(nom);
         this.test.TableStruct.put(nom, struct_table);
