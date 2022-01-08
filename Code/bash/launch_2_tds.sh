@@ -61,7 +61,7 @@ if test -f "$FILE"; then
 
         if [ "$ov" == "y" ]; then
             echo "[+] TDS file dot generation"
-            java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $FILE $tree  2>temp2
+            java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $FILE $tree 2>temp2
 
             if cmp -s temp1 temp2; then
                 echo "[+] TDS file svg generation"
@@ -71,6 +71,8 @@ if test -f "$FILE"; then
             else
                 cat temp2
                 echo "ERROR : dot generation"
+                rmdir -p "out/tds/dot/$treedir" 2>/dev/null
+                rmdir -p "out/tds/svg/$treedir" 2>/dev/null
             fi
 
         fi
@@ -85,8 +87,10 @@ if test -f "$FILE"; then
 
            echo "[+] Done, files are in out"
         else
-           cat temp2
-           echo "ERROR : dot generation"
+            cat temp2
+            echo "ERROR : dot generation"
+            rmdir -p "out/tds/dot/$treedir" 2>/dev/null
+            rmdir -p "out/tds/svg/$treedir" 2>/dev/null
         fi
 
     fi

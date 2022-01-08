@@ -30,12 +30,13 @@ for directory in $(find examples -type d | sort); do
                 basename="${basename%.exp}"
                 file="./$file"
 
+                mkdir -p "out/tds/dot/$basedir"
+                mkdir -p "out/tds/svg/$basedir"
+
                 echo
                 echo "=========== TDS creation : $basename ==========="
 
                 echo "[+] TDS file dot generation"
-                mkdir -p "out/tds/dot/$basedir"
-                mkdir -p "out/tds/svg/$basedir"
                 java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $file $basedir/$basename >/dev/null 2>temp2
 
                 if cmp -s temp1 temp2; then
@@ -45,6 +46,10 @@ for directory in $(find examples -type d | sort); do
                 else
                     echo '### ❌ ❌ ❌ : ERROR ###'
                 fi
+
+                rmdir -p "out/tds/dot/$basedir" 2>/dev/null
+                rmdir -p "out/tds/svg/$basedir" 2>/dev/null
+
             done
 
         fi

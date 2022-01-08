@@ -71,6 +71,8 @@ if test -f "$FILE"; then
             else
                 cat temp2
                 echo "ERROR : dot generation"
+                rmdir -p "out/ast/dot/$treedir" 2>/dev/null
+                rmdir -p "out/ast/svg/$treedir" 2>/dev/null
             fi
 
         fi
@@ -87,6 +89,8 @@ if test -f "$FILE"; then
         else
             cat temp2
             echo "ERROR : dot generation"
+            rmdir -p "out/ast/dot/$treedir" 2>/dev/null
+            rmdir -p "out/ast/svg/$treedir" 2>/dev/null
         fi
     fi
 

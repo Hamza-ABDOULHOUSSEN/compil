@@ -22,7 +22,6 @@ for directory in $(find examples -type d | sort); do
 
         mkdir -p "out/tds/dot/$basedir"
         mkdir -p "out/tds/svg/$basedir"
-        error=0
 
         if [ $count != 0 ]; then
             echo
@@ -41,7 +40,6 @@ for directory in $(find examples -type d | sort); do
                 java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $file $basedir/$basename >/dev/null 2>temp2
 
                 if cmp -s temp1 temp2; then
-                  error=1
                   echo "[+] TDS file svg generation"
                   dot -Tsvg ./out/tds/dot/$basedir/$basename.dot -o ./out/tds/svg/$basedir/$basename.svg >/dev/null
                   echo '### ❌ ❌ ❌ : The error was not seen ###'
@@ -58,10 +56,9 @@ for directory in $(find examples -type d | sort); do
 
         fi
 
-        if [ error == 0 ]; then
-            rmdir "out/tds/dot/$basedir"
-            rmdir "out/tds/svg/$basedir"
-        fi
+        rmdir "out/tds/dot/$basedir" 2>/dev/null
+        rmdir "out/tds/svg/$basedir" 2>/dev/null
+
     fi
 done
 
