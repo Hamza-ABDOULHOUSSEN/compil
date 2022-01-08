@@ -176,13 +176,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
     @Override
     public String visit(SizeOf sizeof) {
-        return null;
-    }
-
-    @Override
-    public String visit(Parenthese parenthese) {
-        parenthese.expr.accept(this);
-        return null;
+        return "int";
     }
 
     @Override
@@ -190,59 +184,73 @@ public class TdsVisitor implements AstVisitor<String> {
         String name = ( (Ident) fct_param.ident).name;
         ArrayList<Ast> exprs = fct_param.exprs;
         int nb = exprs.size();
-        test.fonc_non_def(name);
+        String type = test.fonc_non_def(name);
         test.nombre_param(name, nb);
-        return null;
+        return type;
     }
 
     @Override
     public String visit(Fct fct) {
 
         String name = ( (Ident) fct.ident).name;
-        test.fonc_non_def(name);
+        String type = test.fonc_non_def(name);
         test.nombre_param(name, 0);
 
-        return null;
+        return type;
     }
 
     @Override
     public String visit(Sup comp) {
-        comp.left.accept(this);
-        comp.right.accept(this);
-        return null;
+        String type1 = comp.left.accept(this);
+        String type2 = comp.right.accept(this);
+        String type_request = "int";
+        test.test_type(">", type1, type_request);
+        test.test_type(">", type2, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(Egal egal) {
-        egal.left.accept(this);
-        egal.right.accept(this);
-        return null;
+        String type1 = egal.left.accept(this);
+        String type2 = egal.right.accept(this);
+        String type_request = "int";
+        test.test_type("==", type1, type_request);
+        test.test_type("==", type2, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(Mult mult) {
-        mult.left.accept(this);
-        mult.right.accept(this);
-        return null;
+        String type1 = mult.left.accept(this);
+        String type2 = mult.right.accept(this);
+        String type_request = "int";
+        test.test_type("*", type1, type_request);
+        test.test_type("*", type2, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(Not ast) {
-        ast.ast.accept(this);
-        return null;
+        String type = ast.ast.accept(this);
+        String type_request = "int";
+        test.test_type("!", type, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(Moinsunaire moinsunaire) {
-        moinsunaire.ast.accept(this);
-        return null;
+        String type = moinsunaire.ast.accept(this);
+        String type_request = "int";
+        test.test_type("- (unaire)", type, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(Affect affect) {
-        affect.left.accept(this);
-        affect.right.accept(this);
-        return null;
+        String type1 = affect.left.accept(this);
+        String type2 = affect.right.accept(this);
+        test.test_type("=", type2, type1);
+        return type1;
     }
 
     @Override
@@ -283,37 +291,52 @@ public class TdsVisitor implements AstVisitor<String> {
 
     @Override
     public String visit(Div div) {
-        div.left.accept(this);
-        div.right.accept(this);
-        return null;
+        String type1 = div.left.accept(this);
+        String type2 = div.right.accept(this);
+        String type_request = "int";
+        test.test_type("/", type1, type_request);
+        test.test_type("/", type2, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(Inegal inegal) {
-        inegal.left.accept(this);
-        inegal.right.accept(this);
-        return null;
+        String type1 = inegal.left.accept(this);
+        String type2 = inegal.right.accept(this);
+        String type_request = "int";
+        test.test_type("!=", type1, type_request);
+        test.test_type("!=", type2, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(Inf inf) {
-        inf.left.accept(this);
-        inf.right.accept(this);
-        return null;
+        String type1 = inf.left.accept(this);
+        String type2 = inf.right.accept(this);
+        String type_request = "int";
+        test.test_type("<", type1, type_request);
+        test.test_type("<", type2, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(InfEgal infEgal) {
-        infEgal.left.accept(this);
-        infEgal.right.accept(this);
-        return null;
+        String type1 = infEgal.left.accept(this);
+        String type2 = infEgal.right.accept(this);
+        String type_request = "int";
+        test.test_type("<=", type1, type_request);
+        test.test_type("<=", type2, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(SupEgal supEgal) {
-        supEgal.left.accept(this);
-        supEgal.right.accept(this);
-        return null;
+        String type1 = supEgal.left.accept(this);
+        String type2 = supEgal.right.accept(this);
+        String type_request = "int";
+        test.test_type(">=", type1, type_request);
+        test.test_type(">=", type2, type_request);
+        return type_request;
     }
 
     @Override
@@ -481,36 +504,48 @@ public class TdsVisitor implements AstVisitor<String> {
 
     @Override
     public String visit(Return ret) {
-        ret.expr.accept(this);
-        return null;
+        String type = ret.expr.accept(this);
+        return type;
     }
 
     @Override
     public String visit(Et et) {
-        et.left.accept(this);
-        et.right.accept(this);
-        return null;
+        String type1 = et.left.accept(this);
+        String type2 = et.right.accept(this);
+        String type_request = "int";
+        test.test_type("&&", type1, type_request);
+        test.test_type("&&", type2, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(Ou ou) {
-        ou.left.accept(this);
-        ou.right.accept(this);
-        return null;
+        String type1 = ou.left.accept(this);
+        String type2 = ou.right.accept(this);
+        String type_request = "int";
+        test.test_type("||", type1, type_request);
+        test.test_type("||", type2, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(Plus plus) {
-        plus.left.accept(this);
-        plus.right.accept(this);
-        return null;
+        String type1 = plus.left.accept(this);
+        String type2 = plus.right.accept(this);
+        String type_request = "int";
+        test.test_type("+", type1, type_request);
+        test.test_type("+", type2, type_request);
+        return type_request;
     }
 
     @Override
     public String visit(Moins moins) {
-        moins.left.accept(this);
-        moins.right.accept(this);
-        return null;
+        String type1 = moins.left.accept(this);
+        String type2 = moins.right.accept(this);
+        String type_request = "int";
+        test.test_type("-", type1, type_request);
+        test.test_type("-", type2, type_request);
+        return type_request;
     }
 
     @Override

@@ -21,10 +21,13 @@ public class TestSemantique {
         TableFunction.put("malloc", malloc);
     }
 
-    public void fonc_non_def(String name) {
+    public String fonc_non_def(String name) {
         if (!TableFunction.containsKey(name)) {
             throw new RuntimeException("Erreur fonction : " + name + " => non definie");
         }
+        TdsFunction fct = TableFunction.get(name);
+        return fct.type;
+
     }
 
     public void struct_non_def(String name) {
@@ -115,6 +118,12 @@ public class TestSemantique {
         }
         else {
             return structure.params.get(name);
+        }
+    }
+
+    public void test_type(String operation, String type_insert, String type_request) {
+        if(!type_insert.equals(type_request)) {
+            throw new RuntimeException("Erreur type : " + operation + " avec "+ type_insert + " au lieu de "+ type_request );
         }
     }
 }
