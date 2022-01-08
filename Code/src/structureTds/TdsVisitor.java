@@ -74,7 +74,7 @@ public class TdsVisitor implements AstVisitor<String> {
         this.test.TdsStack.pop();
         NumImbr--;
 
-        return null;
+        return "void";
     }
 
     @Override
@@ -105,7 +105,7 @@ public class TdsVisitor implements AstVisitor<String> {
         this.blocLabel.pop();
         NumImbr--;
 
-        return null;
+        return "void";
     }
 
     @Override
@@ -142,7 +142,7 @@ public class TdsVisitor implements AstVisitor<String> {
         this.blocLabel.pop();
         NumImbr--;
 
-        return null;
+        return "void";
     }
 
     @Override
@@ -214,7 +214,7 @@ public class TdsVisitor implements AstVisitor<String> {
         this.blocLabel.pop();
         NumImbr--;
 
-        return null;
+        return "void";
     }
 
     @Override
@@ -311,7 +311,7 @@ public class TdsVisitor implements AstVisitor<String> {
         String type2 = affect.right.accept(this);
         test.test_type("=", type2, type1);
 
-        return type1;
+        return "void";
     }
 
     @Override
@@ -354,7 +354,7 @@ public class TdsVisitor implements AstVisitor<String> {
             NumImbr--;
         }
 
-        return null;
+        return "void";
     }
 
     @Override
@@ -424,7 +424,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
         test.TdsStack.push(actualTable);
-        return null;
+        return "void";
     }
 
     @Override
@@ -446,7 +446,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
         test.TdsStack.push(actualTable);
-        return null;
+        return "void";
     }
 
     @Override
@@ -480,7 +480,7 @@ public class TdsVisitor implements AstVisitor<String> {
         //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
         test.TdsStack.push(actualTable);
 
-        return null;
+        return "int";
     }
 
     @Override
@@ -501,7 +501,7 @@ public class TdsVisitor implements AstVisitor<String> {
         //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
         test.TdsStack.push(actualTable);
 
-        return null;
+        return type;
     }
 
     @Override
@@ -599,7 +599,7 @@ public class TdsVisitor implements AstVisitor<String> {
         //on récupère ainsi le type de l'expression
         String type = ret.expr.accept(this);
 
-        return null;
+        return type;
     }
 
     @Override
