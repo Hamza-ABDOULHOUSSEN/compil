@@ -3,7 +3,6 @@ digraph "tds"{
 	node [fontname="Arial"];
 
 	N1 [shape=record label="{ fonction : int main 1
-	| { b | attribut | int | depl }
 	| { x | attribut | int | depl }
 	}"];
 
