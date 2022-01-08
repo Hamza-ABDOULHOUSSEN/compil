@@ -2,7 +2,6 @@ package structureTds;
 
 import ast.*;
 import graphViz.GraphVizTds;
-import org.stringtemplate.v4.ST;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -77,6 +76,10 @@ public class TdsVisitor implements AstVisitor<String> {
     public String visit(DefFctInt def_fct_int) {
         Ident ident = (Ident) def_fct_int.ident;
         String nom = ident.name;
+
+        //test pour savoir si la fonction a deja été utilisee
+        this.test.fonc_deja_def(ident.name);
+
         TdsFunction function_table = new TdsFunction(nom, "int");
         this.test.TableFunction.put(nom, function_table);
 
@@ -90,8 +93,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
-        //test pour savoir si la fonction a deja été utilisee
-        this.test.fonc_deja_def(ident.name);
+
         this.blocLabel.pop();
         NumImbr--;
 
@@ -102,6 +104,10 @@ public class TdsVisitor implements AstVisitor<String> {
     public String visit(DefFctIntParam def_fct_int_param) {
         Ident ident = (Ident) def_fct_int_param.ident;
         String nom = ident.name;
+
+        //test pour savoir si la fonction a deja été utilisee
+        this.test.fonc_deja_def(ident.name);
+
         TdsFunction function_table = new TdsFunction(nom, "int");
         this.test.TableFunction.put(nom, function_table);
 
@@ -120,8 +126,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
-        //test pour savoir si la fonction a deja été utilisee
-        this.test.fonc_deja_def(ident.name);
+
         this.blocLabel.pop();
         NumImbr--;
 
@@ -134,6 +139,10 @@ public class TdsVisitor implements AstVisitor<String> {
         Ident identNom = (Ident) def_fct_struct.ident2;
         String nom = identNom.name;
         String type = "struct " + identType.name ;
+
+        //test pour savoir si la fonction a deja été utilisee
+        this.test.fonc_deja_def(identNom.name);
+
         TdsFunction function_table = new TdsFunction(nom, type);
         this.test.TableFunction.put(nom, function_table);
 
@@ -147,8 +156,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
-        //test pour savoir si la fonction a deja été utilisee
-        this.test.fonc_deja_def(identNom.name);
+
         this.blocLabel.pop();
         NumImbr--;
 
@@ -161,6 +169,10 @@ public class TdsVisitor implements AstVisitor<String> {
         Ident identNom = (Ident) def_fct_struct_param.ident2;
         String nom = identNom.name;
         String type = "struct " + identType.name ;
+
+        //test pour savoir si la fonction a deja été utilisee
+        this.test.fonc_deja_def(identNom.name);
+
         TdsFunction function_table = new TdsFunction(nom, type);
         this.test.TableFunction.put(nom, function_table);
 
@@ -179,8 +191,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
-        //test pour savoir si la fonction a deja été utilisee
-        this.test.fonc_deja_def(identNom.name);
+
         this.blocLabel.pop();
         NumImbr--;
 
