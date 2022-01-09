@@ -4,7 +4,7 @@ struct nombre {
 
 struct somme {
     int val;
-    struct nombre * val
+    struct nombre * val;
 };
 
 int main() {
