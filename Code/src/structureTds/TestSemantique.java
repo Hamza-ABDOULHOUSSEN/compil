@@ -114,30 +114,31 @@ public class TestSemantique {
     }
 
     public void var_deja_def(String name) {
-        int bool = 0;
-        String type;
 
-        for (Tds tds : TdsStack) {
-            LinkedHashMap<String, String> liste_param = new LinkedHashMap<String, String>();
-            LinkedHashMap<String, String> liste_var = new LinkedHashMap<String, String>();
-            if (tds instanceof TdsBloc) {
-                liste_var = ((TdsBloc) tds).variables;
-            } else if (tds instanceof TdsFunction) {
-                liste_param = ((TdsFunction) tds).params;
-                liste_var = ((TdsFunction) tds).variables;
-            } else {
-                liste_var = ((TdsStruct) tds).params;
-            }
+        //récupération du bloc actuel
+        Tds tds = TdsStack.pop();
 
-            if (liste_var.containsKey(name)) {
-                throw new RuntimeException("Erreur variable : " + name + " => déjà definie");
-            }
-
-            if (liste_param.containsKey(name)) {
-                throw new RuntimeException("Erreur variable : " + name + " => déjà definie");
-            }
-
+        LinkedHashMap<String, String> liste_param = new LinkedHashMap<String, String>();
+        LinkedHashMap<String, String> liste_var = new LinkedHashMap<String, String>();
+        if (tds instanceof TdsBloc) {
+            liste_var = ((TdsBloc) tds).variables;
+        } else if (tds instanceof TdsFunction) {
+            liste_param = ((TdsFunction) tds).params;
+            liste_var = ((TdsFunction) tds).variables;
+        } else {
+            liste_param = ((TdsStruct) tds).params;
         }
+
+        if (liste_var.containsKey(name)) {
+            throw new RuntimeException("Erreur variable : " + name + " => déjà definie");
+        }
+
+        if (liste_param.containsKey(name)) {
+            throw new RuntimeException("Erreur variable : " + name + " => déjà definie");
+        }
+
+        //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
+        TdsStack.push(tds);
 
     }
 

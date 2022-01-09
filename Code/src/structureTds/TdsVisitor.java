@@ -104,7 +104,6 @@ public class TdsVisitor implements AstVisitor<String> {
         // fin du bloc et on le retire de la stack
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
-        this.test.return_type("int", bloc.accept(this));
         this.blocLabel.pop();
         NumImbr--;
 
@@ -127,7 +126,6 @@ public class TdsVisitor implements AstVisitor<String> {
         Bloc bloc = (Bloc) def_fct_int_param.bloc;
         NumImbr++;
         this.test.TdsStack.push(function_table);
-        this.test.return_type("int", bloc.accept(this));
         this.blocLabel.push("fonction");
         graphviztds.addStartTable("fonction : int " + nom + " " + NumImbr);
 
@@ -171,7 +169,6 @@ public class TdsVisitor implements AstVisitor<String> {
         NumImbr++;
         graphviztds.addStartTable("fonction : " + type + " * " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
-        this.test.return_type(type, bloc.accept(this));
         this.blocLabel.push("fonction");
 
         // visite des blocs de la fonction
@@ -206,7 +203,6 @@ public class TdsVisitor implements AstVisitor<String> {
         NumImbr++;
         graphviztds.addStartTable("fonction : " + type + " * " + nom + " " + NumImbr);
         this.test.TdsStack.push(function_table);
-        this.test.return_type(type, bloc.accept(this));
         this.blocLabel.push("fonction");
 
         // visite des paramètres
@@ -348,7 +344,15 @@ public class TdsVisitor implements AstVisitor<String> {
             ArrayList<Ast> vars = bloc.vars;
             for (Ast var : vars) {
                 if (var != null) {
-                    var.accept(this);
+                    if (var instanceof Bloc) {
+                        blocLabel.push("bloc");
+                        var.accept(this);
+                        blocLabel.pop();
+                    }
+                    else {
+                        var.accept(this);
+                    }
+
                 }
             }
         }
@@ -433,19 +437,24 @@ public class TdsVisitor implements AstVisitor<String> {
     public String visit(DeclVarInt declVarInt) {
         ArrayList<Ast> idents = declVarInt.ident ;
 
-        //récupération du bloc actuel
-        Tds actualTable = test.TdsStack.pop();
-
         for (int i = 0; i < idents.size(); i++) {
             Ident ident = (Ident) idents.get(i) ;
+            String name = ident.name;
+
+            test.var_deja_def(name);
+
+            //récupération du bloc actuel
+            Tds actualTable = test.TdsStack.pop();
 
             //ajout des variables dans la table et le graph de la TDS
-            actualTable.addVariable(ident.name, "int");
-            graphviztds.addElement(ident.name, "attribut", "int", "depl");
+            actualTable.addVariable(name, "int");
+            graphviztds.addElement(name, "attribut", "int", "depl");
+
+            //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
+            test.TdsStack.push(actualTable);
         }
 
-        //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
-        test.TdsStack.push(actualTable);
+
         return "void";
     }
 
@@ -455,20 +464,25 @@ public class TdsVisitor implements AstVisitor<String> {
         Ident identType = (Ident) declVarStruct.struct_type ;
         String type = "struct " + identType.name ;
 
-        //récupération du bloc actuel
-        Tds actualTable = test.TdsStack.pop();
+        test.struct_non_def(identType.name);
 
         for (int i = 0; i < idents.size(); i++) {
             Ident ident = (Ident) idents.get(i) ;
+            String name = ident.name;
+
+            test.var_deja_def(name);
+
+            //récupération du bloc actuel
+            Tds actualTable = test.TdsStack.pop();
 
             //ajout des variables dans la table et le graph de la TDS
-            actualTable.addVariable(ident.name, type);
-            graphviztds.addElement(ident.name, "attribut", type, "depl");
+            actualTable.addVariable(name, type);
+            graphviztds.addElement(name, "attribut", type, "depl");
+
+            //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
+            test.TdsStack.push(actualTable);
         }
 
-        //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
-        test.TdsStack.push(actualTable);
-        test.struct_non_def(identType.name);
         return "void";
     }
 
@@ -490,11 +504,13 @@ public class TdsVisitor implements AstVisitor<String> {
     @Override
     public String visit(ParamInt paramint) {
 
-        //récupération du bloc actuel
-        Tds actualTable = test.TdsStack.pop();
-
         Ident ident = (Ident) paramint.ident;
         String nom = ident.name;
+
+        test.var_deja_def(nom);
+
+        //récupération du bloc actuel
+        Tds actualTable = test.TdsStack.pop();
 
         //ajout des paramètres dans la table et le graph de la TDS
         actualTable.addParam(nom, "int");
@@ -508,12 +524,17 @@ public class TdsVisitor implements AstVisitor<String> {
 
     @Override
     public String visit(ParamStruct paramstruct) {
-        //récupération du bloc actuel
-        Tds actualTable = test.TdsStack.pop();
-        Ident identType = (Ident) paramstruct.struct_type ;
-        Ident identName = (Ident) paramstruct.struct_name ;
+
+        Ident identType = paramstruct.struct_type ;
+        Ident identName = paramstruct.struct_name ;
         String type = "struct " + identType.name;
         String nom = identName.name;
+
+        this.test.struct_non_def(identType.name);
+        test.var_deja_def(nom);
+
+        //récupération du bloc actuel
+        Tds actualTable = test.TdsStack.pop();
 
         //ajout des variables dans la table et le graph de la TDS
         actualTable.addParam(nom, type);
@@ -521,8 +542,6 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
         test.TdsStack.push(actualTable);
-        this.test.struct_non_def(identType.name);
-
 
         return type;
     }
