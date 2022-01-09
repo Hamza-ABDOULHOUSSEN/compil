@@ -1,0 +1,11 @@
+struct nombre {
+    int val;
+};
+
+int main() {
+    struct nombre * n;
+    if (n) {
+
+    }
+    return 1 ;
+}

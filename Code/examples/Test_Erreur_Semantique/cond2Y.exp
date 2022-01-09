@@ -3,6 +3,9 @@ int f() {
     if (x = 1) {
 
     }
+    else {
+
+    }
     return 1 ;
 }
 int main() {
