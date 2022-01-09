@@ -1,0 +1,13 @@
+struct ville {
+    int superficie;
+    int population;
+    int nb_batiment;
+    int pib;
+};
+
+int main() {
+    if (1) {
+        malloc(sizeof(struct ville)) = 3;
+    }
+    return 0;
+}

@@ -27,11 +27,15 @@ digraph "ast"{
 	N21 [label="y", shape="box"];
 	N22 [label="DeclInt", shape="box"];
 	N23 [label="x", shape="box"];
-	N24 [label="BlocReturn", shape="box"];
-	N25 [label="Fct", shape="box"];
-	N26 [label="facture", shape="box"];
-	N27 [label="y", shape="box"];
-	N28 [label="x", shape="box"];
+	N24 [label="BlocIf", shape="box"];
+	N25 [label="1", shape="box"];
+	N26 [label="Bloc", shape="box"];
+	N27 [label="Fct", shape="box"];
+	N28 [label="facture", shape="box"];
+	N29 [label="x", shape="box"];
+	N30 [label="y", shape="box"];
+	N31 [label="BlocReturn", shape="box"];
+	N32 [label="0", shape="box"];
 
 	N1 -> N2; 
 	N3 -> N4; 
@@ -54,11 +58,15 @@ digraph "ast"{
 	N18 -> N19; 
 	N22 -> N23; 
 	N18 -> N22; 
-	N25 -> N26; 
-	N25 -> N27; 
-	N25 -> N28; 
 	N24 -> N25; 
+	N27 -> N28; 
+	N27 -> N29; 
+	N27 -> N30; 
+	N26 -> N27; 
+	N24 -> N26; 
 	N18 -> N24; 
+	N31 -> N32; 
+	N18 -> N31; 
 	N16 -> N18; 
 	N0 -> N16; 
 }
