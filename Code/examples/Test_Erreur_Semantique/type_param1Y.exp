@@ -1,5 +1,4 @@
-int facture(int a, int b)
-{
+int facture(int a, int b) {
     return 1;
 }
 
@@ -8,9 +7,7 @@ struct Bonus{
     int d;
 };
 
-
-int main()
-{
+int main() {
     struct Bonus *x;
     struct Bonus *y;
 
