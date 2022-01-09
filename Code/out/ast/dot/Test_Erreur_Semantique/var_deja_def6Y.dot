@@ -1,0 +1,50 @@
+digraph "ast"{
+
+	nodesep=1;
+	ranksep=1;
+
+	N0 [label="Fichier", shape="box"];
+	N1 [label="DefFctInt", shape="box"];
+	N2 [label="addition", shape="box"];
+	N3 [label="Int", shape="box"];
+	N4 [label="a", shape="box"];
+	N5 [label="Int", shape="box"];
+	N6 [label="b", shape="box"];
+	N7 [label="Bloc", shape="box"];
+	N8 [label="DeclInt", shape="box"];
+	N9 [label="a", shape="box"];
+	N10 [label="=", shape="box"];
+	N11 [label="a", shape="box"];
+	N12 [label="+", shape="box"];
+	N13 [label="a", shape="box"];
+	N14 [label="b", shape="box"];
+	N15 [label="BlocReturn", shape="box"];
+	N16 [label="a", shape="box"];
+	N17 [label="DefFctInt", shape="box"];
+	N18 [label="main", shape="box"];
+	N19 [label="Bloc", shape="box"];
+	N20 [label="BlocReturn", shape="box"];
+	N21 [label="0", shape="box"];
+
+	N1 -> N2; 
+	N3 -> N4; 
+	N1 -> N3; 
+	N5 -> N6; 
+	N1 -> N5; 
+	N8 -> N9; 
+	N7 -> N8; 
+	N10 -> N11; 
+	N12 -> N13; 
+	N12 -> N14; 
+	N10 -> N12; 
+	N7 -> N10; 
+	N15 -> N16; 
+	N7 -> N15; 
+	N1 -> N7; 
+	N0 -> N1; 
+	N17 -> N18; 
+	N20 -> N21; 
+	N19 -> N20; 
+	N17 -> N19; 
+	N0 -> N17; 
+}
