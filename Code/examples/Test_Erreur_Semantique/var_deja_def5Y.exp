@@ -1,0 +1,12 @@
+struct nombre {
+    int val;
+};
+
+struct somme {
+    int val;
+    struct nombre * val
+};
+
+int main() {
+    return 0;
+}

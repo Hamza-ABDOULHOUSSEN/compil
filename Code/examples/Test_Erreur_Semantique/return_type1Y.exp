@@ -1,3 +1,4 @@
 int main() {
+    int n;
     print(n+5);
 }

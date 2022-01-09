@@ -3,6 +3,7 @@ int division(int x) {
 }
 
 int main() {
+    int x;
     division(x/0);
     return 0;
 }

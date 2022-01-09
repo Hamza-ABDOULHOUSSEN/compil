@@ -1,0 +1,18 @@
+struct permis {
+    int points ;
+};
+struct voiture {
+    int immatriculation ;
+    struct permis * license ;
+};
+struct person {
+    int age ;
+    struct voiture * bolide ;
+};
+int main() {
+    struct permis* p1 ;
+    struct voiture* v ;
+    struct person* p2 ;
+    v->license = p2 ;
+    return 1 ;
+}

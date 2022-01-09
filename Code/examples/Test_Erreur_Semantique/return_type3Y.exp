@@ -1,5 +1,6 @@
-int main()
-{
+int main() {
+
+    int longname;
     if (longname==1)
     {
         int b;

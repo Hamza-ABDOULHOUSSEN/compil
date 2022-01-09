@@ -10,11 +10,11 @@ struct person {
     struct voiture * bolide ;
 };
 int main() {
-    struct permis* p ;
+    struct permis* pm ;
     struct voiture* v ;
-    struct person* p ;
-    v->license = p ;
-    p->bolide = v ;
-    p->bolide->license->proprietaire = 1 ;
+    struct person* ps ;
+    v->license = pm ;
+    ps->bolide = v ;
+    ps->bolide->license->proprietaire = 1 ;
     return 1 ;
 }

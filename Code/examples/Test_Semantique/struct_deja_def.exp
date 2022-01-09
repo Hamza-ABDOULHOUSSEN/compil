@@ -1,0 +1,8 @@
+struct nombre {
+    int val;
+    struct nombre * suiv;
+};
+
+int main() {
+    return 0;
+}
