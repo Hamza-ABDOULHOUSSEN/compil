@@ -163,14 +163,20 @@ public class TestSemantique {
         }
     }
 
+    public void cond(String type) {
+        if (type.equals("void")) {
+            throw new RuntimeException("Erreur condition : == au lieu de =");
+        }
+    }
+
     public void fonc_deja_def(String name) {
         if (TableFunction.containsKey(name)) {
             throw new RuntimeException("Erreur fonction : "+ name +" => déjà definie");
         }
     }
 
-    public void divis_zero(int value) {
-        if (value == 0) {
+    public void divis_zero(String value) {
+        if (value.equals("0")) {
             throw new RuntimeException("Erreur division par zéro");
         }
     }

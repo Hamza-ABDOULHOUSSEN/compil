@@ -386,7 +386,15 @@ public class TdsVisitor implements AstVisitor<String> {
     @Override
     public String visit(Div div) {
         String type1 = div.left.accept(this);
-        String type2 = div.right.accept(this);
+        Ast right = div.right;
+
+        if (right instanceof Int) {
+            String value = ((Int) right).val;
+            test.divis_zero(value);
+        }
+
+        String type2 = right.accept(this);
+
         String type_request = "int";
         test.test_type("/", type1, type_request);
         test.test_type("/", type2, type_request);
@@ -549,7 +557,8 @@ public class TdsVisitor implements AstVisitor<String> {
     @Override
     public String visit(If ifinstr) {
 
-        ifinstr.expr.accept(this);
+        String type = ifinstr.expr.accept(this);
+        test.cond(type);
 
         blocLabel.push("Bloc If");
 
@@ -573,7 +582,8 @@ public class TdsVisitor implements AstVisitor<String> {
     @Override
     public String visit(IfElse ifelseinstr) {
 
-        ifelseinstr.expr.accept(this);
+        String type = ifelseinstr.expr.accept(this);
+        test.cond(type);
 
         blocLabel.push("Bloc If");
         Ast blocif = ifelseinstr.instruction1;
@@ -613,7 +623,8 @@ public class TdsVisitor implements AstVisitor<String> {
     @Override
     public String visit(While whileinstr) {
 
-        whileinstr.expr.accept(this);
+        String type = whileinstr.expr.accept(this);
+        test.cond(type);
 
         blocLabel.push("Bloc While");
 
