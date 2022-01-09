@@ -1,0 +1,13 @@
+struct ville {
+    int superficie;
+    int population;
+    int nb_batiment;
+    int pib;
+};
+
+int main() {
+    while(1)
+        sizeof(struct ville) = 5;
+
+    return 0;
+}
