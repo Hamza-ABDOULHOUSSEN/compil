@@ -48,8 +48,11 @@ public class TestSemantique {
         }
     }
 
-    public void return_type(String typeDef, String typeRetour) {
-        if (typeDef != typeRetour) {
+    public void return_type(String typeRetour) {
+        //fct = 1er element de la stack
+        TdsFunction function =  (TdsFunction) TdsStack.get(0) ;
+        String typeDef = ((TdsFunction) TdsStack.get(0)).type ;
+        if (!typeDef.equals(typeRetour)) {
             throw new RuntimeException("Erreur sur le type de retour " + typeRetour + " le type dans la definition est " + typeDef) ;
         }
     }

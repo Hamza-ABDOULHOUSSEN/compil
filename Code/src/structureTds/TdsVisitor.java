@@ -650,9 +650,10 @@ public class TdsVisitor implements AstVisitor<String> {
     public String visit(Return ret) {
 
         //on récupère ainsi le type de l'expression
-        String type = ret.expr.accept(this);
+        String typeRetour = ret.expr.accept(this);
+        this.test.return_type(typeRetour) ;
 
-        return type;
+        return "void";
     }
 
     @Override
