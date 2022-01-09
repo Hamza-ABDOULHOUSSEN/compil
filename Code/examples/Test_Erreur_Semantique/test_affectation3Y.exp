@@ -1,0 +1,11 @@
+int main() {
+    if (1) {
+
+    }
+    else {
+        int x;
+        int y;
+        ( x + y ) = 3;
+    }
+    return 0;
+}

@@ -2,7 +2,8 @@ int facture(int a, int b) {
     return 1;
 }
 
-struct Bonus{
+struct Bonus
+{
     int c;
     int d;
 };
@@ -11,5 +12,8 @@ int main() {
     struct Bonus *y;
     int x;
 
-    return facture(y,x);
+    if (1) {
+        facture(x,y);
+    }
+    return 0;
 }

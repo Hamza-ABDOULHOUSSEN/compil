@@ -1,0 +1,15 @@
+struct nombre {
+    int val;
+};
+
+int somme(int a, int b, int c, int d) {
+    return a + b + c + d ;
+}
+
+int main() {
+    {
+    struct nombre * n;
+    somme(1,2,n,4);
+    }
+    return 0;
+}
