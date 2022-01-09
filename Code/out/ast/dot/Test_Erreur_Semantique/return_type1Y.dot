@@ -7,18 +7,22 @@ digraph "ast"{
 	N1 [label="DefFctInt", shape="box"];
 	N2 [label="main", shape="box"];
 	N3 [label="Bloc", shape="box"];
-	N4 [label="Fct", shape="box"];
-	N5 [label="print", shape="box"];
-	N6 [label="+", shape="box"];
-	N7 [label="n", shape="box"];
-	N8 [label="5", shape="box"];
+	N4 [label="DeclInt", shape="box"];
+	N5 [label="n", shape="box"];
+	N6 [label="Fct", shape="box"];
+	N7 [label="print", shape="box"];
+	N8 [label="+", shape="box"];
+	N9 [label="n", shape="box"];
+	N10 [label="5", shape="box"];
 
 	N1 -> N2; 
 	N4 -> N5; 
-	N6 -> N7; 
-	N6 -> N8; 
-	N4 -> N6; 
 	N3 -> N4; 
+	N6 -> N7; 
+	N8 -> N9; 
+	N8 -> N10; 
+	N6 -> N8; 
+	N3 -> N6; 
 	N1 -> N3; 
 	N0 -> N1; 
 }

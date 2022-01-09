@@ -16,8 +16,11 @@ digraph "ast"{
 	N10 [label="Bloc", shape="box"];
 	N11 [label="DeclInt", shape="box"];
 	N12 [label="a", shape="box"];
-	N13 [label="BlocReturn", shape="box"];
-	N14 [label="a", shape="box"];
+	N13 [label="=", shape="box"];
+	N14 [label="b", shape="box"];
+	N15 [label="5", shape="box"];
+	N16 [label="BlocReturn", shape="box"];
+	N17 [label="a", shape="box"];
 
 	N1 -> N2; 
 	N3 -> N4; 
@@ -27,10 +30,13 @@ digraph "ast"{
 	N6 -> N7; 
 	N11 -> N12; 
 	N10 -> N11; 
+	N13 -> N14; 
+	N13 -> N15; 
+	N10 -> N13; 
 	N6 -> N10; 
 	N5 -> N6; 
-	N13 -> N14; 
-	N5 -> N13; 
+	N16 -> N17; 
+	N5 -> N16; 
 	N1 -> N5; 
 	N0 -> N1; 
 }

@@ -14,13 +14,15 @@ digraph "ast"{
 	N8 [label="DefFctInt", shape="box"];
 	N9 [label="main", shape="box"];
 	N10 [label="Bloc", shape="box"];
-	N11 [label="Fct", shape="box"];
-	N12 [label="division", shape="box"];
-	N13 [label="/", shape="box"];
-	N14 [label="x", shape="box"];
-	N15 [label="0", shape="box"];
-	N16 [label="BlocReturn", shape="box"];
+	N11 [label="DeclInt", shape="box"];
+	N12 [label="x", shape="box"];
+	N13 [label="Fct", shape="box"];
+	N14 [label="division", shape="box"];
+	N15 [label="/", shape="box"];
+	N16 [label="x", shape="box"];
 	N17 [label="0", shape="box"];
+	N18 [label="BlocReturn", shape="box"];
+	N19 [label="0", shape="box"];
 
 	N1 -> N2; 
 	N3 -> N4; 
@@ -31,12 +33,14 @@ digraph "ast"{
 	N0 -> N1; 
 	N8 -> N9; 
 	N11 -> N12; 
-	N13 -> N14; 
-	N13 -> N15; 
-	N11 -> N13; 
 	N10 -> N11; 
-	N16 -> N17; 
-	N10 -> N16; 
+	N13 -> N14; 
+	N15 -> N16; 
+	N15 -> N17; 
+	N13 -> N15; 
+	N10 -> N13; 
+	N18 -> N19; 
+	N10 -> N18; 
 	N8 -> N10; 
 	N0 -> N8; 
 }
