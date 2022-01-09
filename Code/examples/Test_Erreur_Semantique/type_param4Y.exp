@@ -7,9 +7,15 @@ struct Bonus{
     int d;
 };
 
+
 int main() {
     struct Bonus *y;
     int x;
+    x = 1 ;
+    if (x == 1) {
+        struct Bonus *x;
+        return facture(y,x) ;
+    }
 
-    return facture(y,x);
+    return facture(y,x + 5);
 }
