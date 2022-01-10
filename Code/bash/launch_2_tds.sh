@@ -61,7 +61,7 @@ if test -f "$FILE"; then
 
         if [ "$ov" == "y" ]; then
             echo "[+] TDS file dot generation"
-            java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $FILE $tree 2>temp2
+            java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $FILE $tree >temp2
 
             if cmp -s temp1 temp2; then
                 echo "[+] TDS file svg generation"
@@ -79,7 +79,7 @@ if test -f "$FILE"; then
 
     else
         echo "[+] TDS file dot generation"
-        java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $FILE $tree >/dev/null 2>temp2
+        java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $FILE $tree >temp2
 
         if cmp -s temp1 temp2; then
            echo "[+] TDS file svg generation"

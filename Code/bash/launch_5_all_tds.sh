@@ -37,7 +37,7 @@ for directory in $(find examples -type d | sort); do
                 echo "=========== TDS creation : $basename ==========="
 
                 echo "[+] TDS file dot generation"
-                java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $file $basedir/$basename >/dev/null 2>temp2
+                java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $file $basedir/$basename >temp2
 
                 if cmp -s temp1 temp2; then
                     echo "[+] TDS file svg generation"

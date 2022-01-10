@@ -37,7 +37,7 @@ for directory in $(find examples -type d | sort); do
                 echo "=========== Semantics check : $basename ==========="
 
                 echo "[+] TDS file dot generation"
-                java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $file $basedir/$basename >/dev/null 2>temp2
+                java -cp ./lib/antlr-4.9.2-complete.jar:./bin Main3 $file $basedir/$basename >temp2
 
                 if cmp -s temp1 temp2; then
                   echo "[+] TDS file svg generation"
@@ -45,9 +45,7 @@ for directory in $(find examples -type d | sort); do
                   echo '### ❌ ❌ ❌ : The error was not seen ###'
                   echo '### files are in out ###'
                 else
-                  erreur=$(head -1 temp2)
-                  erreur="${erreur##*RuntimeException: }"
-                  echo $erreur
+                  cat temp2
                   echo '### ✅ ✅ ✅ : The error was detected ###'
                 fi
 
