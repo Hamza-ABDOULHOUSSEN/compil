@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class TdsVisitor implements AstVisitor<String> {
+
+    String ANSI_RED = "\u001B[31m";
+    String ANSI_RESET = "\u001B[0m";
     
     public Stack<String> blocLabel = new Stack<String>();
     public int NumImbr = 0;
@@ -330,7 +333,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //test si l'affection est possible
         if ( !(left instanceof Ident || left instanceof Fleche)) {
-            throw new RuntimeException("Erreur : affectation impossible");
+            System.out.println(ANSI_RED + "Erreur : affectation impossible" + ANSI_RESET);
         }
 
         //test type
@@ -773,14 +776,14 @@ public class TdsVisitor implements AstVisitor<String> {
         
         Ast gauche = fleche.value;
         Ident droite = (Ident) fleche.ident;
-        String typeg;
+        String typeg = "";
         String named = droite.name;
 
         if (gauche instanceof Int) {
-            throw new RuntimeException("Erreur struct => entier -> ident");
+            System.out.println(ANSI_RED + "Erreur struct => entier -> ident" + ANSI_RESET);
         }
         else if (gauche instanceof SizeOf) {
-            throw new RuntimeException("Erreur struct => size of -> ident");
+            System.out.println(ANSI_RED + "Erreur struct => size of -> ident" + ANSI_RESET);
         }
         else {
             typeg = gauche.accept(this);

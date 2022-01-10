@@ -8,6 +8,9 @@ import java.util.*;
 
 public class TestSemantique {
 
+    String ANSI_RED = "\u001B[31m";
+    String ANSI_RESET = "\u001B[0m";
+
     public Hashtable<String, TdsFunction> TableFunction = new Hashtable<String, TdsFunction>();
     public Hashtable<String, TdsStruct> TableStruct = new Hashtable<String, TdsStruct>();
 
@@ -25,7 +28,8 @@ public class TestSemantique {
 
     public String fonc_non_def(String name) {
         if (!TableFunction.containsKey(name)) {
-            throw new RuntimeException("Erreur fonction : " + name + " non definie");
+            System.out.println(ANSI_RED + "Erreur fonction : " + name + " non definie" + ANSI_RESET);
+            return "void";
         }
         TdsFunction fct = TableFunction.get(name);
         return fct.type;
@@ -36,14 +40,15 @@ public class TestSemantique {
         TdsFunction fct_main = TableFunction.get("main");
         int nb_var = fct_main.params.size();
         if (nb_var != 0) {
-            throw new RuntimeException("Le profil de main ne correspond pas");
+            System.out.println(ANSI_RED + "Erreur : le profil de main ne correspond pas" + ANSI_RESET);
         }
     }
 
     public String struct_non_def(String type) {
         type = "struct " + type ;
         if (!TableStruct.containsKey(type)) {
-            throw new RuntimeException("Erreur struct : " + type + " non definie");
+            System.out.println(ANSI_RED + "Erreur struct : " + type + " non definie" + ANSI_RESET);
+            return "void";
         }
         TdsStruct struct = TableStruct.get(type);
         return type ;
@@ -52,7 +57,7 @@ public class TestSemantique {
     public void struct_deja_def(String type) {
         type = "struct " + type ;
         if (TableStruct.containsKey(type)) {
-            throw new RuntimeException("Erreur struct : " + type + " deja definie");
+            System.out.println(ANSI_RED + "Erreur struct : " + type + " deja definie" + ANSI_RESET);
         }
     }
 
@@ -61,13 +66,13 @@ public class TestSemantique {
         TdsFunction function =  (TdsFunction) TdsStack.get(0) ;
         String typeDef = ((TdsFunction) TdsStack.get(0)).type ;
         if (!typeDef.equals(typeRetour)) {
-            throw new RuntimeException("Erreur sur le type de retour " + typeRetour + " le type dans la definition est " + typeDef) ;
+            System.out.println(ANSI_RED + "Erreur sur le type de retour " + typeRetour + " le type dans la definition est " + typeDef + ANSI_RESET);
         }
     }
 
     public void return_bloc(String name, String contient_return) {
         if (! contient_return.equals("return")) {
-            throw new RuntimeException("fonction : " + name + " ne renvoie pas d'element dans tous les cas");
+            System.out.println(ANSI_RED + "Erreur fonction : " + name + " ne renvoie pas d'element dans tous les cas" + ANSI_RESET);
         }
     }
 
@@ -80,7 +85,7 @@ public class TestSemantique {
         }
         for (int i = 0; i<defParamTypes.size(); i++) {
             if (!defParamTypes.get(i).equals(declParamTypes.get(i))) {
-                throw new RuntimeException("Erreur sur le " + i + "-eme parametre, type definition = " + defParamTypes.get(i) +" et type declaration = " + declParamTypes.get(i)) ;
+                System.out.println(ANSI_RED + "Erreur sur le " + i + "-eme parametre, type definition = " + defParamTypes.get(i) +" et type declaration = " + declParamTypes.get(i) + ANSI_RESET);
             }
         }
     }
@@ -90,7 +95,7 @@ public class TestSemantique {
         int nb_param = function.params.size();
 
         if (nb_param != nb) {
-            throw new RuntimeException("Erreur fonction : " + name + " le nombre de parametres ne correspond pas");
+            System.out.println(ANSI_RED + "Erreur fonction : " + name + " le nombre de parametres ne correspond pas" + ANSI_RESET);
         }
 
     }
@@ -122,7 +127,9 @@ public class TestSemantique {
 
         }
 
-        throw new RuntimeException("Erreur variable : " + name + " non definie");
+        System.out.println(ANSI_RED + "Erreur variable : " + name + " non definie" + ANSI_RESET);
+
+        return "void";
 
     }
 
@@ -143,11 +150,11 @@ public class TestSemantique {
         }
 
         if (liste_var.containsKey(name)) {
-            throw new RuntimeException("Erreur variable : " + name + " deja definie");
+            System.out.println(ANSI_RED + "Erreur variable : " + name + " deja definie" + ANSI_RESET);
         }
 
         if (liste_param.containsKey(name)) {
-            throw new RuntimeException("Erreur variable : " + name + " deja definie");
+            System.out.println(ANSI_RED + "Erreur variable : " + name + " deja definie" + ANSI_RESET);
         }
 
         //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
@@ -158,39 +165,40 @@ public class TestSemantique {
     public String test_fleche_def(String type1, String name) {
         TdsStruct structure = TableStruct.get(type1);
         if (!structure.params.containsKey(name)) {
-            throw new RuntimeException("Erreur " + type1 + " : ne contient pas d'attribut " + name);
+            System.out.println(ANSI_RED + "Erreur " + type1 + " : ne contient pas d'attribut " + name + ANSI_RESET);
         }
         else {
             return structure.params.get(name);
         }
+        return "void";
     }
 
     public void test_type(String operation, String type_insert, String type_request) {
         if (type_insert.equals("void *")) {
             if (type_request.equals("int")) {
-                throw new RuntimeException("Erreur malloc avec un entier");
+                System.out.println(ANSI_RED + "Erreur malloc avec un entier" + ANSI_RESET);
             }
         }
         else if(!type_insert.equals(type_request)) {
-            throw new RuntimeException("Erreur type : " + operation + " avec "+ type_insert + " au lieu de "+ type_request );
+            System.out.println(ANSI_RED + "Erreur type : " + operation + " avec "+ type_insert + " au lieu de "+ type_request + ANSI_RESET);
         }
     }
 
     public void cond(String type) {
         if (type.equals("void")) {
-            throw new RuntimeException("Erreur condition : = au lieu de ==");
+            System.out.println(ANSI_RED + "Erreur condition : = au lieu de ==" + ANSI_RESET);
         }
     }
 
     public void fonc_deja_def(String name) {
         if (TableFunction.containsKey(name)) {
-            throw new RuntimeException("Erreur fonction : "+ name +" deja definie");
+            System.out.println(ANSI_RED + "Erreur fonction : "+ name +" deja definie" + ANSI_RESET);
         }
     }
 
     public void divis_zero(String value) {
         if (value.equals("0")) {
-            throw new RuntimeException("Erreur division par zero");
+            System.out.println(ANSI_RED + "Erreur division par zero" + ANSI_RESET);
         }
     }
 
