@@ -2,9 +2,13 @@ struct nombre {
     int val;
 };
 
-int main(int a) {
+int addition(int a) {
     if (1) {
         struct nombre * a;
     }
+    return a;
+}
+
+int main() {
     return a;
 }

@@ -44,8 +44,7 @@ public class TdsVisitor implements AstVisitor<String> {
         graphviztds.addEndTable();
         //test le main_non_def
         test.fonc_non_def("main");
-        
-
+        test.test_main();
 
         return null;
     }
@@ -101,7 +100,8 @@ public class TdsVisitor implements AstVisitor<String> {
 
         // visite des blocs de la fonction
         Bloc bloc = (Bloc) def_fct_int.bloc;
-        bloc.accept(this);
+        String contient_return = bloc.accept(this);
+        this.test.return_bloc(nom, contient_return);
 
         // fin du bloc et on le retire de la stack
         graphviztds.addEndTable();
@@ -142,7 +142,8 @@ public class TdsVisitor implements AstVisitor<String> {
         }
 
         // visite des blocs de la fonction
-        bloc.accept(this);
+        String contient_return = bloc.accept(this);
+        this.test.return_bloc(nom, contient_return);
 
         // fin du bloc et on le retire de la stack
         graphviztds.addEndTable();
@@ -176,7 +177,8 @@ public class TdsVisitor implements AstVisitor<String> {
         this.blocLabel.push("fonction");
 
         // visite des blocs de la fonction
-        bloc.accept(this);
+        String contient_return = bloc.accept(this);
+        this.test.return_bloc(nom, contient_return);
 
         // fin du bloc et on le retire de la stack
         graphviztds.addEndTable();
@@ -220,7 +222,8 @@ public class TdsVisitor implements AstVisitor<String> {
         }
 
         // visite des blocs de la fonction
-        bloc.accept(this);
+        String contient_return = bloc.accept(this);
+        this.test.return_bloc(nom, contient_return);
 
         // fin du bloc et on le retire de la stack
         graphviztds.addEndTable();
@@ -344,6 +347,8 @@ public class TdsVisitor implements AstVisitor<String> {
         //recupère le label (bloc if, while...)
         String label = blocLabel.lastElement();
 
+        String contient_return = "";
+
         //si c'est une fonction, on change pas de bloc
         //on ajoute directement les attributs
         if (label.equals("fonction")) {
@@ -352,11 +357,17 @@ public class TdsVisitor implements AstVisitor<String> {
                 if (var != null) {
                     if (var instanceof Bloc) {
                         blocLabel.push("bloc");
-                        var.accept(this);
+                        String contient_return_bloc = var.accept(this);
+                        if (contient_return_bloc.equals("return")) {
+                            contient_return = "return";
+                        }
                         blocLabel.pop();
                     }
                     else {
-                        var.accept(this);
+                        String contient_return_bloc = var.accept(this);
+                        if (contient_return_bloc.equals("return")) {
+                            contient_return = "return";
+                        }
                     }
 
                 }
@@ -375,7 +386,10 @@ public class TdsVisitor implements AstVisitor<String> {
             ArrayList<Ast> vars = bloc.vars;
             for (Ast var : vars) {
                 if (var != null) {
-                    var.accept(this);
+                    String contient_return_bloc = var.accept(this);
+                    if (contient_return_bloc.equals("return")) {
+                        contient_return = "return";
+                    }
                 }
             }
 
@@ -386,7 +400,7 @@ public class TdsVisitor implements AstVisitor<String> {
             NumImbr--;
         }
 
-        return "void";
+        return contient_return;
     }
 
     @Override
@@ -532,9 +546,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //ajout des paramètres dans la table et le graph de la TDS
         actualTable.addParam(nom, "int");
-        String deplacement = String.valueOf(depl*4);
-        graphviztds.addElement(nom, "param", "int", deplacement);
-        depl++;
+        graphviztds.addElement(nom, "param", "int", "- X -");
 
         //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
         test.TdsStack.push(actualTable);
@@ -558,9 +570,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
         //ajout des variables dans la table et le graph de la TDS
         actualTable.addParam(nom, type);
-        String deplacement = String.valueOf(depl*4);
-        graphviztds.addElement(nom, "param", type, deplacement);
-        depl++;
+        graphviztds.addElement(nom, "param", type, "- X -");
 
         //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
         test.TdsStack.push(actualTable);
@@ -600,7 +610,7 @@ public class TdsVisitor implements AstVisitor<String> {
         
         blocLabel.pop();
 
-        return null;
+        return "void";
     }
 
     @Override
@@ -612,11 +622,13 @@ public class TdsVisitor implements AstVisitor<String> {
         blocLabel.push("Bloc If");
         Ast blocif = ifelseinstr.instruction1;
 
+        String contient_return_if = "";
+
         if (blocif == null) {
             createBloc();
         }
         else if (blocif instanceof Bloc) {
-            blocif.accept(this);
+            contient_return_if = blocif.accept(this);
         }
         else {
             String label = blocLabel.lastElement();
@@ -626,7 +638,7 @@ public class TdsVisitor implements AstVisitor<String> {
             graphviztds.addStartTable("bloc : " + label + "  " + NumImbr);
             this.test.TdsStack.push(tdsbloc);
 
-            blocif.accept(this);
+            contient_return_if = blocif.accept(this);
 
             NumImbr--;
             graphviztds.addEndTable();
@@ -634,6 +646,8 @@ public class TdsVisitor implements AstVisitor<String> {
         }
         
         blocLabel.pop();
+
+        String contient_return_else = "";
 
         blocLabel.push("Bloc Else");
         Ast blocelse = ifelseinstr.instruction2;
@@ -642,7 +656,7 @@ public class TdsVisitor implements AstVisitor<String> {
             createBloc();
         }
         else if (blocelse instanceof Bloc) {
-            blocelse.accept(this);
+            contient_return_else = blocelse.accept(this);
         }
         else {
             String label = blocLabel.lastElement();
@@ -652,7 +666,7 @@ public class TdsVisitor implements AstVisitor<String> {
             graphviztds.addStartTable("bloc : " + label + "  " + NumImbr);
             this.test.TdsStack.push(tdsbloc);
 
-            blocelse.accept(this);
+            contient_return_else = blocelse.accept(this);
 
             NumImbr--;
             graphviztds.addEndTable();
@@ -660,8 +674,12 @@ public class TdsVisitor implements AstVisitor<String> {
         }
         
         blocLabel.pop();
+        String contient_return = "";
+        if (contient_return_if.equals("return") && contient_return_else.equals("return")) {
+            contient_return = "return";
+        }
 
-        return null;
+        return contient_return;
     }
 
     @Override
@@ -697,7 +715,7 @@ public class TdsVisitor implements AstVisitor<String> {
         
         blocLabel.pop();
 
-        return null;
+        return "void";
     }
 
     @Override
@@ -707,7 +725,7 @@ public class TdsVisitor implements AstVisitor<String> {
         String typeRetour = ret.expr.accept(this);
         this.test.return_type(typeRetour) ;
 
-        return "void";
+        return "return";
     }
 
     @Override
