@@ -25,17 +25,25 @@ public class TestSemantique {
 
     public String fonc_non_def(String name) {
         if (!TableFunction.containsKey(name)) {
-            throw new RuntimeException("Erreur fonction : " + name + " => non definie");
+            throw new RuntimeException("Erreur fonction : " + name + " non definie");
         }
         TdsFunction fct = TableFunction.get(name);
         return fct.type;
 
     }
 
+    public void test_main() {
+        TdsFunction fct_main = TableFunction.get("main");
+        int nb_var = fct_main.params.size();
+        if (nb_var != 0) {
+            throw new RuntimeException("Le profil de main ne correspond pas");
+        }
+    }
+
     public String struct_non_def(String type) {
         type = "struct " + type ;
         if (!TableStruct.containsKey(type)) {
-            throw new RuntimeException("Erreur struct : " + type + " => non definie");
+            throw new RuntimeException("Erreur struct : " + type + " non definie");
         }
         TdsStruct struct = TableStruct.get(type);
         return type ;
@@ -44,7 +52,7 @@ public class TestSemantique {
     public void struct_deja_def(String type) {
         type = "struct " + type ;
         if (TableStruct.containsKey(type)) {
-            throw new RuntimeException("Erreur struct : " + type + " => déjà definie");
+            throw new RuntimeException("Erreur struct : " + type + " deja definie");
         }
     }
 
@@ -57,8 +65,10 @@ public class TestSemantique {
         }
     }
 
-    public void return_bloc(String name) {
-
+    public void return_bloc(String name, String contient_return) {
+        if (! contient_return.equals("return")) {
+            throw new RuntimeException("fonction : " + name + " ne renvoie pas d'element dans tous les cas");
+        }
     }
 
     public void type_param(String name, ArrayList<String> declParamTypes) {
@@ -80,7 +90,7 @@ public class TestSemantique {
         int nb_param = function.params.size();
 
         if (nb_param != nb) {
-            throw new RuntimeException("Erreur fonction : " + name + " => nombre de paramètres ne correspond pas");
+            throw new RuntimeException("Erreur fonction : " + name + " le nombre de parametres ne correspond pas");
         }
 
     }
@@ -112,7 +122,7 @@ public class TestSemantique {
 
         }
 
-        throw new RuntimeException("Erreur variable : " + name + " => non definie");
+        throw new RuntimeException("Erreur variable : " + name + " non definie");
 
     }
 
@@ -133,11 +143,11 @@ public class TestSemantique {
         }
 
         if (liste_var.containsKey(name)) {
-            throw new RuntimeException("Erreur variable : " + name + " => déjà definie");
+            throw new RuntimeException("Erreur variable : " + name + " deja definie");
         }
 
         if (liste_param.containsKey(name)) {
-            throw new RuntimeException("Erreur variable : " + name + " => déjà definie");
+            throw new RuntimeException("Erreur variable : " + name + " deja definie");
         }
 
         //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
@@ -168,19 +178,19 @@ public class TestSemantique {
 
     public void cond(String type) {
         if (type.equals("void")) {
-            throw new RuntimeException("Erreur condition : == au lieu de =");
+            throw new RuntimeException("Erreur condition : = au lieu de ==");
         }
     }
 
     public void fonc_deja_def(String name) {
         if (TableFunction.containsKey(name)) {
-            throw new RuntimeException("Erreur fonction : "+ name +" => déjà definie");
+            throw new RuntimeException("Erreur fonction : "+ name +" deja definie");
         }
     }
 
     public void divis_zero(String value) {
         if (value.equals("0")) {
-            throw new RuntimeException("Erreur division par zéro");
+            throw new RuntimeException("Erreur division par zero");
         }
     }
 
