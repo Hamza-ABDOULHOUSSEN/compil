@@ -28,4 +28,5 @@ int main() {
     s->right = b;
 
     print(result(s));
+    return 0;
 }
