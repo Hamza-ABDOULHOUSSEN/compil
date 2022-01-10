@@ -9,28 +9,33 @@
 ## Contenu du répertoire
 * [sujet du projet](sujet-Projet-2021-22.pdf)
 * dossier Code : contenant le code
+* dossier Rapports : contenant les rapports d'activité
 
 ## Script test
 Les tests sont placés dans le dossier `Code/examples`
 
-### Le fichier launch.sh permet de lancer la génération d'arbre syntaxique pur ou de l'AST ou de lancer tous les tests
+### Le fichier launch.sh permet de lancer la génération d'arbre syntaxique pur, de l'AST, de la TDS ou de lancer tous les tests
 Dans Code
 éxécuter  
 ```
 ./launch.sh
 ```
 
-## Génération d'arbre syntaxique pur ou de l'AST
+## Génération d'arbre syntaxique pur, de l'AST ou de la TDS
 
-* Il faut d'abord choisir l'arbre (insérer 0 ou 1)
+* Il faut d'abord choisir l'objet généré (insérer 0 1 ou 2)
 
 ```
 0 : complete tree
 1 : ast
-2 : test all complete tree
-3 : generate all ast
-4 : syntax error detection
-Which option [0/1/2/3/4] : 
+2 : tds
+3 : test all complete tree
+4 : generate all ast
+5 : generate all tds
+6 : syntax error detection
+7 : semantics error detection
+Which option [0/1/2/3/4/5/6/7] : 
+
 ```
 
 * Ensuite insérer le nom du fichier test dans `examples`
@@ -39,30 +44,32 @@ Which option [0/1/2/3/4] :
 test files :
 Test_Complet/test.exp
 Test_Complet/test_min.exp
-Test_Unaire/expr.exp
-Test_Unaire/decl_typ.exp
-Test_Unaire/struct.exp
-Test_Unaire/decl_fct.exp
-codestruct.exp
-tdsTest.exp
+Test_Complet/test1.exp
+Test_Complet/test3.exp
+Test_Complet/test2.exp
+Test_Complet/test6.exp
+Test_Complet/test7.exp
+Test_Complet/test5.exp
+Test_Complet/test4.exp
+...
 
 Which test from examples (ex Test_Complet/test) : 
 ```
 
-* Puis, pour l'AST choisir le nom des fichiers générés dans out 
+* Puis, pour l'AST ou la TDS choisir le nom des fichiers générés dans out 
 
 ```
 Which name for the ast :
 ```
 
-* Enfin, si l'AST existe déjà, choisir d'écraser le fichier ou non
+* Enfin, si l'AST ou la TDS existe déjà, choisir d'écraser le fichier ou non
 ```
 file already exists
 overwrite [y/n] : 
 ```
 
 ## Lancement de tous les tests
-* L'option 2 `check` permet de lancer tous les tests présents dans `examples`
+* L'option 3 permet de verifier la syntaxe sur tous les tests présents dans examples
 
 ```
 =========== Analyse : test1 ===========
@@ -78,7 +85,7 @@ overwrite [y/n] :
 ### ❌ ❌ ❌ : test failed ###
 ```
 
-* L'option 3 permet de générer tous les ast pour les tests valides présents dans `examples`
+* L'option 4 permet de générer tous les ast pour les tests valides présents dans `examples`
 
 ```
 ========================================================== Ast creation test ==========================================================
@@ -97,7 +104,24 @@ overwrite [y/n] :
 ### ❌ ❌ ❌ : ERROR ###
 ```
 
-* L'option 4 lance les exemples avec erreurs pour vérifier leurs détectitons
+* L'option 5 permet de générer tous les ast pour les tests sémantiquement correctes présents dans `examples`
+
+```
+=================== Test_Semantique ====================
+
+=========== TDS creation : annuaire ===========
+[+] TDS file dot generation
+[+] TDS file svg generation
+### ✅ ✅ ✅ : Done, files are in out ###
+
+=========== TDS creation : codestruct ===========
+[+] TDS file dot generation
+[+] TDS file svg generation
+### ✅ ✅ ✅ : Done, files are in out ###
+```
+
+
+* L'option 6 lance les exemples avec erreurs pour vérifier leurs détectitons
 
 ```
 ========================================================== Syntax error detection ==========================================================
@@ -115,6 +139,23 @@ overwrite [y/n] :
 [+] Generation ast file svg
 ### ❌ ❌ ❌ : The error was not seen ###
 ### files are in out ###
+```
+
+* L'option 7 lance les exemples avec erreurs sémantiques pour vérifier leurs détectitons
+
+```
+=================== Test_Erreur_Semantique ====================
+
+=========== Semantics check : cond1Y ===========
+[+] TDS file dot generation
+Erreur condition : == au lieu de =
+### ✅ ✅ ✅ : The error was detected ###
+
+=========== Semantics check : divis_zero1Y ===========
+[+] TDS file dot generation
+Erreur division par zéro
+### ✅ ✅ ✅ : The error was detected ###
+
 ```
 
 ### Raccourci launch.sh
@@ -135,19 +176,36 @@ Génère l'AST pour le fichier test.exp dans les fichiers tree.dot et tree.svg.
 La commande écrase les fichiers déjà présents.
 
 ```
-./launch.sh 2
+./launch.sh 2 Test_Complet/test tree
 ```
-Verifie la lecture des tests sans erreur par la grammaire
+
+Génère la TDS pour le fichier test.exp dans les fichiers tree.dot et tree.svg.  
+La commande écrase les fichiers déjà présents.
 
 ```
 ./launch.sh 3
 ```
-Génère l'AST pour tous les tests sans erreur
+Verifie la lecture des tests sans erreur par la grammaire
 
 ```
 ./launch.sh 4
 ```
+Génère l'AST pour tous les tests sans erreur
+
+```
+./launch.sh 5
+```
+Génère la TDS pour tous les tests sans erreur
+
+```
+./launch.sh 6
+```
 Vérifie la détection d'erreur syntaxique pour les tests avec erreurs
+
+```
+./launch.sh 7
+```
+Vérifie la détection d'erreur sémantique pour les tests avec erreurs
 
 ## Tester si le code fonctionne en C
 Pour tester si le code fonctionne ou pour voir l'erreur donnée
