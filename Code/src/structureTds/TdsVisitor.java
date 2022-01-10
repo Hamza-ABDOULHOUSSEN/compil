@@ -580,12 +580,22 @@ public class TdsVisitor implements AstVisitor<String> {
         if (blocif == null) {
             createBloc();
         }
-        else if (blocif instanceof Bloc || blocif instanceof If || blocif instanceof IfElse || blocif instanceof While ) {
+        else if (blocif instanceof Bloc) {
             blocif.accept(this);
         }
         else {
-            createBloc();
+            String label = blocLabel.lastElement();
+            TdsBloc tdsbloc = new TdsBloc(test.TdsStack.lastElement(), NumImbr);
+
+            NumImbr++;
+            graphviztds.addStartTable("bloc : " + label + "  " + NumImbr);
+            this.test.TdsStack.push(tdsbloc);
+
             blocif.accept(this);
+
+            NumImbr--;
+            graphviztds.addEndTable();
+            test.TdsStack.pop();
         }
         
         blocLabel.pop();
@@ -605,12 +615,22 @@ public class TdsVisitor implements AstVisitor<String> {
         if (blocif == null) {
             createBloc();
         }
-        else if (blocif instanceof Bloc || blocif instanceof If || blocif instanceof IfElse || blocif instanceof While ) {
+        else if (blocif instanceof Bloc) {
             blocif.accept(this);
         }
         else {
-            createBloc();
+            String label = blocLabel.lastElement();
+            TdsBloc tdsbloc = new TdsBloc(test.TdsStack.lastElement(), NumImbr);
+
+            NumImbr++;
+            graphviztds.addStartTable("bloc : " + label + "  " + NumImbr);
+            this.test.TdsStack.push(tdsbloc);
+
             blocif.accept(this);
+
+            NumImbr--;
+            graphviztds.addEndTable();
+            test.TdsStack.pop();
         }
         
         blocLabel.pop();
@@ -621,12 +641,22 @@ public class TdsVisitor implements AstVisitor<String> {
         if (blocelse == null) {
             createBloc();
         }
-        else if (blocelse instanceof Bloc || blocelse instanceof If || blocelse instanceof IfElse || blocelse instanceof While ) {
+        else if (blocelse instanceof Bloc) {
             blocelse.accept(this);
         }
         else {
-            createBloc();
+            String label = blocLabel.lastElement();
+            TdsBloc tdsbloc = new TdsBloc(test.TdsStack.lastElement(), NumImbr);
+
+            NumImbr++;
+            graphviztds.addStartTable("bloc : " + label + "  " + NumImbr);
+            this.test.TdsStack.push(tdsbloc);
+
             blocelse.accept(this);
+
+            NumImbr--;
+            graphviztds.addEndTable();
+            test.TdsStack.pop();
         }
         
         blocLabel.pop();
@@ -647,12 +677,22 @@ public class TdsVisitor implements AstVisitor<String> {
         if (blocwhile == null) {
             createBloc();
         }
-        else if (blocwhile instanceof Bloc || blocwhile instanceof If || blocwhile instanceof IfElse || blocwhile instanceof While ) {
+        else if (blocwhile instanceof Bloc) {
             blocwhile.accept(this);
         }
         else {
-            createBloc();
+            String label = blocLabel.lastElement();
+            TdsBloc tdsbloc = new TdsBloc(test.TdsStack.lastElement(), NumImbr);
+
+            NumImbr++;
+            graphviztds.addStartTable("bloc : " + label + "  " + NumImbr);
+            this.test.TdsStack.push(tdsbloc);
+
             blocwhile.accept(this);
+
+            NumImbr--;
+            graphviztds.addEndTable();
+            test.TdsStack.pop();
         }
         
         blocLabel.pop();
