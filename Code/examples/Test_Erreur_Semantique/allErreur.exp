@@ -1,0 +1,40 @@
+struct maison * {
+    int adresse ;
+    int adresse ;
+} ;
+
+struct maison * {
+    int adresse ;
+} ;
+
+int f() {
+    int a ;
+    if (a == 1) {
+        c = 5
+    }
+    int b ;
+    int a ;
+    g(5) ;
+    return 0 ;
+}
+
+int f() {
+    return 0 ;
+}
+
+struct * person g(struct * person x) {
+    int x ;
+    if (x == 1) {
+        return x ;
+    }
+    struct maison * m ;
+    g(x) ;
+    f(x) ;
+    if (x = 2) {
+        x + m ;
+
+    }
+    m->salon = 5 ;
+    x = m/0 ;
+    f() = 5 ;
+} 
