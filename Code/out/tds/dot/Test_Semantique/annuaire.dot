@@ -3,49 +3,49 @@ digraph "tds"{
 	node [fontname="Arial"];
 
 	N1 [shape=record label="{ structure : struct person 1
-	| { nom | attribut | int | depl }
-	| { tel | attribut | int | depl }
+	| { nom | attribut | int | 4 }
+	| { tel | attribut | int | 8 }
 	}"];
 
 	N2 [shape=record label="{ structure : struct list 1
-	| { p | attribut | struct person | depl }
-	| { suiv | attribut | struct list | depl }
+	| { p | attribut | struct person | 4 }
+	| { suiv | attribut | struct list | 8 }
 	}"];
 
 	N3 [shape=record label="{ structure : struct directory 1
-	| { liste | attribut | struct list | depl }
-	| { taille | attribut | int | depl }
+	| { liste | attribut | struct list | 4 }
+	| { taille | attribut | int | 8 }
 	}"];
 
 	N4 [shape=record label="{ fonction : struct person * person_create 1
-	| { nom | param | int | depl }
-	| { tel | param | int | depl }
-	| { p | attribut | struct person | depl }
+	| { nom | param | int | - X - }
+	| { tel | param | int | - X - }
+	| { p | attribut | struct person | 4 }
 	}"];
 
 	N5 [shape=record label="{ fonction : struct directory * directory_create 1
-	| { d | attribut | struct directory | depl }
+	| { d | attribut | struct directory | 4 }
 	}"];
 
 	N6 [shape=record label="{ fonction : struct directory * directory_add_person 1
-	| { d | param | struct directory | depl }
-	| { p | param | struct person | depl }
-	| { new_liste | attribut | struct list | depl }
+	| { d | param | struct directory | - X - }
+	| { p | param | struct person | - X - }
+	| { new_liste | attribut | struct list | 4 }
 	}"];
 
 	N8 [shape=record label="{ bloc : Bloc While  2
 	}"];
 
 	N7 [shape=record label="{ fonction : int directory_display 1
-	| { d | param | struct directory | depl }
-	| { l_copy | attribut | struct list | depl }
+	| { d | param | struct directory | - X - }
+	| { l_copy | attribut | struct list | 4 }
 	}"];
 
 	N9 [shape=record label="{ fonction : int main 1
-	| { d | attribut | struct directory | depl }
-	| { p1 | attribut | struct person | depl }
-	| { p2 | attribut | struct person | depl }
-	| { p3 | attribut | struct person | depl }
+	| { d | attribut | struct directory | 4 }
+	| { p1 | attribut | struct person | 8 }
+	| { p2 | attribut | struct person | 12 }
+	| { p3 | attribut | struct person | 16 }
 	}"];
 
 	N0 [shape=record label="{ global 0

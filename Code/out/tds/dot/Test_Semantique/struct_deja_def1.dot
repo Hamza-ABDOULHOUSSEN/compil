@@ -3,8 +3,8 @@ digraph "tds"{
 	node [fontname="Arial"];
 
 	N1 [shape=record label="{ structure : struct nombre 1
-	| { val | attribut | int | depl }
-	| { suiv | attribut | struct nombre | depl }
+	| { val | attribut | int | 4 }
+	| { suiv | attribut | struct nombre | 8 }
 	}"];
 
 	N2 [shape=record label="{ fonction : int main 1

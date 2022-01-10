@@ -3,18 +3,18 @@ digraph "tds"{
 	node [fontname="Arial"];
 
 	N1 [shape=record label="{ structure : struct nombre 1
-	| { val | attribut | int | depl }
+	| { val | attribut | int | 4 }
 	}"];
 
 	N2 [shape=record label="{ fonction : int somme 1
-	| { a | param | int | depl }
-	| { b | param | int | depl }
-	| { c | param | int | depl }
-	| { d | param | int | depl }
+	| { a | param | int | - X - }
+	| { b | param | int | - X - }
+	| { c | param | int | - X - }
+	| { d | param | int | - X - }
 	}"];
 
 	N4 [shape=record label="{ bloc : Bloc While  2
-	| { x | attribut | int | depl }
+	| { x | attribut | int | 4 }
 	}"];
 
 	N3 [shape=record label="{ fonction : int main 1

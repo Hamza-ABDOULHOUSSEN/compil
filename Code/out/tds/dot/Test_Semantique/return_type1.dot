@@ -3,15 +3,18 @@ digraph "tds"{
 	node [fontname="Arial"];
 
 	N1 [shape=record label="{ structure : struct nombre 1
-	| { val | attribut | int | depl }
+	| { val | attribut | int | 4 }
 	}"];
 
 	N3 [shape=record label="{ bloc : Bloc If  2
-	| { a | attribut | struct nombre | depl }
+	| { a | attribut | struct nombre | 4 }
 	}"];
 
-	N2 [shape=record label="{ fonction : int main 1
-	| { a | param | int | depl }
+	N2 [shape=record label="{ fonction : int addition 1
+	| { a | param | int | - X - }
+	}"];
+
+	N4 [shape=record label="{ fonction : int main 1
 	}"];
 
 	N0 [shape=record label="{ global 0
@@ -21,4 +24,5 @@ digraph "tds"{
 	N0 -> N1; 
 	N0 -> N2; 
 	N2 -> N3; 
+	N0 -> N4; 
 }

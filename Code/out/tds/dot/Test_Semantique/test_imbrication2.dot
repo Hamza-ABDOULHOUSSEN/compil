@@ -1,0 +1,41 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N4 [shape=record label="{ bloc : Bloc While  4
+	}"];
+
+	N3 [shape=record label="{ bloc : Bloc If  3
+	}"];
+
+	N7 [shape=record label="{ bloc : Bloc While  5
+	}"];
+
+	N6 [shape=record label="{ bloc : Bloc While  4
+	}"];
+
+	N5 [shape=record label="{ bloc : Bloc Else  3
+	}"];
+
+	N2 [shape=record label="{ bloc : Bloc If  2
+	}"];
+
+	N8 [shape=record label="{ bloc : Bloc Else  2
+	}"];
+
+	N1 [shape=record label="{ fonction : int main 1
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N1 -> N2; 
+	N2 -> N3; 
+	N3 -> N4; 
+	N2 -> N5; 
+	N5 -> N6; 
+	N6 -> N7; 
+	N1 -> N8; 
+}

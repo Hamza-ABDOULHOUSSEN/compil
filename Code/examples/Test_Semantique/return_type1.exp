@@ -10,5 +10,5 @@ int addition(int a) {
 }
 
 int main() {
-    return a;
+    return 0;
 }
