@@ -21,7 +21,7 @@
 <polyline fill="none" stroke="black" points="132,-23.5 132,-46.5 "/>
 <text text-anchor="middle" x="157" y="-31.3" font-family="Arial" font-size="14.00">int</text>
 <polyline fill="none" stroke="black" points="182,-23.5 182,-46.5 "/>
-<text text-anchor="middle" x="204" y="-31.3" font-family="Arial" font-size="14.00">4</text>
+<text text-anchor="middle" x="204" y="-31.3" font-family="Arial" font-size="14.00">0</text>
 <polyline fill="none" stroke="black" points="0,-23.5 226,-23.5 "/>
 <text text-anchor="middle" x="20.5" y="-8.3" font-family="Arial" font-size="14.00">suiv</text>
 <polyline fill="none" stroke="black" points="41,-0.5 41,-23.5 "/>
@@ -29,7 +29,7 @@
 <polyline fill="none" stroke="black" points="100,-0.5 100,-23.5 "/>
 <text text-anchor="middle" x="151" y="-8.3" font-family="Arial" font-size="14.00">struct nombre</text>
 <polyline fill="none" stroke="black" points="202,-0.5 202,-23.5 "/>
-<text text-anchor="middle" x="214" y="-8.3" font-family="Arial" font-size="14.00">8</text>
+<text text-anchor="middle" x="214" y="-8.3" font-family="Arial" font-size="14.00">4</text>
 </g>
 <!-- N2 -->
 <g id="node2" class="node">

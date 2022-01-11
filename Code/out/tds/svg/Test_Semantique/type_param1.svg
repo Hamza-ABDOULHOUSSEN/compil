@@ -21,7 +21,7 @@
 <polyline fill="none" stroke="black" points="109,-118 109,-141 "/>
 <text text-anchor="middle" x="128.5" y="-125.8" font-family="Arial" font-size="14.00">int</text>
 <polyline fill="none" stroke="black" points="148,-118 148,-141 "/>
-<text text-anchor="middle" x="164" y="-125.8" font-family="Arial" font-size="14.00">4</text>
+<text text-anchor="middle" x="164" y="-125.8" font-family="Arial" font-size="14.00">0</text>
 </g>
 <!-- N2 -->
 <g id="node2" class="node">
@@ -73,7 +73,7 @@
 <polyline fill="none" stroke="black" points="453,-0.5 453,-23.5 "/>
 <text text-anchor="middle" x="468.5" y="-8.3" font-family="Arial" font-size="14.00">int</text>
 <polyline fill="none" stroke="black" points="484,-0.5 484,-23.5 "/>
-<text text-anchor="middle" x="496" y="-8.3" font-family="Arial" font-size="14.00">4</text>
+<text text-anchor="middle" x="496" y="-8.3" font-family="Arial" font-size="14.00">0</text>
 </g>
 <!-- N3 -->
 <g id="node4" class="node">

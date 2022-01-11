@@ -21,7 +21,7 @@
 <polyline fill="none" stroke="black" points="117,-431.5 117,-454.5 "/>
 <text text-anchor="middle" x="138.5" y="-439.3" font-family="Arial" font-size="14.00">int</text>
 <polyline fill="none" stroke="black" points="160,-431.5 160,-454.5 "/>
-<text text-anchor="middle" x="178" y="-439.3" font-family="Arial" font-size="14.00">4</text>
+<text text-anchor="middle" x="178" y="-439.3" font-family="Arial" font-size="14.00">0</text>
 <polyline fill="none" stroke="black" points="0,-431.5 196,-431.5 "/>
 <text text-anchor="middle" x="20.5" y="-416.3" font-family="Arial" font-size="14.00">suiv</text>
 <polyline fill="none" stroke="black" points="41,-408.5 41,-431.5 "/>
@@ -29,7 +29,7 @@
 <polyline fill="none" stroke="black" points="100,-408.5 100,-431.5 "/>
 <text text-anchor="middle" x="136" y="-416.3" font-family="Arial" font-size="14.00">struct list</text>
 <polyline fill="none" stroke="black" points="172,-408.5 172,-431.5 "/>
-<text text-anchor="middle" x="184" y="-416.3" font-family="Arial" font-size="14.00">8</text>
+<text text-anchor="middle" x="184" y="-416.3" font-family="Arial" font-size="14.00">4</text>
 </g>
 <!-- N4 -->
 <g id="node2" class="node">
@@ -77,7 +77,7 @@
 <polyline fill="none" stroke="black" points="343,-408.5 343,-431.5 "/>
 <text text-anchor="middle" x="365.5" y="-416.3" font-family="Arial" font-size="14.00">int</text>
 <polyline fill="none" stroke="black" points="388,-408.5 388,-431.5 "/>
-<text text-anchor="middle" x="407" y="-416.3" font-family="Arial" font-size="14.00">4</text>
+<text text-anchor="middle" x="407" y="-416.3" font-family="Arial" font-size="14.00">0</text>
 <polyline fill="none" stroke="black" points="214,-408.5 426,-408.5 "/>
 <text text-anchor="middle" x="242.5" y="-393.3" font-family="Arial" font-size="14.00">l_copy</text>
 <polyline fill="none" stroke="black" points="271,-385.5 271,-408.5 "/>
@@ -85,7 +85,7 @@
 <polyline fill="none" stroke="black" points="330,-385.5 330,-408.5 "/>
 <text text-anchor="middle" x="366" y="-393.3" font-family="Arial" font-size="14.00">struct list</text>
 <polyline fill="none" stroke="black" points="402,-385.5 402,-408.5 "/>
-<text text-anchor="middle" x="414" y="-393.3" font-family="Arial" font-size="14.00">8</text>
+<text text-anchor="middle" x="414" y="-393.3" font-family="Arial" font-size="14.00">4</text>
 </g>
 <!-- N2&#45;&gt;N3 -->
 <g id="edge3" class="edge">
@@ -121,7 +121,7 @@
 <polyline fill="none" stroke="black" points="578,-397 578,-420 "/>
 <text text-anchor="middle" x="614" y="-404.8" font-family="Arial" font-size="14.00">struct list</text>
 <polyline fill="none" stroke="black" points="650,-397 650,-420 "/>
-<text text-anchor="middle" x="662" y="-404.8" font-family="Arial" font-size="14.00">4</text>
+<text text-anchor="middle" x="662" y="-404.8" font-family="Arial" font-size="14.00">0</text>
 </g>
 <!-- N7 -->
 <g id="node6" class="node">
@@ -231,7 +231,7 @@
 <polyline fill="none" stroke="black" points="782,-408.5 782,-431.5 "/>
 <text text-anchor="middle" x="818" y="-416.3" font-family="Arial" font-size="14.00">struct list</text>
 <polyline fill="none" stroke="black" points="854,-408.5 854,-431.5 "/>
-<text text-anchor="middle" x="866" y="-416.3" font-family="Arial" font-size="14.00">4</text>
+<text text-anchor="middle" x="866" y="-416.3" font-family="Arial" font-size="14.00">0</text>
 </g>
 <!-- N6&#45;&gt;N7 -->
 <g id="edge7" class="edge">

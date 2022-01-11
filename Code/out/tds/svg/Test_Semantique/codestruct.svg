@@ -21,7 +21,7 @@
 <polyline fill="none" stroke="black" points="109,-23.5 109,-46.5 "/>
 <text text-anchor="middle" x="128.5" y="-31.3" font-family="Arial" font-size="14.00">int</text>
 <polyline fill="none" stroke="black" points="148,-23.5 148,-46.5 "/>
-<text text-anchor="middle" x="164" y="-31.3" font-family="Arial" font-size="14.00">4</text>
+<text text-anchor="middle" x="164" y="-31.3" font-family="Arial" font-size="14.00">0</text>
 </g>
 <!-- N2 -->
 <g id="node2" class="node">
@@ -35,7 +35,7 @@
 <polyline fill="none" stroke="black" points="296.5,-35 296.5,-58 "/>
 <text text-anchor="middle" x="348.5" y="-42.8" font-family="Arial" font-size="14.00">struct nombre</text>
 <polyline fill="none" stroke="black" points="400.5,-35 400.5,-58 "/>
-<text text-anchor="middle" x="414" y="-42.8" font-family="Arial" font-size="14.00">4</text>
+<text text-anchor="middle" x="414" y="-42.8" font-family="Arial" font-size="14.00">0</text>
 <polyline fill="none" stroke="black" points="198.5,-35 427.5,-35 "/>
 <text text-anchor="middle" x="220.5" y="-19.8" font-family="Arial" font-size="14.00">right</text>
 <polyline fill="none" stroke="black" points="242.5,-12 242.5,-35 "/>
@@ -65,7 +65,7 @@
 <polyline fill="none" stroke="black" points="577,-12 577,-35 "/>
 <text text-anchor="middle" x="602" y="-19.8" font-family="Arial" font-size="14.00">int</text>
 <polyline fill="none" stroke="black" points="627,-12 627,-35 "/>
-<text text-anchor="middle" x="648.5" y="-19.8" font-family="Arial" font-size="14.00">4</text>
+<text text-anchor="middle" x="648.5" y="-19.8" font-family="Arial" font-size="14.00">0</text>
 </g>
 <!-- N4 -->
 <g id="node4" class="node">
@@ -79,7 +79,7 @@
 <polyline fill="none" stroke="black" points="774,-46.5 774,-69.5 "/>
 <text text-anchor="middle" x="826" y="-54.3" font-family="Arial" font-size="14.00">struct nombre</text>
 <polyline fill="none" stroke="black" points="878,-46.5 878,-69.5 "/>
-<text text-anchor="middle" x="891" y="-54.3" font-family="Arial" font-size="14.00">4</text>
+<text text-anchor="middle" x="891" y="-54.3" font-family="Arial" font-size="14.00">0</text>
 <polyline fill="none" stroke="black" points="688,-46.5 904,-46.5 "/>
 <text text-anchor="middle" x="700.5" y="-31.3" font-family="Arial" font-size="14.00">b</text>
 <polyline fill="none" stroke="black" points="713,-23.5 713,-46.5 "/>
@@ -95,7 +95,7 @@
 <polyline fill="none" stroke="black" points="771,-0.5 771,-23.5 "/>
 <text text-anchor="middle" x="821.5" y="-8.3" font-family="Arial" font-size="14.00">struct somme</text>
 <polyline fill="none" stroke="black" points="872,-0.5 872,-23.5 "/>
-<text text-anchor="middle" x="888" y="-8.3" font-family="Arial" font-size="14.00">12</text>
+<text text-anchor="middle" x="888" y="-8.3" font-family="Arial" font-size="14.00">16</text>
 </g>
 <!-- N0 -->
 <g id="node5" class="node">

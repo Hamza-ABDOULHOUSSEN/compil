@@ -3,8 +3,8 @@ digraph "tds"{
 	node [fontname="Arial"];
 
 	N1 [shape=record label="{ structure : struct list 1
-	| { val | attribut | int | 4 }
-	| { suiv | attribut | struct list | 8 }
+	| { val | attribut | int | 0 }
+	| { suiv | attribut | struct list | 4 }
 	}"];
 
 	N4 [shape=record label="{ bloc : Bloc If  3
@@ -16,14 +16,14 @@ digraph "tds"{
 	N2 [shape=record label="{ fonction : int appartient 1
 	| { l | param | struct list | - X - }
 	| { val | param | int | - X - }
-	| { bool | attribut | int | 4 }
-	| { l_copy | attribut | struct list | 8 }
+	| { bool | attribut | int | 0 }
+	| { l_copy | attribut | struct list | 4 }
 	}"];
 
 	N5 [shape=record label="{ fonction : struct list * list_add 1
 	| { l | param | struct list | - X - }
 	| { val | param | int | - X - }
-	| { new_liste | attribut | struct list | 4 }
+	| { new_liste | attribut | struct list | 0 }
 	}"];
 
 	N7 [shape=record label="{ bloc : Bloc If  2
@@ -51,7 +51,7 @@ digraph "tds"{
 
 	N6 [shape=record label="{ fonction : int crible 1
 	| { n | param | int | - X - }
-	| { vu | attribut | struct list | 4 }
+	| { vu | attribut | struct list | 0 }
 	}"];
 
 	N14 [shape=record label="{ fonction : int main 1

@@ -1,0 +1,46 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N1 [shape=record label="{ structure : struct maison 1
+	| { surface | attribut | int | 0 }
+	}"];
+
+	N4 [shape=record label="{ bloc : Bloc If  3
+	| { e | attribut | int | 24 }
+	}"];
+
+	N5 [shape=record label="{ bloc : Bloc Else  3
+	| { f | attribut | int | 24 }
+	}"];
+
+	N3 [shape=record label="{ bloc : Bloc If  2
+	| { c | attribut | int | 12 }
+	| { d | attribut | struct maison | 16 }
+	}"];
+
+	N7 [shape=record label="{ bloc : bloc  3
+	| { h | attribut | int | 20 }
+	}"];
+
+	N6 [shape=record label="{ bloc : Bloc While  2
+	| { g | attribut | struct maison | 12 }
+	}"];
+
+	N2 [shape=record label="{ fonction : int main 1
+	| { a | attribut | int | 0 }
+	| { b | attribut | struct maison | 4 }
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N0 -> N2; 
+	N2 -> N3; 
+	N3 -> N4; 
+	N3 -> N5; 
+	N2 -> N6; 
+	N6 -> N7; 
+}
