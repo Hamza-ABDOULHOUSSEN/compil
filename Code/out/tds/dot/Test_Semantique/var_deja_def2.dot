@@ -7,7 +7,7 @@ digraph "tds"{
 	}"];
 
 	N3 [shape=record label="{ bloc : Bloc Else  2
-	| { x | attribut | int | 12 }
+	| { x | attribut | int | 8 }
 	}"];
 
 	N1 [shape=record label="{ fonction : int main 1
