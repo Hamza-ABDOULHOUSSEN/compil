@@ -1,46 +1,89 @@
-struct maison {
-    int adresse ;
-    int adresse ;
+struct structDejaDef {
+    int attribut ;
 } ;
 
-struct maison {
-    int adresse ;
+struct structDejaDef {
+    int attribut1 ;
+    int attribut2 ;
 } ;
 
-int f(int a, int b, int c) {
+int varNonDef(int a) {
+    a = b ;
+    return 0 ;
+}
+
+int varDejaDef(int a) {
     int a ;
-    if (a == 1) {
-        c = 5;
-    }
+    return 0 ;
+}
 
-    {
+int foncDejaDef() {
+    foncNonDef() ;
+    return 0 ;
+}
+
+int foncDejaDef() {
+    return 0 ;
+}
+
+int struct_Non_Def() {
+    struct structNonDef * s ;
+    return 0 ;
+}
+
+int returnType() {
+    struct structDejaDef * s ;
+    return s ;
+}
+
+int returnBloc() {
+    int a ;
+    if (a) {
+        return 0 ;
+    }
+    else {
+        int b ;
+    }
+}
+
+int typeParam(int a, struct structDejaDef * s) {
+    return 0 ;
+}
+
+int nombreParam() {
+    int a ;
     int b ;
+    typeParam(a, b) ;
+    return 0 ;
+}
+
+int cond() {
     int a ;
-    g(5) ;
+    nombreParam(a) ;
+    if (a = 1) {
+        int b ;
     }
-
     return 0 ;
 }
 
-int f() {
+int testType(int a, struct maison * m) {
+    int b ;
+    b = a + m ;
     return 0 ;
 }
 
-struct person * g(struct person * x) {
-    int x ;
-    if (x == 1) {
-        return x ;
-    }
-    {
-    struct maison * m ;
-    g(x) ;
-    f(x) ;
-    if (x = 2) {
-        x + m ;
+int testFlecheDef(struct structDejaDef * s) {
+    s->attribut3 ;
+    return 0 ;
+}
 
-    }
-    m->salon = 5 ;
-    x = m/0 ;
-    f() = 5 ;
-    }
-} 
+int divisionParZero(int a) {
+    a = a/0 ;
+    return 0 ;
+}
+
+int testAffectation() {
+    3 = 3 ;
+    return 0 ;
+}
+
