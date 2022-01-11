@@ -14,7 +14,7 @@ public class TdsVisitor implements AstVisitor<String> {
     
     public Stack<String> blocLabel = new Stack<String>();
     public int NumImbr = 0;
-    public int depl = 1;
+    public int depl = 0;
 
     public GraphVizTds graphviztds = new GraphVizTds();
     public TestSemantique test = new TestSemantique();
@@ -80,7 +80,7 @@ public class TdsVisitor implements AstVisitor<String> {
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
         NumImbr--;
-        depl=1;
+        depl=0;
 
         return "void";
     }
@@ -113,7 +113,7 @@ public class TdsVisitor implements AstVisitor<String> {
         this.test.TdsStack.pop();
         this.blocLabel.pop();
         NumImbr--;
-        depl=1;
+        depl=0;
 
         return "void";
     }
@@ -152,7 +152,7 @@ public class TdsVisitor implements AstVisitor<String> {
         this.test.TdsStack.pop();
         this.blocLabel.pop();
         NumImbr--;
-        depl=1;
+        depl=0;
 
         return "void";
     }
@@ -188,7 +188,7 @@ public class TdsVisitor implements AstVisitor<String> {
         this.test.struct_non_def(identType.name);
         this.blocLabel.pop();
         NumImbr--;
-        depl=1;
+        depl=0;
 
         return null;
     }
@@ -230,7 +230,7 @@ public class TdsVisitor implements AstVisitor<String> {
         this.test.struct_non_def(identType.name);
         this.blocLabel.pop();
         NumImbr--;
-        depl=1;
+        depl=0;
 
         return "void";
     }
@@ -521,9 +521,9 @@ public class TdsVisitor implements AstVisitor<String> {
 
             //ajout des variables dans la table et le graph de la TDS
             actualTable.addVariable(name, "int");
-            String deplacement = String.valueOf(depl*4);
+            String deplacement = String.valueOf(depl);
             graphviztds.addElement(name, "attribut", "int", deplacement);
-            depl++;
+            depl=depl+4;
 
             //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
             test.TdsStack.push(actualTable);
@@ -554,9 +554,9 @@ public class TdsVisitor implements AstVisitor<String> {
 
                 //ajout des variables dans la table et le graph de la TDS
                 actualTable.addVariable(name, type);
-                String deplacement = String.valueOf(depl*4);
+                String deplacement = String.valueOf(depl);
                 graphviztds.addElement(name, "attribut", type, deplacement);
-                depl++;
+                depl=depl+8;
 
                 //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
                 test.TdsStack.push(actualTable);
