@@ -66,9 +66,9 @@ int cond() {
     return 0 ;
 }
 
-int testType(int a, struct maison * m) {
+int testType(int a, struct structDejaDef * s) {
     int b ;
-    b = a + m ;
+    b = a + s ;
     return 0 ;
 }
 

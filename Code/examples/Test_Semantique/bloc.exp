@@ -1,0 +1,25 @@
+struct maison {
+    int surface;
+};
+
+int main() {
+    int a;
+    struct maison * b;
+    if (1) {
+        int c;
+        struct maison * d;
+        if (1) {
+            int e;
+        }
+        else {
+            int f;
+        }
+    }
+    while (1) {
+        struct maison * g;
+        {
+        int h;
+        }
+    }
+    return 0;
+}
