@@ -78,7 +78,7 @@ public class TdsVisitor implements AstVisitor<String> {
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
         NumImbr--;
-        depl = 1;
+        depl=1;
 
         return "void";
     }
@@ -351,6 +351,7 @@ public class TdsVisitor implements AstVisitor<String> {
         String label = blocLabel.lastElement();
 
         String contient_return = "";
+        int save_depl = depl;
 
         //si c'est une fonction, on change pas de bloc
         //on ajoute directement les attributs
@@ -375,6 +376,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
                 }
             }
+            depl = save_depl;
         }
 
         else {
@@ -397,6 +399,7 @@ public class TdsVisitor implements AstVisitor<String> {
             }
 
             // fin du bloc et on le retire de la stack
+            depl = save_depl;
             test.TdsStack.pop();
             blocLabel.pop();
             graphviztds.addEndTable();
@@ -587,6 +590,8 @@ public class TdsVisitor implements AstVisitor<String> {
         String type = ifinstr.expr.accept(this);
         test.cond(type);
 
+        int save_depl = depl;
+
         blocLabel.push("Bloc If");
 
         Ast blocif = ifinstr.instruction;
@@ -595,6 +600,7 @@ public class TdsVisitor implements AstVisitor<String> {
         }
         else if (blocif instanceof Bloc) {
             blocif.accept(this);
+            depl = save_depl;
         }
         else {
             String label = blocLabel.lastElement();
@@ -606,11 +612,12 @@ public class TdsVisitor implements AstVisitor<String> {
 
             blocif.accept(this);
 
+            depl = save_depl;
             NumImbr--;
             graphviztds.addEndTable();
             test.TdsStack.pop();
         }
-        
+
         blocLabel.pop();
 
         return "void";
@@ -626,12 +633,14 @@ public class TdsVisitor implements AstVisitor<String> {
         Ast blocif = ifelseinstr.instruction1;
 
         String contient_return_if = "";
+        int save_depl = depl;
 
         if (blocif == null) {
             createBloc();
         }
         else if (blocif instanceof Bloc) {
             contient_return_if = blocif.accept(this);
+            depl = save_depl;
         }
         else {
             String label = blocLabel.lastElement();
@@ -643,11 +652,12 @@ public class TdsVisitor implements AstVisitor<String> {
 
             contient_return_if = blocif.accept(this);
 
+            depl = save_depl;
             NumImbr--;
             graphviztds.addEndTable();
             test.TdsStack.pop();
         }
-        
+
         blocLabel.pop();
 
         String contient_return_else = "";
@@ -660,6 +670,7 @@ public class TdsVisitor implements AstVisitor<String> {
         }
         else if (blocelse instanceof Bloc) {
             contient_return_else = blocelse.accept(this);
+            depl = save_depl;
         }
         else {
             String label = blocLabel.lastElement();
@@ -671,11 +682,12 @@ public class TdsVisitor implements AstVisitor<String> {
 
             contient_return_else = blocelse.accept(this);
 
+            depl = save_depl;
             NumImbr--;
             graphviztds.addEndTable();
             test.TdsStack.pop();
         }
-        
+
         blocLabel.pop();
         String contient_return = "";
         if (contient_return_if.equals("return") && contient_return_else.equals("return")) {
@@ -691,6 +703,8 @@ public class TdsVisitor implements AstVisitor<String> {
         String type = whileinstr.expr.accept(this);
         test.cond(type);
 
+        int save_depl = depl;
+
         blocLabel.push("Bloc While");
 
         Ast blocwhile = whileinstr.instruction;
@@ -700,6 +714,7 @@ public class TdsVisitor implements AstVisitor<String> {
         }
         else if (blocwhile instanceof Bloc) {
             blocwhile.accept(this);
+            depl = save_depl;
         }
         else {
             String label = blocLabel.lastElement();
@@ -711,11 +726,12 @@ public class TdsVisitor implements AstVisitor<String> {
 
             blocwhile.accept(this);
 
+            depl = save_depl;
             NumImbr--;
             graphviztds.addEndTable();
             test.TdsStack.pop();
         }
-        
+
         blocLabel.pop();
 
         return "void";
@@ -773,7 +789,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
     @Override
     public String visit(Fleche fleche) {
-        
+
         Ast gauche = fleche.value;
         Ident droite = (Ident) fleche.ident;
         String typeg = "";
@@ -791,6 +807,6 @@ public class TdsVisitor implements AstVisitor<String> {
 
         String type = test.test_fleche_def(typeg, named);
 
-         return type;
+        return type;
     }
 }

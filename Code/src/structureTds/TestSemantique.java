@@ -50,7 +50,6 @@ public class TestSemantique {
             System.out.println(ANSI_RED + "Erreur struct : " + type + " non definie" + ANSI_RESET);
             return "void";
         }
-        TdsStruct struct = TableStruct.get(type);
         return type ;
     }
 
