@@ -29,7 +29,7 @@ public class TestSemantique {
     public String fonc_non_def(String name) {
         if (!TableFunction.containsKey(name)) {
             System.out.println(ANSI_RED + "Erreur fonction : " + name + " non definie" + ANSI_RESET);
-            return "void";
+            return "erreur";
         }
         TdsFunction fct = TableFunction.get(name);
         return fct.type;
@@ -48,9 +48,8 @@ public class TestSemantique {
         type = "struct " + type ;
         if (!TableStruct.containsKey(type)) {
             System.out.println(ANSI_RED + "Erreur struct : " + type + " non definie" + ANSI_RESET);
-            return "void";
+            return "erreur";
         }
-        TdsStruct struct = TableStruct.get(type);
         return type ;
     }
 
@@ -90,14 +89,15 @@ public class TestSemantique {
         }
     }
 
-    public void nombre_param(String name, int nb) {
+    public String nombre_param(String name, int nb) {
         TdsFunction function = TableFunction.get(name);
         int nb_param = function.params.size();
 
         if (nb_param != nb) {
             System.out.println(ANSI_RED + "Erreur fonction : " + name + " le nombre de parametres ne correspond pas" + ANSI_RESET);
+            return "erreur";
         }
-
+        return "void";
     }
 
     public String var_non_def(String name) {
@@ -129,7 +129,7 @@ public class TestSemantique {
 
         System.out.println(ANSI_RED + "Erreur variable : " + name + " non definie" + ANSI_RESET);
 
-        return "void";
+        return "erreur";
 
     }
 
@@ -166,11 +166,11 @@ public class TestSemantique {
         TdsStruct structure = TableStruct.get(type1);
         if (!structure.params.containsKey(name)) {
             System.out.println(ANSI_RED + "Erreur " + type1 + " : ne contient pas d'attribut " + name + ANSI_RESET);
+            return "erreur";
         }
         else {
             return structure.params.get(name);
         }
-        return "void";
     }
 
     public void test_type(String operation, String type_insert, String type_request) {
@@ -190,10 +190,12 @@ public class TestSemantique {
         }
     }
 
-    public void fonc_deja_def(String name) {
+    public String fonc_deja_def(String name) {
         if (TableFunction.containsKey(name)) {
             System.out.println(ANSI_RED + "Erreur fonction : "+ name +" deja definie" + ANSI_RESET);
+            return "erreur";
         }
+        return "void";
     }
 
     public void divis_zero(String value) {

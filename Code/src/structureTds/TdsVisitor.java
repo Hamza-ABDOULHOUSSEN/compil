@@ -46,8 +46,10 @@ public class TdsVisitor implements AstVisitor<String> {
 
         graphviztds.addEndTable();
         //test le main_non_def
-        test.fonc_non_def("main");
-        test.test_main();
+        String retour = test.fonc_non_def("main");
+        if (! retour.equals("erreur")) {
+            test.test_main();
+        }
 
         return null;
     }
@@ -78,7 +80,7 @@ public class TdsVisitor implements AstVisitor<String> {
         graphviztds.addEndTable();
         this.test.TdsStack.pop();
         NumImbr--;
-        depl = 1;
+        depl=1;
 
         return "void";
     }
@@ -138,9 +140,6 @@ public class TdsVisitor implements AstVisitor<String> {
         // visite des paramètres
         ArrayList<Ast> params = def_fct_int_param.params;
         for (Ast param : params) {
-            if (param instanceof ParamStruct) {
-                test.struct_non_def(((ParamStruct) param).struct_type.name) ;
-            }
             param.accept(this);
         }
 
@@ -218,9 +217,6 @@ public class TdsVisitor implements AstVisitor<String> {
         // visite des paramètres
         ArrayList<Ast> params = def_fct_struct_param.params;
         for (Ast param : params) {
-            if (param instanceof ParamStruct) {
-                test.struct_non_def(((ParamStruct) param).struct_type.name) ;
-            }
             param.accept(this);
         }
 
@@ -260,10 +256,17 @@ public class TdsVisitor implements AstVisitor<String> {
         //test fonction non definie
         String type = test.fonc_non_def(name);
 
-        //test nombre de paramètres si definie
-        test.nombre_param(name, nb);
-        test.type_param(name, declParamTypes);
-        return type;
+        if (! type.equals("erreur")) {
+            //test nombre de paramètres si definie
+            String erreur = test.nombre_param(name, nb);
+            if (! erreur.equals("erreur")) {
+                test.type_param(name, declParamTypes);
+            }
+            return type;
+        }
+
+        return "erreur";
+
     }
 
     @Override
@@ -274,11 +277,13 @@ public class TdsVisitor implements AstVisitor<String> {
         //test fonction non definie
         String type = test.fonc_non_def(name);
 
-        //test nombre de paramètres si definie
-        test.nombre_param(name, 0);
-        //test.type_param(name, new ArrayList<Ast>());
+        if (! type.equals("erreur")) {
+            //test nombre de paramètres si definie
+            test.nombre_param(name, 0);
+            return type;
+        }
 
-        return type;
+        return "erreur";
     }
 
     @Override
@@ -286,9 +291,12 @@ public class TdsVisitor implements AstVisitor<String> {
         String type1 = comp.left.accept(this);
         String type2 = comp.right.accept(this);
         String type_request = "int";
-        test.test_type(">", type1, type_request);
-        test.test_type(">", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type(">", type1, type_request);
+            test.test_type(">", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
@@ -296,9 +304,12 @@ public class TdsVisitor implements AstVisitor<String> {
         String type1 = egal.left.accept(this);
         String type2 = egal.right.accept(this);
         String type_request = "int";
-        test.test_type("==", type1, type_request);
-        test.test_type("==", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type("==", type1, type_request);
+            test.test_type("==", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
@@ -306,25 +317,37 @@ public class TdsVisitor implements AstVisitor<String> {
         String type1 = mult.left.accept(this);
         String type2 = mult.right.accept(this);
         String type_request = "int";
-        test.test_type("*", type1, type_request);
-        test.test_type("*", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type("*", type1, type_request);
+            test.test_type("*", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
     public String visit(Not ast) {
         String type = ast.ast.accept(this);
         String type_request = "int";
-        test.test_type("!", type, type_request);
-        return type_request;
+        if (!type.equals("erreur")) {
+            test.test_type("!", type, type_request);
+            return type_request;
+        }
+
+        return "erreur";
     }
 
     @Override
     public String visit(Moinsunaire moinsunaire) {
         String type = moinsunaire.ast.accept(this);
         String type_request = "int";
-        test.test_type("- (unaire)", type, type_request);
-        return type_request;
+
+        if (!type.equals("erreur")) {
+            test.test_type("- (unaire)", type, type_request);
+            return type_request;
+        }
+
+        return "erreur";
     }
 
     @Override
@@ -339,7 +362,9 @@ public class TdsVisitor implements AstVisitor<String> {
         //test type
         String type1 = affect.left.accept(this);
         String type2 = affect.right.accept(this);
-        test.test_type("=", type2, type1);
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type("=", type2, type1);
+        }
 
         return "void";
     }
@@ -351,6 +376,7 @@ public class TdsVisitor implements AstVisitor<String> {
         String label = blocLabel.lastElement();
 
         String contient_return = "";
+        int save_depl = depl;
 
         //si c'est une fonction, on change pas de bloc
         //on ajoute directement les attributs
@@ -375,6 +401,7 @@ public class TdsVisitor implements AstVisitor<String> {
 
                 }
             }
+            depl = save_depl;
         }
 
         else {
@@ -397,6 +424,7 @@ public class TdsVisitor implements AstVisitor<String> {
             }
 
             // fin du bloc et on le retire de la stack
+            depl = save_depl;
             test.TdsStack.pop();
             blocLabel.pop();
             graphviztds.addEndTable();
@@ -417,11 +445,13 @@ public class TdsVisitor implements AstVisitor<String> {
         }
 
         String type2 = right.accept(this);
-
         String type_request = "int";
-        test.test_type("/", type1, type_request);
-        test.test_type("/", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type("/", type1, type_request);
+            test.test_type("/", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
@@ -429,9 +459,12 @@ public class TdsVisitor implements AstVisitor<String> {
         String type1 = inegal.left.accept(this);
         String type2 = inegal.right.accept(this);
         String type_request = "int";
-        test.test_type("!=", type1, type_request);
-        test.test_type("!=", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type("!=", type1, type_request);
+            test.test_type("!=", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
@@ -439,9 +472,12 @@ public class TdsVisitor implements AstVisitor<String> {
         String type1 = inf.left.accept(this);
         String type2 = inf.right.accept(this);
         String type_request = "int";
-        test.test_type("<", type1, type_request);
-        test.test_type("<", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type("<", type1, type_request);
+            test.test_type("<", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
@@ -449,9 +485,12 @@ public class TdsVisitor implements AstVisitor<String> {
         String type1 = infEgal.left.accept(this);
         String type2 = infEgal.right.accept(this);
         String type_request = "int";
-        test.test_type("<=", type1, type_request);
-        test.test_type("<=", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type("<=", type1, type_request);
+            test.test_type("<=", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
@@ -459,9 +498,12 @@ public class TdsVisitor implements AstVisitor<String> {
         String type1 = supEgal.left.accept(this);
         String type2 = supEgal.right.accept(this);
         String type_request = "int";
-        test.test_type(">=", type1, type_request);
-        test.test_type(">=", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type(">=", type1, type_request);
+            test.test_type(">=", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
@@ -497,27 +539,30 @@ public class TdsVisitor implements AstVisitor<String> {
         Ident identType = (Ident) declVarStruct.struct_type ;
         String type = "struct " + identType.name ;
 
-        test.struct_non_def(identType.name);
+        String erreur = test.struct_non_def(identType.name);
 
-        for (int i = 0; i < idents.size(); i++) {
-            Ident ident = (Ident) idents.get(i) ;
-            String name = ident.name;
+        if (!erreur.equals("erreur")) {
 
-            test.var_deja_def(name);
+            for (int i = 0; i < idents.size(); i++) {
+                Ident ident = (Ident) idents.get(i) ;
+                String name = ident.name;
 
-            //récupération du bloc actuel
-            Tds actualTable = test.TdsStack.pop();
+                test.var_deja_def(name);
 
-            //ajout des variables dans la table et le graph de la TDS
-            actualTable.addVariable(name, type);
-            String deplacement = String.valueOf(depl*4);
-            graphviztds.addElement(name, "attribut", type, deplacement);
-            depl++;
+                //récupération du bloc actuel
+                Tds actualTable = test.TdsStack.pop();
 
-            //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
-            test.TdsStack.push(actualTable);
+                //ajout des variables dans la table et le graph de la TDS
+                actualTable.addVariable(name, type);
+                String deplacement = String.valueOf(depl*4);
+                graphviztds.addElement(name, "attribut", type, deplacement);
+                depl++;
+
+                //on remet le bloc ectuel qu'on a retiré après l'avoir modifié
+                test.TdsStack.push(actualTable);
+            }
+
         }
-
         return "void";
     }
 
@@ -560,13 +605,15 @@ public class TdsVisitor implements AstVisitor<String> {
     @Override
     public String visit(ParamStruct paramstruct) {
 
-        Ident identType = paramstruct.struct_type ;
-        Ident identName = paramstruct.struct_name ;
+        Ident identType = paramstruct.struct_type;
+        Ident identName = paramstruct.struct_name;
         String type = "struct " + identType.name;
         String nom = identName.name;
 
-        this.test.struct_non_def(identType.name);
-        test.var_deja_def(nom);
+        String non_def = this.test.struct_non_def(identType.name);
+        if (! non_def.equals("non def")) {
+            test.var_deja_def(nom);
+        }
 
         //récupération du bloc actuel
         Tds actualTable = test.TdsStack.pop();
@@ -587,6 +634,8 @@ public class TdsVisitor implements AstVisitor<String> {
         String type = ifinstr.expr.accept(this);
         test.cond(type);
 
+        int save_depl = depl;
+
         blocLabel.push("Bloc If");
 
         Ast blocif = ifinstr.instruction;
@@ -595,6 +644,7 @@ public class TdsVisitor implements AstVisitor<String> {
         }
         else if (blocif instanceof Bloc) {
             blocif.accept(this);
+            depl = save_depl;
         }
         else {
             String label = blocLabel.lastElement();
@@ -606,11 +656,12 @@ public class TdsVisitor implements AstVisitor<String> {
 
             blocif.accept(this);
 
+            depl = save_depl;
             NumImbr--;
             graphviztds.addEndTable();
             test.TdsStack.pop();
         }
-        
+
         blocLabel.pop();
 
         return "void";
@@ -626,12 +677,14 @@ public class TdsVisitor implements AstVisitor<String> {
         Ast blocif = ifelseinstr.instruction1;
 
         String contient_return_if = "";
+        int save_depl = depl;
 
         if (blocif == null) {
             createBloc();
         }
         else if (blocif instanceof Bloc) {
             contient_return_if = blocif.accept(this);
+            depl = save_depl;
         }
         else {
             String label = blocLabel.lastElement();
@@ -643,11 +696,12 @@ public class TdsVisitor implements AstVisitor<String> {
 
             contient_return_if = blocif.accept(this);
 
+            depl = save_depl;
             NumImbr--;
             graphviztds.addEndTable();
             test.TdsStack.pop();
         }
-        
+
         blocLabel.pop();
 
         String contient_return_else = "";
@@ -660,6 +714,7 @@ public class TdsVisitor implements AstVisitor<String> {
         }
         else if (blocelse instanceof Bloc) {
             contient_return_else = blocelse.accept(this);
+            depl = save_depl;
         }
         else {
             String label = blocLabel.lastElement();
@@ -671,11 +726,12 @@ public class TdsVisitor implements AstVisitor<String> {
 
             contient_return_else = blocelse.accept(this);
 
+            depl = save_depl;
             NumImbr--;
             graphviztds.addEndTable();
             test.TdsStack.pop();
         }
-        
+
         blocLabel.pop();
         String contient_return = "";
         if (contient_return_if.equals("return") && contient_return_else.equals("return")) {
@@ -691,6 +747,8 @@ public class TdsVisitor implements AstVisitor<String> {
         String type = whileinstr.expr.accept(this);
         test.cond(type);
 
+        int save_depl = depl;
+
         blocLabel.push("Bloc While");
 
         Ast blocwhile = whileinstr.instruction;
@@ -700,6 +758,7 @@ public class TdsVisitor implements AstVisitor<String> {
         }
         else if (blocwhile instanceof Bloc) {
             blocwhile.accept(this);
+            depl = save_depl;
         }
         else {
             String label = blocLabel.lastElement();
@@ -711,11 +770,12 @@ public class TdsVisitor implements AstVisitor<String> {
 
             blocwhile.accept(this);
 
+            depl = save_depl;
             NumImbr--;
             graphviztds.addEndTable();
             test.TdsStack.pop();
         }
-        
+
         blocLabel.pop();
 
         return "void";
@@ -725,8 +785,10 @@ public class TdsVisitor implements AstVisitor<String> {
     public String visit(Return ret) {
 
         //on récupère ainsi le type de l'expression
-        String typeRetour = ret.expr.accept(this);
-        this.test.return_type(typeRetour) ;
+        String type = ret.expr.accept(this);
+        if (!type.equals("erreur")) {
+            this.test.return_type(type);
+        }
 
         return "return";
     }
@@ -736,9 +798,12 @@ public class TdsVisitor implements AstVisitor<String> {
         String type1 = et.left.accept(this);
         String type2 = et.right.accept(this);
         String type_request = "int";
-        test.test_type("&&", type1, type_request);
-        test.test_type("&&", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type("&&", type1, type_request);
+            test.test_type("&&", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
@@ -746,9 +811,12 @@ public class TdsVisitor implements AstVisitor<String> {
         String type1 = ou.left.accept(this);
         String type2 = ou.right.accept(this);
         String type_request = "int";
-        test.test_type("||", type1, type_request);
-        test.test_type("||", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type("||", type1, type_request);
+            test.test_type("||", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
@@ -756,9 +824,12 @@ public class TdsVisitor implements AstVisitor<String> {
         String type1 = plus.left.accept(this);
         String type2 = plus.right.accept(this);
         String type_request = "int";
-        test.test_type("+", type1, type_request);
-        test.test_type("+", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type("+", type1, type_request);
+            test.test_type("+", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
@@ -766,14 +837,17 @@ public class TdsVisitor implements AstVisitor<String> {
         String type1 = moins.left.accept(this);
         String type2 = moins.right.accept(this);
         String type_request = "int";
-        test.test_type("-", type1, type_request);
-        test.test_type("-", type2, type_request);
-        return type_request;
+        if (!type1.equals("erreur") && !type2.equals("erreur")) {
+            test.test_type("-", type1, type_request);
+            test.test_type("-", type2, type_request);
+            return type_request;
+        }
+        return "erreur";
     }
 
     @Override
     public String visit(Fleche fleche) {
-        
+
         Ast gauche = fleche.value;
         Ident droite = (Ident) fleche.ident;
         String typeg = "";
@@ -781,16 +855,20 @@ public class TdsVisitor implements AstVisitor<String> {
 
         if (gauche instanceof Int) {
             System.out.println(ANSI_RED + "Erreur struct => entier -> ident" + ANSI_RESET);
+            return "erreur";
         }
         else if (gauche instanceof SizeOf) {
             System.out.println(ANSI_RED + "Erreur struct => size of -> ident" + ANSI_RESET);
+            return "erreur";
         }
         else {
             typeg = gauche.accept(this);
+            if (typeg.equals("erreur")) {
+                return "erreur";
+            }
         }
 
         String type = test.test_fleche_def(typeg, named);
-
-         return type;
+        return type;
     }
 }
