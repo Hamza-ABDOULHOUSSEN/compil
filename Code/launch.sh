@@ -3,7 +3,7 @@ var1=$1
 var2=$2
 var3=$3
 
-if [ "$var1" != "0" ] && [ "$var1" != "1" ] && [ "$var1" != "2" ] && [ "$var1" != "3" ] && [ "$var1" != "4" ] && [ "$var1" != "5" ] && [ "$var1" != "6" ] && [ "$var1" != "7" ]; then
+if [ "$var1" != "0" ] && [ "$var1" != "1" ] && [ "$var1" != "2" ] && [ "$var1" != "3" ] && [ "$var1" != "4" ] && [ "$var1" != "5" ] && [ "$var1" != "6" ] && [ "$var1" != "7" ] [ "$var1" != "8" ]; then
   echo
   echo "0 : complete tree"
   echo "1 : ast"
@@ -13,7 +13,8 @@ if [ "$var1" != "0" ] && [ "$var1" != "1" ] && [ "$var1" != "2" ] && [ "$var1" !
   echo "5 : generate all tds"
   echo "6 : syntax error detection"
   echo "7 : semantics error detection"
-  read -p "Which option [0/1/2/3/4/5/6/7] : " var1
+  echo "8 : all html generation"
+  read -p "Which option [0/1/2/3/4/5/6/7/8] : " var1
   echo
 fi
 
@@ -33,6 +34,8 @@ elif [ "$var1" == "6" ]; then
     ./bash/launch_6_syntax_error_detection.sh
 elif [ "$var1" == "7" ]; then
     ./bash/launch_7_semantics_test.sh
+elif [ "$var1" == "8" ]; then
+    ./bash/launch_8_all_html.sh
 else
-    echo "ERROR press 0 1 2 3 4 5 6 or 7"
+    echo "ERROR press 0 1 2 3 4 5 6 7 or 8"
 fi
