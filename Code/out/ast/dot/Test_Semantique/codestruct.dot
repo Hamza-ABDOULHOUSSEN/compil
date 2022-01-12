@@ -92,6 +92,8 @@ digraph "ast"{
 	N86 [label="Fct", shape="box"];
 	N87 [label="result", shape="box"];
 	N88 [label="s", shape="box"];
+	N89 [label="BlocReturn", shape="box"];
+	N90 [label="0", shape="box"];
 
 	N1 -> N2; 
 	N3 -> N4; 
@@ -179,6 +181,8 @@ digraph "ast"{
 	N86 -> N88; 
 	N84 -> N86; 
 	N36 -> N84; 
+	N89 -> N90; 
+	N36 -> N89; 
 	N34 -> N36; 
 	N0 -> N34; 
 }

@@ -1,0 +1,20 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N1 [shape=record label="{ structure : struct nombre 1
+	| { val | attribut | int | 0 }
+	}"];
+
+	N2 [shape=record label="{ fonction : int main 1
+	| { x | attribut | int | 0 }
+	| { x | attribut | struct nombre | 4 }
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N0 -> N2; 
+}

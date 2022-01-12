@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<title>Test_Complet/test4</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        pre {
+            font-family: courier;
+            font-size: 60%;
+        }
+
+        .sidenav {
+            width: 130px;
+            position: fixed;
+            z-index: 1;
+            top: 20px;
+            left: 10px;
+            background: #eee;
+            overflow-x: hidden;
+            padding: 8px 0;
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #2196F3;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #064579;
+        }
+
+        .img-container{
+            width: 1800px; /*width of the container the image is in, your choice*/
+            height: 700px; /*means the height of the container is the same as the image so you are not scrolling vertically*/
+            overflow-x: scroll; /*this is the important line that tells the browser to scroll content outside the div*/
+            overflow-y: scroll;
+        }
+
+        .main {
+            margin-left: 140px; /* Same width as the sidebar + left position in px */
+            font-size: 28px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidenav">
+    <a href="#code">Code</a>
+    <a href="#error">Error</a>
+    <a href="#ast">AST</a>
+    <a href="#tds">TDS</a>
+</div>
+
+<div class="main">
+
+	<h2><span style="color: #3366ff;">Test : Test_Complet/test4.exp</span></h2>
+
+	<p>&nbsp;</p>
+	<h3 id="code"><span style="color: #333333;">Code</span></h3>
+	<p>&nbsp;</p>
+	<div class="alert alert-secondary" role="alert">
+	<p>		<pre>struct equipe * equipe_init(int nbr_joueurs) {</pre>
+		<pre>    struct equipe *new_equipe ;</pre>
+		<pre>    int i ;</pre>
+		<pre>    new_equipe = calloc(1,sizeof(struct equipe)) ;</pre>
+		<pre>    new_equipe->nbr_joueurs = nbr_joueurs ;</pre>
+		<pre>    i = 0 ;</pre>
+		<pre>    while(i<nbr_joueurs){</pre>
+		<pre>        new_equipe->joueurs_i = joueur_init(0);</pre>
+		<pre>        i = i + 1 ;</pre>
+		<pre>    }</pre>
+		<pre>    return new_equipe;</pre>
+		<pre>}</pre>
+		<pre></pre>
+		<pre>int equipe_ajouteJoueur(struct equipe * team_rocket, struct joueur *sacha) {</pre>
+		<pre>    int i ;</pre>
+		<pre>    i = 0 ;</pre>
+		<pre>    while ((i< team_rocket->nbr_joueurs) && (team_rocket->joueurs_i != NULL)) {</pre>
+		<pre>        i = i + 1 ;</pre>
+		<pre>    }</pre>
+		<pre>    if(i < team_rocket->nbr_joueurs){</pre>
+		<pre>        team_rocket->joueurs_i = sacha ;</pre>
+		<pre>    }</pre>
+		<pre>}</pre>
+		<pre></pre>
+		<pre>struct equipe * equipe_free(struct equipe *team_rocket) {</pre>
+		<pre>    int i ;</pre>
+		<pre>    int j ;</pre>
+		<pre>    i = 0 ;</pre>
+		<pre>    j = 0 ;</pre>
+		<pre>    while(i<team_rocket->nbr_joueurs){</pre>
+		<pre>        while(j<(team_rocket->joueurs_i)->nbr_pokeballs){</pre>
+		<pre>            pokemon_free((team_rocket->joueurs_i)->pokeballs_j) ;</pre>
+		<pre>            j = j + 1 ;</pre>
+		<pre>        }</pre>
+		<pre>        joueur_free(team_rocket->joueurs_i) ;</pre>
+		<pre>        i = i + 1 ;</pre>
+		<pre>    }</pre>
+		<pre>    free(team_rocket) ;</pre>
+		<pre>}</pre>
+		<pre></pre>
+		<pre>int equipe_sommePoints(struct equipe * team_rocket, int points_combat, int points_vie) {</pre>
+		<pre>    int i ;</pre>
+		<pre>    int j ;</pre>
+		<pre>    i = 0 ;</pre>
+		<pre>    j = 0 ;</pre>
+		<pre>    while(i<team_rocket->nbr_joueurs){</pre>
+		<pre>        while(j<(team_rocket->joueurs_i)->nbr_pokeballs){</pre>
+		<pre>            if(((team_rocket->joueurs_i)->pokeballs_j)->type == FEU ) {</pre>
+		<pre>                points_combat_0 = points_combat_0 + ((team_rocket->joueurs_i)->pokeballs_j)->points_combat ;</pre>
+		<pre>                points_vie_0 = points_vie_0 + ((team_rocket->joueurs_i)->pokeballs_j)->points_vie ;</pre>
+		<pre>            }</pre>
+		<pre>            if(((team_rocket->joueurs_i)->pokeballs_j)->type == EAU ) {</pre>
+		<pre>                points_combat_1 = points_combat_1 + ((team_rocket->joueurs_i)->pokeballs_j)->points_combat ;</pre>
+		<pre>                points_vie_1 = points_vie_1 + ((team_rocket->joueurs_i)->pokeballs_j)->points_vie ;</pre>
+		<pre>            }</pre>
+		<pre>            if(((team_rocket->joueurs_i)->pokeballs_j)->type == AIR ) {</pre>
+		<pre>                points_combat_2 = points_combat_2 + ((team_rocket->joueurs_i)->pokeballs_j)->points_combat ;</pre>
+		<pre>                points_vie_2 = points_vie_2 + ((team_rocket->joueurs_i)->pokeballs_j)->points_vie ;</pre>
+		<pre>            }</pre>
+		<pre>            if(((team_rocket->joueurs_i)->pokeballs_j)->type == TERRE ) {</pre>
+		<pre>                points_combat_3 = points_combat_3 + ((team_rocket->joueurs_i)->pokeballs_j)->points_combat ;</pre>
+		<pre>                points_vie_3 = points_vie_3 + ((team_rocket->joueurs_i)->pokeballs_j)->points_vie ;</pre>
+		<pre>            }</pre>
+		<pre>            if(((team_rocket->joueurs_i)->pokeballs_j)->type == LILOU_DALLAS_MULTIPASS ) {</pre>
+		<pre>                points_combat_4 = points_combat_4 + ((team_rocket->joueurs_i)->pokeballs_j)->points_combat ;</pre>
+		<pre>                points_vie_4 = points_vie_4 + ((team_rocket->joueurs_i)->pokeballs_j)->points_vie ;</pre>
+		<pre>            }</pre>
+		<pre>            j = j + 1 ;</pre>
+		<pre>        }</pre>
+		<pre>        i = i + 1 ;</pre>
+		<pre>    }</pre>
+		<pre></pre>
+	</p>
+	</div>
+
+	<p>&nbsp;</p>
+	<h3 id="error"><span style="color: #333333;">Erreur</span></h3>
+	<p>&nbsp;</p>
+	<div class="alert alert-secondary" role="alert">
+	<p>		<pre style="color: red;">Erreur struct : struct equipe non definie</pre>
+		<pre style="color: red;">Erreur variable : new_equipe non definie</pre>
+		<pre style="color: red;">Erreur struct : struct equipe non definie</pre>
+		<pre style="color: red;">Erreur fonction : calloc non definie</pre>
+		<pre style="color: red;">Erreur variable : new_equipe non definie</pre>
+		<pre style="color: red;">Erreur variable : new_equipe non definie</pre>
+		<pre style="color: red;">Erreur fonction : joueur_init non definie</pre>
+		<pre style="color: red;">Erreur variable : new_equipe non definie</pre>
+		<pre style="color: red;">Erreur struct : struct equipe non definie</pre>
+		<pre style="color: red;">Erreur struct : struct equipe non definie</pre>
+		<pre style="color: red;">Erreur struct : struct joueur non definie</pre>
+	</p>
+	</div>
+
+	<p>&nbsp;</p>
+	<h3 id="ast"><span style="color: #333333;">AST</span></h3>
+	<p>&nbsp;</p>
+	<div class="img-container">
+		<img style="width:auto; height:auto;" src="../../ast/svg/Test_Complet/test4.svg" class="table" >
+	</div>
+	<p>&nbsp;</p>
+	<h3 id="tds"><span style="color: #333333;">TDS</span></h3>
+	<p>&nbsp;</p>
+	<div class="img-container">
+		<img style="width:auto; height:auto;" src="../../tds/svg/Test_Complet/test4.svg" class="table" >
+	</div>
+</div>
+</body>
+</html>

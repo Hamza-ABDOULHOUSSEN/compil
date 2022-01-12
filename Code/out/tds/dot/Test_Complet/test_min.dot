@@ -1,0 +1,18 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N1 [shape=record label="{ structure : struct voiture 1
+	| { a | attribut | int | 0 }
+	| { b | attribut | int | 4 }
+	| { c | attribut | int | 8 }
+	| { v1 | attribut | struct voiture | 12 }
+	| { v2 | attribut | struct voiture | 20 }
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+}

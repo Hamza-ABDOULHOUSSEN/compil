@@ -9,7 +9,7 @@ digraph "ast"{
 	N3 [label="DeclInt", shape="box"];
 	N4 [label="val", shape="box"];
 	N5 [label="DefFctInt", shape="box"];
-	N6 [label="main", shape="box"];
+	N6 [label="addition", shape="box"];
 	N7 [label="Int", shape="box"];
 	N8 [label="a", shape="box"];
 	N9 [label="Bloc", shape="box"];
@@ -21,6 +21,11 @@ digraph "ast"{
 	N15 [label="a", shape="box"];
 	N16 [label="BlocReturn", shape="box"];
 	N17 [label="a", shape="box"];
+	N18 [label="DefFctInt", shape="box"];
+	N19 [label="main", shape="box"];
+	N20 [label="Bloc", shape="box"];
+	N21 [label="BlocReturn", shape="box"];
+	N22 [label="0", shape="box"];
 
 	N1 -> N2; 
 	N3 -> N4; 
@@ -39,4 +44,9 @@ digraph "ast"{
 	N9 -> N16; 
 	N5 -> N9; 
 	N0 -> N5; 
+	N18 -> N19; 
+	N21 -> N22; 
+	N20 -> N21; 
+	N18 -> N20; 
+	N0 -> N18; 
 }

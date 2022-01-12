@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<title>Test_Complet/test5</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        pre {
+            font-family: courier;
+            font-size: 60%;
+        }
+
+        .sidenav {
+            width: 130px;
+            position: fixed;
+            z-index: 1;
+            top: 20px;
+            left: 10px;
+            background: #eee;
+            overflow-x: hidden;
+            padding: 8px 0;
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #2196F3;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #064579;
+        }
+
+        .img-container{
+            width: 1800px; /*width of the container the image is in, your choice*/
+            height: 700px; /*means the height of the container is the same as the image so you are not scrolling vertically*/
+            overflow-x: scroll; /*this is the important line that tells the browser to scroll content outside the div*/
+            overflow-y: scroll;
+        }
+
+        .main {
+            margin-left: 140px; /* Same width as the sidebar + left position in px */
+            font-size: 28px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidenav">
+    <a href="#code">Code</a>
+    <a href="#error">Error</a>
+    <a href="#ast">AST</a>
+    <a href="#tds">TDS</a>
+</div>
+
+<div class="main">
+
+	<h2><span style="color: #3366ff;">Test : Test_Complet/test5.exp</span></h2>
+
+	<p>&nbsp;</p>
+	<h3 id="code"><span style="color: #333333;">Code</span></h3>
+	<p>&nbsp;</p>
+	<div class="alert alert-secondary" role="alert">
+	<p>		<pre>int cd(int pth, int cd_status){</pre>
+		<pre>    int path ;</pre>
+		<pre>    struct cwd_struct * cwd ;</pre>
+		<pre>    strcpy(path,pth);</pre>
+		<pre></pre>
+		<pre>    if(pth_0 != 0) {</pre>
+		<pre>        // true for the dir in cwd</pre>
+		<pre>        getcwd(cwd, sizeof(struct cwd_struct));</pre>
+		<pre>        strcat(cwd,0);</pre>
+		<pre>        strcat(cwd,path);</pre>
+		<pre>        cd_status = chdir(cwd);                            //cd_status prend les valeurs 0 si okay, -1 sinon</pre>
+		<pre>    }</pre>
+		<pre>    else{</pre>
+		<pre>        //true for dir w.r.t. /</pre>
+		<pre>        cd_status = chdir(pth);</pre>
+		<pre>    }</pre>
+		<pre>}</pre>
+		<pre></pre>
+		<pre>int parser(int all_commands, struct char* Liste, struct char * sep) {</pre>
+		<pre>    int pos ;</pre>
+		<pre>    struct char *command_split ;</pre>
+		<pre>    pos = 0 ;                                           // Position => sert à parcourir Liste</pre>
+		<pre></pre>
+		<pre>    // séparation des commandes</pre>
+		<pre>    command_split = strtok(all_commands, sep);</pre>
+		<pre>    while(command_split != NULL) {</pre>
+		<pre>        Liste_pos = command_split ;</pre>
+		<pre>        command_split = strtok(NULL, sep);</pre>
+		<pre>        pos = pos + 1 ;</pre>
+		<pre>    }</pre>
+		<pre>    Liste_(pos-1) = strtok(Liste_(pos-1), 0) ;</pre>
+		<pre>    Liste_pos = NULL ;</pre>
+		<pre>}</pre>
+	</p>
+	</div>
+
+	<p>&nbsp;</p>
+	<h3 id="error"><span style="color: #333333;">Erreur</span></h3>
+	<p>&nbsp;</p>
+	<div class="alert alert-secondary" role="alert">
+	<p>		<pre style="color: red;">Erreur struct : struct cwd_struct non definie</pre>
+		<pre style="color: red;">Erreur fonction : strcpy non definie</pre>
+		<pre style="color: red;">Erreur variable : pth_0 non definie</pre>
+		<pre style="color: red;">Erreur variable : cwd non definie</pre>
+		<pre style="color: red;">Erreur struct : struct cwd_struct non definie</pre>
+		<pre style="color: red;">Erreur fonction : getcwd non definie</pre>
+		<pre style="color: red;">Erreur variable : cwd non definie</pre>
+		<pre style="color: red;">Erreur fonction : strcat non definie</pre>
+		<pre style="color: red;">Erreur variable : cwd non definie</pre>
+		<pre style="color: red;">Erreur fonction : strcat non definie</pre>
+		<pre style="color: red;">Erreur variable : cwd non definie</pre>
+		<pre style="color: red;">Erreur fonction : chdir non definie</pre>
+		<pre style="color: red;">Erreur fonction : chdir non definie</pre>
+		<pre style="color: red;">Erreur fonction : cd ne renvoie pas d'element dans tous les cas</pre>
+		<pre style="color: red;">Erreur struct : struct char non definie</pre>
+		<pre style="color: red;">Erreur struct : struct char non definie</pre>
+		<pre style="color: red;">Erreur struct : struct char non definie</pre>
+		<pre style="color: red;">Erreur variable : command_split non definie</pre>
+		<pre style="color: red;">Erreur fonction : strtok non definie</pre>
+		<pre style="color: red;">Erreur variable : command_split non definie</pre>
+		<pre style="color: red;">Erreur variable : NULL non definie</pre>
+		<pre style="color: red;">Erreur variable : Liste_pos non definie</pre>
+		<pre style="color: red;">Erreur variable : command_split non definie</pre>
+		<pre style="color: red;">Erreur variable : command_split non definie</pre>
+		<pre style="color: red;">Erreur variable : NULL non definie</pre>
+		<pre style="color: red;">Erreur fonction : strtok non definie</pre>
+		<pre style="color: red;">Erreur : affectation impossible</pre>
+		<pre style="color: red;">Erreur fonction : Liste_ non definie</pre>
+		<pre style="color: red;">Erreur fonction : Liste_ non definie</pre>
+		<pre style="color: red;">Erreur fonction : strtok non definie</pre>
+		<pre style="color: red;">Erreur variable : Liste_pos non definie</pre>
+		<pre style="color: red;">Erreur variable : NULL non definie</pre>
+		<pre style="color: red;">Erreur fonction : parser ne renvoie pas d'element dans tous les cas</pre>
+		<pre style="color: red;">Erreur fonction : main non definie</pre>
+	</p>
+	</div>
+
+	<p>&nbsp;</p>
+	<h3 id="ast"><span style="color: #333333;">AST</span></h3>
+	<p>&nbsp;</p>
+	<div class="img-container">
+		<img style="width:auto; height:auto;" src="../../ast/svg/Test_Complet/test5.svg" class="table" >
+	</div>
+	<p>&nbsp;</p>
+	<h3 id="tds"><span style="color: #333333;">TDS</span></h3>
+	<p>&nbsp;</p>
+	<div class="img-container">
+		<img style="width:auto; height:auto;" src="../../tds/svg/Test_Complet/test5.svg" class="table" >
+	</div>
+</div>
+</body>
+</html>

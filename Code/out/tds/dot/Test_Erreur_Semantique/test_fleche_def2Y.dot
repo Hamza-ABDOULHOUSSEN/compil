@@ -1,0 +1,26 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N1 [shape=record label="{ structure : struct voiture 1
+	| { immatriculation | attribut | int | 0 }
+	}"];
+
+	N2 [shape=record label="{ structure : struct person 1
+	| { age | attribut | int | 0 }
+	| { bolide | attribut | struct voiture | 4 }
+	}"];
+
+	N3 [shape=record label="{ fonction : int main 1
+	| { v | attribut | struct voiture | 0 }
+	| { p | attribut | struct person | 8 }
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N0 -> N2; 
+	N0 -> N3; 
+}

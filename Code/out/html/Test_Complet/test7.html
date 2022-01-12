@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<title>Test_Complet/test7</title>
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        pre {
+            font-family: courier;
+            font-size: 60%;
+        }
+
+        .sidenav {
+            width: 130px;
+            position: fixed;
+            z-index: 1;
+            top: 20px;
+            left: 10px;
+            background: #eee;
+            overflow-x: hidden;
+            padding: 8px 0;
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #2196F3;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #064579;
+        }
+
+        .img-container{
+            width: 1800px; /*width of the container the image is in, your choice*/
+            height: 700px; /*means the height of the container is the same as the image so you are not scrolling vertically*/
+            overflow-x: scroll; /*this is the important line that tells the browser to scroll content outside the div*/
+            overflow-y: scroll;
+        }
+
+        .main {
+            margin-left: 140px; /* Same width as the sidebar + left position in px */
+            font-size: 28px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidenav">
+    <a href="#code">Code</a>
+    <a href="#error">Error</a>
+    <a href="#ast">AST</a>
+    <a href="#tds">TDS</a>
+</div>
+
+<div class="main">
+
+	<h2><span style="color: #3366ff;">Test : Test_Complet/test7.exp</span></h2>
+
+	<p>&nbsp;</p>
+	<h3 id="code"><span style="color: #333333;">Code</span></h3>
+	<p>&nbsp;</p>
+	<div class="alert alert-secondary" role="alert">
+	<p>		<pre>int fct(int argc, struct char * argv) {</pre>
+		<pre>    struct char * buff ;</pre>
+		<pre>    int fd_2 ;</pre>
+		<pre>    int ecrit ;</pre>
+		<pre>    int n ;</pre>
+		<pre>    n = atoi(argv_1) ;</pre>
+		<pre></pre>
+		<pre>    pipe(fd) ;</pre>
+		<pre>    ecrit = write(fd_1, buff, n) ;</pre>
+		<pre>    if (ecrit < 0) {</pre>
+		<pre>        perror(plop) ;</pre>
+		<pre>    }</pre>
+		<pre>    printf(ecrit, n, n-ecrit) ;</pre>
+		<pre>}</pre>
+		<pre></pre>
+		<pre>int main(int argc, struct char * argv) {</pre>
+		<pre>    struct pthread_t * thread ;</pre>
+		<pre>    int id ;</pre>
+		<pre>    int i ;</pre>
+		<pre>    thread_atoi(argv_1) ;</pre>
+		<pre>    id_atoi(argv_1) ;</pre>
+		<pre>    i = 0 ;</pre>
+		<pre>    while(i<atoi(argv_1)) {</pre>
+		<pre>        id_i = i ;</pre>
+		<pre>        printf(Cree_thread) ;</pre>
+		<pre>        pthread_create(thread_i, NULL, hello, id_i) ;</pre>
+		<pre>        i = i + 1 ;</pre>
+		<pre>    }</pre>
+		<pre>    pthread_exit(NULL) ;</pre>
+		<pre>}</pre>
+	</p>
+	</div>
+
+	<p>&nbsp;</p>
+	<h3 id="error"><span style="color: #333333;">Erreur</span></h3>
+	<p>&nbsp;</p>
+	<div class="alert alert-secondary" role="alert">
+	<p>		<pre style="color: red;">Erreur struct : struct char non definie</pre>
+		<pre style="color: red;">Erreur struct : struct char non definie</pre>
+		<pre style="color: red;">Erreur variable : argv_1 non definie</pre>
+		<pre style="color: red;">Erreur fonction : atoi non definie</pre>
+		<pre style="color: red;">Erreur variable : fd non definie</pre>
+		<pre style="color: red;">Erreur fonction : pipe non definie</pre>
+		<pre style="color: red;">Erreur variable : fd_1 non definie</pre>
+		<pre style="color: red;">Erreur variable : buff non definie</pre>
+		<pre style="color: red;">Erreur fonction : write non definie</pre>
+		<pre style="color: red;">Erreur variable : plop non definie</pre>
+		<pre style="color: red;">Erreur fonction : perror non definie</pre>
+		<pre style="color: red;">Erreur fonction : printf non definie</pre>
+		<pre style="color: red;">Erreur fonction : fct ne renvoie pas d'element dans tous les cas</pre>
+		<pre style="color: red;">Erreur struct : struct char non definie</pre>
+		<pre style="color: red;">Erreur struct : struct pthread_t non definie</pre>
+		<pre style="color: red;">Erreur variable : argv_1 non definie</pre>
+		<pre style="color: red;">Erreur fonction : thread_atoi non definie</pre>
+		<pre style="color: red;">Erreur variable : argv_1 non definie</pre>
+		<pre style="color: red;">Erreur fonction : id_atoi non definie</pre>
+		<pre style="color: red;">Erreur variable : argv_1 non definie</pre>
+		<pre style="color: red;">Erreur fonction : atoi non definie</pre>
+		<pre style="color: red;">Erreur variable : id_i non definie</pre>
+		<pre style="color: red;">Erreur variable : Cree_thread non definie</pre>
+		<pre style="color: red;">Erreur fonction : printf non definie</pre>
+		<pre style="color: red;">Erreur variable : thread_i non definie</pre>
+		<pre style="color: red;">Erreur variable : NULL non definie</pre>
+		<pre style="color: red;">Erreur variable : hello non definie</pre>
+		<pre style="color: red;">Erreur variable : id_i non definie</pre>
+		<pre style="color: red;">Erreur fonction : pthread_create non definie</pre>
+		<pre style="color: red;">Erreur variable : NULL non definie</pre>
+		<pre style="color: red;">Erreur fonction : pthread_exit non definie</pre>
+		<pre style="color: red;">Erreur fonction : main ne renvoie pas d'element dans tous les cas</pre>
+		<pre style="color: red;">Erreur : le profil de main ne correspond pas</pre>
+	</p>
+	</div>
+
+	<p>&nbsp;</p>
+	<h3 id="ast"><span style="color: #333333;">AST</span></h3>
+	<p>&nbsp;</p>
+	<div class="img-container">
+		<img style="width:auto; height:auto;" src="../../ast/svg/Test_Complet/test7.svg" class="table" >
+	</div>
+	<p>&nbsp;</p>
+	<h3 id="tds"><span style="color: #333333;">TDS</span></h3>
+	<p>&nbsp;</p>
+	<div class="img-container">
+		<img style="width:auto; height:auto;" src="../../tds/svg/Test_Complet/test7.svg" class="table" >
+	</div>
+</div>
+</body>
+</html>

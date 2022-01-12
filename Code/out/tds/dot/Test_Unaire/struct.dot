@@ -1,0 +1,17 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N1 [shape=record label="{ structure : struct node 1
+	| { x | attribut | int | 0 }
+	| { y | attribut | int | 4 }
+	| { left | attribut | struct node | 8 }
+	| { right | attribut | struct node | 16 }
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+}

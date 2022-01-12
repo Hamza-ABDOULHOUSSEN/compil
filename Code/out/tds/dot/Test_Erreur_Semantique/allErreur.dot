@@ -1,0 +1,105 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N1 [shape=record label="{ structure : struct structDejaDef 1
+	| { attribut | attribut | int | 0 }
+	}"];
+
+	N2 [shape=record label="{ structure : struct structDejaDef 1
+	| { attribut1 | attribut | int | 0 }
+	| { attribut2 | attribut | int | 4 }
+	}"];
+
+	N3 [shape=record label="{ fonction : int varNonDef 1
+	| { a | param | int | - X - }
+	}"];
+
+	N4 [shape=record label="{ fonction : int varDejaDef 1
+	| { a | param | int | - X - }
+	| { a | attribut | int | 0 }
+	}"];
+
+	N5 [shape=record label="{ fonction : int foncDejaDef 1
+	}"];
+
+	N6 [shape=record label="{ fonction : int foncDejaDef 1
+	}"];
+
+	N7 [shape=record label="{ fonction : int struct_Non_Def 1
+	}"];
+
+	N8 [shape=record label="{ fonction : int returnType 1
+	| { s | attribut | struct structDejaDef | 0 }
+	}"];
+
+	N10 [shape=record label="{ bloc : Bloc If  2
+	}"];
+
+	N11 [shape=record label="{ bloc : Bloc Else  2
+	| { b | attribut | int | 4 }
+	}"];
+
+	N9 [shape=record label="{ fonction : int returnBloc 1
+	| { a | attribut | int | 0 }
+	}"];
+
+	N12 [shape=record label="{ fonction : int typeParam 1
+	| { a | param | int | - X - }
+	| { s | param | struct structDejaDef | - X - }
+	}"];
+
+	N13 [shape=record label="{ fonction : int nombreParam 1
+	| { a | attribut | int | 0 }
+	| { b | attribut | int | 4 }
+	}"];
+
+	N15 [shape=record label="{ bloc : Bloc If  2
+	| { b | attribut | int | 4 }
+	}"];
+
+	N14 [shape=record label="{ fonction : int cond 1
+	| { a | attribut | int | 0 }
+	}"];
+
+	N16 [shape=record label="{ fonction : int testType 1
+	| { a | param | int | - X - }
+	| { s | param | struct structDejaDef | - X - }
+	| { b | attribut | int | 0 }
+	}"];
+
+	N17 [shape=record label="{ fonction : int testFlecheDef 1
+	| { s | param | struct structDejaDef | - X - }
+	}"];
+
+	N18 [shape=record label="{ fonction : int divisionParZero 1
+	| { a | param | int | - X - }
+	}"];
+
+	N19 [shape=record label="{ fonction : int testAffectation 1
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N0 -> N2; 
+	N0 -> N3; 
+	N0 -> N4; 
+	N0 -> N5; 
+	N0 -> N6; 
+	N0 -> N7; 
+	N0 -> N8; 
+	N0 -> N9; 
+	N9 -> N10; 
+	N9 -> N11; 
+	N0 -> N12; 
+	N0 -> N13; 
+	N0 -> N14; 
+	N14 -> N15; 
+	N0 -> N16; 
+	N0 -> N17; 
+	N0 -> N18; 
+	N0 -> N19; 
+}

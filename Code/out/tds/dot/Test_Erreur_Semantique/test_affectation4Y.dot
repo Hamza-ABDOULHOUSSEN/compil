@@ -1,0 +1,25 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N1 [shape=record label="{ structure : struct ville 1
+	| { superficie | attribut | int | 0 }
+	| { population | attribut | int | 4 }
+	| { nb_batiment | attribut | int | 8 }
+	| { pib | attribut | int | 12 }
+	}"];
+
+	N3 [shape=record label="{ bloc : Bloc While  2
+	}"];
+
+	N2 [shape=record label="{ fonction : int main 1
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N0 -> N2; 
+	N2 -> N3; 
+}

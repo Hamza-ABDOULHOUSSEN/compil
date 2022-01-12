@@ -1,0 +1,58 @@
+digraph "ast"{
+
+	nodesep=1;
+	ranksep=1;
+
+	N0 [label="Fichier", shape="box"];
+	N1 [label="DefFctInt", shape="box"];
+	N2 [label="main", shape="box"];
+	N3 [label="Bloc", shape="box"];
+	N4 [label="BlocIfElse", shape="box"];
+	N5 [label="1", shape="box"];
+	N6 [label="Bloc", shape="box"];
+	N7 [label="BlocIfElse", shape="box"];
+	N8 [label="1", shape="box"];
+	N9 [label="Bloc", shape="box"];
+	N10 [label="BlocWhile", shape="box"];
+	N11 [label="1", shape="box"];
+	N12 [label="Bloc", shape="box"];
+	N13 [label="5", shape="box"];
+	N14 [label="Bloc", shape="box"];
+	N15 [label="BlocWhile", shape="box"];
+	N16 [label="1", shape="box"];
+	N17 [label="Bloc", shape="box"];
+	N18 [label="BlocWhile", shape="box"];
+	N19 [label="1", shape="box"];
+	N20 [label="Bloc", shape="box"];
+	N21 [label="5", shape="box"];
+	N22 [label="Bloc", shape="box"];
+	N23 [label="6", shape="box"];
+	N24 [label="BlocReturn", shape="box"];
+	N25 [label="0", shape="box"];
+
+	N1 -> N2; 
+	N4 -> N5; 
+	N7 -> N8; 
+	N10 -> N11; 
+	N12 -> N13; 
+	N10 -> N12; 
+	N9 -> N10; 
+	N7 -> N9; 
+	N15 -> N16; 
+	N18 -> N19; 
+	N20 -> N21; 
+	N18 -> N20; 
+	N17 -> N18; 
+	N15 -> N17; 
+	N14 -> N15; 
+	N7 -> N14; 
+	N6 -> N7; 
+	N4 -> N6; 
+	N22 -> N23; 
+	N4 -> N22; 
+	N3 -> N4; 
+	N24 -> N25; 
+	N3 -> N24; 
+	N1 -> N3; 
+	N0 -> N1; 
+}

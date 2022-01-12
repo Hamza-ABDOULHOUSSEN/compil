@@ -1,0 +1,33 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N1 [shape=record label="{ structure : struct permis 1
+	| { points | attribut | int | 0 }
+	}"];
+
+	N2 [shape=record label="{ structure : struct voiture 1
+	| { immatriculation | attribut | int | 0 }
+	| { license | attribut | struct permis | 4 }
+	}"];
+
+	N3 [shape=record label="{ structure : struct person 1
+	| { age | attribut | int | 0 }
+	| { bolide | attribut | struct voiture | 4 }
+	}"];
+
+	N4 [shape=record label="{ fonction : int main 1
+	| { p | attribut | struct permis | 0 }
+	| { v | attribut | struct voiture | 8 }
+	| { p | attribut | struct person | 16 }
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N0 -> N2; 
+	N0 -> N3; 
+	N0 -> N4; 
+}

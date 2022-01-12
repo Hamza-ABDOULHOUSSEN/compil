@@ -1,0 +1,34 @@
+digraph "tds"{
+
+	node [fontname="Arial"];
+
+	N1 [shape=record label="{ fonction : int addition 1
+	| { x | param | int | - X - }
+	| { y | param | int | - X - }
+	}"];
+
+	N2 [shape=record label="{ fonction : int soustraction 1
+	| { x | param | int | - X - }
+	| { x | param | int | - X - }
+	}"];
+
+	N3 [shape=record label="{ fonction : struct voiture * nom 1
+	| { x | param | int | - X - }
+	| { ID_voiture | attribut | int | 0 }
+	}"];
+
+	N4 [shape=record label="{ fonction : struct voiture * w 1
+	| { x | param | int | - X - }
+	| { y | param | int | - X - }
+	| { x | param | int | - X - }
+	}"];
+
+	N0 [shape=record label="{ global 0
+	}"];
+
+
+	N0 -> N1; 
+	N0 -> N2; 
+	N0 -> N3; 
+	N0 -> N4; 
+}
