@@ -34,7 +34,8 @@ Dans Code
 5 : generate all tds
 6 : syntax error detection
 7 : semantics error detection
-Which option [0/1/2/3/4/5/6/7] : 
+8 : all html generation
+Which option [0/1/2/3/4/5/6/7/8] : 
 
 ```
 
@@ -157,6 +158,8 @@ Erreur division par zéro
 ### ✅ ✅ ✅ : The error was detected ###
 
 ```
+
+* L'option 8 lance la génération des visualisations html
 
 ### Raccourci launch.sh
 * Les paramètres peuvent être donnés directement à launch.sh
